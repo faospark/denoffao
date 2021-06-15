@@ -439,6 +439,8 @@ progress {
 .grid{
   display: grid;
 }
+.gap1{ grid-gap: 1rem}
+.gap2{ grid-gap: 2rem}
 .cent{
   /*place-items: center;*/
   padding-top: 4rem;
@@ -590,21 +592,4 @@ progress {
 .square { height: 6rem ; width:6rem}
 .vc{ place-items: center}
 .bgb{ background-color: rgb(0 0 0 / 28%);
-}
-
-.grid {
-  display: grid;
-  grid-gap: 2rem;
-
-  &--2cols {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  &--3cols {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  &--4cols {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }

@@ -449,6 +449,14 @@ progress {
   display: grid;
 }
 
+.gap1 {
+  grid-gap: 1rem;
+}
+
+.gap2 {
+  grid-gap: 2rem;
+}
+
 .cent {
   /*place-items: center;*/
   padding-top: 4rem;
@@ -637,20 +645,6 @@ progress {
 
 .bgb {
   background-color: rgba(0, 0, 0, 0.28);
-}
-
-.grid {
-  display: grid;
-  grid-gap: 2rem;
-}
-.grid--2cols {
-  grid-template-columns: repeat(2, 1fr);
-}
-.grid--3cols {
-  grid-template-columns: repeat(3, 1fr);
-}
-.grid--4cols {
-  grid-template-columns: repeat(4, 1fr);
 }
 
 /*# sourceMappingURL=main.css.map */
