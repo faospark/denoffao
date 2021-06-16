@@ -439,8 +439,8 @@ progress {
 .grid{
   display: grid;
 }
-.gap1{ grid-gap: 1rem}
-.gap2{ grid-gap: 2rem}
+.gap1{ grid-gap: 1rem !important;}
+.gap2{ grid-gap: 2rem !important;}
 
 .cent{
   padding: 1rem;
@@ -452,7 +452,7 @@ progress {
 }
 
 main{ position: relative}
-.vh{ height: 100vh;
+.vh{ height: auto;
 }
 .card{
   padding: 2rem;
@@ -461,6 +461,7 @@ main{ position: relative}
   color: aliceblue;
   text-shadow: 2px 2px 0 black;
   font-size: .85rem;
+  margin-bottom: 2rem;
 }
 @media (min-width: 960px) {
   .card {
@@ -620,6 +621,7 @@ dib{
   z-index: 2
 ;
 }
+img{ width: 100%}
 @media (min-width: 960px) {
  .nav-b{ left: -2.5rem;
    right: auto;
