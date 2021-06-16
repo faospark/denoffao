@@ -458,8 +458,16 @@ progress {
 }
 
 .cent {
-  /*place-items: center;*/
-  padding-top: 4rem;
+  padding: 1rem;
+}
+
+@media (min-width: 960px) {
+  .cent {
+    padding-top: 4rem !important;
+  }
+}
+main {
+  position: relative;
 }
 
 .vh {
@@ -473,9 +481,13 @@ progress {
   color: aliceblue;
   text-shadow: 2px 2px 0 black;
   font-size: 0.85rem;
-  clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100%, 0 100%, 0 0);
 }
 
+@media (min-width: 960px) {
+  .card {
+    clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100%, 0 100%, 0 0);
+  }
+}
 .card a {
   color: cyan;
 }
@@ -571,14 +583,15 @@ progress {
   background-image: -ms-linear-gradient(top, #d98f34, #b8502b);
   background-image: -o-linear-gradient(top, #d98f34, #b8502b);
   background-image: linear-gradient(to bottom, #d98f34, #b8502b);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
+  border-radius: 2rem;
   color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+}
+
+dib {
+  display: inline-block;
 }
 
 .btn:hover {
@@ -652,7 +665,7 @@ progress {
   display: grid;
   place-items: center;
   padding: 2rem;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: white !important;
 }
 
@@ -662,6 +675,72 @@ progress {
 
 .bgsui {
   background-color: darkgoldenrod;
+}
+
+.nav-b {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+  position: absolute;
+  background-color: #2196f3;
+  right: 0;
+  color: white;
+  z-index: 2;
+}
+
+@media (min-width: 960px) {
+  .nav-b {
+    left: -2.5rem;
+    right: auto;
+  }
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: #011b1d;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #00bcd4;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
