@@ -1,0 +1,1703 @@
+/**
+ * components.js — Native Web Components for Den of Fao
+ * 100% Native, Zero-framework, Light-DOM Web Components.
+ * Fully compatible with XAMPP Apache and GitHub Pages.
+ */
+
+// SVG Icon Definitions (Clean, crisp, lightweight vectors)
+const ICONS = {
+  star: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px; margin-left: 4px; display: inline-block; color: var(--accent-amber, #f59e0b);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+  heart: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px; margin-left: 4px; display: inline-block; color: var(--accent-rose, #f43f5e);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+  vault: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`,
+  menu: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`,
+  footerVault: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`
+};
+
+class VaultNavbar extends HTMLElement {
+  connectedCallback() {
+    const active = (this.getAttribute('active') || '').toLowerCase();
+
+    const isHome = active === 'home' || active === 'workshop';
+    const isProjects = active === 'projects' || active === 'special-projects';
+    const isMods = active === 'mods' || active === 'catalog';
+    const isBlog = active === 'blog' || active === 'archives';
+    const isDonate = active === 'donate';
+
+    this.innerHTML = `
+      <header class="obsidian-topbar">
+        <div class="container topbar-content">
+          <a href="index.html" class="vault-brand" title="Workshop Home" aria-label="Workshop Home" style="text-decoration: none;">
+            <span class="vault-icon">
+              ${ICONS.vault}
+            </span>
+          </a>
+
+          <button class="mobile-nav-toggle" id="vaultMobileNavToggle" aria-label="Toggle navigation">
+            ${ICONS.menu}
+          </button>
+
+          <ul class="nav-links" id="vaultNavLinks">
+            <li><a href="index.html" class="nav-link ${isHome ? 'active' : ''}">Workshop Home</a></li>
+            <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Special Projects</a></li>
+            <li><a href="mods.html" class="nav-link ${isMods ? 'active' : ''}">All Mods</a></li>
+            <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog Archives</a></li>
+            <li><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Personal Update</a></li>
+          </ul>
+        </div>
+      </header>
+    `;
+
+    // Built-in Mobile Nav toggle handler
+    const toggle = this.querySelector('#vaultMobileNavToggle');
+    const links = this.querySelector('#vaultNavLinks');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('mobile-open');
+      });
+      links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          links.classList.remove('mobile-open');
+        });
+      });
+    }
+  }
+}
+customElements.define('vault-navbar', VaultNavbar);
+
+class VaultFooter extends HTMLElement {
+  connectedCallback() {
+    if (this.style) this.style.display = 'block';
+    const disclaimer = this.getAttribute('disclaimer') || this.getAttribute('note') ||
+      'All games are copyright their respective creators (Square Enix, Konami, etc.). All modifications are unofficial, non-commercial fan creations.';
+
+    this.innerHTML = `
+      <footer class="obsidian-footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="community-box">
+              <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif">
+              <div style="flex-grow: 1; min-width: 240px;">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
+                  <span class="tag tag-cyan">Community Hub</span>
+                  <span class="tag">Discord Hangout</span>
+                </div>
+                <h3 style="color: #fff; font-size: 1.2rem; margin: 0 0 0.35rem;">Moogles and Mods</h3>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0 0 0.75rem;">
+                  My hangout and testing server for classic RPG modding, texture overhauls, and troubleshooting. Drop in to say hello or report texture issues!
+                </p>
+                <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background: #5865f2; border-color: #5865f2;">
+                  <span>Join Moogles and Mods Discord &rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-socials">
+              <a href="https://www.nexusmods.com/profile/faospark" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="NexusMods Profile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </a>
+              <a href="https://github.com/faospark/denoffao" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="GitHub Repository">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+              </a>
+              <a href="https://paypal.me/thefaospark?country.x=PH&locale.x=en_US" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Donate via PayPal">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>${disclaimer}</span>
+            <button type="button" class="cookie-settings-btn" id="openCookieSettingsBtn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Cookie Preferences
+            </button>
+          </div>
+        </div>
+      </footer>
+    `;
+
+    const prefsBtn = this.querySelector('#openCookieSettingsBtn');
+    if (prefsBtn) {
+      prefsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof window.showCookieConsentBanner === 'function') {
+          window.showCookieConsentBanner(true);
+        }
+      });
+    }
+  }
+}
+customElements.define('vault-footer', VaultFooter);
+if (!customElements.get('site-footer')) {
+  customElements.define('site-footer', class extends VaultFooter {});
+}
+
+/**
+ * FF9_MODS_DATA — Catalog of all 10 Final Fantasy IX Kupo Mods
+ */
+const FF9_MODS_DATA = [
+  {
+    id: 31,
+    title: "Kupo UI Suite Formerly Mog Addons",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/31",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Oct 11, 2026",
+    image: "assets/mods/31-1730825135-2097256402.png",
+    desc: "An extensive UI overhaul for Final Fantasy IX: modular dialogue boxes (Classic, Darker, Flat, Pixel Remaster), custom menu backgrounds (Pure Black, Tantalus, Chocobo), and title screen recreations.",
+    badge: "Nexus Mods (#31)"
+  },
+  {
+    id: 78,
+    title: "Kupo Heroes Pack",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/78",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Sep 21, 2026",
+    image: "assets/mods/78-1730460284-1844633571.png",
+    desc: "Party character specialization overhaul: adds Zombie/Virus resistances, replaces Auto-Potion with HP/MP+5%, 3x High Jump for Freya, Save the Queen for Steiner, and expanded spell tiers for Vivi.",
+    badge: "Nexus Mods (#78)"
+  },
+  {
+    id: 74,
+    title: "Modern Labels Plus",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/74",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Aug 15, 2026",
+    image: "assets/mods/74-1730462893-1442620178.png",
+    desc: "Modernized high-legibility interface typography, refreshed menu text labels, and clean item, spell, and command nomenclature across all game menus.",
+    badge: "Nexus Mods (#74)"
+  },
+  {
+    id: 81,
+    title: "Kupo Buttons Pack",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/81",
+    game: "Final Fantasy IX",
+    category: "User Interface",
+    date: "May 07, 2026",
+    image: "assets/mods/81-1730815997-1860871365.png",
+    desc: "One of the first COMPLETE controller button mods for FF9 with 6 distinct presets: DualSense PS5, PS Gloss (DS4), Simple PS (PSX), Pixels (PSX), Default Xbox, and SNES.",
+    badge: "Nexus Mods (#81)"
+  },
+  {
+    id: 80,
+    title: "Kupo Portraits Pack",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/80",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Apr 27, 2026",
+    image: "assets/mods/80-1791255451-606293076.png",
+    desc: "High-detail character portrait presets for all playable heroes: Default Extended Cast (adding Kuja, Fratley, and Lani), PSX Upscaled portraits, and Dissidia Opera Omnia style.",
+    badge: "Nexus Mods (#80)"
+  },
+  {
+    id: 79,
+    title: "No Exp Plus",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/79",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Nov 07, 2025",
+    image: "assets/mods/79-1730465189-884409757.png",
+    desc: "Flexible challenge mode modifier: choose between No EXP/AP gain, No EXP but gain AP (classic Level 1 challenge run), doubled EXP, or 8x EXP curve for hardcore progression.",
+    badge: "Nexus Mods (#79)"
+  },
+  {
+    id: 96,
+    title: "Memoria Launcher Themes",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/96",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Oct 13, 2026",
+    image: "assets/mods/96-1747010569-245924055.png",
+    desc: "A collection of custom visual launcher themes for the Memoria Engine, giving your game launch window a tailored aesthetic.",
+    badge: "Nexus Mods (#96)"
+  },
+  {
+    id: 88,
+    title: "Support ability cost modifier by Kupo Mods",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/88",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Oct 11, 2026",
+    image: "assets/mods/88-1736790461-1074394076.png",
+    desc: "The original 1-gem and halved-cost support ability modifier. Easy to use and simple to install — compatible with all major mod setups with no overwrites.",
+    badge: "Nexus Mods (#88)"
+  },
+  {
+    id: 87,
+    title: "Kupo Tweaks",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/87",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Jan 14, 2025",
+    image: "assets/mods/87-1736789445-1316131728.png",
+    desc: "Quality-of-life progression and reward tuning: configurable 2x/4x/99x AP gain, 2x/4x/8x EXP gain, 2x/4x/8x Gil, and double item drops after battle.",
+    badge: "Nexus Mods (#87)"
+  },
+  {
+    id: 75,
+    title: "Cursor Mod",
+    url: "https://www.nexusmods.com/finalfantasy9/mods/75",
+    game: "Final Fantasy IX",
+    category: "Miscellaneous",
+    date: "Oct 12, 2026",
+    image: "assets/mods/75-1730462988-281935920.png",
+    desc: "A set of clean, scaled-down high-definition cursors for the PC version replacing the oversized default pointer with responsive retro variants.",
+    badge: "Nexus Mods (#75)"
+  }
+];
+
+/**
+ * FF9Mods — Native Web Component (<ff9-mods>)
+ * Renders the 10 Final Fantasy IX Kupo Mods catalog grid with thumbnails,
+ * metadata badges, descriptions, and lightbox support.
+ */
+class FF9Mods extends HTMLElement {
+  connectedCallback() {
+    const hideHeader = this.hasAttribute('no-header');
+    const title = this.getAttribute('title') || 'Final Fantasy IX Kupo Mods (10)';
+    const eyebrow = this.getAttribute('eyebrow') || 'Catalog Modules';
+    const desc = this.getAttribute('desc') || 'Browse and download all 10 modular Kupo enhancements for Final Fantasy IX on PC.';
+
+    const headerHtml = hideHeader ? '' : `
+      <div class="section-header" style="margin-bottom: 1.5rem; text-align: left;">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          ${eyebrow}
+        </span>
+        <h2 class="section-title" style="font-size: 1.75rem; margin-top: 0.25rem;">${title}</h2>
+        <p class="section-desc">${desc}</p>
+      </div>
+    `;
+
+    const cardsHtml = FF9_MODS_DATA.map(mod => {
+      const escapedTitle = mod.title.replace(/'/g, "\\'");
+      return `
+      <article class="mod-tile-card" data-category="ffix">
+        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
+          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+          <div class="mod-tile-overlay-tags">
+            <span class="tag tag-emerald">📅 ${mod.date}</span>
+          </div>
+          <span class="preview-zoom-hint">🔍 Zoom</span>
+        </div>
+        <div class="mod-tile-body">
+          <div>
+            <div class="mod-tile-game">${mod.game}</div>
+            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+            <p class="mod-tile-desc">${mod.desc}</p>
+          </div>
+          <div class="mod-tile-footer">
+            <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>View &amp; Download</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </article>`;
+    }).join('\n');
+
+    this.innerHTML = `
+      <div class="ff9-mods-component" style="margin-top: 1.5rem;">
+        ${headerHtml}
+        <div class="mods-grid-catalog">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define('ff9-mods', FF9Mods);
+
+if (!customElements.get('kupo-mods')) {
+  customElements.define('kupo-mods', class extends FF9Mods {});
+}
+
+/**
+ * FF6_MODS_DATA — Catalog of all 10 Final Fantasy VI Old Ver. Apocalypse / Sane Library Mods
+ */
+const FF6_MODS_DATA = [
+  {
+    id: 35,
+    title: "Better Airship Sky Deck",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/35",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Visuals",
+    date: "Jun 05, 2026",
+    image: "assets/mods/35-1780641967-1134773491.png",
+    desc: "Improves the overall colors, textures, and shading of the Sky Deck on both the Blackjack and The Falcon airships, removing dull washed-out palettes.",
+    badge: "Nexus Mods (#35)",
+    endorsements: "1",
+    downloads: "22/24"
+  },
+  {
+    id: 32,
+    title: "Celes Scene Restoration for FF VI old ver",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/32",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Gameplay",
+    date: "Apr 19, 2026",
+    image: "assets/mods/32-1736879178-221967451.png",
+    desc: "Restores the dramatic, uncut, and uncensored interrogation sequence with Celes in South Figaro for Final Fantasy VI Old Version.",
+    badge: "Nexus Mods (#32)",
+    endorsements: "21",
+    downloads: "355/413"
+  },
+  {
+    id: 27,
+    title: "Launcher Resolution Fix and Remove Black Borders",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/27",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Miscellaneous",
+    date: "Apr 30, 2026",
+    image: "assets/mods/27-1713028584-1662905657.png",
+    desc: "Eliminates pillarbox black borders, unlocks proper aspect ratios, and configures launcher resolutions cleanly for modern widescreen PC monitors.",
+    badge: "Nexus Mods (#27)",
+    endorsements: "33",
+    downloads: "1k/1.2k"
+  },
+  {
+    id: 26,
+    title: "Sane World and Battle Bgs",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/26",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Visuals",
+    date: "Apr 19, 2024",
+    image: "assets/mods/26-1712151337-2077179522.png",
+    desc: "The 2nd full world map overhaul for FFVI Old Ver. Restores cohesive, authentic battle backgrounds and overworld tilesets, eliminating bilinear blur in favor of crisp pixel fidelity.",
+    badge: "Nexus Mods (#26)",
+    endorsements: "37",
+    downloads: "992/2.3k"
+  },
+  {
+    id: 24,
+    title: "Brave Steel Sane Alts and Fixes",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/24",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Visuals",
+    date: "Mar 02, 2026",
+    image: "assets/mods/24-1780765830-1770695584.png",
+    desc: "Curated extension of the Brave Steel sprite overhaul, restoring sane character alternate outfits, color balances, and sprite alignments for Sabin, Shadow, and Terra.",
+    badge: "Nexus Mods (#24)",
+    endorsements: "35",
+    downloads: "760/2.7k"
+  },
+  {
+    id: 21,
+    title: "Alternate Title Screen",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/21",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "User Interface",
+    date: "Feb 04, 2025",
+    image: "assets/mods/21-1687160962-1921886212.png",
+    desc: "Replaces the sterile default mobile port screen with Yoshitaka Amano's ethereal concept artwork, custom typography, and atmospheric title music cues.",
+    badge: "Nexus Mods (#21)",
+    endorsements: "22",
+    downloads: "476/765"
+  },
+  {
+    id: 19,
+    title: "Sane Ui",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/19",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "User Interface",
+    date: "Sep 23, 2026",
+    image: "assets/mods/19-1701241722-2005955359.png",
+    desc: "The foundational Sane UI mod. Follows the principle of mobile UI removal while preserving modern crisp touches by Square, banishing oversized mobile touchscreen elements.",
+    badge: "Nexus Mods (#19)",
+    endorsements: "54",
+    downloads: "1.4k/1.9k"
+  },
+  {
+    id: 18,
+    title: "Scaled Down Fonts",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/18",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Miscellaneous",
+    date: "May 21, 2023",
+    image: "assets/mods/18-1684653834-439638615.png",
+    desc: "Proportional, crisp scaled-down font choices replacing oversized mobile lettering, restoring proper dialogue density and clean menu aesthetics.",
+    badge: "Nexus Mods (#18)",
+    endorsements: "18",
+    downloads: "426/509"
+  },
+  {
+    id: 17,
+    title: "Grass or Green FIx FFVI Old ver",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/17",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "Visuals",
+    date: "May 06, 2023",
+    image: "assets/mods/17-1710759560-1918595346.png",
+    desc: "Corrects the infamous radioactive neon-green grass and oversaturated overworld field palettes, restoring natural earthen tones true to the SNES original.",
+    badge: "Nexus Mods (#17)",
+    endorsements: "22",
+    downloads: "459/766"
+  },
+  {
+    id: 14,
+    title: "Opera Omnia Style Portraits",
+    url: "https://www.nexusmods.com/finalfantasy6/mods/14",
+    game: "Final Fantasy VI (Old Ver.)",
+    category: "User Interface",
+    date: "Oct 28, 2022",
+    image: "assets/mods/14-1701435488-1857475830.png",
+    desc: "Complete character portrait overhaul inspired by Dissidia Final Fantasy Opera Omnia (DFFOO). 2 presets (A World Reborn & Remastered) with custom-curated chibi portraits for characters lacking official art.",
+    badge: "Nexus Mods (#14)",
+    endorsements: "25",
+    downloads: "541/887"
+  }
+];
+
+/**
+ * ApocalypseMods / FF6Mods — Native Web Component (<apocalypse-mods>, <ff6-mods>)
+ */
+class ApocalypseMods extends HTMLElement {
+  connectedCallback() {
+    const hideHeader = this.hasAttribute('no-header');
+    const title = this.getAttribute('title') || 'Apocalypse Library — FFVI Old Ver. (10 Mods)';
+    const eyebrow = this.getAttribute('eyebrow') || 'The Sane Library of Mods';
+    const desc = this.getAttribute('desc') || 'Browse and download all 10 curated modules of the Apocalypse Library for Final Fantasy VI Old Version on PC.';
+
+    const headerHtml = hideHeader ? '' : `
+      <div class="section-header" style="margin-bottom: 1.5rem; text-align: left;">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          ${eyebrow}
+        </span>
+        <h2 class="section-title" style="font-size: 1.75rem; margin-top: 0.25rem;">${title}</h2>
+        <p class="section-desc">${desc}</p>
+      </div>
+    `;
+
+    const cardsHtml = FF6_MODS_DATA.map(mod => {
+      const escapedTitle = mod.title.replace(/'/g, "\\'");
+      return `
+      <article class="mod-tile-card" data-category="ffvi" data-mod-id="${mod.id}">
+        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
+          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+          <div class="mod-tile-overlay-tags">
+            <span class="tag tag-purple">${mod.category}</span>
+            <span class="tag tag-emerald">⭐ ${mod.endorsements} | 💾 ${mod.downloads}</span>
+          </div>
+          <span class="preview-zoom-hint">🔍 Zoom</span>
+        </div>
+        <div class="mod-tile-body">
+          <div>
+            <div class="mod-tile-game">${mod.game}</div>
+            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+            <p class="mod-tile-desc">${mod.desc}</p>
+          </div>
+          <div class="mod-tile-footer">
+            <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>View &amp; Download</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </article>`;
+    }).join('\n');
+
+    this.innerHTML = `
+      <div class="apocalypse-mods-component" style="margin-top: 1.5rem;">
+        ${headerHtml}
+        <div class="mods-grid-catalog">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define('apocalypse-mods', ApocalypseMods);
+if (!customElements.get('ff6-mods')) {
+  customElements.define('ff6-mods', class extends ApocalypseMods {});
+}
+
+/**
+/**
+ * ALL_MODS_DATA — Complete Catalog of all 68 Released Mods
+ * Chronologically ordered by last updated date (Newest First)
+ */
+const ALL_MODS_DATA = [
+  {
+    "id": 6,
+    "title": "Project Kyaro Suite",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/6",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Oct 14, 2026",
+    "image": "assets/mods/6-1770657087-1226613141.png",
+    "desc": "A BepInEx Plugin that is a Modding Suite Compatible with SuikodenFix",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 96,
+    "title": "Memoria Launcher Themes",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/96",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 13, 2026",
+    "image": "assets/mods/96-1747010569-245924055.png",
+    "desc": "A collection of custom visual launcher themes for the Memoria Engine, giving your game launch window a tailored aesthetic.",
+    "badge": "Nexus Mods (#96)"
+  },
+  {
+    "id": 75,
+    "title": "Cursor Mod",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/75",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 12, 2026",
+    "image": "assets/mods/75-1730462988-281935920.png",
+    "desc": "A set of clean, scaled-down high-definition cursors for the PC version replacing the oversized default pointer with responsive retro variants.",
+    "badge": "Nexus Mods (#75)"
+  },
+  {
+    "id": 88,
+    "title": "Support ability cost modifier by Kupo Mods",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/88",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 11, 2026",
+    "image": "assets/mods/88-1736790461-1074394076.png",
+    "desc": "The original 1-gem and halved-cost support ability modifier. Easy to use and simple to install — compatible with all major mod setups with no overwrites.",
+    "badge": "Nexus Mods (#88)"
+  },
+  {
+    "id": 80,
+    "title": "Kupo Portraits Pack",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/80",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 10, 2026",
+    "image": "assets/mods/80-1791255451-606293076.png",
+    "desc": "High-detail character portrait presets for all playable heroes: Default Extended Cast (adding Kuja, Fratley, and Lani), PSX Upscaled portraits, and Dissidia Opera Omnia style.",
+    "badge": "Nexus Mods (#80)"
+  },
+  {
+    "id": 81,
+    "title": "Kupo Buttons Pack",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/81",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 09, 2026",
+    "image": "assets/mods/81-1730815997-1860871365.png",
+    "desc": "One of the first COMPLETE controller button mods for FF9 with 6 distinct presets: DualSense PS5, PS Gloss (DS4), Simple PS (PSX), Pixels (PSX), Default Xbox, and SNES.",
+    "badge": "Nexus Mods (#81)"
+  },
+  {
+    "id": 35,
+    "title": "Opera Omnia Style Portraits",
+    "url": "https://www.nexusmods.com/finalfantasy2pixelremaster/mods/35",
+    "game": "Final Fantasy II Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 22, 2026",
+    "image": "assets/mods/35-1790041964-2025918709.png",
+    "desc": "Opera Omnia (Chibii) style Portraits",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 41,
+    "title": "Darker UI FF6 PR",
+    "url": "https://www.nexusmods.com/finalfantasy6pixelremaster/mods/41",
+    "game": "Final Fantasy VI Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 12, 2026",
+    "image": "assets/mods/41-1649149778-273543089.png",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 27,
+    "title": "Darker UI FF5 PR",
+    "url": "https://www.nexusmods.com/finalfantasy5pixelremaster/mods/27",
+    "game": "Final Fantasy V Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 12, 2026",
+    "image": "assets/mods/27-1668660181-489357470.jpeg",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue  and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 64,
+    "title": "Darker UI FF4 PR",
+    "url": "https://www.nexusmods.com/finalfantasyivpixelremaster/mods/64",
+    "game": "Final Fantasy IV Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 12, 2026",
+    "image": "assets/mods/64-1682695809-1860655684.png",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue  and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 39,
+    "title": "Darker UI FF3 PR",
+    "url": "https://www.nexusmods.com/finalfantasy3pixelremaster/mods/39",
+    "game": "Final Fantasy III Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 11, 2026",
+    "image": "assets/mods/39-1674633747-50730834.jpeg",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue  and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 36,
+    "title": "Darker UI FF2 PR",
+    "url": "https://www.nexusmods.com/finalfantasy2pixelremaster/mods/36",
+    "game": "Final Fantasy II Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 11, 2026",
+    "image": "assets/mods/36-1648482223-374314907.png",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue  and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 48,
+    "title": "Darker UI FF1 PR",
+    "url": "https://www.nexusmods.com/finalfantasypixelremaster/mods/48",
+    "game": "Final Fantasy Pixel Remaster",
+    "category": "ffpr",
+    "date": "Sep 11, 2026",
+    "image": "assets/mods/48-1648210068-960489217.png",
+    "desc": "A Darker Ui build with HDR/Curves/ Levels in mind . replaces the vibrant blue  and game ui borders.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 24,
+    "title": "Brave Steel Sane Alts and Fixes",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/24",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "Jun 7, 2026",
+    "image": "assets/mods/24-1780765830-1770695584.png",
+    "desc": "An Extension of the Brave Steel Sprites",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 35,
+    "title": "Better Airship Sky Deck",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/35",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "Jun 5, 2026",
+    "image": "assets/mods/35-1780641967-1134773491.png",
+    "desc": "Improves the overall colors of the Skydeck of the Blackjack and The Falcon",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 26,
+    "title": "Sane World and Battle Bgs",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/26",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "May 22, 2026",
+    "image": "assets/mods/26-1712151337-2077179522.png",
+    "desc": "This is the 2nd Full world map mod for final fantasy vi old ver.Originally Published on Moogles and Mods Discord Sever on July 2021 now moved to Nexusmods",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 12,
+    "title": "Alternate Portraits",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/12",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Mar 23, 2026",
+    "image": "assets/mods/12-1747190297-486654413.png",
+    "desc": "Just set of alternate portraits for the Remasters.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 17,
+    "title": "Force PlayStation Button prompts on X-Input controllers",
+    "url": "https://www.nexusmods.com/tombraidertrilogyremastered/mods/17",
+    "game": "Tomb Raider I-III Remastered",
+    "category": "other",
+    "date": "Mar 13, 2026",
+    "image": "assets/mods/17-1711028139-1070677378.png",
+    "desc": "Forces Button prompts to show PlayStation buttons when using and xbox controller / X-input device",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 63,
+    "title": "CC Blue Mage",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/63",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Mar 8, 2026",
+    "image": "assets/mods/63-1708857886-166988730.png",
+    "desc": "The blue mage from another world.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 31,
+    "title": "Kupo UI Suite Formerly Mog Addons",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/31",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Oct 11, 2026",
+    "image": "assets/mods/31-1730825135-2097256402.png",
+    "desc": "An extensive UI overhaul for Final Fantasy IX: modular dialogue boxes (Classic, Darker, Flat, Pixel Remaster), custom menu backgrounds (Pure Black, Tantalus, Chocobo), and title screen recreations.",
+    "badge": "Nexus Mods (#31)"
+  },
+  {
+    "id": 78,
+    "title": "Kupo Heroes Pack",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/78",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Sep 21, 2026",
+    "image": "assets/mods/78-1730460284-1844633571.png",
+    "desc": "Party character specialization overhaul: adds Zombie/Virus resistances, replaces Auto-Potion with HP/MP+5%, 3x High Jump for Freya, Save the Queen for Steiner, and expanded spell tiers for Vivi.",
+    "badge": "Nexus Mods (#78)"
+  },
+  {
+    "id": 74,
+    "title": "Modern Labels Plus",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/74",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Aug 15, 2026",
+    "image": "assets/mods/74-1730462893-1442620178.png",
+    "desc": "Modernized high-legibility interface typography, refreshed menu text labels, and clean item, spell, and command nomenclature across all game menus.",
+    "badge": "Nexus Mods (#74)"
+  },
+  {
+    "id": 12,
+    "title": "Darker UI Lumi",
+    "url": "https://www.nexusmods.com/pokemonbdsp/mods/12",
+    "game": "Pokemon Brilliant Diamond and Shining Pearl",
+    "category": "other",
+    "date": "Dec 14, 2025",
+    "image": "assets/mods/12-1692553607-451120380.png",
+    "desc": "An addon Ui mod that transforms sections of the game's UI to have a set much darker colors. Features: Darker user interface for Battle (full revamp), Pokedex, Pokemon and Box viewsSwapped Window frame 1 and window frame 18 style making it",
+    "badge": "Nexus Mods (#12)"
+  },
+  {
+    "id": 16,
+    "title": "Early Recruitment Patch",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/16",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 24, 2025",
+    "image": "assets/mods/16-1764002467-236365111.png",
+    "desc": "Allow to recruit Tessai, Gantetsu , Genshu , LC Chan and more.Compatible to v1.0.3",
+    "badge": "Nexus Mods (#16)"
+  },
+  {
+    "id": 5,
+    "title": "Suikoden Reworded Plus",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/5",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 20, 2025",
+    "image": "assets/mods/5-1746111158-488394244.png",
+    "desc": "A partial retranslation of the game text combining old and new terminologies plus personal choices for the English Text. The mod also has some bonus text hints that will help with certain things in game.",
+    "badge": "Nexus Mods (#5)"
+  },
+  {
+    "id": 79,
+    "title": "No Exp Plus",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/79",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Nov 07, 2025",
+    "image": "assets/mods/79-1730465189-884409757.png",
+    "desc": "Flexible challenge mode modifier: choose between No EXP/AP gain, No EXP but gain AP (classic Level 1 challenge run), doubled EXP, or 8x EXP curve for hardcore progression.",
+    "badge": "Nexus Mods (#79)"
+  },
+  {
+    "id": 111,
+    "title": "Moguri Mod Alternative Download Links",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/111",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Jul 15, 2025",
+    "image": "assets/mods/111-1752602164-580928720.png",
+    "desc": "Alternative download mirrors and reliable direct links for Moguri Mod FFIX.",
+    "badge": "Nexus Mods (#111)"
+  },
+  {
+    "id": 18,
+    "title": "Kraken Patch",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/18",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "May 18, 2025",
+    "image": "assets/mods/18-1746327126-166158825.png",
+    "desc": "Allows you to recruit Chuchara and along side with him Abizboah , Rulodia without Listening Crystals required and can be done even if you have Feather and Siegfried recruited",
+    "badge": "Nexus Mods (#18)"
+  },
+  {
+    "id": 2,
+    "title": "Genso Force PSX Buttons",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/2",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "May 03, 2025",
+    "image": "assets/mods/2-1741528640-827324825.png",
+    "desc": "Forces PSX prompts to show while using Xinput controllers",
+    "badge": "Nexus Mods (#2)"
+  },
+  {
+    "id": 17,
+    "title": "Open Paths Mod",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/17",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Apr 24, 2025",
+    "image": "assets/mods/17-1745535249-663424833.png",
+    "desc": "Removes rocks that block path way in Tinto Mines creating short cuts ,Plus Solves Puzzle Boulders in Cave of the mind making you not need to push the bouldersCompatible with v1.0.3",
+    "badge": "Nexus Mods (#17)"
+  },
+  {
+    "id": 1267,
+    "title": "Suikoden I and II HD Remaster Basic Vortex Support",
+    "url": "https://www.nexusmods.com/site/mods/1267",
+    "game": "Modding Tools",
+    "category": "suikoden",
+    "date": "Apr 18, 2025",
+    "image": "assets/mods/1267-1744934907-675657779.png",
+    "desc": "Adds Basic Vortex Mod Manager for Suikoden I&II HD Remaster",
+    "badge": "Nexus Mods (#1267)"
+  },
+  {
+    "id": 14,
+    "title": "True Matilda Glitch Restoration",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/14",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Apr 10, 2025",
+    "image": "assets/mods/14-1744294086-625319889.png",
+    "desc": "Compatible to v1.0.4 , Matilda glitch restoration.. promise These 2 method works. see videos on on the mod page",
+    "badge": "Nexus Mods (#14)"
+  },
+  {
+    "id": 20,
+    "title": "Monument - Landmark Retextures via Special K",
+    "url": "https://www.nexusmods.com/eiyudenchronicle/mods/20",
+    "game": "Eiyuden Chronicle: Hundred Heroes",
+    "category": "other",
+    "date": "Feb 28, 2025",
+    "image": "assets/mods/20-1740734062-811123298.png",
+    "desc": "Retextures for the Monuments/ landmark you built on your castle , Available options: Colored/ Painted, Iron Cast , and Gold-ish",
+    "badge": "Nexus Mods (#20)"
+  },
+  {
+    "id": 3,
+    "title": "Force PSX Buttons",
+    "url": "https://www.nexusmods.com/tombraidertrilogy2remastered/mods/3",
+    "game": "Tomb Raider IV-VI Remastered",
+    "category": "other",
+    "date": "Feb 14, 2025",
+    "image": "assets/mods/3-1739554737-163432188.png",
+    "desc": "Force PSX buttons when using X-input controllers",
+    "badge": "Nexus Mods (#3)"
+  },
+  {
+    "id": 87,
+    "title": "Kupo Tweaks",
+    "url": "https://www.nexusmods.com/finalfantasy9/mods/87",
+    "game": "Final Fantasy IX",
+    "category": "ffix",
+    "date": "Jan 14, 2025",
+    "image": "assets/mods/87-1736789445-1316131728.png",
+    "desc": "Quality-of-life progression and reward tuning: configurable 2x/4x/99x AP gain, 2x/4x/8x EXP gain, 2x/4x/8x Gil, and double item drops after battle.",
+    "badge": "Nexus Mods (#87)"
+  },
+  {
+    "id": 32,
+    "title": "Celes Scene Restoration for FF VI old ver",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/32",
+    "game": "Final Fantasy VI",
+    "category": "ffvi",
+    "date": "Jan 14, 2025",
+    "image": "assets/mods/32-1736879178-221967451.png",
+    "desc": "what was thought to be just theoretically possible is now officially can be done for this version: Full restoration of the original recruitment scene of Celes",
+    "badge": "Nexus Mods (#32)"
+  },
+  {
+    "id": 1045,
+    "title": "Eiyuden Chronicle Hundred Heroes Vortex Support",
+    "url": "https://www.nexusmods.com/site/mods/1045",
+    "game": "Modding Tools",
+    "category": "other",
+    "date": "Sep 21, 2024",
+    "image": "assets/mods/1045-1726915126-1534042977.png",
+    "desc": "Basic support for Eiyuden Chronicle: Hundred Heroes",
+    "badge": "Nexus Mods (#1045)"
+  },
+  {
+    "id": 19,
+    "title": "Sane Ui",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/19",
+    "game": "Final Fantasy VI",
+    "category": "ffvi",
+    "date": "Jun 01, 2024",
+    "image": "assets/mods/19-1701241722-2005955359.png",
+    "desc": "An alternative UI for ffvi Old version",
+    "badge": "Nexus Mods (#19)"
+  },
+  {
+    "id": 27,
+    "title": "Launcher Resolution Fix and Remove Black Borders",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/27",
+    "game": "Final Fantasy VI",
+    "category": "ffvi",
+    "date": "Apr 13, 2024",
+    "image": "assets/mods/27-1713028584-1662905657.png",
+    "desc": "This mod does the ff: - removes the graphics filtering/shimmering upon camera movement - removes black borders in windowed mode - forces correct Pixel rendering by using the game's native 3:2 aspect ratio resulting in improved Visuals",
+    "badge": "Nexus Mods (#27)"
+  },
+  {
+    "id": 17,
+    "title": "Grass or Green Fix FFVI Old ver",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/17",
+    "game": "Final Fantasy VI",
+    "category": "ffvi",
+    "date": "Mar 26, 2024",
+    "image": "assets/mods/17-1710759560-1918595346.png",
+    "desc": "fixes the highlighter green color of the grass in the game (all are in world of balance)",
+    "badge": "Nexus Mods (#17)"
+  },
+  {
+    "id": 21,
+    "title": "Alternate Title Screen",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/21",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "Mar 15, 2024",
+    "image": "assets/mods/21-1687160962-1921886212.png",
+    "desc": "Alternate title screens featuring artwork of Yoshitaka Amano",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 66,
+    "title": "CC Quality of life Stuff",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/66",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Feb 29, 2024",
+    "image": "assets/mods/66-1709209583-1241278808.png",
+    "desc": "Quality of Life Changes in game:Unlocking of missable Level 7 tech skills, Unlock Bend of time door Open on first game run,Obtain Floral Rod and Ghetz Shirt",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 42,
+    "title": "Opera Omnia Style Portraits FFVI",
+    "url": "https://www.nexusmods.com/finalfantasy6pixelremaster/mods/42",
+    "game": "Final Fantasy VI Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 27, 2024",
+    "image": "assets/mods/42-1666784390-1834622958.png",
+    "desc": "Ver. 1.1.0  ReadyOpera Omnia (Chibi) Style Portraits",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 19,
+    "title": "PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasypixelremaster/mods/19",
+    "game": "Final Fantasy Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 14, 2024",
+    "image": "assets/mods/19-1629940369-1354264523.png",
+    "desc": "This allows you to change the stock game controller buttons in the game.  mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset - Compatible to all FF PR games",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 78,
+    "title": "FF6 PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasy6pixelremaster/mods/78",
+    "game": "Final Fantasy VI Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 13, 2024",
+    "image": "assets/mods/78-1683299362-1538541031.png",
+    "desc": "Ver. 1.1.0  ReadyThis allows you to change the stock game controller buttons in the game. mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset- packed specific for FF65",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 65,
+    "title": "FF4 PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasyivpixelremaster/mods/65",
+    "game": "Final Fantasy IV Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 13, 2024",
+    "image": "assets/mods/65-1683295401-617587350.png",
+    "desc": "This allows you to change the stock game controller buttons in the game. mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset- packed specific for FF4",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 42,
+    "title": "FF3 PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasy3pixelremaster/mods/42",
+    "game": "Final Fantasy III Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 13, 2024",
+    "image": "assets/mods/42-1683294252-1381667985.png",
+    "desc": "This allows you to change the stock game controller buttons in the game. mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset.- packed specific for FF3",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 49,
+    "title": "FF2 PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasy2pixelremaster/mods/49",
+    "game": "Final Fantasy II Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 13, 2024",
+    "image": "assets/mods/49-1683292520-150327945.png",
+    "desc": "This allows you to change the stock game controller buttons in the game. mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset- packed specific for FF2",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 42,
+    "title": "FF5 PR Buttons Mod Pack",
+    "url": "https://www.nexusmods.com/finalfantasy5pixelremaster/mods/42",
+    "game": "Final Fantasy V Pixel Remaster",
+    "category": "ffpr",
+    "date": "Feb 13, 2024",
+    "image": "assets/mods/42-1683297724-1746199538.png",
+    "desc": "This allows you to change the stock game controller buttons in the game. mod supports xinput controllers and PS4/PS5/Dinput for Playstation controller preset- packed specific for FF5",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 240,
+    "title": "PlayStation Controller Prompts for X-box (X-input) controllers (Use SpecialK approach for now)",
+    "url": "https://www.nexusmods.com/finalfantasyxv/mods/240",
+    "game": "Final Fantasy XV",
+    "category": "other",
+    "date": "Dec 2, 2023",
+    "image": "assets/mods/240-1673704284-913198869.png",
+    "desc": "Replaces X-Box button prompts (X-input) with Classic PlayStation prompts. Classic in a sense that that uses Start and Select instead of Options and Touchpad, initially built for Special K and converted for flagrum. Designed to be as close",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 14,
+    "title": "Opera Omnia Style Portraits",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/14",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "Dec 1, 2023",
+    "image": "assets/mods/14-1701435488-1857475830.png",
+    "desc": "Dissidia Final Fantasy Opera Omnia Style Portraits  (DFFOO Style Portraits)now has 2 presets. Originally Published on Moogles and Mods Discord Sever on July 2021",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 62,
+    "title": "HD Boat plus  Better world map",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/62",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Nov 17, 2023",
+    "image": "assets/mods/62-1700166838-372295758.png",
+    "desc": "An HD retexture of the Another world boat plus the world map it has to traverse",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 18,
+    "title": "Scaled Down Fonts",
+    "url": "https://www.nexusmods.com/finalfantasy6/mods/18",
+    "game": "Final Fantasy VI (Old Ver.)",
+    "category": "ffvi",
+    "date": "May 21, 2023",
+    "image": "assets/mods/18-1684653834-439638615.png",
+    "desc": "other font choices for the game",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 45,
+    "title": "2d Deck of Cards FF8-R",
+    "url": "https://www.nexusmods.com/finalfantasy8remastered/mods/45",
+    "game": "Final Fantasy VIII Remastered",
+    "category": "other",
+    "date": "May 12, 2023",
+    "image": "assets/mods/45-1683820970-220151841.png",
+    "desc": "A different artist for the cards .",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 44,
+    "title": "Better Portraits FF8-R",
+    "url": "https://www.nexusmods.com/finalfantasy8remastered/mods/44",
+    "game": "Final Fantasy VIII Remastered",
+    "category": "other",
+    "date": "May 11, 2023",
+    "image": "assets/mods/44-1683818994-87676135.png",
+    "desc": "a much less zoomed portraits",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 43,
+    "title": "Darker UI FF8 R",
+    "url": "https://www.nexusmods.com/finalfantasy8remastered/mods/43",
+    "game": "Final Fantasy VIII Remastered",
+    "category": "other",
+    "date": "May 11, 2023",
+    "image": "assets/mods/43-1683815014-411422135.png",
+    "desc": "This simple mod introduces alternative color schemes for the UI and dialogue boxes in the game.",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 60,
+    "title": "Dark Themed Launcher",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/60",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Mar 18, 2023",
+    "image": "assets/mods/60-1679151222-268744768.png",
+    "desc": "A dark water themed launcher",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 54,
+    "title": "CC Radical Portraits Plus",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/54",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Mar 4, 2023",
+    "image": "assets/mods/54-1677913287-17872933.png",
+    "desc": "Color corrections and rescaled Portraits",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 59,
+    "title": "CC Another Menu Ui",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/59",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Feb 26, 2023",
+    "image": "assets/mods/59-1677424679-2122859578.png",
+    "desc": "An alternate game background texture and UI",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 3,
+    "title": "PlayStation Buttons Pack",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/3",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Feb 22, 2023",
+    "image": "assets/mods/3-1652607535-1431987563.png",
+    "desc": "Changes the Xbox button prompts to PlayStation or PS4 and Soon PS5",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 47,
+    "title": "Alt Teleporter or Relief Charm Menu",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/47",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 26, 2022",
+    "image": "assets/mods/47-1650973514-363301951.png",
+    "desc": "Replaces the UI of the teleporter and relief charm Menu",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 4,
+    "title": "Another Eden Background",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/4",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 25, 2022",
+    "image": "assets/mods/4-1649763978-1725861653.png",
+    "desc": "Changes the basic blue gradient background for to Another Eden Portraits of Kid and Harle",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 36,
+    "title": "Another Eden Main Menu",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/36",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 22, 2022",
+    "image": "assets/mods/36-1650605684-1906957612.png",
+    "desc": "Alternate game start window inspired by a still from Another Eden Trailer  as well as tweaked out save/load boxes",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 21,
+    "title": "Alternate HUD Icons and Subtle Auto Save",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/21",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 17, 2022",
+    "image": "assets/mods/21-1650083443-929578792.png",
+    "desc": "Alternate Colorized HUD iconography for developer added functions and a much more subtle Auto Save icon Available on all languages",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 18,
+    "title": "Cross Window Sets",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/18",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 14, 2022",
+    "image": "assets/mods/18-1649934108-1957880615.png",
+    "desc": "An alternate set of window designs inspired a series of games that are bit familiar. This mod ALTERS  SIMPLE LINE window fame",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 8,
+    "title": "Old Face on New Graphics Mode (Vice Versa)",
+    "url": "https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/8",
+    "game": "Chrono Cross: The Radical Dreamers Edition",
+    "category": "chrono",
+    "date": "Apr 13, 2022",
+    "image": "assets/mods/8-1649800212-822838136.png",
+    "desc": "Basically Swaps the Old portraits to be used in NEW graphic style and the NEW portraits on the Old Graphics Style",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 129,
+    "title": "Alternate Save Window",
+    "url": "https://www.nexusmods.com/finalfantasyxx2hdremaster/mods/129",
+    "game": "Final Fantasy X/X-2 HD Remaster",
+    "category": "other",
+    "date": "Jan 5, 2022",
+    "image": "assets/mods/129-1641368272-662006574.png",
+    "desc": "Just an alternate save Window",
+    "badge": "Nexus Mods"
+  },
+  {
+    "id": 26,
+    "title": "PlayStation Button Prompts Via Special K",
+    "url": "https://www.nexusmods.com/crashbandicootnsanetrilogy/mods/26",
+    "game": "Crash Bandicoot N. Sane Trilogy",
+    "category": "other",
+    "date": "Nov 13, 2021",
+    "image": "assets/mods/26-1636803674-766612600.png",
+    "desc": "forces xinput controllers to use PlayStation Button Prompt via texture replacement of Special K.  this mod does not only use in game texture used for dinput but rather replaces it with a more closer aesthetic with the PS4 release of the",
+    "badge": "Nexus Mods"
+  }
+];
+
+/**
+ * ModsCatalog — Native Web Component (<mods-catalog>)
+ * Renders the complete 68-mod catalog with live instant search, category tabs,
+ * auto-calculated counts, and lightbox modal support.
+ */
+class ModsCatalog extends HTMLElement {
+  connectedCallback() {
+    const rawLimit = parseInt(this.getAttribute('limit'), 10);
+    const limit = (!isNaN(rawLimit) && rawLimit > 0) ? rawLimit : 0;
+    const hideHeader = this.hasAttribute('no-header');
+
+    const displayedMods = limit > 0 ? ALL_MODS_DATA.slice(0, limit) : ALL_MODS_DATA;
+
+    // Dynamically calculate category counts
+    const counts = { all: ALL_MODS_DATA.length };
+    ALL_MODS_DATA.forEach(m => {
+      counts[m.category] = (counts[m.category] || 0) + 1;
+    });
+
+    let headerHtml = '';
+    if (!hideHeader) {
+      if (limit > 0) {
+        headerHtml = `
+          <div class="section-header">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <span class="section-eyebrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  </svg>
+                  Latest Mod Releases (Showing ${limit} of ${ALL_MODS_DATA.length})
+                </span>
+                <h2 class="section-title">Recent Mod Updates</h2>
+              </div>
+              <a href="mods.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                <span>View Full Library (${ALL_MODS_DATA.length} Mods)</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+            <p class="section-desc">The newest mod releases and updates arranged chronologically. Looking for our complete collection? Visit the dedicated full library with instant search and category filters.</p>
+          </div>
+        `;
+      } else {
+        headerHtml = `
+          <div class="section-header">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <span class="section-eyebrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  </svg>
+                  Complete Catalog (${ALL_MODS_DATA.length} Mods)
+                </span>
+                <h2 class="section-title">All Released Modifications</h2>
+              </div>
+              <span class="tag tag-emerald font-mono">⚡ Sorted: Last Updated (Newest First)</span>
+            </div>
+            <p class="section-desc">Arranged chronologically by last update date. Search by name, game, category, or release year.</p>
+          </div>
+        `;
+      }
+    }
+
+    const cardsHtml = displayedMods.map(mod => {
+      const escapedTitle = (mod.title || '').replace(/'/g, "\\\'").replace(/"/g, '&quot;');
+      const searchable = `${mod.title} ${mod.game} ${mod.category} ${mod.desc} ${mod.date}`.toLowerCase();
+      return `
+      <article class="mod-tile-card" data-category="${mod.category}" data-search="${searchable}">
+        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
+          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+          <div class="mod-tile-overlay-tags">
+            <span class="tag tag-emerald">📅 ${mod.date}</span>
+          </div>
+          <span class="preview-zoom-hint">🔍 Zoom</span>
+        </div>
+        <div class="mod-tile-body">
+          <div>
+            <div class="mod-tile-game">${mod.game}</div>
+            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+            <p class="mod-tile-desc">${mod.desc}</p>
+          </div>
+          <div class="mod-tile-footer">
+            <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>View &amp; Download</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </article>`;
+    }).join('\n');
+
+    if (limit > 0) {
+      this.innerHTML = `
+        <div class="mods-catalog-wrapper">
+          ${headerHtml}
+          <div class="mods-grid-catalog" id="catalogGrid">
+            ${cardsHtml}
+          </div>
+          <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="mods.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem;">
+              <span>Explore All ${ALL_MODS_DATA.length} Mods in Dedicated Library</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const filterTabsHtml = `
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All (${counts.all})</button>
+        <button class="filter-btn" data-filter="chrono">Chrono Cross (${counts.chrono || 0})</button>
+        <button class="filter-btn" data-filter="ffpr">Pixel Remasters (${counts.ffpr || 0})</button>
+        <button class="filter-btn" data-filter="ffix">FFIX (${counts.ffix || 0})</button>
+        <button class="filter-btn" data-filter="other">Other Remasters (${counts.other || 0})</button>
+        <button class="filter-btn" data-filter="ffvi">FFVI Classic (${counts.ffvi || 0})</button>
+        <button class="filter-btn" data-filter="suikoden">Suikoden (${counts.suikoden || 0})</button>
+      </div>
+    `;
+
+    this.innerHTML = `
+      <div class="mods-catalog-wrapper">
+        ${headerHtml}
+
+        <div class="search-bar-wrap">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="catalogSearchInput" class="search-input" placeholder="Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)..." autocomplete="off">
+        </div>
+
+        ${filterTabsHtml}
+
+        <div class="mods-grid-catalog" id="catalogGrid">
+          ${cardsHtml}
+        </div>
+
+        <div id="catalogNoResults" style="display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+          <p style="font-size: 1.15rem;">No mods match your search query.</p>
+          <button id="catalogResetBtn" class="btn btn-secondary btn-sm" style="margin-top: 1rem;">Clear Search</button>
+        </div>
+      </div>
+    `;
+
+    const searchInput = this.querySelector('#catalogSearchInput');
+    const filterBtns = this.querySelectorAll('.filter-btn');
+    const cards = this.querySelectorAll('.mod-tile-card');
+    const noResults = this.querySelector('#catalogNoResults');
+    const resetBtn = this.querySelector('#catalogResetBtn');
+
+    let currentFilter = 'all';
+    let currentQuery = '';
+
+    const applyFilter = () => {
+      let visible = 0;
+      const q = currentQuery.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const text = card.getAttribute('data-search') || '';
+
+        const matchCat = (currentFilter === 'all' || cat === currentFilter);
+        const matchQuery = (!q || text.includes(q));
+
+        if (matchCat && matchQuery) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      }
+    };
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilter();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = e.target.value;
+        applyFilter();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        currentQuery = '';
+        currentFilter = 'all';
+        filterBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
+        applyFilter();
+      });
+    }
+  }
+}
+
+customElements.define('mods-catalog', ModsCatalog);
+if (!customElements.get('all-mods')) {
+  customElements.define('all-mods', class extends ModsCatalog {});
+}
+
+/**
+ * BackToTop Component (<back-to-top>)
+ * Clean circular floating button that appears on scroll and smoothly returns to the top
+ */
+class BackToTop extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <button class="back-to-top-btn" id="backToTopBtn" type="button" aria-label="Back to top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    `;
+
+    const btn = this.querySelector('#backToTopBtn');
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      if (scrollY > 280) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+}
+
+if (!customElements.get('back-to-top')) {
+  customElements.define('back-to-top', BackToTop);
+}
+
+// Automatically mount back-to-top on pages that import components.js if not explicitly present
+if (typeof document !== 'undefined') {
+  const mountBackToTop = () => {
+    if (!document.querySelector('back-to-top') && document.body) {
+      const el = document.createElement('back-to-top');
+      document.body.appendChild(el);
+    }
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountBackToTop);
+  } else {
+    mountBackToTop();
+  }
+}
+
+// ========================================================
+// Google Analytics 4 (gtag.js) & EU Cookie Consent Manager
+// Measurement ID: G-BMED35LCVS
+// Fully compliant with EU GDPR / ePrivacy & Google Consent Mode v2
+// ========================================================
+(function() {
+  if (typeof window === 'undefined' || window.__gaInitialized) return;
+  window.__gaInitialized = true;
+
+  const GA_MEASUREMENT_ID = 'G-BMED35LCVS';
+  const CONSENT_STORAGE_KEY = 'den_cookie_consent';
+
+  // 1. Initialize dataLayer and gtag function
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function() {
+    window.dataLayer.push(arguments);
+  };
+
+  // 2. Read existing user consent preference (null if first visit)
+  let savedConsent = null;
+  try {
+    savedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
+  } catch (e) {}
+
+  const isGranted = savedConsent === 'granted';
+
+  // 3. Google Consent Mode v2 — Set default consent state BEFORE gtag('config')
+  // Under EU GDPR, non-essential cookies must be 'denied' until the user affirmatively accepts.
+  window.gtag('consent', 'default', {
+    'analytics_storage': isGranted ? 'granted' : 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500
+  });
+
+  // 4. Check for local development (XAMPP / file protocol)
+  const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname) ||
+                  window.location.protocol === 'file:';
+
+  if (isLocal) {
+    console.info(`[Analytics] Running locally (${window.location.hostname || 'file'}). Tracking paused to protect live metrics.`);
+  } else {
+    // Inject official Google gtag script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
+
+    window.gtag('js', new Date());
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      send_page_view: true,
+      anonymize_ip: true
+    });
+  }
+
+  // 5. Update user consent preference (called on Accept / Decline)
+  window.updateCookieConsent = function(grant) {
+    const status = grant ? 'granted' : 'denied';
+    try {
+      localStorage.setItem(CONSENT_STORAGE_KEY, status);
+    } catch (e) {}
+
+    window.gtag('consent', 'update', {
+      'analytics_storage': status
+    });
+
+    const banner = document.getElementById('denCookieBanner');
+    if (banner) {
+      banner.classList.remove('visible');
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 300);
+    }
+  };
+
+  // 6. Show or hide cookie banner (force=true opens it from footer link anytime)
+  window.showCookieConsentBanner = function(force = false) {
+    const banner = document.getElementById('denCookieBanner');
+    if (!banner) return;
+
+    let current = null;
+    try {
+      current = localStorage.getItem(CONSENT_STORAGE_KEY);
+    } catch (e) {}
+
+    if (force || !current) {
+      banner.style.display = 'block';
+      requestAnimationFrame(() => {
+        banner.classList.add('visible');
+      });
+    } else {
+      banner.classList.remove('visible');
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 300);
+    }
+  };
+
+  // 7. Mount banner into DOM
+  const mountCookieBanner = () => {
+    if (document.getElementById('denCookieBanner') || !document.body) return;
+
+    const banner = document.createElement('div');
+    banner.id = 'denCookieBanner';
+    banner.className = 'cookie-consent-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Privacy and Cookie Preferences');
+    banner.innerHTML = `
+      <div class="cookie-content">
+        <div class="cookie-header">
+          <div class="cookie-title-group">
+            <svg class="cookie-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="cookie-title">Privacy &amp; Cookie Preferences</span>
+          </div>
+          <span class="cookie-badge">EU / GDPR</span>
+        </div>
+        <p class="cookie-desc">
+          We use lightweight, anonymized Google Analytics cookies to track mod downloads and site traffic. No personal advertising or commercial trackers are used.
+        </p>
+        <div class="cookie-actions">
+          <button type="button" class="btn btn-primary btn-sm cookie-btn-accept" id="btnAcceptCookies">
+            <span>Accept All</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-sm cookie-btn-decline" id="btnDeclineCookies">
+            <span>Essential Only</span>
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    const btnAccept = banner.querySelector('#btnAcceptCookies');
+    const btnDecline = banner.querySelector('#btnDeclineCookies');
+
+    if (btnAccept) {
+      btnAccept.addEventListener('click', () => window.updateCookieConsent(true));
+    }
+    if (btnDecline) {
+      btnDecline.addEventListener('click', () => window.updateCookieConsent(false));
+    }
+
+    window.showCookieConsentBanner(false);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountCookieBanner);
+  } else {
+    mountCookieBanner();
+  }
+})();
+
+

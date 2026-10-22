@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faospark's Chronicles — Reconstructed Blog & Historical Archives</title>
+  
+  <meta name="description" content="Reconstructed blog articles, modding breakthroughs, emulation guides, and vector art restorations by Faospark (2010–2021).">
+  <meta property="og:url" content="https://denoffao.me/blog.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Faospark's Chronicles — Reconstructed Archives"/>
+  <meta property="og:description" content="90 Reconstructed posts, mod logs, and technical notes from the original Blogger vault."/>
+  <meta property="og:image" content="assets/logus.png"/>
+
+  <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <style>
+    .archive-year-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .archive-year-btn {
+      background: #0d1728;
+      border: 1px solid #334a71;
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .archive-year-btn:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+    .archive-year-btn.active {
+      background: #18335c;
+      border-color: var(--accent-cyan);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+    .reader-nav-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .reader-btn-icon {
+      background: #14223c;
+      border: 1px solid #3d557c;
+      color: #fff !important;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+    .reader-btn-icon:hover {
+      background: #1f3760;
+      border-color: var(--accent-cyan);
+    }
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-cyan) !important;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .back-home-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar breadcrumb="blog-archive.md" active="blog"></vault-navbar>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 2rem; padding-bottom: 5rem;">
+    
+    <a href="index.html" class="back-home-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to Mod Workshop</span>
+    </a>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="padding-top: 1rem; margin-bottom: 2.5rem;">
+      <div class="hero-meta-badge">
+        <span class="pulse-dot"></span>
+        <span>Reconstructed Archives &bull; 42 Published Articles &bull; 117 Restored Assets</span>
+      </div>
+
+      <h1 class="hero-title">
+        Vault Chronicles &amp; <span class="text-gradient">Historical Notes.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A complete reconstruction of published articles salvaged from the Google Takeout Blogger archives (2010–2021) and recent community research notes. Explore early texture experiments like <strong>Project Kyaro</strong>, deep dives into <strong>Suikoden II HD Remaster datamining</strong>, <strong>DeSmuME emulation</strong>, <strong>Action Replay hex code analysis</strong>, and handcrafted <strong>Digimon vector artwork restorations</strong>.
+      </p>
+
+    </section>
+
+    <!-- Search & Filter Controls Bar -->
+    <div class="catalog-controls-bar">
+      <div class="search-input-wrapper">
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input type="text" id="blogSearchInput" class="search-input" placeholder="Search 42 published posts by title, tag, or content keywords...">
+        <button id="clearSearchBtn" onclick="clearBlogSearch()" style="position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--text-dim); cursor: pointer; display: none;" title="Clear search">✕</button>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills-row" id="blogCategoryPills">
+        <button class="filter-btn active" data-filter="all">All Topics (<span id="countAll">42</span>)</button>
+        <button class="filter-btn" data-filter="mods">Mods &amp; Suikoden (<span id="countMods">2</span>)</button>
+        <button class="filter-btn" data-filter="emulation">DeSmuME &amp; Emulation (<span id="countEmu">8</span>)</button>
+        <button class="filter-btn" data-filter="pokemon">Pokemon &amp; Action Replay (<span id="countPkm">11</span>)</button>
+        <button class="filter-btn" data-filter="artwork">Vector Art &amp; Restorations (<span id="countArt">5</span>)</button>
+        <button class="filter-btn" data-filter="tech">Tech &amp; Notes (<span id="countTech">7</span>)</button>
+      </div>
+
+      <!-- Year Selector Pills -->
+      <div class="archive-year-pills" id="yearSelectorRow">
+        <button class="archive-year-btn active" data-year="all">All Years</button>
+        <button class="archive-year-btn" data-year="2026">2026</button>
+        <button class="archive-year-btn" data-year="2021">2021</button>
+        <button class="archive-year-btn" data-year="2019">2019</button>
+        <button class="archive-year-btn" data-year="2014">2014</button>
+        <button class="archive-year-btn" data-year="2013">2013</button>
+        <button class="archive-year-btn" data-year="2012">2012</button>
+        <button class="archive-year-btn" data-year="2011">2011</button>
+        <button class="archive-year-btn" data-year="2010">2010</button>
+      </div>
+    </div>
+
+    <!-- Active Filter Strip & Results Counter -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">
+      <div>
+        Showing <strong id="showingCount" style="color: var(--accent-cyan);">42</strong> articles <span id="filterDescription"></span>
+      </div>
+      <div>
+        <span class="tag tag-emerald" style="font-size: 0.78rem;">✓ Published Archives Only (Drafts Removed)</span>
+      </div>
+    </div>
+
+    <!-- Blog Posts Grid -->
+    <div class="blog-grid" id="blogGrid">
+      <!-- Populated via JavaScript -->
+    </div>
+
+    <!-- No Results Notice -->
+    <div id="noBlogResults" class="rpg-empty-state" style="display: none; text-align: center; padding: 4rem 2rem; background: var(--bg-window-card); border-radius: 8px; border: 2px dashed #334a71; margin-top: 2rem;">
+      <h3 style="margin-bottom: 0.5rem; color: #fff;">No Chronicles Found</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">No archived articles match your current search and filter combination.</p>
+      <button class="btn btn-secondary" onclick="resetBlogFilters()">Reset Filters &amp; View All</button>
+    </div>
+
+    <!-- Pagination Strip -->
+    <div class="blog-pagination-strip" id="blogPagination">
+      <button class="blog-page-btn" id="prevPageBtn" onclick="changePage(-1)">&larr; Newer Posts</button>
+      <div id="pageIndicator" style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Page 1 of 6</div>
+      <button class="blog-page-btn" id="nextPageBtn" onclick="changePage(1)">Older Posts &rarr;</button>
+    </div>
+
+  </main>
+
+  <!-- Obsidian Vault Footer Component -->
+  <back-to-top></back-to-top>
+
+  <vault-footer></vault-footer>
+
+  <!-- Full Article Reader Modal Dialog -->
+  <div class="blog-reader-modal" id="blogReaderModal" onclick="handleReaderBackdropClick(event)">
+    <div class="blog-reader-dialog" role="dialog" aria-modal="true" aria-labelledby="modalPostTitle">
+      <!-- Reader Header -->
+      <div class="blog-reader-header">
+        <div class="blog-reader-title-area">
+          <h2 class="blog-reader-title" id="modalPostTitle">Post Title</h2>
+          <div class="blog-reader-meta" id="modalPostMeta">
+            <!-- Metadata filled by JS -->
+          </div>
+        </div>
+        <div class="reader-nav-actions">
+          <button class="reader-btn-icon" onclick="navigateReader(-1)" title="Previous Article">
+            &larr; Prev
+          </button>
+          <button class="reader-btn-icon" onclick="navigateReader(1)" title="Next Article">
+            Next &rarr;
+          </button>
+          <button class="blog-reader-close-btn" onclick="closeBlogReader()" aria-label="Close article">
+            &times;
+          </button>
+        </div>
+      </div>
+
+      <!-- Reader Body -->
+      <div class="blog-reader-body" id="modalPostBody">
+        <!-- Reconstructed HTML filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div id="imageModal" class="image-modal-overlay" onclick="closeLightbox(event)">
+    <div class="image-modal-container">
+      <button class="image-modal-close" onclick="closeLightbox(event)">&times;</button>
+      <img id="modalImage" src="" alt="Enlarged Image" class="image-modal-img">
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notice"></div>
+
+  <!-- Web Components -->
+  <script src="components.js"></script>
+
+  <!-- Data Script -->
+  <script src="assets/blog/blog_data.js"></script>
+
+  <!-- Blog Logic Script -->
+  <script>
+    // State
+    let posts = window.BLOG_POSTS || [];
+    let currentCategory = 'all';
+    let currentYear = 'all';
+    let searchQuery = '';
+    let currentPage = 1;
+    const postsPerPage = 12;
+    let filteredPosts = [];
+    let currentOpenIndex = -1;
+
+
+    // Helper to categorize post
+    function matchesCategory(p, cat) {
+      if (cat === 'all') return true;
+      const cats = (p.categories || []).map(c => c.toLowerCase());
+      const title = (p.title || '').toLowerCase();
+      const content = (p.content || '').toLowerCase();
+
+      if (cat === 'mods') {
+        return cats.some(c => c.includes('mod') || c.includes('suikoden')) || title.includes('kyaro') || title.includes('mod');
+      }
+      if (cat === 'emulation') {
+        return cats.some(c => c.includes('desmume') || c.includes('emu')) || title.includes('desmume') || title.includes('emulator') || title.includes('no$gba');
+      }
+      if (cat === 'pokemon') {
+        return cats.some(c => c.includes('pokemon') || c.includes('action replay') || c.includes('hex')) || title.includes('pokemon') || title.includes('action replay') || title.includes('pkm');
+      }
+      if (cat === 'artwork') {
+        return cats.some(c => c.includes('artwork') || c.includes('digimon')) || title.includes('vector') || title.includes('monodramon') || title.includes('patamon') || title.includes('gatomon') || title.includes('wormmon');
+      }
+      if (cat === 'tech') {
+        return cats.some(c => c.includes('note') || c.includes('blogger') || c.includes('xampp')) || title.includes('ssl') || title.includes('seo') || title.includes('css3') || title.includes('xampp');
+      }
+      return false;
+    }
+
+    // Update Category Counts
+    function updateCategoryCounts() {
+      if (!posts.length) return;
+      document.getElementById('countAll').textContent = posts.length;
+      document.getElementById('countMods').textContent = posts.filter(p => matchesCategory(p, 'mods')).length;
+      document.getElementById('countEmu').textContent = posts.filter(p => matchesCategory(p, 'emulation')).length;
+      document.getElementById('countPkm').textContent = posts.filter(p => matchesCategory(p, 'pokemon')).length;
+      document.getElementById('countArt').textContent = posts.filter(p => matchesCategory(p, 'artwork')).length;
+      document.getElementById('countTech').textContent = posts.filter(p => matchesCategory(p, 'tech')).length;
+    }
+
+    // Filter & Search Engine
+    function filterPosts() {
+      const q = searchQuery.toLowerCase().trim();
+
+      filteredPosts = posts.filter(p => {
+        if (!matchesCategory(p, currentCategory)) return false;
+        if (currentYear !== 'all' && String(p.year) !== String(currentYear)) return false;
+
+        if (q) {
+          const matchTitle = (p.title || '').toLowerCase().includes(q);
+          const matchExcerpt = (p.excerpt || '').toLowerCase().includes(q);
+          const matchTags = (p.categories || []).some(t => t.toLowerCase().includes(q));
+          if (!matchTitle && !matchExcerpt && !matchTags) return false;
+        }
+
+        return true;
+      });
+
+      renderBlogGrid();
+    }
+
+    // Render Grid with Pagination
+    function renderBlogGrid() {
+      const grid = document.getElementById('blogGrid');
+      const noResults = document.getElementById('noBlogResults');
+      const showingCount = document.getElementById('showingCount');
+      const filterDesc = document.getElementById('filterDescription');
+      const pagination = document.getElementById('blogPagination');
+
+      showingCount.textContent = filteredPosts.length;
+      let descParts = [];
+      if (currentCategory !== 'all') descParts.push(`in "${currentCategory}"`);
+      if (currentYear !== 'all') descParts.push(`from ${currentYear}`);
+      if (searchQuery) descParts.push(`matching "${searchQuery}"`);
+      filterDesc.textContent = descParts.length ? `(${descParts.join(', ')})` : '';
+
+      if (filteredPosts.length === 0) {
+        grid.innerHTML = '';
+        noResults.style.display = 'block';
+        pagination.style.display = 'none';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      pagination.style.display = 'flex';
+
+      const totalPages = Math.ceil(filteredPosts.length / postsPerPage) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      document.getElementById('pageIndicator').textContent = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById('prevPageBtn').disabled = (currentPage === 1);
+      document.getElementById('nextPageBtn').disabled = (currentPage === totalPages);
+
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const pagePosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
+
+      grid.innerHTML = pagePosts.map((post, idx) => {
+        const globalIdx = startIndex + idx;
+        const tagSpans = (post.categories || []).slice(0, 3).map(cat => 
+          `<span class="tag tag-cyan">${escapeHtml(cat)}</span>`
+        ).join('');
+
+        let thumbHtml = '';
+        if (post.thumbnail) {
+          thumbHtml = `
+            <div class="blog-card-thumb" onclick="openBlogReaderByGlobalIndex(${globalIdx})">
+              <img src="${post.thumbnail}" alt="${escapeHtml(post.title)}" loading="lazy">
+              <span class="blog-card-badge">Archived</span>
+            </div>
+          `;
+        } else {
+          thumbHtml = `
+            <div class="blog-card-thumb" onclick="openBlogReaderByGlobalIndex(${globalIdx})">
+              <div class="blog-card-thumb-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;">${escapeHtml(post.blogName)}</span>
+              </div>
+              <span class="blog-card-badge">Archived</span>
+            </div>
+          `;
+        }
+
+        return `
+          <article class="blog-card" id="card-${post.slug}">
+            ${thumbHtml}
+            <div class="blog-card-body">
+              <div class="blog-meta-row">
+                <span>📅 ${post.dateFormatted}</span>
+                <span>&bull;</span>
+                <span>⏱️ ${post.readingTime}</span>
+                ${post.commentCount > 0 ? `<span>&bull;</span><span>💬 ${post.commentCount}</span>` : ''}
+              </div>
+              <h3 class="blog-card-title">
+                <a href="#${post.slug}" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">${escapeHtml(post.title)}</a>
+              </h3>
+              <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+              <div class="blog-card-footer">
+                <div class="tag-group">${tagSpans}</div>
+                <button class="btn btn-secondary btn-sm" onclick="openBlogReaderByGlobalIndex(${globalIdx})">
+                  Read Article &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function changePage(direction) {
+      currentPage += direction;
+      renderBlogGrid();
+      window.scrollTo({ top: document.querySelector('.catalog-controls-bar').offsetTop - 60, behavior: 'smooth' });
+    }
+
+    // Modal Reader Logic
+    const readerModal = document.getElementById('blogReaderModal');
+    const modalPostTitle = document.getElementById('modalPostTitle');
+    const modalPostMeta = document.getElementById('modalPostMeta');
+    const modalPostBody = document.getElementById('modalPostBody');
+
+    function openBlogReaderByGlobalIndex(idx) {
+      if (idx < 0 || idx >= filteredPosts.length) return;
+      currentOpenIndex = idx;
+      const post = filteredPosts[idx];
+
+      modalPostTitle.textContent = post.title;
+      
+      const tagHtml = (post.categories || []).map(c => `<span class="tag tag-cyan">${escapeHtml(c)}</span>`).join(' ');
+      modalPostMeta.innerHTML = `
+        <span>📅 ${post.dateFormatted}</span>
+        <span>&bull;</span>
+        <span>⏱️ ${post.readingTime} (${post.wordCount} words)</span>
+        <span>&bull;</span>
+        <span>📚 ${escapeHtml(post.blogName)}</span>
+        <span>&bull;</span>
+        <span>Status: Published</span>
+        ${tagHtml ? `<span style="margin-left: 0.5rem;">${tagHtml}</span>` : ''}
+      `;
+
+      // Comments HTML
+      let commentsHtml = '';
+      if (post.comments && post.comments.length > 0) {
+        commentsHtml = `
+          <div class="blog-comments-container">
+            <h3 class="blog-comments-header">
+              💬 Reconstructed Comments (${post.comments.length})
+            </h3>
+            <div class="blog-comments-list">
+              ${post.comments.map(c => `
+                <div class="blog-comment-item">
+                  <div class="blog-comment-author-bar">
+                    <span class="blog-comment-author">👤 ${escapeHtml(c.author)}</span>
+                    <span class="blog-comment-date">${c.dateFormatted || c.published}</span>
+                  </div>
+                  <div class="blog-comment-text">${c.text}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      modalPostBody.innerHTML = `
+        <div class="blog-article-body">
+          ${post.content}
+        </div>
+        ${commentsHtml}
+      `;
+
+      readerModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      window.location.hash = post.slug;
+    }
+
+    function closeBlogReader() {
+      readerModal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentOpenIndex = -1;
+      // remove hash without scrolling
+      history.replaceState(null, null, ' ');
+    }
+
+    function handleReaderBackdropClick(e) {
+      if (e.target === readerModal) {
+        closeBlogReader();
+      }
+    }
+
+    function navigateReader(direction) {
+      if (currentOpenIndex === -1) return;
+      let nextIndex = currentOpenIndex + direction;
+      if (nextIndex < 0) nextIndex = filteredPosts.length - 1;
+      if (nextIndex >= filteredPosts.length) nextIndex = 0;
+      openBlogReaderByGlobalIndex(nextIndex);
+    }
+
+    // Category Buttons
+    const categoryBtns = document.querySelectorAll('#blogCategoryPills .filter-btn');
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-filter');
+        currentPage = 1;
+        filterPosts();
+      });
+    });
+
+    // Year Buttons
+    const yearBtns = document.querySelectorAll('#yearSelectorRow .archive-year-btn');
+    yearBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        yearBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentYear = btn.getAttribute('data-year');
+        currentPage = 1;
+        filterPosts();
+      });
+    });
+
+    // Search Input
+    const searchInput = document.getElementById('blogSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        clearBtn.style.display = searchQuery ? 'block' : 'none';
+        currentPage = 1;
+        filterPosts();
+      });
+    }
+
+    function clearBlogSearch() {
+      if (searchInput) searchInput.value = '';
+      searchQuery = '';
+      clearBtn.style.display = 'none';
+      currentPage = 1;
+      filterPosts();
+    }
+
+    function resetBlogFilters() {
+      currentCategory = 'all';
+      currentYear = 'all';
+      searchQuery = '';
+      currentPage = 1;
+      if (searchInput) searchInput.value = '';
+      if (clearBtn) clearBtn.style.display = 'none';
+
+      categoryBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
+      yearBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-year') === 'all'));
+
+      filterPosts();
+    }
+
+    // Lightbox modal logic
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt || 'Preview';
+      modal.classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === modal || e.target.classList.contains('image-modal-close')) {
+        modal.classList.remove('active');
+      }
+    }
+
+    // Keyboard handlers
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) closeLightbox();
+        else if (readerModal.classList.contains('active')) closeBlogReader();
+      } else if (readerModal.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') navigateReader(-1);
+        else if (e.key === 'ArrowRight') navigateReader(1);
+      }
+    });
+
+    // Helper escapeHtml
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Check hash for direct deep linking
+    function checkUrlHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const foundIdx = filteredPosts.findIndex(p => p.slug === hash);
+        if (foundIdx !== -1) {
+          openBlogReaderByGlobalIndex(foundIdx);
+        }
+      }
+    }
+
+    // Initialization
+    function init() {
+      updateCategoryCounts();
+      filterPosts();
+      checkUrlHash();
+      window.addEventListener('hashchange', checkUrlHash);
+    }
+
+    // Run
+    init();
+  </script>
+</body>
+</html>

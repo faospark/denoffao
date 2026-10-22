@@ -1,47 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Faospark's Den of Mods</title>
-    <meta property="og:url" content="https://faospark.github.io/mystuff/"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Faospark's Den of Mods"/>
-    <meta property="og:description" content="How much does culture influence creative thinking?"/>
-    <meta property="og:image"
-          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>
-    <link rel="stylesheet" href="assets/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faospark's Den of Mods — Obsidian Vault</title>
+  
+  <meta name="description" content="Official workshop of Faospark — 68+ mods, high-res texture packs, and UI suites for Final Fantasy, Chrono Cross, Suikoden, and classic RPG remasters.">
+  <meta property="og:url" content="https://denoffao.me/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Faospark's Den of Mods"/>
+  <meta property="og:description" content="Living my Geocities Life — 68+ mods for FFVI, FFIX, Chrono Cross, and Suikoden."/>
+  <meta property="og:image" content="assets/forup_291x.png"/>
+
+  <!-- Pure Web-Safe Stylesheet (Zero external Google fonts) -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js"></script>
 </head>
-<body class="svgb">
-<nav id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="index.html">Home</a>
-    <!-- <a href="ffvi-mods.html">FFVI Mods</a> -->
-    <!-- <a href="project-kyaro.html">Project Kyaro</a> -->
-    <a href="#">Contact</a>
-</nav>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
 
-<div class="wrapper auto vh">
-    <main class="cent vh">
-        <span class="nav-b" onclick="openNav()">&#9776;</span>
-        <div class="card animated fadeIn e">
-            <h1 class="title bold">Den of Mods</h1>
-            <h3>Just a place where I can direct people stuff that im working on</h3>
-            <hr>
-            <div id="desc" class="tabs animated fadeIn">
-                <div class="grid half">
-                    <a href="#" class="mh300 bgsix"> Nothing to see here </a>
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar breadcrumb="den-of-mods.md" active="home"></vault-navbar>
 
-                    <!-- <a href="ffvi-mods.html" class="mh300 bgsix"> FFVI Mods</a> -->
-                    <!-- <a href="project-kyaro.html" class="mh300 bgsui"> Project Kyaro</a> -->
-                </div>
+  <!-- Main Container -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-meta-badge">
+        <span class="pulse-dot"></span>
+        <span>Obsidian Vault &bull; 68 Published Releases &bull; Updated October 2026</span>
+      </div>
 
-            </div>
+      <h1 class="hero-title">
+        Living my <span class="text-gradient">Geocities Life.</span>
+      </h1>
 
+      <p class="hero-subtitle">
+        Welcome to my personal mod workshop. Handcrafted Dissidia Opera Omnia style character portraits, clean modern UI overhauls, controller button prompts, and texture packs for <strong>Final Fantasy VI</strong>, <strong>Chrono Cross</strong>, <strong>Final Fantasy IX</strong>, <strong>Suikoden I&amp;II</strong>, and the <strong>Pixel Remasters</strong>.
+      </p>
 
+      <div class="hero-actions">
+        <a href="mods.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Browse All 68 Mods (Full Library)</span>
+        </a>
+        <a href="projects.html" class="btn btn-secondary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span>Flagship Special Projects</span>
+        </a>
+        <a href="#donate" class="btn btn-outline btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Personal Update &amp; Support</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="obsidian-status-bar">
+        <div class="status-item">
+          <span class="status-number">68+</span>
+          <span class="status-label">Total Mods Released</span>
         </div>
-    </main>
-</div>
-<script src="common.js"></script>
+        <div class="status-item">
+          <span class="status-number">Oct 2026</span>
+          <span class="status-label">Latest Mod Update</span>
+        </div>
+        <div class="status-item">
+          <span class="status-number">100%</span>
+          <span class="status-label">Free &amp; Community Driven</span>
+        </div>
+        <div class="status-item">
+          <span class="status-number">Since 2018</span>
+          <span class="status-label">Creating for the Community</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: Featured Major Projects Spotlight (Arranged by Last Updated) -->
+    <section id="showcase">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Flagship Showcases
+        </span>
+        <h2 class="section-title">Major Projects &amp; Suites</h2>
+        <p class="section-desc">Arranged chronologically by last update. Extensive overhauls built with meticulous care for game UI, portraits, and audio-visual consistency.</p>
+      </div>
+
+      <!-- Showcase 1: Project Kyaro Suite (Suikoden I & II HD Remaster) — Updated Oct 14, 2026 -->
+      <article class="project-card">
+        <div class="project-preview" onclick="openLightbox('assets/logus.png', 'Project Kyaro Suite - Suikoden I & II HD Remaster')">
+          <img src="assets/logus.png" alt="Project Kyaro Suikoden Logo" style="object-fit: contain; padding: 2rem; background: #13141f;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Updated: Oct 14, 2026</span>
+            <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-emerald">Most Recent Update</span>
+              <span class="tag tag-amber">Suikoden Series</span>
+              <span class="tag">Texture Suite</span>
+            </div>
+            <h3 class="project-title">Project Kyaro Suite</h3>
+            <p class="project-description">
+              A comprehensive texture and visual enhancement suite for <strong>Suikoden I&amp;II HD Remaster</strong>. Sharpened portraits, high-detail UI elements, and quality-of-life adjustments crafted specifically to enhance the modern remaster experience.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Faithful high-definition portrait overlays and character alignments.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Read the history behind the original PSX texture mod on the dedicated <a href="project-kyaro.html" style="color: var(--accent-cyan); text-decoration: underline;">Project Kyaro Hub</a>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-kyaro.html" class="btn btn-primary btn-sm">
+                <span>Project Kyaro Hub &rarr;</span>
+              </a>
+              <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>NexusMods (#6)</span>
+              </a>
+            </div>
+            <span class="tag tag-emerald">Oct 2026 Release</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Showcase 2: Kupo Mods Library (Final Fantasy IX) — Updated Oct 10, 2026 -->
+      <article class="project-card">
+        <div class="project-preview" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library for Final Fantasy IX')">
+          <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Preview" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Updated: Oct 10, 2026</span>
+            <span class="tag tag-purple">Final Fantasy IX</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-purple">FFIX Master Suite</span>
+              <span class="tag tag-cyan">10 Integrated Modules</span>
+              <span class="tag">Memoria Engine</span>
+            </div>
+            <h3 class="project-title">Kupo Mods Library</h3>
+            <p class="project-description">
+              The premier modular enhancement ecosystem for Final Fantasy IX on PC. Documented in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a> and formerly known as Mog Add-ons, the Kupo Mods Library unites 10 dedicated modules: complete UI reskins, 6-preset controller button packs, Extended Cast portraits, gameplay balance reworks, and Memoria Launcher themes.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>8 Dialogue box colorways, 3 custom title screens, mist reduction, and responsive airship handling.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>DualSense, DS4, Xbox, and SNES button prompt sets + Kupo Heroes Pack balance for Vivi, Freya, Beatrix, Steiner &amp; Eiko.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="kupo-library.html" class="btn btn-primary btn-sm">
+                <span>Explore Kupo Library Guide &rarr;</span>
+              </a>
+              <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>Nexus Article #12</span>
+              </a>
+              <a href="https://www.nexusmods.com/finalfantasyix/mods/31" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>UI Suite (#31)</span>
+              </a>
+            </div>
+            <span class="tag tag-emerald">Active Ecosystem</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- SECTION 2: Latest Mod Releases (Top 4 Featured Updates) -->
+    <section id="catalog" style="margin-top: 4rem;">
+      <mods-catalog limit="4"></mods-catalog>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: VAULT CHRONICLES & RECONSTRUCTED HISTORICAL BLOG (41 ARTICLES)
+         ========================================================================== -->
+    <section id="blog" style="margin-top: 5rem;">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          Vault Chronicles &amp;
+        </span>
+        <h2 class="section-title">The Historical Blog Vault</h2>
+        <p class="section-desc">
+          just a record of Shenanigans over the years
+        </p>
+      </div>
+
+
+      <!-- Home Blog Grid (Shows Top/Filtered Reconstructed Posts) -->
+      <div class="blog-grid" id="homeBlogGrid">
+        <!-- Dynamically rendered via JS -->
+      </div>
+
+      
+
+    <!-- ==========================================================================
+         A PERSONAL UPDATE & DONATION APPEAL (No Outer Wrapper Box)
+         ========================================================================== -->
+    <section id="donate" class="donation-section">
+      <!-- Personal Update Letter (Single-Column Natural Reading Flow) -->
+      <div class="personal-letter-box">
+        <div class="letter-badge-row">
+          <span class="tag tag-purple">#personal-update</span>
+          <span class="tag tag-emerald">📅 October 21, 2026</span>
+        </div>
+        <h2 class="letter-headline">A Personal Update</h2>
+
+        <div class="letter-body">
+          <p class="letter-lead">
+            The last few days have been rough.
+          </p>
+          <p>
+            Two projects I was counting on for extra income fell through. One was canceled, and I recently learned another was given to someone else. Combined with rising expenses, medical costs, and caring for an elderly family member, things have become financially difficult.
+          </p>
+          <p>
+            I've been modding and creating projects since 2018, and I've always tried to support myself without asking for help. But this month has been especially challenging.
+          </p>
+          <p>
+            If you've enjoyed my work and would like to support my projects, I'd be incredibly grateful. Every contribution helps me continue creating and maintaining the things I share with this community.
+          </p>
+          <p class="letter-signoff">
+            Thank you for your support and for being part of this journey.
+          </p>
+        </div>
+      </div>
+
+      <!-- Donation Channels -->
+      <div class="donation-grid" style="max-width: 960px; margin: 0 auto 2.5rem;">
+        <!-- PayPal Direct -->
+        <div class="donation-tier-card">
+          <div class="tier-top">
+            <div class="tier-icon" style="color: #fbbf24; background: rgba(245, 158, 11, 0.15);">💳</div>
+            <div>
+              <div class="tier-title">Direct PayPal</div>
+              <div class="tier-desc">Send a tip directly to my personal PayPal account.</div>
+            </div>
+          </div>
+          <a href="https://paypal.me/thefaospark?country.x=PH&locale.x=en_US" target="_blank" rel="noopener noreferrer" class="btn btn-paypal btn-lg">
+            <span>Donate via PayPal</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- Ko-fi -->
+        <div class="donation-tier-card">
+          <div class="tier-top">
+            <div class="tier-icon" style="color: #ff5e5b; background: rgba(255, 94, 91, 0.15);">☕</div>
+            <div>
+              <div class="tier-title">Buy Me a Coffee</div>
+              <div class="tier-desc">Quick, feel-good tip with zero hassle.</div>
+            </div>
+          </div>
+          <a href="https://ko-fi.com/faospark" target="_blank" rel="noopener noreferrer" class="btn btn-kofi btn-lg">
+            <span>Tip on Ko-fi</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- Nexus Mods Endorsements -->
+        <div class="donation-tier-card">
+          <div class="tier-top">
+            <div class="tier-icon" style="color: #fb923c; background: rgba(234, 124, 37, 0.15);">⭐</div>
+            <div>
+              <div class="tier-title">Free Support: Endorse!</div>
+              <div class="tier-desc">Endorse my mods on Nexus Mods to boost visibility.</div>
+            </div>
+          </div>
+          <a href="https://www.nexusmods.com/profile/faospark" target="_blank" rel="noopener noreferrer" class="btn btn-nexus btn-lg">
+            <span>Endorse on NexusMods</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Obsidian Vault Footer Component -->
+  <back-to-top></back-to-top>
+
+  <vault-footer></vault-footer>
+
+  <!-- Lightbox Modal for Full Image Inspection -->
+  <div class="image-modal" id="imageModal" onclick="closeLightbox(event)">
+    <div class="image-modal-content">
+      <button class="image-modal-close" onclick="closeLightbox()">&times;</button>
+      <img id="modalImage" src="" alt="Screenshot Full View">
+    </div>
+  </div>
+
+  <!-- Toast Notification for Copy Address -->
+  <div class="toast-notice" id="toastNotice">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span>Address copied to clipboard!</span>
+  </div>
+
+  <!-- Web Components -->
+  <script src="components.js"></script>
+
+  <!-- Interactive JavaScript -->
+  <script>
+
+    // Lightbox Modal
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt || 'Preview';
+      modal.classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === modal || e.target.classList.contains('image-modal-close')) {
+        modal.classList.remove('active');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (modal && modal.classList.contains('active')) {
+          modal.classList.remove('active');
+        } else if (homeReaderModal && homeReaderModal.classList.contains('active')) {
+          closeHomeBlogReader();
+        }
+      }
+    });
+
+  </script>
+
+  <!-- Reconstructed Blog Reader Modal -->
+  <div class="blog-reader-modal" id="homeBlogReaderModal" onclick="handleHomeReaderBackdrop(event)">
+    <div class="blog-reader-dialog" role="dialog" aria-modal="true" aria-labelledby="homeModalPostTitle">
+      <div class="blog-reader-header">
+        <div class="blog-reader-title-area">
+          <h2 class="blog-reader-title" id="homeModalPostTitle">Post Title</h2>
+          <div class="blog-reader-meta" id="homeModalPostMeta"></div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <a id="homeModalFullLink" href="blog.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem;">
+            <span>Archive View</span> &rarr;
+          </a>
+          <button class="blog-reader-close-btn" onclick="closeHomeBlogReader()" aria-label="Close article">&times;</button>
+        </div>
+      </div>
+      <div class="blog-reader-body" id="homeModalPostBody"></div>
+    </div>
+  </div>
+
+  <!-- Reconstructed Blog Data Script -->
+  <script src="assets/blog/blog_data.js"></script>
+
+  <!-- Reconstructed Blog Section Logic -->
+  <script>
+    (function() {
+      const blogPosts = window.BLOG_POSTS || [];
+      const homeBlogGrid = document.getElementById('homeBlogGrid');
+      const homeSearchInput = document.getElementById('homeBlogSearchInput');
+      const homeCategoryBtns = document.querySelectorAll('#homeBlogCategoryPills .filter-btn');
+      const homeReaderModal = document.getElementById('homeBlogReaderModal');
+      const homeModalTitle = document.getElementById('homeModalPostTitle');
+      const homeModalMeta = document.getElementById('homeModalPostMeta');
+      const homeModalBody = document.getElementById('homeModalPostBody');
+      const homeModalFullLink = document.getElementById('homeModalFullLink');
+
+      window.homeReaderModal = homeReaderModal;
+
+      let currentCategory = 'all';
+      let currentQuery = '';
+
+      function matchesBlogCategory(p, cat) {
+        if (cat === 'all') return true;
+        const cats = (p.categories || []).map(c => c.toLowerCase());
+        const title = (p.title || '').toLowerCase();
+
+        if (cat === 'mods') {
+          return cats.some(c => c.includes('mod') || c.includes('suikoden')) || title.includes('kyaro') || title.includes('mod');
+        }
+        if (cat === 'emulation') {
+          return cats.some(c => c.includes('desmume') || c.includes('emu')) || title.includes('desmume') || title.includes('emulator') || title.includes('no$gba');
+        }
+        if (cat === 'pokemon') {
+          return cats.some(c => c.includes('pokemon') || c.includes('action replay') || c.includes('hex')) || title.includes('pokemon') || title.includes('action replay') || title.includes('pkm');
+        }
+        if (cat === 'artwork') {
+          return cats.some(c => c.includes('artwork') || c.includes('digimon')) || title.includes('vector') || title.includes('monodramon') || title.includes('patamon') || title.includes('gatomon') || title.includes('wormmon');
+        }
+        if (cat === 'tech') {
+          return cats.some(c => c.includes('note') || c.includes('blogger') || c.includes('xampp')) || title.includes('ssl') || title.includes('seo') || title.includes('css3') || title.includes('xampp');
+        }
+        return false;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function renderHomeBlog() {
+        if (!homeBlogGrid) return;
+        const q = currentQuery.toLowerCase().trim();
+
+        const filtered = blogPosts.filter(p => {
+          if (!matchesBlogCategory(p, currentCategory)) return false;
+          if (q) {
+            const matchTitle = (p.title || '').toLowerCase().includes(q);
+            const matchExcerpt = (p.excerpt || '').toLowerCase().includes(q);
+            const matchTags = (p.categories || []).some(t => t.toLowerCase().includes(q));
+            if (!matchTitle && !matchExcerpt && !matchTags) return false;
+          }
+          return true;
+        });
+
+        // Show top 6 on home page
+        const toDisplay = filtered.slice(0, 6);
+
+        if (toDisplay.length === 0) {
+          homeBlogGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+              <p>No historical blog posts match this query.</p>
+            </div>
+          `;
+          return;
+        }
+
+        homeBlogGrid.innerHTML = toDisplay.map((post) => {
+          const tagSpans = (post.categories || []).slice(0, 3).map(cat => 
+            `<span class="tag tag-cyan">${escapeHtml(cat)}</span>`
+          ).join('');
+
+          let thumbHtml = '';
+          if (post.thumbnail) {
+            thumbHtml = `
+              <div class="blog-card-thumb" onclick="openHomeBlogReader('${post.slug}')">
+                <img src="${post.thumbnail}" alt="${escapeHtml(post.title)}" loading="lazy">
+                <span class="blog-card-badge">${escapeHtml(post.year)}</span>
+              </div>
+            `;
+          } else {
+            thumbHtml = `
+              <div class="blog-card-thumb" onclick="openHomeBlogReader('${post.slug}')">
+                <div class="blog-card-thumb-placeholder">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                  <span style="font-size: 0.75rem; letter-spacing: 0.05em;">${escapeHtml(post.blogName)}</span>
+                </div>
+                <span class="blog-card-badge">${escapeHtml(post.year)}</span>
+              </div>
+            `;
+          }
+
+          return `
+            <article class="blog-card">
+              ${thumbHtml}
+              <div class="blog-card-body">
+                <div class="blog-meta-row">
+                  <span>📅 ${post.dateFormatted}</span>
+                  <span>&bull;</span>
+                  <span>⏱️ ${post.readingTime}</span>
+                  ${post.commentCount > 0 ? `<span>&bull;</span><span>💬 ${post.commentCount}</span>` : ''}
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="#blog-${post.slug}" onclick="openHomeBlogReader('${post.slug}'); return false;">${escapeHtml(post.title)}</a>
+                </h3>
+                <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+                <div class="blog-card-footer">
+                  <div class="tag-group">${tagSpans}</div>
+                  <button class="btn btn-secondary btn-sm" onclick="openHomeBlogReader('${post.slug}')">
+                    Read &rarr;
+                  </button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      window.openHomeBlogReader = function(slug) {
+        const post = blogPosts.find(p => p.slug === slug);
+        if (!post) return;
+
+        homeModalTitle.textContent = post.title;
+        homeModalFullLink.href = `blog.html#${post.slug}`;
+
+        const tagHtml = (post.categories || []).map(c => `<span class="tag tag-cyan">${escapeHtml(c)}</span>`).join(' ');
+        homeModalMeta.innerHTML = `
+          <span>📅 ${post.dateFormatted}</span>
+          <span>&bull;</span>
+          <span>⏱️ ${post.readingTime} (${post.wordCount} words)</span>
+          <span>&bull;</span>
+          <span>📚 ${escapeHtml(post.blogName)}</span>
+          ${tagHtml ? `<span style="margin-left: 0.5rem;">${tagHtml}</span>` : ''}
+        `;
+
+        let commentsHtml = '';
+        if (post.comments && post.comments.length > 0) {
+          commentsHtml = `
+            <div class="blog-comments-container">
+              <h3 class="blog-comments-header">💬 Reconstructed Comments (${post.comments.length})</h3>
+              <div class="blog-comments-list">
+                ${post.comments.map(c => `
+                  <div class="blog-comment-item">
+                    <div class="blog-comment-author-bar">
+                      <span class="blog-comment-author">👤 ${escapeHtml(c.author)}</span>
+                      <span class="blog-comment-date">${c.dateFormatted || c.published}</span>
+                    </div>
+                    <div class="blog-comment-text">${c.text}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        homeModalBody.innerHTML = `
+          <div class="blog-article-body">
+            ${post.content}
+          </div>
+          ${commentsHtml}
+        `;
+
+        homeReaderModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeHomeBlogReader = function() {
+        homeReaderModal.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      window.handleHomeReaderBackdrop = function(e) {
+        if (e.target === homeReaderModal) {
+          closeHomeBlogReader();
+        }
+      };
+
+      // Events
+      homeCategoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          homeCategoryBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.getAttribute('data-blog-filter');
+          renderHomeBlog();
+        });
+      });
+
+      if (homeSearchInput) {
+        homeSearchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value;
+          renderHomeBlog();
+        });
+      }
+
+      // Check URL hash for blog-slug
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#blog-')) {
+        const targetSlug = hash.replace('#blog-', '');
+        setTimeout(() => openHomeBlogReader(targetSlug), 200);
+      }
+
+      // Initial Render
+      renderHomeBlog();
+    })();
+  </script>
 </body>
 </html>

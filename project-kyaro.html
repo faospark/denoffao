@@ -3,40 +3,887 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project Kyaro</title>
-  <meta property="og:url" content="https://faospark.github.io/mystuff/project-kyaro.html"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Project Kyaro"/>
-  <meta property="og:description" content="A Tiny Texture Pack / Mod for Sukoden 2"/>
-  <meta property="og:image"
-        content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>
-  <link rel="stylesheet" href="assets/main.css">
+  <title>Project Kyaro — Suikoden II PSX Texture Overhaul &amp; Visual Suite</title>
+  
+  <meta name="description" content="Official documentation for Faospark's Project Kyaro: Suikoden II PSX texture overhaul using Beetle PSX HW, xBR filtering, 161 portraits, and curated Action Replay codes.">
+  <meta property="og:url" content="https://denoffao.me/project-kyaro.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Project Kyaro — Suikoden II PSX Texture Overhaul"/>
+  <meta property="og:description" content="Enhanced visual experience combining xBR filtering and texture replacement for Konami's Suikoden 2 on Beetle PSX HW / RetroArch."/>
+  <meta property="og:image" content="assets/kyaro/kyaro-showcase-collage.png"/>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <style>
+    .jump-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .jump-nav-btn {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      background: rgba(16, 28, 52, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: var(--accent-cyan) !important;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(4px);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
+    }
+    .jump-nav-btn:hover {
+      background: rgba(56, 189, 248, 0.22) !important;
+      border-color: #38bdf8 !important;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.38), inset 0 0 10px rgba(56, 189, 248, 0.15);
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
+    }
+    .jump-nav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+    }
+    .jump-nav-btn[style*="emerald"]:hover,
+    .jump-nav-btn[style*="34d399"]:hover {
+      background: rgba(52, 211, 153, 0.22) !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 16px rgba(52, 211, 153, 0.38), inset 0 0 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 0 8px rgba(52, 211, 153, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
+    }
+
+    /* Hero Banner Showcase */
+    .hero-banner-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #000;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .hero-banner-container:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .hero-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .hero-banner-container:hover .hero-banner-img {
+      transform: scale(1.01);
+    }
+    .banner-overlay-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+    .banner-caption-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1.25rem;
+      background: linear-gradient(180deg, rgba(5, 10, 20, 0) 0%, rgba(5, 10, 20, 0.92) 100%);
+      color: var(--text-pure-white);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Downloads Action Hub */
+    .download-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .dl-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .dl-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .dl-card.highlight {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .dl-card.highlight:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .dl-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .dl-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-pure-white);
+      margin: 0;
+    }
+    .dl-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0 0 1rem;
+      flex-grow: 1;
+    }
+    .dl-card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    /* Video Showcase Grid */
+    .video-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .video-card {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .video-responsive-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-responsive-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .video-card-body {
+      padding: 1rem 1.25rem;
+    }
+    .video-card-title {
+      color: var(--text-pure-white);
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+    }
+    .video-card-desc {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Step Screenshots & Guides */
+    .step-screenshot-figure {
+      margin: 1rem 0 1.25rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #060911;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s ease;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .step-screenshot-figure:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .step-screenshot-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: contain;
+      background: #050811;
+    }
+    .step-screenshot-caption {
+      padding: 0.5rem 0.85rem;
+      background: rgba(10, 15, 25, 0.95);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .code-snippet {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #7dd3fc;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+    .kyaro-step-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .kyaro-step-item:last-child {
+      border-bottom: none;
+    }
+    .cheat-code-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .cheat-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 1rem;
+    }
+    .cheat-box strong {
+      color: #fff;
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Changelog Timeline */
+    .changelog-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .changelog-version-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Community Hangout Card */
+    .community-box {
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(12, 16, 26, 0.7) 100%);
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .community-gif {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid rgba(88, 101, 242, 0.6);
+      background: #000;
+    }
+  </style>
 </head>
-<body class="svgb">
-<nav id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="index.html">Home</a>
-  <a href="ffvi-mods.html">FFVI Mods</a>
-  <a href="project-kyaro.html">Project Kyaro</a>
-  <a href="#">Contact</a>
-</nav>
-<div class="wrapper auto vh">
-  <main class="cent vh">
-    <span class="nav-b" onclick="openNav()">&#9776;</span>
-    <div class="card animated fadeIn e">
-      <h1 class="title bold">Project Kyaro</h1>
-      <h3>Just a place where I can direct people stuff that im working on</h3>
-      <hr>
-      <div id="desc" class="tabs animated fadeIn">
-        <div class="grid half">
-          <a class="mh300 bgsix"> FFVI Mods</a>
-          <a class="mh300 bgsui"> Project Kyaro</a>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kyaro.md"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Special Projects</span>
+        </a>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tag tag-emerald font-mono">Version 2.6 Active</span>
+          <span class="tag tag-amber font-mono">Featured by LibRetro</span>
+          <span class="tag tag-cyan font-mono">161 Portraits</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="display: flex; gap: 1.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.75rem;">
+        <img src="assets/kyaro/compass-emblem.png" alt="Den of Fao Compass Emblem" style="width: 110px; height: 110px; object-fit: contain; background: #0c101a; padding: 0.75rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14);" onclick="openLightbox('assets/kyaro/compass-emblem.png', 'Den of Fao Compass Emblem')">
+        <div style="flex-grow: 1; min-width: 280px;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <span class="tag tag-amber">Suikoden II (PSX)</span>
+            <span class="tag">Beetle PSX HW</span>
+          </div>
+          <h1 class="hero-title" style="font-size: 2.35rem; margin-bottom: 0.4rem;">
+            Project Kyaro &bull; <span class="text-gradient">Suikoden II PSX.</span>
+          </h1>
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            An enhanced visual experience for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement on <strong>Beetle PSX HW</strong> and <strong>RetroArch</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hero Banner Showcase: Click to Zoom -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.png', 'Project Kyaro — Suikoden II PSX Visual Suite & Texture Overhaul')">
+        <img src="assets/kyaro/kyaro-showcase-collage.png" alt="Project Kyaro Suikoden II Showcase" class="hero-banner-img" loading="eager">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">Official Showcase</span>
+          <span class="tag tag-cyan">Click to Zoom 🔍</span>
+        </div>
+        <div class="banner-caption-bar">
+          <span><strong>Project Kyaro Texture Showcase:</strong> 161 HD Portraits, Crisp Dialogue Typography, Storehouse, Card Slots &amp; Status UI</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Quick Nav Buttons -->
+      <div class="jump-nav-row">
+        <a href="#downloads" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Downloads Hub
+        </a>
+        <a href="#showcase-videos" class="jump-nav-btn">Showcase Videos 🎬</a>
+        <a href="#objectives" class="jump-nav-btn">Objectives &amp; Philosophy</a>
+        <a href="#v26-features" class="jump-nav-btn">Features &amp; Changelog</a>
+        <a href="#installation" class="jump-nav-btn">Installation &amp; Core Setup</a>
+        <a href="#bugfixes" class="jump-nav-btn">Pyriel Bugfixes</a>
+        <a href="#gameshark" class="jump-nav-btn">Action Replay Codes</a>
+        <a href="#community" class="jump-nav-btn">Community &amp; Credits</a>
+        <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Google Sites Hub &rarr;</a>
+        <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">Suikoden Remaster Mod (#6) &rarr;</a>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: DOWNLOADS HUB -->
+      <section id="downloads">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Download Links &amp; Releases</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Direct downloads and repository links for Project Kyaro v2.6, beta builds, and bonus packages.</p>
+          </div>
+          <span class="tag tag-emerald">Verified Working Links</span>
         </div>
 
-      </div>
-    </div>
+        <div class="download-hub-grid">
+          <!-- Card 1: V2.6 Release -->
+          <div class="dl-card highlight">
+            <div class="dl-card-header">
+              <span class="tag tag-emerald">Stable Release</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">ZIP Archive</span>
+            </div>
+            <h3 class="dl-card-title">Project Kyaro V2.6</h3>
+            <p class="dl-card-desc">
+              Complete texture replacement pack including 161 portraits, international accented text, ending backdrops, and battle UI textures.
+            </p>
+            <a href="https://www.dropbox.com/s/uvnteyqqavkxwq2/Suikoden%20II%20(USA)-texture-replacements.zip?dl=1" class="btn btn-primary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download Mod V2.6 (Dropbox)</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Beta Version -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag tag-cyan">Live Repository</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">Google Drive</span>
+            </div>
+            <h3 class="dl-card-title">Beta Version (Experimental)</h3>
+            <p class="dl-card-desc">
+              Live Google Drive directory containing experimental textures, upcoming character overhauls, and work-in-progress test assets.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1-3J98DummFM0QeiAvyUV3VfQP0pyxd3A?usp=sharing" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>Browse Beta Drive Folder &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Card 3: GameShark Bonus Pack -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag tag-amber">Bonus Pack</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">80+ Codes</span>
+            </div>
+            <h3 class="dl-card-title">GameShark / Action Replay</h3>
+            <p class="dl-card-desc">
+              Curated cheat collection with 80+ essential codes for money, stats, no encounters, and strategic war battle advantages.
+            </p>
+            <a href="https://www.dropbox.com/s/qvpm7hpt4m4wz27/Suikoden%20II%20Bonus.zip?dl=0" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download Cheats ZIP (.zip)</span>
+            </a>
+          </div>
+
+          <!-- Card 4: Pyriel Bugfixes -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag">Recommended Patch</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">GitHub</span>
+            </div>
+            <h3 class="dl-card-title">Pyriel's GS2 Bugfixes</h3>
+            <p class="dl-card-desc">
+              Community patch resolving vanilla softlocks, sound bugs, and the infamous Matilda Gate glitch. 100% compatible with Project Kyaro.
+            </p>
+            <a href="https://github.com/pyriell/gs2-bugfixes" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              <span>Pyriel GS2 Bugfixes on GitHub &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: VIDEO SHOWCASE -->
+      <section id="showcase-videos">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.5rem;">Video Showcase &amp; Guides</h2>
+        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1.25rem;">
+          See Project Kyaro in motion across Beetle PSX HW's texture replacement engine, and watch the official feature video by the LibRetro team.
+        </p>
+
+        <div class="video-showcase-grid">
+          <!-- Video 1: LibRetro Feature -->
+          <div class="video-card">
+            <div class="video-responsive-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/rvRcawBqsH4" title="RetroArch: Beetle PSX HW - Texture Replacements" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-card-body">
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.35rem;">
+                <span class="tag tag-amber">LibRetro Official</span>
+                <span class="tag">Beetle PSX HW</span>
+              </div>
+              <h3 class="video-card-title">RetroArch: Beetle PSX HW - Texture Replacements</h3>
+              <p class="video-card-desc">
+                Official LibRetro showcase featuring Project Kyaro textures running under hardware acceleration on RetroArch.
+              </p>
+            </div>
+          </div>
+
+          <!-- Video 2: Faospark In-Game Showcase -->
+          <div class="video-card">
+            <div class="video-responsive-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/BCG7sUKUmW0" title="suikoden 2 Mod II using RetroArch Beetle PSX HW - Project Kyaro" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-card-body">
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.35rem;">
+                <span class="tag tag-cyan">Gameplay Showcase</span>
+                <span class="tag">xBR Filtered</span>
+              </div>
+              <h3 class="video-card-title">Enhanced xBR Experience for Suikoden II</h3>
+              <p class="video-card-desc">
+                In-depth demonstration of neural-upscaled textures with xBR filter shaders, UI overhaul, and seamless portrait transitions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 6px; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            <span style="font-size: 0.92rem; color: #fff;">Need a walkthrough for configuring Beetle PSX HW from scratch?</span>
+          </div>
+          <a href="https://youtu.be/ntgFo0Q_dvs" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+            <span>Watch Full Setup Video Guide (YouTube) &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 1: OBJECTIVES & PHILOSOPHY -->
+      <section id="objectives">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.75rem;">Project Objectives &amp; Visual Philosophy</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem;">
+          Inspired by the community texture upscale project of <em>Chrono Cross</em>, <strong>Project Kyaro</strong> replaces in-game textures that are neural-upscaled via Waifu2x and Topaz Gigapixel, sitting gracefully on top of RetroArch's xBR shader filtering.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem;">
+          The main objective is to enjoy Suikoden II with reduced pixelation for an <strong>HD-ish / Remastered aesthetic</strong> on modern screens. However, for pixel purists who want to keep the raw 32-bit pixel art intact, you can simply set Texture Filtering to <strong>Nearest Neighbor</strong>—allowing the high-resolution character portraits and fonts to shine while retaining original environmental pixels.
+        </p>
+        <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid var(--accent-emerald); padding: 0.85rem 1.25rem; border-radius: 0 6px 6px 0; margin-top: 1rem;">
+          <p style="color: #6ee7b7; font-size: 0.92rem; font-weight: 500; margin: 0;">
+            ⭐ Project Kyaro was officially showcased by LibRetro / RetroArch in their Beetle PSX HW texture replacement demonstration!
+          </p>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 2: VERSION FEATURES & CHANGELOG -->
+      <section id="v26-features">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0;">Features &amp; Version History</h2>
+          <span class="tag tag-emerald">Changelog Tracked</span>
+        </div>
+
+        <div class="changelog-box">
+          <div class="changelog-version-header">
+            <span class="tag tag-emerald font-mono">v2.6</span>
+            <strong style="color: #fff; font-size: 1.05rem;">Internationalization &amp; UI Expansion (Current)</strong>
+          </div>
+          <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem; padding-left: 1.25rem; margin: 0 0 1.25rem; list-style: disc;">
+            <li><strong>Internationalization Support:</strong> Added accented text characters, opening full support for localized European and international ISO copies.</li>
+            <li><strong>161 Character Portraits:</strong> Added handcrafted contrast outlines to 161 character portraits across the 108 Stars of Destiny.</li>
+            <li><strong>In-Game UI &amp; Environments:</strong> Revamped war battle operational text, in-game background UI textures, and high-definition ending backdrops.</li>
+          </ul>
+
+          <div class="changelog-version-header">
+            <span class="tag tag-cyan font-mono">v2.0</span>
+            <strong style="color: #fff; font-size: 1.05rem;">Backgrounds &amp; Rune Transparency</strong>
+          </div>
+          <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem; padding-left: 1.25rem; margin: 0 0 1.25rem; list-style: disc;">
+            <li><strong>Ending Backdrops:</strong> Added high-definition ending background art and additional battle backgrounds.</li>
+            <li><strong>Rune Transparency:</strong> Cleaned up alpha channel fringing and fixed transparency bugs on various spell and head runes.</li>
+          </ul>
+
+          <div class="changelog-version-header">
+            <span class="tag tag-amber font-mono">v1.5</span>
+            <strong style="color: #fff; font-size: 1.05rem;">Expanded Cast Portraits</strong>
+          </div>
+          <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem; padding-left: 1.25rem; margin: 0 0 1.25rem; list-style: disc;">
+            <li>Added specialized portrait assets for <strong>Pilika</strong>, <strong>Neclord</strong>, <strong>Jowy Atreides</strong>, and <strong>Julia</strong>.</li>
+          </ul>
+
+          <div class="changelog-version-header">
+            <span class="tag font-mono">v1.0 &amp; Alpha</span>
+            <strong style="color: #fff; font-size: 1.05rem;">Initial Release &amp; Foundations</strong>
+          </div>
+          <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem; padding-left: 1.25rem; margin: 0; list-style: disc;">
+            <li><strong>v1.0 Initial Public Release:</strong> Neural-upscaled portraits, high-res Konami boot logo, and initial text support.</li>
+            <li><strong>Alpha:</strong> Experimental character portraits upscale prototype (unreleased).</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 3: STEP-BY-STEP INSTALLATION & CORE SETUP -->
+      <section id="installation">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.75rem;">Installation &amp; RetroArch Core Setup Guide</h2>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.5rem;">
+          Follow these exact configuration steps and reference screenshots to enable hardware texture replacement.
+        </p>
+
+        <!-- Step 1 -->
+        <div class="kyaro-step-item">
+          <strong style="color: var(--accent-cyan); font-size: 1.15rem; display: block; margin-bottom: 0.35rem;">I. Prerequisites &amp; Core</strong>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin: 0 0 0.5rem;">
+            Ensure you have the latest <strong>RetroArch</strong> installed with the <strong>Sony - PlayStation (Beetle PSX HW)</strong> core.
+          </p>
+          <ul style="color: var(--text-secondary); line-height: 1.6; font-size: 0.9rem; padding-left: 1.25rem; list-style: disc; margin: 0;">
+            <li>Required BIOS files (e.g. <code>scph5501.bin</code>) must be placed in your RetroArch <code>system/</code> directory.</li>
+            <li>A clean Suikoden II PSX game ISO / BIN &amp; CUE pair.</li>
+          </ul>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="kyaro-step-item">
+          <strong style="color: var(--accent-cyan); font-size: 1.15rem; display: block; margin-bottom: 0.35rem;">II. Recommended Folder Structure</strong>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 0.75rem;">
+            Keep your main BIN / CUE files inside their own dedicated game folder. <strong>Crucial:</strong> Make sure the filename of your game <em>exactly matches</em> the filename defined inside the <code>.cue</code> file. Create two companion folders alongside your game files:
+          </p>
+          
+          <div class="code-snippet">
+📁 Suikoden II/
+   ├── Suikoden II (USA).cue
+   ├── Suikoden II (USA).bin
+   ├── Suikoden II (USA)-texture-dump/
+   └── Suikoden II (USA)-texture-replacements/  &lt;-- Extract mod PNG files here!
+          </div>
+
+          <!-- Step 2 Screenshot -->
+          <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step2-folder-structure.png', 'Step II: Recommended Game Directory &amp; Texture Folders')">
+            <img src="assets/kyaro/step2-folder-structure.png" alt="Recommended Directory Structure for Suikoden II" class="step-screenshot-img" loading="lazy">
+            <figcaption class="step-screenshot-caption">
+              <span><strong>Folder Hierarchy:</strong> Companion <code>-texture-dump</code> and <code>-texture-replacements</code> folders</span>
+              <span style="color: var(--accent-cyan);">Click to Zoom 🔍</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="kyaro-step-item">
+          <strong style="color: var(--accent-cyan); font-size: 1.15rem; display: block; margin-bottom: 0.35rem;">III. RetroArch Core Options Configuration</strong>
+          <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1rem;">
+            A lot has evolved in RetroArch's menu over the updates. Follow these steps carefully with the in-game reference screenshots:
+          </p>
+
+          <!-- 3A: Quick Menu Core Options -->
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Step 3A: Accessing Core Options
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.5rem;">
+              Launch Suikoden II and press <kbd style="background: rgba(255,255,255,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: monospace;">F1</kbd> to open the RetroArch Quick Menu. Scroll down and enter <strong>Core Options</strong>.
+            </p>
+            <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3a-core-options.png', 'Step 3A: RetroArch Quick Menu -> Core Options')">
+              <img src="assets/kyaro/step3a-core-options.png" alt="RetroArch Quick Menu Core Options" class="step-screenshot-img" loading="lazy">
+              <figcaption class="step-screenshot-caption">
+                <span><strong>Quick Menu:</strong> Core Options highlighted</span>
+                <span style="color: var(--accent-cyan);">Click to Zoom 🔍</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- 3B: Renderer Vulkan -->
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Step 3B: Set Hardware Renderer to Vulkan
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.5rem;">
+              Under Core Options, set <strong>Renderer (Restart Required)</strong> to <strong>Hardware (Vulkan)</strong>. Close and restart RetroArch so the Vulkan driver initializes.
+            </p>
+            <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3b-renderer-vulkan.png', 'Step 3B: Core Options -> Renderer Hardware Vulkan')">
+              <img src="assets/kyaro/step3b-renderer-vulkan.png" alt="Setting Renderer to Hardware Vulkan" class="step-screenshot-img" loading="lazy">
+              <figcaption class="step-screenshot-caption">
+                <span><strong>Renderer:</strong> Select Hardware (Vulkan) and restart RetroArch</span>
+                <span style="color: var(--accent-cyan);">Click to Zoom 🔍</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- 3C: Video Settings xBR -->
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Step 3C: Video Resolution &amp; Texture Filtering
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.5rem;">
+              Press <kbd style="background: rgba(255,255,255,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: monospace;">F1</kbd> again, go to <strong>Core Options &rarr; Video</strong>, and adjust the following key parameters:
+            </p>
+            <div style="background: rgba(0,0,0,0.5); padding: 1rem 1.25rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: monospace; font-size: 0.85rem; color: #fff; line-height: 1.8; margin-bottom: 0.75rem;">
+              <div>&bull; <strong style="color: var(--accent-cyan);">Internal GPU Resolution:</strong> 2x or 4x</div>
+              <div>&bull; <strong style="color: var(--accent-cyan);">Dithering Pattern:</strong> OFF</div>
+              <div>&bull; <strong style="color: var(--accent-cyan);">Texture Filtering:</strong> xBR <em style="color: var(--text-muted);">(SABR is also good; choose Nearest if you wish to keep raw pixels)</em></div>
+            </div>
+            <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3c-video-settings-xbr.png', 'Step 3C: Video Resolution &amp; xBR Texture Filtering')">
+              <img src="assets/kyaro/step3c-video-settings-xbr.png" alt="Video Resolution and Texture Filtering Settings" class="step-screenshot-img" loading="lazy">
+              <figcaption class="step-screenshot-caption">
+                <span><strong>Video Settings:</strong> 4x Resolution, Dithering OFF, Texture Filtering xBR</span>
+                <span style="color: var(--accent-cyan);">Click to Zoom 🔍</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- 3D: Texture Replacement Settings -->
+          <div>
+            <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem;">
+              Step 3D: Texture Tracking, Replacement &amp; Framebuffer
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.5rem;">
+              Scroll further down in the <strong>Video</strong> menu and configure the texture replacement engine:
+            </p>
+            <div style="background: rgba(0,0,0,0.5); padding: 1rem 1.25rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); font-family: monospace; font-size: 0.85rem; color: #fff; line-height: 1.8; margin-bottom: 0.75rem;">
+              <div>&bull; <strong style="color: var(--accent-cyan);">Multi-Sampled Anti Aliasing:</strong> 1x</div>
+              <div>&bull; <strong style="color: var(--accent-cyan);">Track Textures:</strong> ON</div>
+              <div>&bull; <strong style="color: var(--accent-cyan);">Replace Textures:</strong> ON <em style="color: var(--text-muted);">(If hidden, toggle Track Textures and restart RetroArch)</em></div>
+              <div>&bull; <strong style="color: var(--accent-cyan);">Software Framebuffer:</strong> OFF</div>
+            </div>
+            <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3d-texture-tracking-settings.png', 'Step 3D: Texture Tracking, Replacement &amp; Framebuffer')">
+              <img src="assets/kyaro/step3d-texture-tracking-settings.png" alt="Texture Replacement and Tracking Settings" class="step-screenshot-img" loading="lazy">
+              <figcaption class="step-screenshot-caption">
+                <span><strong>Texture Tracking &amp; Replacement:</strong> Multi-Sampled 1x, Track ON, Replace ON, Framebuffer OFF</span>
+                <span style="color: var(--accent-cyan);">Click to Zoom 🔍</span>
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 4: BUGFIXES -->
+      <section id="bugfixes">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.75rem;">Compatibility &amp; Bugfix Patches</h2>
+        <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.92rem; margin-bottom: 1rem;">
+          Project Kyaro is 100% compatible with files patched with Pyriel's community bugfixes, which resolve vanilla softlocks, sound bugs, and the infamous Matilda Gate glitch:
+        </p>
+        <a href="https://github.com/pyriell/gs2-bugfixes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          <span>Pyriel's GS2 Bugfixes on GitHub &rarr;</span>
+        </a>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 5: GAMESHARK CODES -->
+      <section id="gameshark">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">80+ Curated GameShark / Action Replay Codes</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Hand-curated overtime to assist testing, screenshot staging, and overcoming grueling war battle encounters.</p>
+          </div>
+          <a href="https://www.dropbox.com/s/qvpm7hpt4m4wz27/Suikoden%20II%20Bonus.zip?dl=0" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download All Codes ZIP (.zip)</span>
+          </a>
+        </div>
+        
+        <div class="cheat-code-grid">
+          <div class="cheat-box">
+            <strong>Max Potch (Money)</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">8006AA58 967F<br>8006AA5A 0098</div>
+          </div>
+          <div class="cheat-box">
+            <strong>No Random Battles</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">80069698 0000</div>
+          </div>
+          <div class="cheat-box">
+            <strong>Clive Sidequest Timer (0:00)</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">8006AA40 0000<br>8006AA42 0000</div>
+          </div>
+          <div class="cheat-box">
+            <strong>Hero Infinite Max HP in Battle</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">8004B234 03E7</div>
+          </div>
+          <div class="cheat-box">
+            <strong>Hero Infinite Magic Level 1–4</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">8004B238 0909<br>8004B23A 0909</div>
+          </div>
+          <div class="cheat-box">
+            <strong>War Battles: Max Morale &amp; Atk</strong>
+            <div class="code-snippet" style="margin: 0; padding: 0.5rem;">8009F408 0009<br>8009F40A 0009</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 6: COMMUNITY, ACKNOWLEDGEMENTS & CREDITS -->
+      <section id="community">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.75rem;">Community, Acknowledgements &amp; Credits</h2>
+
+        <!-- Moogles & Mods Discord Banner -->
+        <div class="community-box">
+          <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif">
+          <div style="flex-grow: 1; min-width: 240px;">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span class="tag tag-cyan">Community Hub</span>
+              <span class="tag">Discord Hangout</span>
+            </div>
+            <h3 style="color: #fff; font-size: 1.2rem; margin: 0 0 0.35rem;">Moogles and Mods</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0 0 0.75rem;">
+              My hangout and testing server for classic RPG modding, texture overhauls, and troubleshooting. Drop in to say hello or report texture issues!
+            </p>
+            <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background: #5865f2; border-color: #5865f2;">
+              <span>Join Moogles and Mods Discord &rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.92rem;">
+          &bull; <strong>Suikosource Forums:</strong> Heartfelt gratitude to the Suikosource community for hosting the original project discussion and feedback threads.<br>
+          &bull; <strong>Asset Contributions:</strong> Special thanks to <code>@luizpedro</code> (Pinterest) and <code>@DocOwer</code> (Twitter) for rune and art assets.<br>
+          &bull; <strong>Tools:</strong> Neural upscaling powered by <em>Waifu2x</em> and <em>Topaz Gigapixel AI</em>.<br>
+          &bull; <strong>LibRetro Team:</strong> Heartfelt appreciation to the RetroArch &amp; Beetle PSX HW core maintainers for their pioneering hardware texture replacement feature.
+        </p>
+
+        <!-- Profile Links -->
+        <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
+          <a href="https://www.nexusmods.com/users/71883233" target="_blank" rel="noopener noreferrer" class="jump-nav-btn">
+            <img src="assets/kyaro/icon-nexus.png" alt="Nexus Mods" style="width: 18px; height: 18px; object-fit: contain;">
+            <span>Faospark on Nexus Mods</span>
+          </a>
+          <a href="https://www.reddit.com/user/faospark" target="_blank" rel="noopener noreferrer" class="jump-nav-btn">
+            <img src="assets/kyaro/icon-reddit.png" alt="Reddit" style="width: 18px; height: 18px; object-fit: contain;">
+            <span>u/faospark on Reddit</span>
+          </a>
+        </div>
+      </section>
+
+    </div><!-- End .vault-single-card -->
+
   </main>
-</div>
-<script src="common.js"></script>
+
+  <!-- Obsidian Vault Footer Component -->
+  <back-to-top></back-to-top>
+
+  <vault-footer disclaimer="&copy; 2018–2026 Faospark. Suikoden II is &copy; Konami Digital Entertainment. Non-commercial fan preservation project."></vault-footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
+      <img id="lightboxImg" src="" alt="Enlarged Preview">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Web Components & Scripts -->
+  <script src="components.js"></script>
+  <!-- Mobile Nav & Lightbox Scripts -->
+  <script>
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    function openLightbox(src, caption) {
+      if (!lightboxModal) return;
+      lightboxImg.src = src;
+      lightboxCaption.textContent = caption || '';
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+      if (event && (event.target === lightboxImg || event.target === lightboxCaption)) return;
+      closeLightboxDirect();
+    }
+
+    function closeLightboxDirect() {
+      if (!lightboxModal) return;
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightboxDirect();
+    });
+  </script>
 </body>
 </html>
