@@ -15,7 +15,7 @@
   <!-- Pure Web-Safe Stylesheet (Zero external Google fonts) -->
   <link rel="stylesheet" href="assets/obsidian.css">
   <!-- Native Web Components -->
-  <script src="components.js"></script>
+  <script src="components.js?v=20261022"></script>
 </head>
 <body>
   <!-- Ambient background grid -->
@@ -98,8 +98,8 @@
 
       <!-- Showcase 1: Project Kyaro Suite (Suikoden I & II HD Remaster) — Updated Oct 14, 2026 -->
       <article class="project-card">
-        <div class="project-preview" onclick="openLightbox('assets/logus.png', 'Project Kyaro Suite - Suikoden I & II HD Remaster')">
-          <img src="assets/logus.png" alt="Project Kyaro Suikoden Logo" style="object-fit: contain; padding: 2rem; background: #13141f;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'Project Kyaro Suite - Suikoden I & II HD Remaster')">
+          <img src="assets/kyaro/project-kyaro-suite.png" alt="Project Kyaro Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Updated: Oct 14, 2026</span>
             <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
@@ -132,8 +132,8 @@
 
           <div class="project-card-footer">
             <div class="download-options">
-              <a href="project-kyaro.html" class="btn btn-primary btn-sm">
-                <span>Project Kyaro Hub &rarr;</span>
+              <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
+                <span>PC Remaster Guide &rarr;</span>
               </a>
               <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -305,6 +305,21 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         </div>
+
+        <!-- Bluesky Social -->
+        <div class="donation-tier-card">
+          <div class="tier-top">
+            <div class="tier-icon" style="color: #38bdf8; background: rgba(56, 189, 248, 0.15);">🦋</div>
+            <div>
+              <div class="tier-title">Follow on Bluesky</div>
+              <div class="tier-desc">Latest mod releases, WIP previews, and dev updates.</div>
+            </div>
+          </div>
+          <a href="https://bsky.app/profile/faospark.bsky.social" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg" style="border-color: rgba(56, 189, 248, 0.45); color: #38bdf8;">
+            <span>Connect on Bluesky</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
       </div>
 
     </section>
@@ -329,38 +344,18 @@
     <span>Address copied to clipboard!</span>
   </div>
 
-  <!-- Web Components -->
-  <script src="components.js"></script>
-
   <!-- Interactive JavaScript -->
   <script>
 
-    // Lightbox Modal
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-
-    function openLightbox(src, alt) {
-      modalImg.src = src;
-      modalImg.alt = alt || 'Preview';
-      modal.classList.add('active');
-    }
-
-    function closeLightbox(e) {
-      if (!e || e.target === modal || e.target.classList.contains('image-modal-close')) {
-        modal.classList.remove('active');
-      }
-    }
-
+    // Escape handler for Home Blog Reader
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (modal && modal.classList.contains('active')) {
-          modal.classList.remove('active');
-        } else if (homeReaderModal && homeReaderModal.classList.contains('active')) {
+        const homeReaderModal = document.getElementById('homeBlogReaderModal');
+        if (homeReaderModal && homeReaderModal.classList.contains('active')) {
           closeHomeBlogReader();
         }
       }
     });
-
   </script>
 
   <!-- Reconstructed Blog Reader Modal -->

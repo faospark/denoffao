@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The PROJECT KYARO Suite (PKCore) — Suikoden I &amp; II HD Remaster (PC) | Faospark</title>
+  
+  <meta name="description" content="Official documentation for The PROJECT KYARO Suite by faospark for Suikoden I &amp; II HD Remaster on PC (Steam). A comprehensive BepInEx modding suite compatible with SuikodenFix, featuring texture replacement, portrait frameworks, gameplay tweaks, and QoL improvements.">
+  <meta property="og:url" content="https://denoffao.me/project-kyaro-pc.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="The PROJECT KYARO Suite — Suikoden I &amp; II HD Remaster (PC)"/>
+  <meta property="og:description" content="Comprehensive texture replacements, character portrait framework, sprite smoothing, UI customization, gameplay tweaks, and performance optimizations for PC."/>
+  <meta property="og:image" content="assets/kyaro/project-kyaro-suite.png"/>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <style>
+    .jump-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .jump-nav-btn {
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      background: rgba(16, 28, 52, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: var(--accent-cyan) !important;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(4px);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
+    }
+    .jump-nav-btn:hover {
+      background: rgba(56, 189, 248, 0.22) !important;
+      border-color: #38bdf8 !important;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.38), inset 0 0 10px rgba(56, 189, 248, 0.15);
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
+    }
+    .jump-nav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+    }
+    .jump-nav-btn[style*="emerald"]:hover,
+    .jump-nav-btn[style*="34d399"]:hover {
+      background: rgba(52, 211, 153, 0.22) !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 16px rgba(52, 211, 153, 0.38), inset 0 0 10px rgba(52, 211, 153, 0.15);
+      text-shadow: 0 0 8px rgba(52, 211, 153, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
+    }
+
+    /* Hero Banner Showcase */
+    .hero-banner-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #000;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .hero-banner-container:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .hero-banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .hero-banner-container:hover .hero-banner-img {
+      transform: scale(1.01);
+    }
+    .banner-overlay-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+    .banner-caption-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1.25rem;
+      background: linear-gradient(180deg, rgba(5, 10, 20, 0) 0%, rgba(5, 10, 20, 0.92) 100%);
+      color: var(--text-pure-white);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Warning & Quote Callouts */
+    .nexus-quote-box {
+      background: rgba(16, 28, 52, 0.5);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 0 8px 8px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+    .nexus-quote-box.warning {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-left-width: 4px;
+    }
+    .nexus-quote-box.anecdote {
+      border-left-color: #06b6d4;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      border-left-width: 4px;
+    }
+
+    /* Feature Grid Columns */
+    .feature-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .feature-category-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-category-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.5rem;
+    }
+    .feature-item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .feature-item-list li {
+      margin-bottom: 0.55rem;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+    .feature-item-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0.25rem;
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+    .feature-tag-new {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-weight: 600;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+
+    /* Changelog Pre Codebox */
+    .changelog-prebox {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      overflow-x: auto;
+      line-height: 1.55;
+      margin: 1rem 0 1.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .changelog-prebox .hl-gold { color: #f59e0b; font-weight: bold; }
+    .changelog-prebox .hl-cyan { color: #38bdf8; font-weight: bold; }
+    .changelog-prebox .hl-green { color: #34d399; }
+
+    /* Other Suikoden Mods Grid */
+    .other-mods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .other-mod-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .other-mod-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .other-mod-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin: 0 0 0.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .other-mod-desc {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* Downloads Action Hub */
+    .download-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .dl-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .dl-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .dl-card.highlight {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .dl-card.highlight:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .dl-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .dl-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-pure-white);
+      margin: 0;
+    }
+    .dl-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0 0 1.25rem;
+      flex-grow: 1;
+    }
+    .dl-card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    /* Verification File Checklist */
+    .verify-box {
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.84rem;
+      color: #38bdf8;
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+
+    /* Accordion Details */
+    details.wiki-accordion {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    details.wiki-accordion summary {
+      padding: 0.85rem 1.15rem;
+      font-weight: 600;
+      color: var(--text-pure-white);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease;
+      outline: none;
+    }
+    details.wiki-accordion summary:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--accent-cyan);
+    }
+    details.wiki-accordion[open] summary {
+      background: rgba(16, 28, 52, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    details.wiki-accordion .accordion-content {
+      padding: 1rem 1.15rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kyaro-pc.md"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Navigation & Stats Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Projects</span>
+          </a>
+          <a href="project-kyaro.html" class="back-home-link" style="margin-bottom: 0; border-color: rgba(245, 158, 11, 0.35); color: #fbbf24;">
+            <span>PSX Original (Beetle PSX) &rarr;</span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tag tag-emerald font-mono">Game v1.0.4 Compatible</span>
+          <span class="tag tag-purple font-mono">BepInEx 6 IL2CPP</span>
+          <span class="tag tag-amber font-mono">Suikoden I &amp; II HD</span>
+          <span class="tag tag-cyan font-mono">Nexus Mods #6</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 1.75rem;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
+            <span class="tag tag-amber">Suikoden I &amp; II HD Remaster</span>
+            <span class="tag tag-cyan">Steam PC Tested</span>
+            <span class="tag tag-emerald">Modding Suite Compatible with SuikodenFix</span>
+          </div>
+          <h1 class="hero-title" style="font-size: 2.35rem; margin-bottom: 0.4rem;">
+            The <span class="text-gradient">PROJECT KYARO</span> Suite
+          </h1>
+          <p style="font-size: 1.05rem; color: #f6b26b; font-weight: 600; margin: 0 0 0.5rem;">
+            A BepInEx Plugin that is a Modding Suite Compatible with SuikodenFix &bull; Compatible to Game v1.0.4
+          </p>
+          <p style="font-size: 0.98rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+            Comprehensive texture replacements, character portraits framework, sprite smoothing, UI customization, gameplay tweaks, performance optimizations, and quality-of-life improvements—all fully configurable and working seamlessly together. The name <em>"Project Kyaro"</em> pays homage to the very first Suikoden II texture mod on RetroArch.
+          </p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-top: 0.4rem;">
+            * This mod was tested for the Steam PC version only; anything beyond that you are on your own.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hero Banner Showcase: Click to Zoom -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
+        <img src="assets/kyaro/project-kyaro-suite.png" alt="Project Kyaro Suite Banner" class="hero-banner-img" loading="eager">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">Nexus Mods #6</span>
+          <span class="tag tag-cyan">Click to Zoom 🔍</span>
+        </div>
+        <div class="banner-caption-bar">
+          <span><strong>The PROJECT KYARO Suite:</strong> Texture replacements, portraits framework, sprite smoothing &amp; QoL &bull; PC Remaster</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Special K Dependency Warning Callout -->
+      <div class="nexus-quote-box warning">
+        <strong style="color: #fbbf24; font-size: 1.05rem; display: block; margin-bottom: 0.35rem;">
+          ⚠️ Warning: The latest version is no longer dependent on Special K!
+        </strong>
+        <span>
+          Read the instructions carefully. PKCore now natively handles all texture replacement, byte caching, and DDS BC1/BC3/BC7 decoding directly inside BepInEx 6 IL2CPP without requiring <code>dxgi.dll</code>, <code>d3d11.dll</code>, or the legacy <code>SK_Res/</code> folder.
+        </span>
+      </div>
+
+      <!-- Quick Nav Buttons -->
+      <div class="jump-nav-row">
+        <a href="#downloads" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Downloads Hub
+        </a>
+        <a href="#changelog" class="jump-nav-btn">Changelog &amp; Patch Notes 📜</a>
+        <a href="#features-list" class="jump-nav-btn">Features &amp; Enhancements ⚡</a>
+        <a href="#installation" class="jump-nav-btn">Installation &amp; Verification 🚀</a>
+        <a href="#known-bugs" class="jump-nav-btn">Known Bugs &amp; Fixes 🐛</a>
+        <a href="#disclosures" class="jump-nav-btn">Algorithms &amp; Disclosures 🎨</a>
+        <a href="#anecdote" class="jump-nav-btn">A Personal Anecdote 💬</a>
+        <a href="#other-mods" class="jump-nav-btn">Faospark's Suikoden Mods ⚔️</a>
+        <a href="https://github.com/faospark/PKCore/wiki" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">PKCore Wiki &rarr;</a>
+        <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">Nexus Page (#6) &rarr;</a>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: CHANGELOG & PATCH NOTES -->
+      <section id="changelog">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Change Log &amp; Latest Patch Notes</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">
+              Log file output location: <code>{gameroot}\PKCore\Logs\ChangeLog.txt</code>
+            </p>
+          </div>
+          <span class="tag tag-emerald">Version: 2026-10-13</span>
+        </div>
+
+        <pre class="changelog-prebox"><code><span class="hl-gold">=========================================================================================================</span>
+- Change log file location : {gameroot}\PKCore\Logs\ChangeLog.txt
+<span class="hl-gold">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+<span class="hl-cyan">Patch Notes - Version: 2026-10-13 (2026-09-15 to 2026-10-13)</span>
+<span class="hl-gold">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+* <span style="color: #f87171; font-weight: bold;">MAKE SURE to delete existing PKCore Folder for this update before you install the new one.</span>
+  There are new configuration options and internal patch updates.
+* This update focuses on battle combat mechanics, reusable character command runes, quality of
+  life improvements, UI customizations, and texture engine performance.
+
+----------------------
+: Release Highlights :
+----------------------
+- <span class="hl-cyan">[Unlimited Command Runes]</span> Removed the 1-use-per-battle lockouts for unique character command
+  runes in Suikoden 2. Characters can now reuse their signature command runes every turn:
+    * <strong>Meg &amp; Gadget</strong>: Trick / Gadget Rune (からくりの紋章 / Windup Doll ATK) is reusable every turn.
+    * <strong>Millie &amp; Bonaparte</strong>: Groundhog Rune (モグラの紋章) is reusable every turn.
+    * <strong>Shin</strong>: Spider Slay Rune (八房の紋章 / 蜘蛛斬り) is reusable every turn.
+    * <strong>Oulan</strong>: Angry Dragon Rune (怒竜の紋章 / 狂竜 / 激怒) is now permanently available across every
+      turn without requiring damage-triggered Fury or losing Fury status after use.
+  Includes granular configuration toggles under [05 Game : Suikoden 2] for each rune.
+
+- <span class="hl-cyan">[Command Rune Unbalance Penalty Removal]</span> Added configurable removal of the Unbalance status effect
+  penalty and dizzy stars animation after using high-powered physical ability runes in Suikoden 2 (Titan,
+  Falcon, Viper, Shrike, Swallow, Trick, Fire Breath, Mayfly, Lion, Unicorn, Pixie, Blue Drop).
+
+- <span class="hl-cyan">[Battle Party Max HP Display]</span> Added ShowBattleMaxHP toggle (on by default) under [02 User Interface]
+  to display both current and maximum HP (e.g. 587/587 instead of just 587) in the battle party
+  window for Suikoden 1 &amp; 2. Features dynamic text mesh auto-sizing to eliminate clipping or overflow.
+
+- <span class="hl-cyan">[Disable UI Tips Overlay]</span> Added DisableUITips toggle under [02 User Interface] to hide the
+  persistent button/control prompts overlay (UITips) across battles, menus, and field screens in
+  both Suikoden 1 and Suikoden 2, while preserving tips on the main launcher scene.
+
+- <span class="hl-cyan">[Summon &amp; Battle Magic Crash Fix]</span> Fixed severe frame drops, memory spikes, and crashes when
+  casting high-tier summon spells (e.g. Pale Gate Rune) in Suikoden 2 by removing intrusive
+  interceptions and allowing the native effect engine to handle animations cleanly.
+
+- <span class="hl-cyan">[Texture Pipeline Caching &amp; Memory Fix]</span> Fixed a memory leak where temporary DDS textures accumulated
+  in memory during gameplay, and added an in-memory byte cache (rawFileBytesCache) to accelerate
+  texture swaps and eliminate duplicate disk I/O.
+
+- <span class="hl-cyan">[Battle Window Diagnostics]</span> Added LogBattleUnitWindow diagnostic toggle under [zz - Diagnostics]
+  to inspect and log battle party UI text elements, hierarchies, and slot structures once per battle.
+
+-----------------------------
+: General Changes / Patches :
+-----------------------------
+- Cleaned up obsolete backup files (CustomObjectInsertion.bak.cs.bak) and added comprehensive
+  plugin and game architecture developer reference documentation (GAME_WORK IL2CPP memory layout,
+  flag engines, and save structures).</code></pre>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: COMPLETE FEATURES BREAKDOWN -->
+      <section id="features-list">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: #ff7700; font-size: 1.55rem; margin: 0 0 0.25rem;">Features</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">
+              Full feature directory and configuration options from Nexus Mods.
+            </p>
+          </div>
+          <span class="tag tag-purple">Complete Catalog</span>
+        </div>
+
+        <pre class="changelog-prebox"><code><strong style="color: #38bdf8; font-size: 0.95rem;">Features General</strong>
+- Retexture Framework (PNG, JPG, TGA, and compressed DDS with BC1/BC3/BC7 support) [Updated]
+- Comprehensive Portraits Framework
+- Texture Variant Support
+- YOU can create mods on top of this mod as base
+- Sound Swap Feature [New]
+- SpriteAtlas Loose File Interception Framework [New]
+
+<strong style="color: #34d399; font-size: 0.95rem;">Toggleable Options (Change them via "{gameroot}\BepInEx\config\faospark.pkcore.cfg")</strong>
+- Upscaled Smooth Sprites AKA Project Kyaro Sprites (can be toggled off)
+- Disable Sprite Post-Processing (Prevents white outlines and sprite seams) [New]
+- Save Slot Party Member Portraits (Suikoden I &amp; II) [New]
+- Battle Position Adjustments (Suikoden II) [New]
+- Character Battle Range Overrides (Suikoden II) [New]
+- Live Configuration Hot-Reloading [New]
+- Colored Intros and Flashbacks
+- Boosted War Battles (Suikoden II)
+- Button Controller Prompt Support (now uses native PS4, PS5, Generic, Switch, and Xbox controllers)
+- Alternative Launcher (based on unused/Beta in-game assets)
+- PSP Launcher (Based on PSP version title screen) [New]
+- Better Launcher BGM [New]
+- Minimal UI
+- Enhanced Gallery UI [New]
+- Classic-style Save Menu UI
+- Disable Dialog Portrait Mask
+- Scaled-Down Menus and Dialog Box
+- Customizable Save Point Crystal Color
+- Disable White Save Point Glow (reduces washed-out look of the crystal)
+- Disable World Map Clouds and Map Sun Rays
+- Scaled-Down Mini-World Map (Suikoden I)
+- Alternative Run Animation for Tir (Project Kyaro Sprites)
+- Restore Bamboo Fence at Mercenary Fortress
+- Anti-Aliasing (SMAA)
+- Sprite Filtering
+
+<strong style="color: #f59e0b; font-size: 0.95rem;">Performance Features</strong>
+- Smart Texture Memory Caching (Keeps RAM usage low)
+- Resolution Scaling (Use when you are playing in lower end machines)
+- Texture Manifest Cache (Only use when you are experiencing slow game boot up)
+- Native DDS Texture Compression (BC1 / BC3 / BC7 for lower VRAM and fast loading) [New]
+
+<strong style="color: #eab308; font-size: 0.95rem;">Baked-In Enhancements</strong>
+- Automatic Text Placeholder Replacement (Protagonist &amp; HQ names auto-synced from save files) [New]
+- Active Launcher Language Detection (Auto-detects and tracks in-game language) [New]
+- Retranslated/Reworded Menus [New]
+- Additional NPC Portraits for Both Games (80+ characters now)
+- Additional Dialogs especially on Flashbacks
+- Revamped foliage on Magician's Island (Suikoden I) [New]
+- Removed unnecessary Mask on the Last Area on Dragon's Den (Suikoden I) [New]
+- Fixed/Closed open Windows on Baths for Both Games (with custom background support)
+- Added Headquarters signages (Suikoden I)
+- Fixed Backgrounds with poor baked-in Depth of Field effect (Suikoden II)
+- Removed the Harmonian Flag on Matilda Castle
+- Fixed Inconsistent Telescope Graphic at HQ (Suikoden II)
+- Added HQ Signages and Decorations (Suikoden II)
+- Replaced Low-Quality Upscaled Doors in the Inn Area (Suikoden II)
+- Added Portrait for [Cook-Off] Announcer Chen
+- Calligraphic Font Used for [Cook-Off] Results
+- Suikoden II Summon Effect Texture System [New]
+- Additional fixes and enhancements
+
+<strong style="color: #a855f7; font-size: 0.95rem;">Utility</strong>
+- Borderless Mode (Handled natively via Unity's -popupwindow launch option) [Clarified]
+- Show Mouse Cursor
+- Clean Exit on ALT+F4 [New]
+- Modder &amp; Developer Diagnostics (Text ID logging, TextDB dumping, JSON asset overrides) [New]
+- Static Scene Object Insertion Framework (fixed_objects.json) [New]
+- DebugMenu2 Toggle (Experimental) [New]
+
+<strong style="color: #ec4899; font-size: 0.95rem;">Extras (from Nexus Bundle)</strong>
+- Restored the Dash in the Letter “Z” via custom font, Must be activated via suikoden fix
+- Alternate CRC Bypass for version 1.0.4</code></pre>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: INSTALLATION GUIDE & VERIFICATION -->
+      <section id="installation">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Installation [Very Important!!!]</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Follow these 4 simple steps to ensure a flawless setup.</p>
+          </div>
+          <span class="tag tag-emerald">Easy 4-Step Process</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.25rem 0;">
+          <!-- Step 1 -->
+          <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px; padding: 1.25rem;">
+            <h4 style="color: #f87171; margin: 0 0 0.5rem; font-size: 1.05rem;">
+              Step 1: Remove Old Files (If you were using an old Special K version)
+            </h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem;">
+              Delete the following files and folders from your game directory:
+            </p>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #fca5a5; font-family: ui-monospace, monospace; font-size: 0.85rem; line-height: 1.6;">
+              <li>❌ <code>BepInEx/plugins/PKextended.dll</code></li>
+              <li>❌ <code>BepInEx/config/faospark.pkextended.cfg</code></li>
+              <li>❌ <code>dxgi.dll</code> or <code>d3d11.dll</code> (whichever Special K injector file you used)</li>
+              <li>❌ Entire <code>SK_Res/</code> folder (no longer needed—PKCore handles textures natively and differently)</li>
+            </ul>
+          </div>
+
+          <!-- Step 2 -->
+          <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1.25rem;">
+            <h4 style="color: #fff; margin: 0 0 0.5rem; font-size: 1.05rem;">
+              Step 2: Ensure You Have BepInEx Installed
+            </h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              <em>(If you already have SuikodenFix installed, you may skip this step.)</em><br>
+              Download <strong>BepInEx 6.0.0-pre.2 IL2CPP build</strong> from <a href="https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">GitHub Releases</a> and extract the contents to the game directory (where <code>Suikoden I and II HD Remaster.exe</code> is located). Replace the files if asked.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1.25rem;">
+            <h4 style="color: #fff; margin: 0 0 0.5rem; font-size: 1.05rem;">
+              Step 3: Install Project Kyaro Suite
+            </h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              Download <strong>Project Kyaro Suite</strong> from <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Mods (#6)</a>.<br>
+              Extract the package directly to your game directory. Overwrite if asked.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div style="background: rgba(52, 211, 153, 0.05); border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 8px; padding: 1.25rem;">
+            <h4 style="color: #34d399; margin: 0 0 0.5rem; font-size: 1.05rem;">
+              Step 4: Launch Game
+            </h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.5rem;">
+              Run <code>Suikoden I and II HD Remaster.exe</code>. PKCore will automatically:
+            </p>
+            <ul style="margin: 0 0 0.75rem; padding-left: 1.25rem; color: #a7f3d0; font-size: 0.88rem; line-height: 1.55;">
+              <li>✅ Auto-generate new configuration file: <code>BepInEx/config/faospark.pkcore.cfg</code></li>
+              <li>✅ Load with all default settings enabled</li>
+            </ul>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0;">
+              You are done! You can explore and customize other options in <code>BepInEx/config/faospark.pkcore.cfg</code>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Verification Checklist -->
+        <h4 style="color: #fff; font-size: 1rem; margin: 1.5rem 0 0.5rem;">*. Verify Setup Checklist</h4>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0 0 0.5rem;">
+          Your game root (where <code>Suikoden I and II HD Remaster.exe</code> is located) should have the following files and folders:
+        </p>
+        <div class="verify-box">
+{gameroot}/BepInEx<br>
+{gameroot}/PKcore<br>
+{gameroot}/Suikoden I and II HD Remaster_Data<br>
+{gameroot}/Ivalician-Regular.ttf <span style="color: var(--text-muted);">(test file i forgot to delete )</span><br>
+{gameroot}/SuikodenHD.ttf
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: KNOWN BUGS AND INCOMPATIBILITIES -->
+      <section id="known-bugs">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Known Bugs &amp; Incompatibilities</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Transparent documentation of known quirks and their simple workarounds.</p>
+          </div>
+          <span class="tag tag-amber">Known Quirks</span>
+        </div>
+
+        <ul style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65; padding-left: 1.25rem; margin: 1rem 0;">
+          <li style="margin-bottom: 0.75rem;">
+            <strong>Window Sets Selection Marker:</strong> A recently reported quirk when using Window Sets. The Yellow Select Marker can occasionally bug out as the game starts using random textures. The cause is still being investigated as it can also occur in the vanilla game without using the mod. <em>The easy fix is simply to save and reboot the game.</em>
+          </li>
+          <li style="margin-bottom: 0.75rem;">
+            <strong>Neclord's Castle Zombie (Suikoden 1):</strong> A visual artifact that naturally resolves itself as you progress to the Neclord Castle mission. It occurs because the sprites for the zombie summoned by Neclord in town and the castle zombie share the same memory location. The town zombie is upscaled by default, causing a visual bleed because the zombie in the castle basement was originally hidden from view in vanilla (without the mod, you could talk to an invisible field entity).
+          </li>
+          <li style="margin-bottom: 0.75rem;">
+            <strong>Third Summon Sprite:</strong> Simply does not want to be replaced by the Unity engine hooks, so it has been left as is.
+          </li>
+          <li style="margin-bottom: 0.75rem;">
+            <strong>Whack-A-Mole Sprites:</strong> Another sprite group that resisted scaling algorithms, so the default size asset was replaced cleanly instead.
+          </li>
+        </ul>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: ALGORITHMS & DISCLOSURES -->
+      <section id="disclosures">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.25rem;">Important Notice &amp; Disclosures</h2>
+        <p style="color: var(--text-secondary); margin: 0 0 1.25rem; font-size: 0.92rem;">
+          Philosophical background on pixel art algorithms, image placeholders, and preservation.
+        </p>
+
+        <!-- Quote Box 1: Pixel Scaling -->
+        <div class="nexus-quote-box">
+          <strong style="color: #e69138; font-size: 1.15rem; display: block; margin-bottom: 0.5rem;">
+            Use of Pixel-Art Scaling Algorithms
+          </strong>
+          <p style="margin: 0 0 0.85rem;">
+            This mod is created out of deep respect for the original pixel art and the artists behind Suikoden. <strong>Project Kyaro does not aim to replace, diminish, or disrespect pixel art.</strong> It simply offers an <em>optional</em> visual alternative for players who feel the contrast between pixel sprites and smoothed backgrounds can be visually inconsistent.
+          </p>
+          <p style="margin: 0 0 0.85rem; color: #00ffff;">
+            <em>This technology has existed since the 1980s and is prominently featured in many modern-day emulators.</em> This mod particularly uses <strong>Rebout</strong> and <strong>Rebout Blend</strong> by <a href="https://openmodeldb.info/users/lyonhrt" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Lyonheart</a>.
+          </p>
+          <p style="margin: 0;">
+            Please <strong>do not</strong> use this space to debate pixel art vs. upscaling or argue that the mod "should not exist." We love pixel art too. If you prefer the original look, that is perfectly fine — <strong>this mod is for players who want a different presentation style, and in recent versions you can turn it off anytime in config.</strong>
+          </p>
+        </div>
+
+        <!-- Quote Box 2: Machine Learned Tools -->
+        <div class="nexus-quote-box">
+          <strong style="color: #e69138; font-size: 1.15rem; display: block; margin-bottom: 0.5rem;">
+            Disclosure of use of Machine-Learned Tools to Manipulate Images (Portraits / Placeholders)
+          </strong>
+          <p style="margin: 0 0 0.85rem;">
+            Portraits in this mod are based on existing game artwork from other releases and were adjusted using modern image-manipulation tools. <strong>The goal is not to replace or reinterpret the original artists' work — it's to keep the portraits as close to the game's artwork as possible so the visual experience remains consistent.</strong> To put it simply: make it look presentable.
+          </p>
+          <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.6;">
+            <li>I do <strong>not</strong> claim to be an artist or drew these placeholders, nor do I say these images are art. They are placeholders to keep the UI uniform.</li>
+            <li>These edits act as stylistic bridges, not replacements, because in the first place they never existed in the original game, on their rerelease, or in the remasters.</li>
+            <li>The portrait feature / framework is <strong>100% optional</strong> and can be toggled off or replaced with your own custom assets. You are under no obligation to use the portraits feature.</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: A PERSONAL ANECDOTE -->
+      <section id="anecdote">
+        <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin-bottom: 0.5rem;">A Personal Anecdote</h2>
+        
+        <div class="nexus-quote-box anecdote">
+          <p style="margin: 0 0 1rem;">
+            I’m sharing this for context and educational purposes, so people can better understand what goes into this project—or at least one part of it. I get the criticism, but some of you go way overboard.
+          </p>
+          <p style="margin: 0 0 1rem;">
+            One benefit of publishing on NexusMods is access to reasonably accurate audience data. When the portrait feature was first released, that version of the mod was downloaded only <strong>107 times</strong>. Compared with the estimated <strong>55,651 Steam owners</strong> of <em>Suikoden I &amp; II HD Remaster</em> (lowest estimate), that’s roughly <strong>0.2% of the player base</strong>. Yet certain people reacted as if this mod were causing massive harm to the entire Suikoden community.
+          </p>
+          <p style="margin: 0 0 1rem;">
+            Now, about the portraits component—let’s put things into perspective. I asked someone at a major U.S. studio about production costs. Their blunt advice: <em>“Go offshore if you want it affordable.”</em> Even with reduced scope (headshots instead of half-body portraits), the math is significant: 100 character headshots at $20 each is about <strong>$2,000 USD</strong>. And that assumes ideal conditions: funding available, multiple artists willing to work under mod constraints, and fast turnaround. In practice, those assumptions are hard to meet for an indie team… let alone a single enthusiast. That kind of money is already like two years of college in my country. Yet some individuals adamantly demanded I “hire artists,” as if I—a random office worker in a developing nation—have thousands to spend out of pocket for images Konami itself didn’t bother to invest in. One person even demanded I release the portraits feature without placeholders. Babes, I don’t look at a billboard and <em>imagine</em> the advertisement. I don’t buy ramen noodles and <em>imagine</em> the contents.
+          </p>
+          <p style="margin: 0 0 1rem;">
+            So ask yourself: is it realistic to expect hobbyists to meet those demands? Especially for content Konami itself never funded. These portraits weren’t part of the original release, the PSP rerelease, the older Chinese PC version, or the HD Remaster.
+          </p>
+          <p style="margin: 0;">
+            Let’s keep perspective. Imagine being upset over an optional feature you can disable. Imagine treating a mod that serves <strong>0.2% of Steam owners, not 2%</strong>, as if it’s some massive problem. Imagine demanding a fan project absorb labor, time, and resource costs the original company never took on—effectively asking it to outspend Konami just to satisfy people who may not even play the game. Imagine being angry over “stolen portrait jobs” that Konami never commissioned in the first place. There’s a real sense of disproportionality and misplaced anger here. It’s a free mod. Nobody is obligated to use it. And portraits are just one component out of 40+ others. Like, calm down.
+          </p>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: FAOSPARK'S SUIKODEN MODS -->
+      <section id="other-mods">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Faospark's Suikoden Remaster Mods Collection</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Explore the companion modifications released for Suikoden I &amp; II HD Remaster.</p>
+          </div>
+          <span class="tag tag-amber">Full Series Library</span>
+        </div>
+
+        <div class="other-mods-grid">
+          <!-- Mod 6 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="other-mod-item" style="border-color: rgba(56, 189, 248, 0.4);">
+            <div class="other-mod-title">
+              <span>Project Kyaro Suite</span>
+              <span class="tag tag-cyan font-mono" style="font-size: 0.7rem;">#6</span>
+            </div>
+            <p class="other-mod-desc">Suikoden 1 and 2 comprehensive sprite &amp; texture overhaul with BepInEx modding framework.</p>
+          </a>
+
+          <!-- Mod 09 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/09" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>True Matilda Glitch Restoration</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#09</span>
+            </div>
+            <p class="other-mod-desc">Restores the beloved early Matilda border gate glitch for Suikoden 2.</p>
+          </a>
+
+          <!-- Mod 16 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/16" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Early Recruitment Patch</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#16</span>
+            </div>
+            <p class="other-mod-desc">Allows early recruitment of Tessai, Gantetsu, Genshu, LC Chan, and more characters.</p>
+          </a>
+
+          <!-- Mod 5 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/5" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Suikoden Reworded Plus</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#5</span>
+            </div>
+            <p class="other-mod-desc">A partial retranslation of the game text with bonus hints and nuanced dialogue adjustments.</p>
+          </a>
+
+          <!-- Mod 18 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/18" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Kraken Patch</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#18</span>
+            </div>
+            <p class="other-mod-desc">Enables recruitment of Chuchara, Abizboah, and Rulodia without mutual exclusion locks.</p>
+          </a>
+
+          <!-- Mod 17 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/17" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Open Paths Mod</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#17</span>
+            </div>
+            <p class="other-mod-desc">Removes artificial obstacles blocking pathways in Tinto Mines and Cave of the Wind.</p>
+          </a>
+
+          <!-- Mod 12 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/12" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Alternate Portraits</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#12</span>
+            </div>
+            <p class="other-mod-desc">A curated set of alternate character portraits tailored for the remasters.</p>
+          </a>
+
+          <!-- Mod 2 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/2" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+            <div class="other-mod-title">
+              <span>Genso Force PSX Buttons</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#2</span>
+            </div>
+            <p class="other-mod-desc">Forces classic PSX button prompt glyphs while using standard XInput controllers.</p>
+          </a>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION: ACKNOWLEDGEMENTS & DONATIONS -->
+      <section id="downloads">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Downloads, Community &amp; Support</h2>
+            <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Direct links to the official release, documentation wiki, and support.</p>
+          </div>
+          <span class="tag tag-emerald">Nexus Mods #6</span>
+        </div>
+
+        <div class="download-hub-grid">
+          <!-- Card 1: Nexus Mods Release #6 -->
+          <div class="dl-card highlight">
+            <div class="dl-card-header">
+              <span class="tag tag-emerald">Primary Download</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">Nexus Mods #6</span>
+            </div>
+            <h3 class="dl-card-title">Project Kyaro Suite</h3>
+            <p class="dl-card-desc">
+              Download the complete modding suite package from Nexus Mods. Compatible with game version 1.0.4.
+            </p>
+            <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" class="btn btn-primary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download on Nexus Mods (#6)</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Documentation Wiki -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag tag-cyan">Official Wiki</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">GitHub</span>
+            </div>
+            <h3 class="dl-card-title">PKCore Documentation Wiki</h3>
+            <p class="dl-card-desc">
+              Comprehensive technical wiki with full configuration parameter tables, texture guides, and developer references.
+            </p>
+            <a href="https://github.com/faospark/PKCore/wiki" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>Visit PKCore Wiki &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Card 3: SuikodenFix Companion -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag tag-purple">Companion Mod</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">Nexus Mods #4</span>
+            </div>
+            <h3 class="dl-card-title">Suikoden Fix by d3xMachina</h3>
+            <p class="dl-card-desc">
+              Highly recommended companion BepInEx plugin adding ultrawide display support, custom resolutions, and engine bugfixes.
+            </p>
+            <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/4" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              <span>SuikodenFix on Nexus (#4) &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Card 4: Support & Discord -->
+          <div class="dl-card">
+            <div class="dl-card-header">
+              <span class="tag tag-amber">Community &amp; Support</span>
+              <span class="font-mono text-muted" style="font-size: 0.75rem;">PayPal &bull; Discord &bull; Bluesky</span>
+            </div>
+            <h3 class="dl-card-title">Support &amp; Community</h3>
+            <p class="dl-card-desc">
+              If you want to support this project, donations are deeply appreciated. Join the community on Moogles &amp; Mods Discord or follow along on Bluesky!
+            </p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <a href="https://paypal.me/thefaospark" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 120px;">
+                <span>PayPal Donation &rarr;</span>
+              </a>
+              <a href="https://discord.gg/bSnpVBV" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 120px;">
+                <span>Discord &rarr;</span>
+              </a>
+              <a href="https://bsky.app/profile/faospark.bsky.social" class="btn btn-secondary dl-card-btn" target="_blank" rel="noopener noreferrer" style="flex: 1; min-width: 120px; border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.002 2.213-3.66 6.84 3.746 5.185 8.16-.38 8.653-3.08.494 2.7 4.908 8.265 8.653 3.08 3.342-4.627.252-6.26-3.66-6.84a8.68 8.68 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.479 0-.687-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
+                <span>Bluesky &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acknowledgements Box -->
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1.25rem; margin-top: 1.5rem;">
+          <h4 style="color: #fff; margin: 0 0 0.5rem; font-size: 0.95rem;">Acknowledgements</h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin: 0;">
+            Special thanks to <strong>lelouch</strong> and <strong>Shade</strong> for their save files—without their saves this might have taken forever to complete.<br>
+            To <strong>Lyonheart</strong>—without Rebout this mod would not be possible.<br>
+            To <strong>Kaldean</strong> for Special K, to the kind people who donated (thank you so much!), and most importantly to <strong><a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/4" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">d3xMachina</a></strong> for SuikodenFix.
+          </p>
+        </div>
+      </section>
+
+    </div><!-- End .vault-single-card -->
+
+  </main>
+
+  <!-- Back To Top Web Component -->
+  <back-to-top></back-to-top>
+
+  <!-- Obsidian Vault Footer Web Component -->
+  <vault-footer></vault-footer>
+
+  <!-- Lightbox Modal for Full Screenshot Previews -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
+      <img id="lightboxImg" src="" alt="Enlarged Preview">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Web Components & Global Lightbox Scripts -->
+  <script src="components.js?v=20261022"></script>
+</body>
+</html>

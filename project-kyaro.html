@@ -397,7 +397,7 @@
         <a href="#gameshark" class="jump-nav-btn">Action Replay Codes</a>
         <a href="#community" class="jump-nav-btn">Community &amp; Credits</a>
         <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Google Sites Hub &rarr;</a>
-        <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">Suikoden Remaster Mod (#6) &rarr;</a>
+        <a href="project-kyaro-pc.html" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">Suikoden Remaster PC Suite &rarr;</a>
       </div>
 
       <hr class="rpg-divider">
@@ -833,6 +833,10 @@
             <img src="assets/kyaro/icon-reddit.png" alt="Reddit" style="width: 18px; height: 18px; object-fit: contain;">
             <span>u/faospark on Reddit</span>
           </a>
+          <a href="https://bsky.app/profile/faospark.bsky.social" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -3px;"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.002 2.213-3.66 6.84 3.746 5.185 8.16-.38 8.653-3.08.494 2.7 4.908 8.265 8.653 3.08 3.342-4.627.252-6.26-3.66-6.84a8.68 8.68 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.479 0-.687-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
+            <span>Faospark on Bluesky</span>
+          </a>
         </div>
       </section>
 
@@ -854,36 +858,7 @@
     </div>
   </div>
 
-  <!-- Web Components & Scripts -->
-  <script src="components.js"></script>
-  <!-- Mobile Nav & Lightbox Scripts -->
-  <script>
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-
-    function openLightbox(src, caption) {
-      if (!lightboxModal) return;
-      lightboxImg.src = src;
-      lightboxCaption.textContent = caption || '';
-      lightboxModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-      if (event && (event.target === lightboxImg || event.target === lightboxCaption)) return;
-      closeLightboxDirect();
-    }
-
-    function closeLightboxDirect() {
-      if (!lightboxModal) return;
-      lightboxModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightboxDirect();
-    });
-  </script>
+  <!-- Web Components & Global Lightbox Scripts -->
+  <script src="components.js?v=20261022"></script>
 </body>
 </html>

@@ -51,22 +51,205 @@
         </h1>
 
         <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
-          While individual mod releases address specific game mechanics or visual tweaks, these <strong>Flagship Projects</strong> represent multi-month architectural undertakings. From the complete modular <strong>Kupo Mods Library</strong> for Final Fantasy IX to the celebrated <strong>Project Kyaro</strong> PSX texture overhaul, explore the dedicated hubs below.
+          While individual mod releases address specific game mechanics or visual tweaks, these <strong>Flagship Projects</strong> represent multi-month architectural undertakings. From the modern <strong>Project Kyaro Suite</strong> for PC and the classic <strong>Project Kyaro (PSX)</strong> overhaul to the complete modular <strong>Kupo Mods Library</strong> for Final Fantasy IX, explore the dedicated hubs below.
         </p>
       </div>
 
       
       <!-- Quick Jump Row -->
       <div class="jump-nav-row" style="margin-bottom: 1.5rem;">
+        <a href="#suisaveeditor" class="jump-nav-btn">SuiSaveEditor (Suikoden II Web Tool)</a>
+        <a href="#project-kyaro-pc" class="jump-nav-btn">Project Kyaro Suite (PC Remaster)</a>
+        <a href="#project-kyaro-psx" class="jump-nav-btn">Project Kyaro (PSX)</a>
         <a href="#kupo-library" class="jump-nav-btn">Kupo Mods Library (FFIX)</a>
-        <a href="#project-kyaro" class="jump-nav-btn">Project Kyaro (Suikoden II)</a>
-        <a href="#opera-omnia" class="jump-nav-btn">Opera Omnia Portraits</a>
         <a href="#darker-ui" class="jump-nav-btn">Darker UI Series</a>
       </div>
 
       <hr class="rpg-divider">
 
-      <!-- PROJECT 1: Kupo Mods Library -->
+      <!-- FEATURED PROJECT: Suikoden II Remaster Save Editor (SuiSaveEditor) -->
+      <section class="project-entry" id="suisaveeditor">
+        <div class="project-preview" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — Web GUI')">
+          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Featured Web Tool</span>
+            <span class="tag tag-amber">Suikoden II HD Remaster</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-emerald">Web App &amp; PWA</span>
+              <span class="tag tag-amber">Suikoden II HD</span>
+              <span class="tag tag-cyan">100% Client-Side</span>
+              <span class="tag">SuikodenFix JSON</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="suisaveeditor.html" style="color: inherit; text-decoration: none;">Suikoden II HD Remaster Save Editor</a>
+            </h2>
+            <p class="project-description">
+              A minimal, static web-based GUI and Progressive Web Application (PWA) for editing Suikoden II HD Remaster JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any web browser with zero runtime installations and complete client-side data privacy.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Party, Roster &amp; Stats:</strong> Edit 6-character active battle teams, 2 convoy slots, character levels, HP, combat attributes, and recruitment flags.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Visual MP &amp; Smart Runes:</strong> Unique visual MP system with filled/empty squares (■/□) plus slot-specific and character-specific rune restrictions.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Inventories &amp; Castle Aliases:</strong> Key event items, warehouse storage, bath items, Greenhill student aliases, and food menu presets.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="suisaveeditor.html" class="btn btn-primary btn-sm">
+                <span>Explore Project Guide &rarr;</span>
+              </a>
+              <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
+                <span>Launch Web Tool &rarr;</span>
+              </a>
+              <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                <span>GitHub Repo</span>
+              </a>
+            </div>
+            <span class="tag tag-emerald">v1.3.2 Live PWA</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 1: The PROJECT KYARO Suite (Suikoden I & II HD Remaster PC) -->
+      <section class="project-entry" id="project-kyaro-pc">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
+          <img src="assets/kyaro/project-kyaro-suite.png" alt="The PROJECT KYARO Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Updated: Oct 2026</span>
+            <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-emerald">PC Remaster</span>
+              <span class="tag tag-amber">Suikoden I &amp; II</span>
+              <span class="tag tag-cyan">PKCore Engine</span>
+              <span class="tag">BepInEx 6 IL2CPP</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="project-kyaro-pc.html" style="color: inherit; text-decoration: none;">The PROJECT KYARO Suite (PC)</a>
+            </h2>
+            <p class="project-description">
+              The flagship visual remaster and modding architecture for <strong>Suikoden I &amp; II HD Remaster</strong> on PC (Steam). Powered by the <strong>PKCore</strong> BepInEx 6 framework, it provides zero-lag native texture injection, sharp character portrait overlays, toggleable sprite smoothing, UI color theme personalization, and essential quality-of-life adjustments.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>PKCore BepInEx Framework:</strong> Native IL2CPP texture injection replacing Special K dependency with zero stutter and instant texture loading.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>High-Definition Portraits &amp; Sprites:</strong> Faithful high-detail portrait alignments across both games with optional sprite smoothing toggles.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>QoL &amp; UI Customization:</strong> Custom window themes, running speed options, audio polish, and complete SuikodenFix compatibility.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
+                <span>Explore PC Remaster Guide &rarr;</span>
+              </a>
+              <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>NexusMods (#6)</span>
+              </a>
+              <a href="project-kyaro.html" class="btn btn-secondary btn-sm">
+                <span>View PSX Classic Hub &rarr;</span>
+              </a>
+            </div>
+            <span class="tag tag-emerald">Active PC Suite</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 2: Project Kyaro (PSX Classic) -->
+      <section class="project-entry" id="project-kyaro-psx">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.png', 'Project Kyaro — Suikoden II PSX Texture Overhaul')">
+          <img src="assets/kyaro/kyaro-showcase-collage.png" alt="Project Kyaro Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Featured by LibRetro</span>
+            <span class="tag tag-amber">Suikoden II (PSX)</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-amber">Suikoden II</span>
+              <span class="tag tag-cyan">Version 2.6</span>
+              <span class="tag">Beetle PSX HW &bull; RetroArch</span>
+              <span class="tag">PSX Classic</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="project-kyaro.html" style="color: inherit; text-decoration: none;">Project Kyaro (PSX)</a>
+            </h2>
+            <p class="project-description">
+              A landmark visual enhancement and texture restoration project for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement backends on Beetle PSX HW and RetroArch, Project Kyaro eliminates pixel artifacting on modern displays while providing pixel purists the option to run crisp Nearest Neighbor filtering.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>161 Character Portraits:</strong> Sharp high-resolution facial portraits with custom outlines across the 108 Stars of Destiny, plus Pilika, Neclord, Jowy, and Julia.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Internationalization &amp; Art:</strong> Accented text support, war battle typography, ending backgrounds, and rune transparency fixes.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Curated Cheat Database:</strong> Includes 80+ essential GameShark and Action Replay hex codes for stats, runes, and strategic war battle advantages.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-kyaro.html" class="btn btn-primary btn-sm">
+                <span>Explore PSX Hub &rarr;</span>
+              </a>
+              <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>Original Google Sites</span>
+              </a>
+              <a href="https://github.com/pyriell/gs2-bugfixes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>Pyriel Bugfixes Patch</span>
+              </a>
+            </div>
+            <span class="tag tag-emerald">V2.6 Active</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 3: Kupo Mods Library -->
       <section class="project-entry" id="kupo-library">
         <div class="project-preview" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library — Final Fantasy IX')">
           <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Key Art" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy">
@@ -126,130 +309,7 @@
 
       <hr class="rpg-divider">
 
-      <!-- PROJECT 2: Project Kyaro (Suikoden II) -->
-      <section class="project-entry" id="project-kyaro">
-        <div class="project-preview" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.png', 'Project Kyaro — Suikoden II PSX Texture Overhaul')">
-          <img src="assets/kyaro/kyaro-showcase-collage.png" alt="Project Kyaro Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Featured by LibRetro</span>
-            <span class="tag tag-amber">Suikoden II</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-amber">Suikoden II</span>
-              <span class="tag tag-cyan">Version 2.6</span>
-              <span class="tag">Beetle PSX HW &bull; RetroArch</span>
-              <span class="tag">PSX Classic</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-kyaro.html" style="color: inherit; text-decoration: none;">Project Kyaro (PSX)</a>
-            </h2>
-            <p class="project-description">
-              A landmark visual enhancement and texture restoration project for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement backends on Beetle PSX HW and RetroArch, Project Kyaro eliminates pixel artifacting on modern displays while providing pixel purists the option to run crisp Nearest Neighbor filtering.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>161 Character Portraits:</strong> Sharp high-resolution facial portraits with custom outlines across the 108 Stars of Destiny, plus Pilika, Neclord, Jowy, and Julia.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Internationalization &amp; Art:</strong> Accented text support, war battle typography, ending backgrounds, and rune transparency fixes.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Curated Cheat Database:</strong> Includes 80+ essential GameShark and Action Replay hex codes for stats, runes, and strategic war battle advantages.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kyaro.html" class="btn btn-primary btn-sm">
-                <span>Explore Project Kyaro Hub &rarr;</span>
-              </a>
-              <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Original Google Sites</span>
-              </a>
-              <a href="https://github.com/pyriell/gs2-bugfixes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Pyriel Bugfixes Patch</span>
-              </a>
-            </div>
-            <span class="tag tag-emerald">V2.6 Active</span>
-          </div>
-        </div>
-      </section>
-
-      <hr class="rpg-divider">
-
-      <!-- PROJECT 3: Dissidia Opera Omnia Style Portraits Collection -->
-      <section class="project-entry" id="opera-omnia">
-        <div class="project-preview" onclick="openLightbox('assets/forup_291x.png', 'Opera Omnia Style Portraits Collection')">
-          <img src="assets/forup_291x.png" alt="Opera Omnia Portraits Key Art" loading="lazy" onerror="this.src='assets/mods/42-1666784390-1834622958.png'">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Multi-Game Series</span>
-            <span class="tag tag-purple">DFFOO Art Style</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-purple">Final Fantasy VI</span>
-              <span class="tag tag-cyan">Chrono Cross</span>
-              <span class="tag tag-amber">Pixel Remasters</span>
-              <span class="tag">Cross-Game Art</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              Dissidia Opera Omnia Style Portraits Collection
-            </h2>
-            <p class="project-description">
-              A unified high-definition character portrait initiative replacing low-resolution or mismatched character busts with the expressive, vibrantly shaded art style of <em>Dissidia Final Fantasy: Opera Omnia</em>. Spanning the entire playable cast and guest characters across multiple classic Square Enix RPG remasters.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Final Fantasy VI &amp; PR:</strong> Complete party coverage (Terra, Locke, Celes, Edgar, Sabin, Shadow, Cyan, Gau, Setzer, Relm, Strago, Mog, Umaro, Gogo).</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Chrono Cross: The Radical Dreamers Edition:</strong> Over 40+ party member portraits overhauled with high-contrast outlines and stylized shading.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Seamless Frame Integration:</strong> Tailored alpha channels and canvas dimensions matching vanilla dialogue box viewports.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="https://www.nexusmods.com/finalfantasy6/mods/14" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-                <span>FFVI Old Ver (#14)</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasy6pixelremaster/mods/42" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-                <span>FFVI PR (#42)</span>
-              </a>
-              <a href="https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/54" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Chrono Cross (#54)</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasyix/mods/80" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>FFIX Portraits (#80)</span>
-              </a>
-            </div>
-            <span class="tag tag-emerald">100k+ Downloads</span>
-          </div>
-        </div>
-      </section>
-
-      <hr class="rpg-divider">
-
-      <!-- PROJECT 4: Darker UI & Sane UI Series -->
+ <!-- PROJECT 4: Darker UI & Sane UI Series -->
       <section class="project-entry" id="darker-ui">
         <div class="project-preview" onclick="openLightbox('assets/mods/41-1649149778-273543089.png', 'Darker UI Series — Pixel Remasters')">
           <img src="assets/mods/41-1649149778-273543089.png" alt="Darker UI Series Preview" loading="lazy" onerror="this.src='assets/forup_291x.png'">
@@ -318,36 +378,7 @@
     </div>
   </div>
 
-  <!-- Web Components & Scripts -->
-  <script src="components.js"></script>
-  <!-- Mobile Nav & Lightbox Scripts -->
-  <script>
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-
-    function openLightbox(src, caption) {
-      if (!lightboxModal) return;
-      lightboxImg.src = src;
-      lightboxCaption.textContent = caption || '';
-      lightboxModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-      if (event && (event.target === lightboxImg || event.target === lightboxCaption)) return;
-      closeLightboxDirect();
-    }
-
-    function closeLightboxDirect() {
-      if (!lightboxModal) return;
-      lightboxModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightboxDirect();
-    });
-  </script>
+  <!-- Web Components & Global Lightbox Scripts -->
+  <script src="components.js?v=20261022"></script>
 </body>
 </html>

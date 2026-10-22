@@ -416,12 +416,12 @@
 
       <hr class="rpg-divider">
 
+
+    </div><!-- End .vault-single-card -->
       <!-- SECTION 4: FINAL FANTASY IX MODS (Native Web Component) -->
       <section id="ff9-mods-catalog">
         <ff9-mods></ff9-mods>
       </section>
-    </div><!-- End .vault-single-card -->
-
   </main>
 
   <!-- Obsidian Vault Footer Component -->
@@ -438,36 +438,7 @@
     </div>
   </div>
 
-  <!-- Components & Scripts -->
-  <script src="components.js"></script>
-  <!-- Mobile Nav & Lightbox Scripts -->
-  <script>
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-
-    function openLightbox(src, caption) {
-      if (!lightboxModal) return;
-      lightboxImg.src = src;
-      lightboxCaption.textContent = caption || '';
-      lightboxModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(event) {
-      if (event && (event.target === lightboxImg || event.target === lightboxCaption)) return;
-      closeLightboxDirect();
-    }
-
-    function closeLightboxDirect() {
-      if (!lightboxModal) return;
-      lightboxModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightboxDirect();
-    });
-  </script>
+  <!-- Components & Global Lightbox Scripts -->
+  <script src="components.js?v=20261022"></script>
 </body>
 </html>

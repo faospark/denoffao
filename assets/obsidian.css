@@ -1038,7 +1038,7 @@ code, .font-mono {
 
 .project-entry {
   display: grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2.25rem;
   align-items: stretch;
 }
@@ -1437,6 +1437,7 @@ site-footer {
   transform: scale(1.1);
 }
 
+.image-modal-caption,
 .lightbox-caption {
   margin: 0.85rem 0 0 0;
   color: #e2e8f0;
@@ -1453,6 +1454,7 @@ site-footer {
   letter-spacing: 0.02em;
 }
 
+.image-modal-caption:empty,
 .lightbox-caption:empty {
   display: none !important;
 }
@@ -1471,6 +1473,7 @@ site-footer {
     height: 32px;
     font-size: 1.15rem;
   }
+  .image-modal-caption,
   .lightbox-caption {
     font-size: 0.78rem;
     padding: 0.35rem 0.75rem;

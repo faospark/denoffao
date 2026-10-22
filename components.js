@@ -62,7 +62,9 @@ class VaultNavbar extends HTMLElement {
     }
   }
 }
-customElements.define('vault-navbar', VaultNavbar);
+if (!customElements.get('vault-navbar')) {
+  customElements.define('vault-navbar', VaultNavbar);
+}
 
 class VaultFooter extends HTMLElement {
   connectedCallback() {
@@ -85,9 +87,12 @@ class VaultFooter extends HTMLElement {
                 <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0 0 0.75rem;">
                   My hangout and testing server for classic RPG modding, texture overhauls, and troubleshooting. Drop in to say hello or report texture issues!
                 </p>
-                <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background: #5865f2; border-color: #5865f2;">
-                  <span>Join Moogles and Mods Discord &rarr;</span>
-                </a>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background: #5865f2; border-color: #5865f2;">
+                    <span>Join Moogles and Mods Discord &rarr;</span>
+                  </a>
+              
+                </div>
               </div>
             </div>
 
@@ -100,6 +105,11 @@ class VaultFooter extends HTMLElement {
               <a href="https://github.com/faospark/denoffao" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="GitHub Repository">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+              </a>
+              <a href="https://bsky.app/profile/faospark.bsky.social" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Bluesky Profile (@faospark.bsky.social)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.002 2.213-3.66 6.84 3.746 5.185 8.16-.38 8.653-3.08.494 2.7 4.908 8.265 8.653 3.08 3.342-4.627.252-6.26-3.66-6.84a8.68 8.68 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.479 0-.687-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
                 </svg>
               </a>
               <a href="https://paypal.me/thefaospark?country.x=PH&locale.x=en_US" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Donate via PayPal">
@@ -131,7 +141,9 @@ class VaultFooter extends HTMLElement {
     }
   }
 }
-customElements.define('vault-footer', VaultFooter);
+if (!customElements.get('vault-footer')) {
+  customElements.define('vault-footer', VaultFooter);
+}
 if (!customElements.get('site-footer')) {
   customElements.define('site-footer', class extends VaultFooter {});
 }
@@ -1697,6 +1709,116 @@ if (typeof document !== 'undefined') {
     document.addEventListener('DOMContentLoaded', mountCookieBanner);
   } else {
     mountCookieBanner();
+  }
+})();
+
+// ========================================================
+// Consolidated Global Lightbox / Image Modal Component
+// Provides unified openLightbox() & closeLightbox() for all pages
+// Automatically handles DOM mounting, event delegation, and Escape key
+// ========================================================
+(function() {
+  if (typeof window === 'undefined') return;
+
+  function ensureLightboxModal() {
+    let modal = document.getElementById('lightboxModal') || document.getElementById('imageModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'lightboxModal';
+      modal.className = 'lightbox-modal';
+      modal.innerHTML = `
+        <div class="lightbox-content">
+          <button type="button" class="lightbox-close" aria-label="Close image preview">&times;</button>
+          <img id="lightboxImg" src="" alt="Enlarged Preview">
+          <p id="lightboxCaption" class="lightbox-caption"></p>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    return modal;
+  }
+
+  function getLightboxElements() {
+    const modal = ensureLightboxModal();
+    const img = modal.querySelector('img') || document.getElementById('lightboxImg') || document.getElementById('modalImage');
+    const caption = modal.querySelector('.lightbox-caption, .image-modal-caption') || document.getElementById('lightboxCaption') || document.getElementById('modalCaption');
+    const closeBtn = modal.querySelector('.lightbox-close, .image-modal-close');
+    return { modal, img, caption, closeBtn };
+  }
+
+  function openLightbox(src, captionText) {
+    if (!src) return;
+    const { modal, img, caption } = getLightboxElements();
+    if (img) {
+      img.src = src;
+      img.alt = captionText || 'Preview';
+    }
+    if (caption) {
+      caption.textContent = captionText || '';
+      caption.style.display = captionText ? '' : 'none';
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(event) {
+    const { modal, img, caption } = getLightboxElements();
+    if (event && (event.target === img || event.target === caption)) {
+      return;
+    }
+    closeLightboxDirect();
+  }
+
+  function closeLightboxDirect() {
+    const modal = document.getElementById('lightboxModal') || document.getElementById('imageModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function setupLightboxEvents() {
+    const modal = ensureLightboxModal();
+
+    modal.addEventListener('click', (e) => {
+      const img = modal.querySelector('img') || document.getElementById('lightboxImg') || document.getElementById('modalImage');
+      const caption = modal.querySelector('.lightbox-caption, .image-modal-caption') || document.getElementById('lightboxCaption') || document.getElementById('modalCaption');
+      if (e.target === img || e.target === caption) return;
+      closeLightboxDirect();
+    });
+
+    const closeBtn = modal.querySelector('.lightbox-close, .image-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLightboxDirect();
+      });
+    }
+  }
+
+  // Global Escape key support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('lightboxModal') || document.getElementById('imageModal');
+      if (modal && modal.classList.contains('active')) {
+        closeLightboxDirect();
+      }
+    }
+  });
+
+  // Expose global methods
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.closeLightboxDirect = closeLightboxDirect;
+
+  // Compatibility aliases
+  window.openModal = openLightbox;
+  window.closeModal = closeLightbox;
+  window.closeModalDirect = closeLightboxDirect;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLightboxEvents);
+  } else {
+    setupLightboxEvents();
   }
 })();
 
