@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrono Cross Mods (13 Releases) — Faospark's Workshop</title>
+  
+  <meta name="description" content="The collection is the actual suite itself. Explore all 13 community modifications created by Faospark for Chrono Cross: The Radical Dreamers Edition on PC.">
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <link rel="canonical" href="https://denoffao.me/project-chrono-cross-mods.html">
+  <meta property="og:url" content="https://denoffao.me/project-chrono-cross-mods.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Chrono Cross Mods — Faospark's Den of Mods"/>
+  <meta property="og:description" content="The collection is the actual suite itself. Explore all 13 community modifications for Chrono Cross: The Radical Dreamers Edition."/>
+  <meta property="og:image" content="assets/mods/54-1677913287-17872933.png"/>
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar active="projects"></vault-navbar>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Navigation & Stats Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
+          <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Special Projects</span>
+          </a>
+          <a href="mods.html" class="back-home-link" style="margin-bottom: 0; color: var(--text-muted);">
+            <span>&bull; View Full 68-Mod Library</span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tag tag-emerald font-mono">13 Released Mods</span>
+          <span class="tag tag-purple font-mono">Chrono Cross: The Radical Dreamers Edition</span>
+          <span class="tag tag-cyan font-mono">100% Free &bull; NexusMods</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 0.5rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Chrono Cross Mods</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          Chrono Cross <span class="text-gradient">Mods.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin: 0; max-width: 960px;">
+          The collection is the actual suite itself. Being day zero for it, it was an honor for me to do as many and comprehensive as I was able to do for this game. I am in the minority to happen to love this game over Chrono Trigger. I hope it shows in my work the undying love I have for this game, even embracing its flaws. Enjoy.
+        </p>
+      </div>
+
+    </div><!-- End .vault-single-card -->
+
+    <!-- Full Mods Catalog Web Component Filtered Exclusively to Chrono Cross -->
+    <mods-catalog category="chrono" no-header></mods-catalog>
+
+  </main>
+
+  <!-- Back To Top Web Component -->
+  <back-to-top></back-to-top>
+
+  <!-- Obsidian Vault Footer Web Component -->
+  <vault-footer disclaimer="&copy; 2018–2026 Faospark. Chrono Cross is &copy; Square Enix. Unofficial fan modification project."></vault-footer>
+
+  <!-- Lightbox Modal for Full Screenshot Previews -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
+      <img id="lightboxImg" src="" alt="Enlarged Preview">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -239,17 +239,17 @@ class VaultNavbar extends HTMLElement {
     this.innerHTML = `
       <header class="obsidian-topbar">
         <div class="container topbar-content">
-          <a href="index.html" class="vault-brand" title="Workshop Home" aria-label="Workshop Home" style="text-decoration: none;">
+          <a href="index.html" class="vault-brand" title="Home" aria-label="Home" style="text-decoration: none;">
             <span class="vault-icon">
               ${ICONS.vault}
             </span>
           </a>
 
           <ul class="nav-links" id="vaultNavLinks">
-            <li><a href="index.html" class="nav-link ${isHome ? 'active' : ''}">Workshop Home</a></li>
-            <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Special Projects</a></li>
+            <li><a href="index.html" class="nav-link ${isHome ? 'active' : ''}">Home</a></li>
+            <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Projects</a></li>
             <li><a href="mods.html" class="nav-link ${isMods ? 'active' : ''}">All Mods</a></li>
-            <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog Archives</a></li>
+            <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog</a></li>
             <li><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Personal Update</a></li>
           </ul>
 
@@ -1842,6 +1842,8 @@ class ModsCatalog extends HTMLElement {
 
     const searchPlaceholder = targetCategory === 'ffvi'
       ? 'Search FFVI Old Ver mods (e.g. Sane UI, Celes, Portraits, Backgrounds)...'
+      : targetCategory === 'chrono'
+      ? 'Search Chrono Cross mods (e.g. Blue Mage, Radical Portraits, Another Eden, QoL, UI)...'
       : 'Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)...';
 
     this.innerHTML = `
