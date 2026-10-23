@@ -1894,8 +1894,8 @@ body {
 
 @media (min-width: 992px) {
   .donation-layout {
-    grid-template-columns: minmax(0, 1fr) 350px;
-    gap: 2.25rem;
+    grid-template-columns: minmax(0, 1fr) 434px;
+    gap: 1.25rem;
     align-items: stretch;
   }
 }
@@ -2138,7 +2138,7 @@ site-footer {
 
 /* Community Hangout Card in Footer */
 .community-box {
-  background: linear-gradient(135deg, rgba(88, 101, 242, 0.12) 0%, var(--frame-inner-black) 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--frame-inner-black) 100%);
   border: 1px solid var(--btn-secondary-border);
   border-radius: 8px;
   padding: 1.25rem;
@@ -2148,14 +2148,15 @@ site-footer {
   flex-wrap: wrap;
   max-width: 1100px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .community-gif {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  border: 2px solid rgba(88, 101, 242, 0.6);
-  background: #000;
+  border: 2px solid var(--accent-cyan);
+  background: var(--frame-inner-black);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -4015,7 +4016,7 @@ details.wiki-accordion .accordion-content {
 
 /* Community Hangout */
 .community-box {
-  background: linear-gradient(135deg, rgba(88, 101, 242, 0.12) 0%, var(--frame-inner-black) 100%);
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--frame-inner-black) 100%);
   border: 1px solid var(--btn-secondary-border);
   border-radius: 8px;
   padding: 1.5rem;
@@ -4025,13 +4026,19 @@ details.wiki-accordion .accordion-content {
   flex-wrap: wrap;
   margin: 1.5rem 0;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.footer-content .community-box {
+  margin: 0;
+  padding: 1.25rem;
+  gap: 1.25rem;
 }
 .community-gif {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  border: 2px solid rgba(88, 101, 242, 0.6);
-  background: #000;
+  border: 2px solid var(--accent-cyan);
+  background: var(--frame-inner-black);
 }
 
 /* Blog & Reader Components */

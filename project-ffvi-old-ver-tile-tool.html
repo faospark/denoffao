@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FFVI Old Tile Tool — Map BIN Section &amp; Tile Converter | Faospark</title>
+  
+  <meta name="description" content="Official documentation for FFVI Old Tile Tool (ffvi_tileConverter) by Faospark — A modernized desktop utility for viewing, exporting, importing, and managing section graphics and indexed tiles in Final Fantasy VI (Old Ver.) map BIN files.">
+  <link rel="canonical" href="https://denoffao.me/project-ffvi-old-ver-tile-tool.html">
+  <meta property="og:url" content="https://denoffao.me/project-ffvi-old-ver-tile-tool.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="FFVI Old Tile Tool — Final Fantasy VI (Old Ver.) Map BIN Tile Editor — Faospark"/>
+  <meta property="og:description" content="View, export, import, and batch-manage Section 1 and Section 2 indexed map tiles, palettes, and Gzip archives for Final Fantasy VI (Old Ver.)."/>
+  <meta property="og:image" content="assets/mods/ffvi-old-tile-tool.png"/>
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-ffvi-old-ver-tile-tool.md" active="projects"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Special Projects</span>
+        </a>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <span class="tag tag-emerald">Desktop Utility &bull; MIT License</span>
+          <span class="tag tag-purple">Final Fantasy VI (Old Ver.)</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 1.75rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">FFVI Old Tile Tool</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          FFVI Old Tile Tool: <span class="text-gradient">Map BIN Section &amp; Tile Architecture.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+          <strong>FFVI Old Tile Tool</strong> (<code>ffvi_tileConverter</code>) is a dedicated desktop application for viewing, exporting, importing, and managing section graphics and indexed tiles stored inside <strong>Final Fantasy VI (Old Ver.)</strong> map <code>.bin</code> files. Built upon Maki's original FFVI Tile Tool, this modernized release resolves critical Section 1 reinsertion bugs, eliminates manual hex-editing friction, and introduces a comprehensive suite of quality-of-life workflow enhancements.
+        </p>
+      </div>
+
+      <!-- Hero Banner Showcase -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/ffvi-old-tile-tool.png', 'FFVI Old Tile Tool (ffvi_tileConverter) — Dual-Section Map BIN Preview &amp; I/O Controls')">
+        <img src="assets/mods/ffvi-old-tile-tool.png" alt="FFVI Old Tile Tool GUI Interface" class="hero-banner-img" loading="lazy">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">Version 2026.5.2</span>
+          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+        <div class="banner-caption-bar">
+          <span><strong>FFVI Old Tile Tool:</strong> Simultaneous Section 1 &amp; Section 2 tile previews, dark mode, palette repetition detection, and mass I/O</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Quick Jump Row -->
+      <div class="jump-nav-row">
+        <a href="#breakthrough" class="jump-nav-btn">Section 1 Breakthrough</a>
+        <a href="#features" class="jump-nav-btn">Core Capabilities</a>
+        <a href="#whats-new" class="jump-nav-btn">What's New</a>
+        <a href="#data-layout" class="jump-nav-btn">Data Layout &amp; Import Rules</a>
+        <a href="#limitations" class="jump-nav-btn">Palette Limitations</a>
+        <a href="#companion-mods" class="jump-nav-btn">FFVI Old Ver Mods</a>
+        <a href="https://github.com/faospark/ffvi_tileConverter" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: #38bdf8; color: #fff;">GitHub Repository &rarr;</a>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 1: KEY CHANGE & MAJOR LIMITATION -->
+      <section id="breakthrough" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Key Breakthrough: Reliable Section 1 Reinsertion</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          This build finally fixes the reinsertion of <strong>Section 1</strong> (formerly called <em>Chunk 1</em>) directly into map <code>.bin</code> files—cutting a significant amount of build time and eliminating the human error of manual hex editing. In previous versions of the legacy tool, re-injecting Chunk 1 would corrupt or garble the binary file.
+        </p>
+
+        <div class="feature-grid" style="margin-bottom: 1.25rem;">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-emerald">Fixed Reinsertion</span>
+              <h3 class="feature-card-title">Section 1 &amp; Section 2</h3>
+            </div>
+            <p class="feature-card-desc">
+              Cleanly exports and re-imports both Section 1 (fixed <code>512x512</code> region) and Section 2 (variable-height <code>512</code>-wide region) without corrupting map headers or offsets.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-cyan">Smart Palettes</span>
+              <h3 class="feature-card-title">Mirrored Palette Sync</h3>
+            </div>
+            <p class="feature-card-desc">
+              Automatically detects mirrored palette repetitions stored inside each <code>.bin</code> file and synchronizes all repeated blocks during image import.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-purple">Batch Pipeline</span>
+              <h3 class="feature-card-title">Mass Export &amp; Import</h3>
+            </div>
+            <p class="feature-card-desc">
+              Process entire folders of map binaries in seconds with PNG/BMP format selection, progress tracking, cancellation support, and summary logs.
+            </p>
+          </div>
+        </div>
+
+        <div id="limitations" class="nexus-quote-box warning">
+          <strong style="color: #f59e0b; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+            <svg width="16" height="16" viewBox="0 0 576 512" fill="currentColor"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.983 12.654z"/></svg>
+            Strict Indexed Color Workflow &amp; Engine Limitation:
+          </strong>
+          <p style="margin: 0 0 0.5rem 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+            While reinsertion is now seamless, the underlying game executable still enforces a <strong>strict index order for colors</strong>. You cannot arbitrarily shuffle or reorder the color table in Photoshop and expect it to render properly—if the original index arrangement is not preserved, the in-game output breaks (appearing similar to a film negative).
+          </p>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+            <em>Note:</em> Bypassing this engine-level palette indexing restriction entirely would require a custom runtime texture injection layer (similar to Special K). For standard <code>.bin</code> editing, always use an index-preserving pixel editor such as <strong>Aseprite</strong>, <strong>MtPaint</strong>, or carefully locked indexed palettes in <strong>Photoshop</strong>.
+          </p>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 2: CORE CAPABILITIES -->
+      <section id="features" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Core Editor &amp; Workflow Capabilities</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          Designed specifically around real-world Final Fantasy VI modding tasks (such as <em>Brave Steel</em>, <em>Grass or Green Fix</em>, and <em>Narshe Detailed Snow</em>), FFVI Old Tile Tool streamlines every stage of map tile inspection and replacement:
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-emerald">Dual Viewport</span>
+              <h3 class="feature-card-title">Side-by-Side Section Preview</h3>
+            </div>
+            <p class="feature-card-desc">
+              Inspect both <strong>First Section Image</strong> and <strong>Second Section Image</strong> simultaneously in one unified window, automatically oriented right-side-up for human viewing while preserving the game's upside-down binary storage format on save.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-cyan">Transparency</span>
+              <h3 class="feature-card-title"><code>050505</code> Alpha Grid Preview</h3>
+            </div>
+            <p class="feature-card-desc">
+              Renders a crisp checkerboard transparency backdrop behind pixels utilizing the dedicated transparent color value <code>050505</code>, making tile masking boundaries immediately visible.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-purple">Filtering</span>
+              <h3 class="feature-card-title">Built-In Map Category Filters</h3>
+            </div>
+            <p class="feature-card-desc">
+              Quickly filter the map list by known tile categories—<strong>All Maps (Off)</strong>, <strong>Snow Tiles</strong>, <strong>Grass Tiles</strong>, and <strong>Magitek Tiles</strong>—and isolate filtered or multi-selected files into controlled output directories.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-amber">Compression</span>
+              <h3 class="feature-card-title">Native Gzip (<code>.bin.gz</code>) Flow</h3>
+            </div>
+            <p class="feature-card-desc">
+              Detects compressed <code>map*.bin.gz</code> archives automatically with an optional decompression workflow and full support for multi-file selection in the file list pane.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-emerald">Diagnostics</span>
+              <h3 class="feature-card-title">Palette &amp; Image Info Inspector</h3>
+            </div>
+            <p class="feature-card-desc">
+              Dedicated <strong>Image Info</strong> buttons display palette repetition counts (e.g., <code>Image Info (17)</code>) and hex offsets (e.g., <code>0x044600</code>), letting you verify at a glance whether section palettes match.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-cyan">Safety &amp; UX</span>
+              <h3 class="feature-card-title">Backups, History &amp; Dark Mode</h3>
+            </div>
+            <p class="feature-card-desc">
+              Includes a first-run backup reminder, one-click <strong>Create Backup</strong> menu action, modern Windows Open/Select Folder dialogs, working directory history, context menus, and a sleek Dark Mode interface.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 3: WHAT'S NEW CHANGELOG -->
+      <section id="whats-new" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">What's New in This Release</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          Summary of architectural fixes and quality-of-life additions over the legacy FFVI Tile Tool:
+        </p>
+
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1.25rem 1.5rem;">
+          <ul class="project-features" style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.65rem 1.5rem;">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Correct binary reinsertion for both <strong>Section 1</strong> and <strong>Section 2</strong> images.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Automatically detects mirrored palette repetitions per <code>.bin</code> file and updates them during import.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Updated terminology from legacy <em>"chunk"</em> naming to clearer <em>"section"</em> naming across the UI.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Added <strong>Mass Export</strong> and <strong>Mass Import</strong> with PNG and <code>.bmp</code> format support.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Added built-in known tile filters (<em>Snow</em>, <em>Grass</em>, <em>Magitek</em>) and file isolation tools into controlled output folders.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Added native Gzip support (including optional decompression when <code>map*.bin.gz</code> files are detected).</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Improved image preview orientation for upright viewing while preserving upside-down saved image data.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Added preview transparency rendering for pixels using the dedicated transparent color <code>050505</code>.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Modern Windows Open/Select Folder dialogs, working directory persistence, and recent folder history list.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Dark mode UI, proper application icon, hidden console window on launch, Settings/About tabs, and context menus.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 4: FILE FORMAT, DATA LAYOUT & IMPORT RULES -->
+      <section id="data-layout" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">File Format, Data Layout &amp; Import Rules</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          Each Final Fantasy VI (Old Ver.) map <code>.bin</code> file contains two distinct indexed image data regions paired with BGRA-like section palettes (using inverted alpha byte behavior):
+        </p>
+
+        <div class="feature-grid" style="margin-bottom: 1.5rem;">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-emerald">Section 1 Import Rules</span>
+              <h3 class="feature-card-title">Front Fixed Region (512&times;512)</h3>
+            </div>
+            <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+              <li><strong>Accepted Formats:</strong> <code>.png</code> or <code>.bmp</code></li>
+              <li><strong>Color Depth:</strong> Must be <strong>8-bit indexed</strong></li>
+              <li><strong>Dimensions:</strong> Must be exactly <strong>512 &times; 512 pixels</strong> (fixed-size region at the front of the BIN)</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-cyan">Section 2 Import Rules</span>
+              <h3 class="feature-card-title">End Variable Region (512&times;H)</h3>
+            </div>
+            <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+              <li><strong>Accepted Formats:</strong> <code>.png</code> or <code>.bmp</code></li>
+              <li><strong>Color Depth:</strong> Must be <strong>8-bit indexed</strong></li>
+              <li><strong>Width:</strong> Must be exactly <strong>512 pixels wide</strong></li>
+              <li><strong>Height:</strong> Variable height according to the specific map's section data usage near the end of the BIN</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <span class="tag tag-purple">Recommended Editors</span>
+              <h3 class="feature-card-title">Pixel &amp; Palette Tools</h3>
+            </div>
+            <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+              <li><strong>Aseprite:</strong> Ideal for strict 8-bit indexed palette editing and pixel art workflows.</li>
+              <li><strong>MtPaint:</strong> Lightweight indexed bitmap editor with exact palette slot control.</li>
+              <li><strong>Adobe Photoshop:</strong> Supported when exporting in Indexed Color mode without reordering the color table.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 5: COMPANION FFVI OLD VER MODS -->
+      <section id="companion-mods" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Faospark's FFVI (Old Ver.) Modding Ecosystem</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          FFVI Old Tile Tool powers the map and environment overhauls across Faospark's 10-mod catalog for the classic Steam release of <em>Final Fantasy VI</em>:
+        </p>
+
+        <div class="mod-grid">
+          <a href="project-ffvi-old-ver-mods.html" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>FFVI Old Ver Mods Hub</span>
+              <span class="tag tag-emerald font-mono">10 Releases</span>
+            </div>
+            <p class="mod-card-desc">Explore the complete flagship catalog for Final Fantasy VI (Old Ver.) on PC.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/19" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Sane UI Overhaul</span>
+              <span class="tag tag-cyan font-mono">Nexus #19</span>
+            </div>
+            <p class="mod-card-desc">Complete UI transformation featuring the only horizontal ATB gauge bar and compact desktop menus.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/32" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Celes Recruitment Patch</span>
+              <span class="tag font-mono">Nexus #32</span>
+            </div>
+            <p class="mod-card-desc">Restores Celes's original uncut recruitment scene in South Figaro.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/21" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Grass or Green Fix</span>
+              <span class="tag font-mono">Nexus #21</span>
+            </div>
+            <p class="mod-card-desc">Replaces overly bright neon-green grass tiles with natural, grounded earthen tones.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/20" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Narshe Detailed Snow</span>
+              <span class="tag font-mono">Nexus #20</span>
+            </div>
+            <p class="mod-card-desc">Enhanced snow tile detailing and atmospheric winter textures across Narshe.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/14" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Opera Omnia Portraits</span>
+              <span class="tag font-mono">Nexus #14</span>
+            </div>
+            <p class="mod-card-desc">High-resolution Dissidia Final Fantasy Opera Omnia style character portraits with two distinct presets.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION 6: ACTION & LAUNCH -->
+      <section style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 2rem;">
+        <h2 style="color: #fff; font-size: 1.75rem; margin-bottom: 0.75rem;">Ready to Edit Map BIN Tiles?</h2>
+        <p style="color: var(--text-secondary); max-width: 640px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+          Download the latest release or inspect the C# source code of FFVI Old Tile Tool on GitHub under the MIT License.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="https://github.com/faospark/ffvi_tileConverter" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>View Repository on GitHub &rarr;</span>
+          </a>
+          <a href="https://github.com/faospark/ffvi_tileConverter/releases" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>Download Releases</span>
+          </a>
+          <a href="project-ffvi-old-ver-mods.html" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>Explore FFVI Old Ver Mods</span>
+          </a>
+        </div>
+      </section>
+
+    </div><!-- End .vault-single-card -->
+
+  </main>
+
+  <back-to-top></back-to-top>
+  <vault-footer></vault-footer>
+</body>
+</html>
+

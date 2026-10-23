@@ -24,6 +24,54 @@
     "readingTime": "1 min read"
   },
   {
+    "id": "tag:denoffao.me,2026:post-review-suikoden-anime-first-week",
+    "slug": "2026-review-suikoden-anime-first-week",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "Review Suikoden Anime First Week",
+    "published": "2026-10-08T10:00:00.000Z",
+    "updated": "2026-10-08T10:00:00.000Z",
+    "year": 2026,
+    "dateFormatted": "Oct 8, 2026",
+    "categories": [
+      "Suikoden 2",
+      "Suikoden",
+      "Anime",
+      "Review"
+    ],
+    "excerpt": "A few days ago, several people asked me about my thoughts on the recently released Suikoden II anime, and honestly, I do have a lot of thoughts. More importantly, they're overwhelmingly positive...",
+    "thumbnail": "assets/blog/suikoden-anime-review-first-week.png",
+    "imageCount": 5,
+    "commentCount": 0,
+    "comments": [],
+    "wordCount": 1045,
+    "readingTime": "5 min read"
+  },
+  {
+    "id": "tag:denoffao.me,2026:post-project-kyaro-log-10-01-2026",
+    "slug": "2026-project-kyaro-log-10-01-2026",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "10/1/26 — Project Kyaro Log Entry",
+    "published": "2026-10-01T09:53:00.000Z",
+    "updated": "2026-10-01T09:55:00.000Z",
+    "year": 2026,
+    "dateFormatted": "Oct 1, 2026",
+    "categories": [
+      "Project Kyaro",
+      "Suikoden",
+      "Suikoden 2",
+      "Mods"
+    ],
+    "excerpt": "Alright, okay. Let me get this off my chest. I'm mostly writing this down as a way to log something that happened in the past regarding Project Kyaro. Looking back at how the early Special K versions were built and how criticism became fuel...",
+    "thumbnail": "assets/blog/project-kyaro-log-10-01-2026.png",
+    "imageCount": 1,
+    "commentCount": 0,
+    "comments": [],
+    "wordCount": 418,
+    "readingTime": "2 min read"
+  },
+  {
     "id": "tag:denoffao.me,2026:post-suikoden-2-hd-alternative-world-map",
     "slug": "2026-an-alternative-world-map-of-suikoden-2-hd-remaster",
     "blogName": "Faospark Blog",

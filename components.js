@@ -418,6 +418,35 @@ if (!customElements.get('vault-navbar')) {
   customElements.define('vault-navbar', VaultNavbar);
 }
 
+class CommunityBox extends HTMLElement {
+  connectedCallback() {
+    if (this.style) this.style.display = 'block';
+    this.innerHTML = `
+      <div class="community-box">
+        <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif" loading="lazy">
+        <div style="flex-grow: 1; min-width: 240px;">
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
+            <span class="tag tag-cyan">Community Hub</span>
+            <span class="tag">Discord Hangout</span>
+          </div>
+          <h3 style="color: var(--text-pure-white, #fff); font-size: 1.2rem; margin: 0 0 0.35rem;">Moogles and Mods</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0 0 0.75rem;">
+            My hangout and testing server for classic RPG modding, texture overhauls, and troubleshooting. Drop in to say hello or report texture issues!
+          </p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>Join Moogles and Mods Discord &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+}
+if (!customElements.get('community-box')) {
+  customElements.define('community-box', CommunityBox);
+}
+
 class VaultFooter extends HTMLElement {
   connectedCallback() {
     if (this.style) this.style.display = 'block';
@@ -428,25 +457,7 @@ class VaultFooter extends HTMLElement {
       <footer class="obsidian-footer">
         <div class="container">
           <div class="footer-content">
-            <div class="community-box">
-              <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif" loading="lazy">
-              <div style="flex-grow: 1; min-width: 240px;">
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
-                  <span class="tag tag-cyan">Community Hub</span>
-                  <span class="tag">Discord Hangout</span>
-                </div>
-                <h3 style="color: #fff; font-size: 1.2rem; margin: 0 0 0.35rem;">Moogles and Mods</h3>
-                <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.5; margin: 0 0 0.75rem;">
-                  My hangout and testing server for classic RPG modding, texture overhauls, and troubleshooting. Drop in to say hello or report texture issues!
-                </p>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <a href="https://discord.gg/bSnpVBV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background: #5865f2; border-color: #5865f2;">
-                    <span>Join Moogles and Mods Discord &rarr;</span>
-                  </a>
-              
-                </div>
-              </div>
-            </div>
+            <community-box></community-box>
 
             <div class="footer-socials">
               <a href="https://www.nexusmods.com/profile/faospark" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="NexusMods Profile">
@@ -513,7 +524,8 @@ class VaultFooter extends HTMLElement {
 }
 
 /**
- * Initializes the retro mechanical hit counter using counters.csv base seeds + localStorage
+ * Initializes the retro mechanical hit counter using counters.csv base seeds,
+ * deterministic time-based auto-growth, and localStorage visits (resets every +10,000 visits).
  */
 function initRetroCounter(container) {
   const digitsEl = container.querySelector('#retroOdometerDigits');
@@ -525,6 +537,28 @@ function initRetroCounter(container) {
   const renderDigits = (num) => {
     const padded = String(Math.max(0, num)).padStart(6, '0').slice(-6);
     digitsEl.innerHTML = padded.split('').map(d => `<span class="retro-digit">${d}</span>`).join('');
+  };
+
+  // Epoch anchor: Oct 20, 2026 00:00:00 UTC
+  const EPOCH_MS = Date.UTC(2026, 9, 20, 0, 0, 0);
+  const elapsedHours = Math.max(0, (Date.now() - EPOCH_MS) / (1000 * 60 * 60));
+
+  const computeTotal = (baseCount) => {
+    // Steady organic-looking growth (~24 to ~36 hits/day depending on page base weight)
+    const hourlyRate = Math.max(0.8, Math.min(2.2, baseCount / 12000));
+    const timeHits = Math.floor(elapsedHours * hourlyRate);
+
+    const storageKey = `den_hits_${rawPage}`;
+    let userHits = 0;
+    try {
+      userHits = parseInt(localStorage.getItem(storageKey) || '0', 10);
+      userHits = ((userHits + 1) % 10000);
+      localStorage.setItem(storageKey, userHits);
+    } catch (e) {}
+
+    // Reset accumulated visits every 10,000 visits
+    const addedVisits = (timeHits + userHits) % 10000;
+    return baseCount + addedVisits;
   };
 
   fetch('counters.csv')
@@ -543,25 +577,10 @@ function initRetroCounter(container) {
         }
       }
 
-      const storageKey = `den_hits_${rawPage}`;
-      let userHits = 0;
-      try {
-        userHits = parseInt(localStorage.getItem(storageKey) || '0', 10);
-        userHits += 1;
-        localStorage.setItem(storageKey, userHits);
-      } catch (e) {}
-
-      renderDigits(baseCount + userHits);
+      renderDigits(computeTotal(baseCount));
     })
     .catch(() => {
-      let fallback = 24890;
-      try {
-        const key = `den_hits_${rawPage}`;
-        let u = (parseInt(localStorage.getItem(key) || '0', 10)) + 1;
-        localStorage.setItem(key, u);
-        fallback += u;
-      } catch (e) {}
-      renderDigits(fallback);
+      renderDigits(computeTotal(24890));
     });
 }
 if (!customElements.get('vault-footer')) {
