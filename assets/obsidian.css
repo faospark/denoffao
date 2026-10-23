@@ -2825,7 +2825,7 @@ site-footer {
   inset: 0;
   background: rgba(4, 7, 14, 0.88);
   backdrop-filter: blur(8px);
-  z-index: 2000;
+  z-index: 20000;
   display: none;
   align-items: center;
   justify-content: center;

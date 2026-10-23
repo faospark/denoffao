@@ -55,6 +55,23 @@ window.applyVaultTheme = applyVaultTheme;
   if (typeof document !== 'undefined') {
     const current = getStoredVaultTheme();
     document.documentElement.setAttribute('data-theme', current);
+
+    // Ensure favicon & manifest links exist in <head> across all pages
+    const head = document.head || document.getElementsByTagName('head')[0];
+    if (head && !head.querySelector('link[rel="icon"]')) {
+      const icons = [
+        { rel: 'icon', type: 'image/png', href: 'favicon-96x96.png', sizes: '96x96' },
+        { rel: 'icon', type: 'image/svg+xml', href: 'favicon.svg' },
+        { rel: 'shortcut icon', href: 'favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: 'apple-touch-icon.png' },
+        { rel: 'manifest', href: 'site.webmanifest' }
+      ];
+      icons.forEach(attrs => {
+        const link = document.createElement('link');
+        Object.keys(attrs).forEach(k => link.setAttribute(k, attrs[k]));
+        head.appendChild(link);
+      });
+    }
   }
 })();
 
