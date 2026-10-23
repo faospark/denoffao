@@ -170,6 +170,30 @@
     "readingTime": "3 min read"
   },
   {
+    "id": "tag:denoffao.me,2022:post-ffix-60fps-gameplay-via-memoria",
+    "slug": "2022-final-fantasy-ix-60fps-gameplay-via-memoria",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "Final Fantasy IX 60fps Gameplay via Memoria",
+    "published": "2022-09-11T10:00:00.000Z",
+    "updated": "2022-09-11T10:00:00.000Z",
+    "year": 2022,
+    "dateFormatted": "Sep 11, 2022",
+    "categories": [
+      "Final Fantasy IX",
+      "Memoria",
+      "Mods",
+      "60FPS"
+    ],
+    "excerpt": "Looking back at the first iteration of 60fps gameplay for Final Fantasy IX via the Memoria Engine, accomplished just a short time after Final Fantasy VII achieved 60fps. Tirlititi really did a great job on this milestone...",
+    "thumbnail": "assets/blog/ffix-60fps-memoria-test.png",
+    "imageCount": 1,
+    "commentCount": 0,
+    "comments": [],
+    "wordCount": 215,
+    "readingTime": "1 min read"
+  },
+  {
     "id": "tag:blogger.com,1999:blog-7561036875557887785.post-558821399661055262",
     "slug": "2021-project-kyaro-055262",
     "blogName": "Faospark Blog",

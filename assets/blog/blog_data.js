@@ -202,6 +202,31 @@ window.BLOG_POSTS = [
     "readingTime": "3 min read"
   },
   {
+    "id": "tag:denoffao.me,2022:post-ffix-60fps-gameplay-via-memoria",
+    "slug": "2022-final-fantasy-ix-60fps-gameplay-via-memoria",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "Final Fantasy IX 60fps Gameplay via Memoria",
+    "published": "2022-09-11T10:00:00.000Z",
+    "updated": "2022-09-11T10:00:00.000Z",
+    "year": 2022,
+    "dateFormatted": "Sep 11, 2022",
+    "categories": [
+      "Final Fantasy IX",
+      "Memoria",
+      "Mods",
+      "60FPS"
+    ],
+    "excerpt": "Looking back at the first iteration of 60fps gameplay for Final Fantasy IX via the Memoria Engine, accomplished just a short time after Final Fantasy VII achieved 60fps. Tirlititi really did a great job on this milestone...",
+    "thumbnail": "assets/blog/ffix-60fps-memoria-test.png",
+    "imageCount": 1,
+    "commentCount": 0,
+    "comments": [],
+    "content": "<div class=\"blog-post-rich-content\">\n  <p class=\"lead-paragraph\" style=\"font-size: 1.15rem; line-height: 1.7; color: var(--text-off-white); margin-bottom: 1.25rem;\">\n    This was the first iteration of <strong>60fps gameplay for the Memoria Engine</strong> in <em>Final Fantasy IX</em>, accomplished just a short time after <em>Final Fantasy VII</em> achieved its own 60fps breakthrough.\n  </p>\n\n  <p>\n    <strong>Tirlititi</strong> really did a great job on this. And for the record, some communities could have given him a boost and proper recognition for the accomplishment at the time, but unfortunately, that did not come.\n  </p>\n\n  <div class=\"separator\" style=\"clear: both; text-align: center; margin: 1.75rem 0 2rem 0;\">\n    <div style=\"background: rgba(13, 23, 40, 0.9); border: 2px solid var(--accent-cyan, #38bdf8); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.6); max-width: 760px; margin: 0 auto;\">\n      <video controls preload=\"metadata\" poster=\"assets/blog/ffix-60fps-memoria-test.png\" style=\"width: 100%; display: block; max-height: 440px; background: #000;\">\n        <source src=\"https://v.redd.it/379l870g90n91/DASH_720.mp4\" type=\"video/mp4\" />\n        Your browser does not support HTML5 video. <a href=\"https://www.reddit.com/r/FinalFantasyIX/comments/xbfbx7/final_fantasy_ix_60fps_game_play_via_memoria/\" target=\"_blank\" rel=\"noopener noreferrer\">Watch the original 60fps test video on Reddit</a>.\n      </video>\n      <div style=\"padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid rgba(56, 189, 248, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;\">\n        <span>Final Fantasy IX &bull; First 60fps Gameplay Test via Memoria Engine (Sep 11, 2022)</span>\n        <a href=\"https://www.reddit.com/r/FinalFantasyIX/comments/xbfbx7/final_fantasy_ix_60fps_game_play_via_memoria/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: var(--accent-cyan); font-weight: 600; text-decoration: none;\">View on r/FinalFantasyIX &rarr;</a>\n      </div>\n    </div>\n  </div>\n\n  <h3 style=\"color: var(--accent-cyan); margin: 2rem 0 1rem 0; font-size: 1.25rem; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.5rem;\">\n    Original Post Note (September 11, 2022)\n  </h3>\n\n  <blockquote style=\"margin: 1.25rem 0; padding: 1.15rem 1.35rem; background: rgba(56, 189, 248, 0.08); border-left: 4px solid var(--accent-cyan, #38bdf8); border-radius: 4px; color: var(--text-secondary); line-height: 1.75;\">\n    Just in case you missed it guys, it is possible now to play the Steam version of FFIX at 60fps. Sharing this test run of the feature, which is actually a lot better on hardware than here.<br /><br />\n    Many thanks to <strong>Iamgoofball</strong> and <strong>Tirlititi</strong>, <strong>Albeoris</strong>, and other contributors to Memoria. You can download the latest version of Memoria here and try it yourself:\n    <a href=\"https://github.com/Albeoris/Memoria/releases\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: var(--accent-cyan); word-break: break-all;\">https://github.com/Albeoris/Memoria/releases</a>\n  </blockquote>\n\n  <div style=\"background: rgba(13, 23, 40, 0.75); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 1.25rem; margin-top: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;\">\n    <div>\n      <strong style=\"color: #fff; display: block; margin-bottom: 0.25rem;\">Archived Community Showcase</strong>\n      <span style=\"color: var(--text-muted); font-size: 0.9rem;\">Originally shared on r/FinalFantasyIX &bull; September 11, 2022</span>\n    </div>\n    <div style=\"display: flex; gap: 0.75rem; flex-wrap: wrap;\">\n      <a href=\"https://github.com/Albeoris/Memoria/releases\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-secondary btn-sm\">Memoria Releases &rarr;</a>\n      <a href=\"https://www.reddit.com/r/FinalFantasyIX/comments/xbfbx7/final_fantasy_ix_60fps_game_play_via_memoria/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-primary btn-sm\">Original Reddit Post &rarr;</a>\n    </div>\n  </div>\n</div>",
+    "wordCount": 215,
+    "readingTime": "1 min read"
+  },
+  {
     "id": "tag:blogger.com,1999:blog-7561036875557887785.post-558821399661055262",
     "slug": "2021-project-kyaro-055262",
     "blogName": "Faospark Blog",
