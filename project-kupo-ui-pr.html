@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kupo-UI.PR — Final Fantasy Pixel Remaster UI Framework (FF1–FF6) | Faospark</title>
+  
+  <meta name="description" content="Official documentation and architecture reference for Kupo-UI.PR by Faospark — A high-performance BepInEx IL2CPP framework providing runtime UI patching, zero-bundle texture replacement, dialogue portrait injection, and data-driven GameObject tweaks for Final Fantasy I–VI Pixel Remasters.">
+  <link rel="canonical" href="https://denoffao.me/project-kupo-ui-pr.html">
+  <meta property="og:url" content="https://denoffao.me/project-kupo-ui-pr.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Kupo-UI.PR — Final Fantasy Pixel Remaster UI Modding Framework (FF1–FF6)"/>
+  <meta property="og:description" content="A comprehensive BepInEx IL2CPP runtime engine featuring zero-bundle texture replacement, 5-layer cascading priority, dialogue portrait injection, custom typography, and data-driven GameObject manipulation."/>
+  <meta property="og:image" content="assets/mods/kupo-ui-framework.png"/>
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar breadcrumb="project-kupo-ui-pr.md" active="projects"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Special Projects</span>
+        </a>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
+          <span class="tag tag-cyan">FF1 &bull; FF2 &bull; FF3 &bull; FF4 &bull; FF5 &bull; FF6</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 1.75rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Kupo-UI.PR</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          Kupo-UI.PR: <span class="text-gradient">Pixel Remaster UI Architecture.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+          <strong>Kupo-UI.PR</strong> is a modern <strong>BepInEx IL2CPP runtime plugin</strong> designed specifically for the <strong>Final Fantasy Pixel Remaster</strong> series (FF1 through FF6). Built from the ground up to eradicate the tedious friction of unpacking, repacking, and editing duplicate Unity <code>.bundle</code> files, Kupo-UI.PR provides an end-to-end suite of <strong>6 modular engines</strong> spanning hot-reloadable texture replacement, dynamic dialogue speaker portraits, data-driven GameObject layout manipulation, rich-text inline icons, and custom typography injection.
+        </p>
+      </div>
+
+      <!-- HERO BANNER SHOWCASE: All 6 Games In-Game Menus -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-ui-pr-showcase.png', 'KupoUI.PR In-Game Menu Showcase Across FF1, FF2, FF3, FF4, FF5, and FF6 Pixel Remaster')">
+        <img src="assets/mods/kupo-ui-pr-showcase.png" alt="Kupo-UI.PR In-Game Menu Showcase" class="hero-banner-img" loading="lazy">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">Universal Coverage (FF1–FF6)</span>
+          <span class="tag tag-cyan">Custom Layouts &amp; Portraits</span>
+        </div>
+        <div class="banner-caption-bar">
+          <span>Kupo-UI.PR live menu overrides across FF1, FF2, FF3, FF4, FF5, and FF6 Pixel Remasters</span>
+          <span style="color: var(--accent-cyan); font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">Click to Enlarge <svg width="14" height="14" viewBox="0 0 512 512" fill="var(--accent-cyan)"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+      </div>
+
+      <!-- Quick Jump Row -->
+      <div class="jump-nav-row">
+        <a href="#origins" class="jump-nav-btn">Background &amp; Origins</a>
+        <a href="#core-engines" class="jump-nav-btn">The 6 Core Engines</a>
+        <a href="#folder-layout" class="jump-nav-btn">Directory &amp; Priority</a>
+        <a href="#configuration" class="jump-nav-btn">Configuration Reference</a>
+        <a href="#steamdeck" class="jump-nav-btn">Linux &amp; Steam Deck</a>
+        <a href="#downloads" class="jump-nav-btn">Installation &amp; GitHub</a>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 1: BACKGROUND & ORIGINS -->
+      <section id="origins" style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.65rem; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>Background &amp; Origins</span>
+        </h2>
+
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+          KupoUI.PR grew out of the architectural development of the modern version of <a href="projects.html#darker-ui" style="color: var(--accent-cyan); text-decoration: underline;">Darker UI</a> for the Pixel Remasters. Historically, crafting user interface modifications for Final Fantasy I–VI PR was exceptionally grueling: artists and modders were forced to extract enormous Unity asset bundles, manually edit dozens of duplicate UI sprites scattered across disjointed asset files, repack the bundles, and pray that official game updates wouldn't invalidate their hard work.
+        </p>
+
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem;">
+          After developing advanced IL2CPP runtime hooks for other game engines, author <strong>faospark</strong> applied those core breakthroughs to the Pixel Remaster series. What initially began as a simple tool to address specific menu contrast pain points quickly expanded into a complete runtime modding ecosystem. Its moniker, <em>KupoUI.PR</em>, is a respectful homage to the legendary <strong>Kupo UI</strong> mod for Final Fantasy IX.
+        </p>
+
+        <div class="nexus-quote-box anecdote">
+          <strong style="color: #fff; display: block; margin-bottom: 0.35rem;">Ecosystem Coexistence &amp; Modding Synergy</strong>
+          <span>KupoUI.PR is explicitly <strong>not</strong> designed to replace community pillars like <strong>Magicite</strong>, <strong>Memoria</strong>, or <strong>FFPRFix</strong>. Each of these utilities solves distinct architectural challenges (e.g., audio, resolution, gameplay scripting). KupoUI.PR focuses laser-sharp on the UI/UX rendering layer, dynamic portraits, typography, and runtime hierarchy injection, and is designed to operate in harmonious tandem alongside them.</span>
+        </div>
+
+        <div class="nexus-quote-box warning">
+          <strong style="color: #f59e0b; display: block; margin-bottom: 0.35rem;">Known Incompatibilities to Keep in Mind</strong>
+          <ul style="margin: 0; padding-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6;">
+            <li><strong>Memoria's Classic Text Box Framework:</strong> Not recommended. Both frameworks patch dialogue box presentation, but utilize fundamentally conflicting low-level hooking mechanics.</li>
+            <li><strong>Legacy Speaker Tag Mods:</strong> Any mod that destructively restructures the dialogue message box to embed portraits will conflict with KupoUI.PR's built-in speaker portrait injector.</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 2: THE 6 CORE ENGINES -->
+      <section id="core-engines" style="margin-bottom: 2.5rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <span class="tag tag-emerald">Modular Suite</span>
+          <h2 style="font-size: 1.75rem; color: #fff; margin: 0.5rem 0 0.5rem 0;">The 6 Core Architectural Engines</h2>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            KupoUI.PR partitions UI responsibilities into six decoupled, high-performance runtime subsystems:
+          </p>
+        </div>
+
+        <div class="engine-grid">
+          
+          <!-- Engine 1 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 512 512" fill="var(--accent-cyan)"><path d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg> 1. Texture &amp; Theme Engine</span>
+              </h3>
+              <span class="tag tag-cyan">Zero Bundles</span>
+            </div>
+            <p class="engine-card-desc">
+              Drop loose PNG or DDS files into categorized folders to replace frames, cursors, backgrounds, and button prompts on the fly.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>5-Layer Priority Pipeline:</strong> Cleanly isolates themes, frames, cursors, background tints, and button prompt overrides.</li>
+              <li><strong>Path-Based Overrides:</strong> Disambiguates duplicate filenames (e.g. identical character face names) via relative <code>GameAssets/</code> paths.</li>
+              <li><strong>Sidecar Metadata:</strong> Tune 9-slice borders, UV wrap modes (auto-tiling), scale, and custom Pixels-Per-Unit (PPU) via companion JSON files.</li>
+              <li><strong>Live Disk Hot-Reload:</strong> Modify textures in Photoshop or GIMP, hit save, and see changes in-game instantly with zero restarts.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">01-UI-Themes &bull; 05-Button-Prompts</span>
+            </div>
+          </div>
+
+          <!-- Engine 2 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 512 512" fill="var(--accent-purple, #c084fc)"><path d="M512 128V32c0-17.67-14.33-32-32-32h-96c-17.67 0-32 14.33-32 32H160c0-17.67-14.33-32-32-32H32C14.33 0 0 14.33 0 32v96c0 17.67 14.33 32 32 32v192c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32h192c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32V160c17.67 0 32-14.33 32-32zm-96-64h32v32h-32V64zM64 64h32v32H64V64zm32 384H64v-32h32v32zm352 0h-32v-32h32v32zm-32-96h-32c-17.67 0-32 14.33-32 32v32H160v-32c0-17.67-14.33-32-32-32H96V160h32c17.67 0 32-14.33 32-32V96h192v32c0 17.67 14.33 32 32 32h32v192z"/></svg> 2. GameObject &amp; Layout</span>
+              </h3>
+              <span class="tag tag-purple">ObjectConfig.json</span>
+            </div>
+            <p class="engine-card-desc">
+              Manipulate Unity GameObjects, RectTransforms, and UI hierarchies at runtime without touching a single line of C# code.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Full Transform Control:</strong> Reposition, rotate, scale, resize, or hide (<code>SetActive</code>) any UI element or HUD canvas.</li>
+              <li><strong>Hierarchy Path Suffix:</strong> Match unique transform paths (e.g. <code>content_root/menu/main_menu</code>) to resolve ambiguous objects.</li>
+              <li><strong>NewImages Injection:</strong> Dynamically insert brand-new custom UI image components directly into existing screens.</li>
+              <li><strong>Layout Customization:</strong> Scaled-down in-game menu (10% shrink), custom save slot highlight tints, and full-screen title backgrounds.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">TitlescreenFullBG &bull; MainMenuBg</span>
+            </div>
+          </div>
+
+          <!-- Engine 3 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 576 512" fill="var(--accent-amber, #f59e0b)"><path d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1.9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9.7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z"/></svg> 3. Dialogue &amp; Portrait</span>
+              </h3>
+              <span class="tag tag-amber">Portraits &amp; Names</span>
+            </div>
+            <p class="engine-card-desc">
+              Breathes cinematic life into dialogue boxes with automatic speaker naming and dynamic portrait injection across all six titles.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Dynamic Portrait Injector:</strong> Inserts character facial portraits directly inside speech windows with custom offsets and padding.</li>
+              <li><strong>Speaker Name Formatting:</strong> Auto-prepends speaker names with optional UPPERCASE, line breaks, and word-wrap limits.</li>
+              <li><strong>Bubble Cleanup:</strong> Seamlessly hides the intrusive default speaker tag bubble while preserving game logic.</li>
+              <li><strong>Menu Portrait Remapper:</strong> Custom main menu portrait mapping for FF2, FF4, and FF6 preserving native aspect ratios.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">MenuPortraitMap.json &bull; SpeakerNames</span>
+            </div>
+          </div>
+
+          <!-- Engine 4 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 448 512" fill="var(--accent-cyan, #38bdf8)"><path d="M432 416h-23.41L277.88 53.69A32 32 0 0 0 247.58 32h-47.16a32 32 0 0 0-30.3 21.69L39.41 416H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16h-19.58l23.3-64h152.56l23.3 64H304a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM176.85 272L224 142.51 271.15 272z"/></svg> 4. Font &amp; Typography</span>
+              </h3>
+              <span class="tag tag-cyan">fontconfig.json</span>
+            </div>
+            <p class="engine-card-desc">
+              Replaces default pixel remaster typefaces with any installed system-wide font per UI role and language.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Two-Phase Engine:</strong> Diagnostic font mapper traces internal Unity fonts, followed by clean custom font swapping.</li>
+              <li><strong>Role-Based Scoping:</strong> Map distinct fonts for <code>Main</code>, <code>Title</code>, <code>Battle</code>, and <code>Number</code> elements independently.</li>
+              <li><strong>Per-Language Granularity:</strong> Assign tailored fonts for English (<code>En</code>), Japanese (<code>Ja</code>), and other localizations.</li>
+              <li><strong>Micro-Typography:</strong> Precise control over font size multipliers, line spacing (<code>LineSpace</code>), and vertical baseline offsets.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">System/fontconfig.json</span>
+            </div>
+          </div>
+
+          <!-- Engine 5 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 576 512" fill="var(--accent-rose, #f43f5e)"><path d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/></svg> 5. Text &amp; Inline Icons</span>
+              </h3>
+              <span class="tag tag-rose">IconsConfig.json</span>
+            </div>
+            <p class="engine-card-desc">
+              Data-driven text replacement, re-translations, menu renaming, and rich-text inline iconography across all game screens.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Data-Driven Text Overrides:</strong> Swap text strings by localization database ID, exact string match, or Regex search-and-replace.</li>
+              <li><strong>Hierarchy Text Target:</strong> Override specific screen headers or button labels by targeting their GameObject hierarchy.</li>
+              <li><strong>Rich Text Inline Icons:</strong> Embed custom icon tags (e.g. <code>&lt;IC_BAG&gt;</code>, <code>&lt;IC_POTION&gt;</code>) directly into text lines.</li>
+              <li><strong>Auto Atlas &amp; Full Color:</strong> Automatically packs icons into texture atlases with disk caching and disables dimmed item tints.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">TextConfig.json &bull; Disk Atlas Cache</span>
+            </div>
+          </div>
+
+          <!-- Engine 6 -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;"><svg width="20" height="20" viewBox="0 0 512 512" fill="var(--accent-emerald, #10b981)"><path d="M501.1 395.7L384 278.6c-23.1-23.1-57.6-27.6-85.4-13.9L192 158.1V96L64 0 0 64l96 128h62.1l106.6 106.6c-13.6 27.8-9.2 62.3 13.9 85.4l117.1 117.1c14.6 14.6 38.2 14.6 52.7 0l52.7-52.7c14.5-14.6 14.5-38.2 0-52.7zM331.7 225c28.3 0 54.9 11 74.9 31l19.4 19.4c15.8-6.9 30.8-16.5 43.8-29.5 37.1-37.1 49.7-89.3 37.9-136.7-2.2-9-13.5-12.1-20.1-5.5l-74.4 74.4-67.9-11.3L334 98.9l74.4-74.4c6.6-6.6 3.4-17.9-5.7-20.2-47.4-11.7-99.6.9-136.6 37.9-28.5 28.5-41.9 66.1-41.2 103.6l82.1 82.1c8.1-1.9 16.5-2.9 24.7-2.9zm-103.9 82l-56.7-56.7L18.7 402.8c-25 25-25 65.5 0 90.5s65.5 25 90.5 0l123.6-123.6c-7.6-19.9-9.9-41.6-5-62.7zM64 472c-13.2 0-24-10.8-24-24 0-13.3 10.7-24 24-24s24 10.7 24 24c0 13.2-10.7 24-24 24z"/></svg> 6. Logging &amp; Utility</span>
+              </h3>
+              <span class="tag tag-emerald">Diagnostics</span>
+            </div>
+            <p class="engine-card-desc">
+              Essential quality-of-life toggles, automated mod conflict detection, and deep inspection loggers for mod authors.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Texture Conflict Scanner:</strong> Scans active mods in <code>00-Mods/</code> at boot and alerts if two mods provide competing textures.</li>
+              <li><strong>Mod Discovery:</strong> Clean console summary detailing all discovered mods, themes, and configuration assets.</li>
+              <li><strong>Quality-of-Life Toggles:</strong> Disable the software mouse cursor, force VSync, and load high-performance DDS textures.</li>
+              <li><strong>Granular Loggers:</strong> Specialized diagnostic channels for textures, battle sprites, fonts, dialogue keys, and UI hierarchies.</li>
+            </ul>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.75rem;">
+              <span class="tag font-mono">Conflict Detection &bull; Mod Discovery</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 3: DIRECTORY LAYOUT & PRIORITY -->
+      <section id="folder-layout" style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.65rem; color: #fff; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <span>Directory Layout &amp; 5-Layer Cascading Priority</span>
+        </h2>
+
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+          KupoUI.PR roots all mod assets inside a single <code>&lt;GameRoot&gt;/Modules/</code> directory created automatically upon your first game boot. Assets are categorized into structured subdirectories, with a clearly defined priority cascade:
+        </p>
+
+        <pre class="code-box"><code><span class="hl-cyan">&lt;GameRoot&gt;/Modules/</span>
+  ├── <span class="hl-dim">.cache/</span>                         <span class="hl-dim">← Auto-generated texture atlas cache</span>
+  ├── <span class="hl-gold">00-Mods/</span>                        <span class="hl-dim">← Active standalone mods</span>
+  │   ├── Amano Style TitleScreen/
+  │   │   ├── ObjectConfig.json
+  │   │   └── TitleLogoImage.png
+  │   └── FF2 DFFOO Portraits/
+  │       └── SpeakerPortraits/
+  │           ├── SPEAKER_01.png      <span class="hl-dim">← Firion</span>
+  │           ├── SPEAKER_02.png      <span class="hl-dim">← Maria</span>
+  │           └── SPEAKER_03.png      <span class="hl-dim">← Guy</span>
+  ├── <span class="hl-cyan">01-UI-Themes/</span>                   <span class="hl-dim">← Full UI theme packs (e.g. Darker UI)</span>
+  ├── <span class="hl-cyan">02-UI-Frames/</span>                   <span class="hl-dim">← Window frame texture packs</span>
+  ├── <span class="hl-cyan">03-UI-BgColor/</span>                  <span class="hl-dim">← Window background color variations</span>
+  ├── <span class="hl-cyan">04-UI-Cursors/</span>                  <span class="hl-dim">← Custom cursor and pointing hand sprites</span>
+  ├── <span class="hl-cyan">05-Button-Prompts/</span>              <span class="hl-dim">← Gamepad button glyphs (PS5, Xbox, Switch)</span>
+  └── <span class="hl-green">System/</span>                         <span class="hl-dim">← Cross-game fonts &amp; global configurations</span>
+      ├── fontconfig.json             <span class="hl-dim">← Custom system font mapping</span>
+      ├── Icons/                      <span class="hl-dim">← Custom inline rich text icons</span>
+      └── FF2/                        <span class="hl-dim">← Game-specific rules (FF1–FF6)</span>
+          └── SpeakerPortraits/
+              └── MenuPortraitMap.json <span class="hl-dim">← Character menu portrait remapping</span></code></pre>
+
+        <h3 style="font-size: 1.15rem; color: #fff; margin: 1.5rem 0 0.75rem;">Lookup Priority Order (Highest to Lowest)</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+          When an in-game sprite or texture is requested, KupoUI.PR resolves matches by filename (without extension) through the following pipeline:
+        </p>
+
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
+          <ol style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
+            <li><code style="color: var(--accent-cyan);">05-Button-Prompts/&lt;ButtonPromptsFolder&gt;</code> <span class="tag tag-emerald">Highest Priority</span></li>
+            <li><code style="color: var(--accent-cyan);">04-UI-Cursors/&lt;CursorsFolder&gt;</code></li>
+            <li><code style="color: var(--accent-cyan);">03-UI-BgColor/&lt;UIBgColorFolder&gt;</code></li>
+            <li><code style="color: var(--accent-cyan);">02-UI-Frames/&lt;UiFramesFolder&gt;</code></li>
+            <li><code style="color: var(--accent-cyan);">01-UI-Themes/&lt;UIThemesFolder&gt;</code></li>
+            <li><code style="color: var(--accent-amber);">00-Mods/</code> (Root mod folders)</li>
+            <li><code style="color: var(--accent-amber);">00-Mods/&lt;GameTag&gt;/</code> (e.g. <code>00-Mods/FF2/</code>)</li>
+            <li><code style="color: var(--accent-amber);">00-Mods/System/</code></li>
+            <li><code style="color: #94a3b8;">&lt;GameTag&gt;/</code> (Root-level game-tag folder, if present)</li>
+            <li><code style="color: #94a3b8;">System/&lt;GameTag&gt;/</code> (e.g. <code>System/FF2/</code>)</li>
+            <li><code style="color: #94a3b8;">System/</code> (Cross-game global fallback, lowest priority)</li>
+          </ol>
+        </div>
+
+        <div class="nexus-quote-box">
+          <strong style="color: #fff; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.35rem;"><svg width="16" height="16" viewBox="0 0 352 512" fill="var(--accent-amber, #f59e0b)"><path d="M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg> <span>Smart Blocking &amp; Active Pack Scoping</span></strong>
+          <span>Need to temporarily disable a mod or asset folder without deleting it? Simply prefix the folder name with <code style="color: var(--accent-cyan);">block</code> (e.g. <code>block-mod</code> or <code>block_portraits</code>). KupoUI.PR's engine will ignore the directory entirely. Furthermore, category folders (<code>01-UI-Themes</code> through <code>05-Button-Prompts</code>) only load JSON configs from the currently selected active pack, guaranteeing that inactive theme packs never leak unintended overrides.</span>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 4: CONFIGURATION EXAMPLES -->
+      <section id="configuration" style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.65rem; color: #fff; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="11" y2="17"></line></svg>
+          <span>Data-Driven Configuration Reference</span>
+        </h2>
+
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+          Modding with KupoUI.PR requires zero compilation. Everything is declared in clean, human-readable JSON files:
+        </p>
+
+        <!-- ObjectConfig.json -->
+        <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span class="tag tag-purple">ObjectConfig.json</span>
+          <span>Runtime UI Transform &amp; Text Styling</span>
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+          Reposition, scale, resize, hide, or alter font colors for any GameObject across menus and HUDs:
+        </p>
+        <pre class="code-box"><code>{
+  <span class="hl-cyan">"objects"</span>: [
+    {
+      <span class="hl-cyan">"TargetObjectName"</span>: <span class="hl-gold">"main_menu"</span>,
+      <span class="hl-cyan">"TargetPath"</span>: <span class="hl-gold">"RootObject/menu_canvas/ui_root/notch_root/title(Clone)/content_root/menu/main_menu"</span>,
+      <span class="hl-cyan">"Position"</span>: { <span class="hl-cyan">"x"</span>: -730, <span class="hl-cyan">"y"</span>: 580, <span class="hl-cyan">"z"</span>: 0 },
+      <span class="hl-cyan">"Scale"</span>: { <span class="hl-cyan">"x"</span>: 0.9, <span class="hl-cyan">"y"</span>: 0.9, <span class="hl-cyan">"z"</span>: 1.0 }
+    },
+    {
+      <span class="hl-cyan">"TargetObjectName"</span>: <span class="hl-gold">"last_text"</span>,
+      <span class="hl-cyan">"TargetPath"</span>: <span class="hl-gold">"RootObject/menu_canvas/ui_root/notch_root/title(Clone)/content_root/start/last_text"</span>,
+      <span class="hl-cyan">"FontSize"</span>: 40,
+      <span class="hl-cyan">"TextColorWhite"</span>: true,
+      <span class="hl-cyan">"DisableShadow"</span>: true
+    }
+  ]
+}</code></pre>
+
+        <!-- fontconfig.json -->
+        <h3 style="font-size: 1.15rem; color: #fff; margin: 1.5rem 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span class="tag tag-cyan">fontconfig.json</span>
+          <span>System-Wide Font Swapping</span>
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+          Replace default pixel fonts with your favorite system fonts, complete with custom line spacing and vertical baseline offsets:
+        </p>
+        <pre class="code-box"><code>{
+  <span class="hl-cyan">"En"</span>: {
+    <span class="hl-cyan">"Font01"</span>: { <span class="hl-cyan">"FontName"</span>: <span class="hl-gold">"Dissidia"</span>, <span class="hl-cyan">"LineSpace"</span>: 0.90, <span class="hl-cyan">"YOffset"</span>: 4 },
+    <span class="hl-cyan">"Font07"</span>: { <span class="hl-cyan">"FontName"</span>: <span class="hl-gold">"Dissidia"</span>, <span class="hl-cyan">"LineSpace"</span>: 0.90, <span class="hl-cyan">"YOffset"</span>: 4 },
+    <span class="hl-cyan">"Font08"</span>: { <span class="hl-cyan">"FontName"</span>: <span class="hl-gold">"pix Chicago"</span>, <span class="hl-cyan">"FontSize"</span>: 26, <span class="hl-cyan">"LineSpace"</span>: 1.2, <span class="hl-cyan">"YOffset"</span>: 4 }
+  }
+}</code></pre>
+
+        <!-- TextConfig.json -->
+        <h3 style="font-size: 1.15rem; color: #fff; margin: 1.5rem 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span class="tag tag-rose">TextConfig.json</span>
+          <span>Targeted Re-Translations &amp; Rich Text Icons</span>
+        </h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+          Modify in-game labels or dialogue lines directly by key or string, injecting custom icons seamlessly:
+        </p>
+        <pre class="code-box"><code>{
+  <span class="hl-cyan">"Language"</span>: <span class="hl-gold">"En"</span>,
+  <span class="hl-cyan">"texts"</span>: {
+    <span class="hl-cyan">"MSG_SYSTEM_002"</span>: <span class="hl-gold">"&lt;IC_BAG&gt; Inventory"</span>,
+    <span class="hl-cyan">"Status"</span>: <span class="hl-gold">"Attributes"</span>,
+    <span class="hl-cyan">"Configuration"</span>: <span class="hl-gold">"Settings"</span>
+  }
+}</code></pre>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 5: STEAM DECK & LINUX GUIDE -->
+      <section id="steamdeck" style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.65rem; color: #fff; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+          <span>Linux &amp; Steam Deck Configuration</span>
+        </h2>
+
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+          Because BepInEx utilizes a custom native <code>winhttp.dll</code> wrapper to inject itself into the game's Unity IL2CPP runtime, Valve's <strong>Proton</strong> compatibility layer will ignore it by default on Linux and Steam Deck. You must explicitly configure Proton to load the local version:
+        </p>
+
+        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+          <ol style="margin: 0; padding-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75;">
+            <li>Right-click your Final Fantasy Pixel Remaster game in your Steam Library and select <strong>Properties...</strong></li>
+            <li>In the <strong>General</strong> tab, locate the <strong>Launch Options</strong> input field at the bottom.</li>
+            <li>Paste the following command line override:</li>
+          </ol>
+          <pre class="code-box" style="margin: 0.85rem 0 0 0;"><code><span class="hl-green">export WINEDLLOVERRIDES="winhttp=n,b"; %command%</span></code></pre>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 6: DOWNLOADS & INSTALLATION -->
+      <section id="downloads" style="margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <span class="tag tag-emerald">Installation &amp; Links</span>
+          <h2 style="font-size: 1.75rem; color: #fff; margin: 0.5rem 0 0.5rem 0;">Ready to Modernize Your PR Experience?</h2>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            Download the pre-compiled binary or explore the open-source repository on GitHub:
+          </p>
+        </div>
+
+        <div class="download-hub-grid">
+          
+          <a href="https://github.com/faospark/Kupo-UI.PR" target="_blank" rel="noopener noreferrer" class="dl-card highlight">
+            <div class="dl-card-header">
+              <h3 class="dl-card-title">GitHub Repository</h3>
+              <span class="tag tag-emerald">Source &amp; Releases</span>
+            </div>
+            <p class="dl-card-desc">
+              Browse the official source code, full engine documentation, configuration schemas, and compiled DLL releases for KupoUI.PR.
+            </p>
+            <div class="dl-card-btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span>Visit Kupo-UI.PR on GitHub &rarr;</span>
+            </div>
+          </a>
+
+          <a href="projects.html#darker-ui" class="dl-card">
+            <div class="dl-card-header">
+              <h3 class="dl-card-title">Darker UI Suites</h3>
+              <span class="tag tag-cyan">Theme Packs</span>
+            </div>
+            <p class="dl-card-desc">
+              Experience the premier UI overhaul built specifically to take advantage of KupoUI.PR's high-contrast theme and frame engine.
+            </p>
+            <div class="dl-card-btn btn-secondary">
+              <span>View Darker UI Showcase &rarr;</span>
+            </div>
+          </a>
+
+          <a href="mods.html" class="dl-card">
+            <div class="dl-card-header">
+              <h3 class="dl-card-title">All Mods Catalog</h3>
+              <span class="tag tag-purple">Complete Workshop</span>
+            </div>
+            <p class="dl-card-desc">
+              Explore Faospark's entire collection of modifications across Final Fantasy, Suikoden, and classic JRPGs.
+            </p>
+            <div class="dl-card-btn btn-secondary">
+              <span>Browse All Mods &rarr;</span>
+            </div>
+          </a>
+
+        </div>
+
+        <div style="background: rgba(13, 20, 36, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1.25rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+          <strong style="color: #fff;">Quick Installation Steps:</strong>
+          <ol style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+            <li>Install <strong>BepInEx IL2CPP 6.0-pre.2</strong> (or newer) into your target Final Fantasy Pixel Remaster directory.</li>
+            <li>Run the game once so BepInEx can generate the required interop assemblies in <code>BepInEx/interop/</code>.</li>
+            <li>Drop <code>KupoUI.PR.dll</code> into <code>&lt;GameRoot&gt;/BepInEx/plugins/</code>.</li>
+            <li>Boot the game. Your <code>&lt;GameRoot&gt;/Modules/</code> directory and default configs will be generated automatically.</li>
+          </ol>
+        </div>
+      </section>
+
+    </div><!-- End .vault-single-card -->
+
+  </main>
+
+  <back-to-top></back-to-top>
+  <vault-footer></vault-footer>
+</body>
+</html>

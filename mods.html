@@ -8,12 +8,18 @@
   <meta name="description" content="Explore all 68 community modifications created by Faospark for Chrono Cross, Final Fantasy VI, Pixel Remasters, FFIX, Suikoden, and classic remasters.">
   <meta property="og:url" content="https://denoffao.me/mods.html"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Complete Mods Library — Faospark's Obsidian Vault"/>
+  <meta property="og:title" content="Complete Mods Library — Faospark's Den of Mods"/>
   <meta property="og:description" content="Complete 68-mod catalog arranged chronologically with real-time search, category filters, and high-resolution screenshot previews."/>
   <meta property="og:image" content="assets/mods/kupo-mods-library.png"/>
 
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
   <!-- Pure Web-Safe Stylesheet -->
   <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
 </head>
 <body>
   <!-- Ambient background grid -->
@@ -46,10 +52,12 @@
 
       <!-- Header Presentation -->
       <div style="margin-bottom: 2rem;">
-        <div class="hero-meta-badge" style="margin-bottom: 0.85rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
           <span class="pulse-dot"></span>
-          <span>Full Workshop Archive &bull; Chronologically Indexed &bull; Live Instant Filtering</span>
-        </div>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">All Mods</span>
+        </nav>
 
         <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
           Complete Mods <span class="text-gradient">Library.</span>
@@ -82,8 +90,5 @@
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
-
-  <!-- Web Components & Global Lightbox Scripts -->
-  <script src="components.js?v=20261022"></script>
 </body>
 </html>

@@ -12,351 +12,14 @@
   <meta property="og:description" content="Comprehensive texture replacements, character portrait framework, sprite smoothing, UI customization, gameplay tweaks, and performance optimizations for PC."/>
   <meta property="og:image" content="assets/kyaro/project-kyaro-suite.png"/>
 
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
   <!-- Pure Web-Safe Stylesheet -->
   <link rel="stylesheet" href="assets/obsidian.css">
-  <style>
-    .jump-nav-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1.5rem 0;
-    }
-    .jump-nav-btn {
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.4rem 0.85rem;
-      border-radius: 6px;
-      background: rgba(16, 28, 52, 0.7);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      color: var(--accent-cyan) !important;
-      text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      backdrop-filter: blur(4px);
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9) !important;
-    }
-    .jump-nav-btn:hover {
-      background: rgba(56, 189, 248, 0.22) !important;
-      border-color: #38bdf8 !important;
-      color: #ffffff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.38), inset 0 0 10px rgba(56, 189, 248, 0.15);
-      text-shadow: 0 0 8px rgba(56, 189, 248, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
-    }
-    .jump-nav-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
-    }
-    .jump-nav-btn[style*="emerald"]:hover,
-    .jump-nav-btn[style*="34d399"]:hover {
-      background: rgba(52, 211, 153, 0.22) !important;
-      border-color: #34d399 !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 16px rgba(52, 211, 153, 0.38), inset 0 0 10px rgba(52, 211, 153, 0.15);
-      text-shadow: 0 0 8px rgba(52, 211, 153, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.95) !important;
-    }
-
-    /* Hero Banner Showcase */
-    .hero-banner-container {
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: #000;
-      margin-bottom: 2rem;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-    .hero-banner-container:hover {
-      border-color: var(--accent-cyan);
-      transform: translateY(-2px);
-    }
-    .hero-banner-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .hero-banner-container:hover .hero-banner-img {
-      transform: scale(1.01);
-    }
-    .banner-overlay-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      z-index: 2;
-    }
-    .banner-caption-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.75rem 1.25rem;
-      background: linear-gradient(180deg, rgba(5, 10, 20, 0) 0%, rgba(5, 10, 20, 0.92) 100%);
-      color: var(--text-pure-white);
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Warning & Quote Callouts */
-    .nexus-quote-box {
-      background: rgba(16, 28, 52, 0.5);
-      border-left: 4px solid var(--accent-cyan);
-      border-radius: 0 8px 8px 0;
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0;
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 0.93rem;
-      line-height: 1.65;
-    }
-    .nexus-quote-box.warning {
-      border-left-color: #f59e0b;
-      background: rgba(245, 158, 11, 0.08);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      border-left-width: 4px;
-    }
-    .nexus-quote-box.anecdote {
-      border-left-color: #06b6d4;
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
-      border: 1px solid rgba(6, 182, 212, 0.25);
-      border-left-width: 4px;
-    }
-
-    /* Feature Grid Columns */
-    .feature-columns-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .feature-category-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 1.35rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .feature-category-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 0.5rem;
-    }
-    .feature-item-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-    .feature-item-list li {
-      margin-bottom: 0.55rem;
-      position: relative;
-      padding-left: 1.25rem;
-    }
-    .feature-item-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0.25rem;
-      color: var(--accent-cyan);
-      font-weight: bold;
-    }
-    .feature-tag-new {
-      display: inline-block;
-      font-size: 0.7rem;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      background: rgba(56, 189, 248, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      color: #38bdf8;
-      font-weight: 600;
-      margin-left: 0.35rem;
-      vertical-align: middle;
-    }
-
-    /* Changelog Pre Codebox */
-    .changelog-prebox {
-      background: #060911;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 1.25rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.82rem;
-      color: #94a3b8;
-      overflow-x: auto;
-      line-height: 1.55;
-      margin: 1rem 0 1.5rem;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    .changelog-prebox .hl-gold { color: #f59e0b; font-weight: bold; }
-    .changelog-prebox .hl-cyan { color: #38bdf8; font-weight: bold; }
-    .changelog-prebox .hl-green { color: #34d399; }
-
-    /* Other Suikoden Mods Grid */
-    .other-mods-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .other-mod-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 1rem 1.15rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .other-mod-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--accent-cyan);
-      transform: translateY(-2px);
-    }
-    .other-mod-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      margin: 0 0 0.35rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .other-mod-desc {
-      font-size: 0.83rem;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      margin: 0;
-    }
-
-    /* Downloads Action Hub */
-    .download-hub-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-      margin: 1.5rem 0 2rem;
-    }
-    .dl-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 1.35rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-    .dl-card:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: var(--accent-cyan);
-      transform: translateY(-2px);
-    }
-    .dl-card.highlight {
-      border-color: rgba(56, 189, 248, 0.45);
-      background: rgba(56, 189, 248, 0.06);
-    }
-    .dl-card.highlight:hover {
-      border-color: var(--accent-cyan);
-      background: rgba(56, 189, 248, 0.12);
-    }
-    .dl-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-    }
-    .dl-card-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-pure-white);
-      margin: 0;
-    }
-    .dl-card-desc {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      margin: 0 0 1.25rem;
-      flex-grow: 1;
-    }
-    .dl-card-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    /* Verification File Checklist */
-    .verify-box {
-      background: #060911;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 1.25rem;
-      font-family: ui-monospace, monospace;
-      font-size: 0.84rem;
-      color: #38bdf8;
-      line-height: 1.6;
-      margin: 1rem 0;
-    }
-
-    /* Accordion Details */
-    details.wiki-accordion {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 6px;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-    }
-    details.wiki-accordion summary {
-      padding: 0.85rem 1.15rem;
-      font-weight: 600;
-      color: var(--text-pure-white);
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s ease;
-      outline: none;
-    }
-    details.wiki-accordion summary:hover {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--accent-cyan);
-    }
-    details.wiki-accordion[open] summary {
-      background: rgba(16, 28, 52, 0.5);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    details.wiki-accordion .accordion-content {
-      padding: 1rem 1.15rem;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-  </style>
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
 </head>
 <body>
   <!-- Ambient background grid -->
@@ -370,7 +33,7 @@
     
     <div class="vault-single-card">
       
-      <!-- Top Navigation & Stats Bar inside Card -->
+      <!-- Top Bar inside Card -->
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
         <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
           <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
@@ -378,50 +41,45 @@
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            <span>Back to Projects</span>
+            <span>Back to Special Projects</span>
           </a>
           <a href="project-kyaro.html" class="back-home-link" style="margin-bottom: 0; border-color: rgba(245, 158, 11, 0.35); color: #fbbf24;">
             <span>PSX Original (Beetle PSX) &rarr;</span>
           </a>
         </div>
 
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <span class="tag tag-emerald font-mono">Game v1.0.4 Compatible</span>
-          <span class="tag tag-purple font-mono">BepInEx 6 IL2CPP</span>
-          <span class="tag tag-amber font-mono">Suikoden I &amp; II HD</span>
-          <span class="tag tag-cyan font-mono">Nexus Mods #6</span>
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
+          <span class="tag tag-cyan">Suikoden I &amp; II HD Remaster</span>
         </div>
       </div>
 
       <!-- Header Presentation -->
       <div style="margin-bottom: 1.75rem;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
-            <span class="tag tag-amber">Suikoden I &amp; II HD Remaster</span>
-            <span class="tag tag-cyan">Steam PC Tested</span>
-            <span class="tag tag-emerald">Modding Suite Compatible with SuikodenFix</span>
-          </div>
-          <h1 class="hero-title" style="font-size: 2.35rem; margin-bottom: 0.4rem;">
-            The <span class="text-gradient">PROJECT KYARO</span> Suite
-          </h1>
-          <p style="font-size: 1.05rem; color: #f6b26b; font-weight: 600; margin: 0 0 0.5rem;">
-            A BepInEx Plugin that is a Modding Suite Compatible with SuikodenFix &bull; Compatible to Game v1.0.4
-          </p>
-          <p style="font-size: 0.98rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
-            Comprehensive texture replacements, character portraits framework, sprite smoothing, UI customization, gameplay tweaks, performance optimizations, and quality-of-life improvements—all fully configurable and working seamlessly together. The name <em>"Project Kyaro"</em> pays homage to the very first Suikoden II texture mod on RetroArch.
-          </p>
-          <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-top: 0.4rem;">
-            * This mod was tested for the Steam PC version only; anything beyond that you are on your own.
-          </p>
-        </div>
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Project Kyaro PC</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          Project Kyaro: <span class="text-gradient">Suikoden I &amp; II HD Remaster Suite.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+          <strong>The Project Kyaro Suite</strong> is a modern <strong>BepInEx 6 IL2CPP runtime plugin</strong> designed specifically for the <strong>Suikoden I &amp; II HD Remaster</strong> on PC. Built to work seamlessly with SuikodenFix, it delivers comprehensive DDS texture replacements, dynamic character portraits framework, sprite smoothing, UI customization, performance optimizations, and quality-of-life enhancements—all fully configurable without Special K.
+        </p>
       </div>
 
       <!-- Hero Banner Showcase: Click to Zoom -->
       <div class="hero-banner-container" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
-        <img src="assets/kyaro/project-kyaro-suite.png" alt="Project Kyaro Suite Banner" class="hero-banner-img" loading="eager">
+        <img src="assets/kyaro/project-kyaro-suite.png" alt="Project Kyaro Suite Banner" class="hero-banner-img" loading="lazy">
         <div class="banner-overlay-badge">
           <span class="tag tag-emerald">Nexus Mods #6</span>
-          <span class="tag tag-cyan">Click to Zoom 🔍</span>
+          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
         </div>
         <div class="banner-caption-bar">
           <span><strong>The PROJECT KYARO Suite:</strong> Texture replacements, portraits framework, sprite smoothing &amp; QoL &bull; PC Remaster</span>
@@ -431,8 +89,9 @@
 
       <!-- Special K Dependency Warning Callout -->
       <div class="nexus-quote-box warning">
-        <strong style="color: #fbbf24; font-size: 1.05rem; display: block; margin-bottom: 0.35rem;">
-          ⚠️ Warning: The latest version is no longer dependent on Special K!
+        <strong style="color: #fbbf24; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem;">
+          <svg width="16" height="16" viewBox="0 0 576 512" fill="currentColor"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.983 12.654z"/></svg>
+          Warning: The latest version is no longer dependent on Special K!
         </strong>
         <span>
           Read the instructions carefully. PKCore now natively handles all texture replacement, byte caching, and DDS BC1/BC3/BC7 decoding directly inside BepInEx 6 IL2CPP without requiring <code>dxgi.dll</code>, <code>d3d11.dll</code>, or the legacy <code>SK_Res/</code> folder.
@@ -445,13 +104,13 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           Downloads Hub
         </a>
-        <a href="#changelog" class="jump-nav-btn">Changelog &amp; Patch Notes 📜</a>
-        <a href="#features-list" class="jump-nav-btn">Features &amp; Enhancements ⚡</a>
-        <a href="#installation" class="jump-nav-btn">Installation &amp; Verification 🚀</a>
-        <a href="#known-bugs" class="jump-nav-btn">Known Bugs &amp; Fixes 🐛</a>
-        <a href="#disclosures" class="jump-nav-btn">Algorithms &amp; Disclosures 🎨</a>
-        <a href="#anecdote" class="jump-nav-btn">A Personal Anecdote 💬</a>
-        <a href="#other-mods" class="jump-nav-btn">Faospark's Suikoden Mods ⚔️</a>
+        <a href="#changelog" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 576 512" fill="currentColor"><path d="M552 64H448V24c0-13.3-10.7-24-24-24H24C10.7 0 0 10.7 0 24v400c0 48.5 39.5 88 88 88h376c48.5 0 88-39.5 88-88V88c0-13.3-10.7-24-24-24zM88 464c-22.1 0-40-17.9-40-40V48h352v376c0 10.5 4.1 20.1 10.8 27.2-6.5 8-16 12.8-26.8 12.8H88zm416-40c0 22.1-17.9 40-40 40s-40-17.9-40-40V112h80v312z"/></svg>Changelog &amp; Patch Notes</a>
+        <a href="#features-list" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 320 512" fill="currentColor"><path d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.3 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"/></svg>Features &amp; Enhancements</a>
+        <a href="#installation" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 512 512" fill="currentColor"><path d="M505.120 19.1a319.4 319.4 0 0 0-216.4 125.7c-37.4 46.2-61.9 96.6-77.4 139.9-17.1-7.7-36.1-12-56.1-12-68.5 0-124.9 53.6-127.2 121.2a16 16 0 0 0 15.3 16.5c1.4.1 2.8 0 4.1-.3l108.8-21.8c7.4 11.2 16.5 21.2 27.2 29.7l-21.8 108.8a16 16 0 0 0 16.2 19.4c67.6-2.3 121.2-58.7 121.2-127.2 0-20-4.3-39-12-56.1 43.3-15.5 93.7-40 139.9-77.4A319.4 319.4 0 0 0 492.9 6.88a16 16 0 0 0-16.2-4.78zM368 176a32 32 0 1 1 32-32 32 32 0 0 1-32 32z"/></svg>Installation &amp; Verification</a>
+        <a href="#known-bugs" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 512 512" fill="currentColor"><path d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.497-45.256 0l-54.736-54.736C345.886 467.965 314.35 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.35 0-65.886-12.035-90.636-32.008l-54.736 54.736c-12.498 12.497-32.759 12.497-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.628-54.628c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM256 0c53.019 0 96 42.981 96 96 0 12.606-2.459 24.621-6.898 35.664-9.013 3.966-18.423 7.087-28.187 9.301C305.986 133.045 282.478 128 256 128s-49.986 5.045-60.915 12.965c-9.764-2.214-19.174-5.335-28.187-9.301C162.459 120.621 160 108.606 160 96c0-53.019 42.981-96 96-96z"/></svg>Known Bugs &amp; Fixes</a>
+        <a href="#disclosures" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 512 512" fill="currentColor"><path d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/></svg>Algorithms &amp; Disclosures</a>
+        <a href="#anecdote" class="jump-nav-btn"><svg width="13" height="13" viewBox="0 0 512 512" fill="currentColor"><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/></svg>A Personal Anecdote</a>
+        <a href="#other-mods" class="jump-nav-btn"><svg width="14" height="14" viewBox="0 0 640 512" fill="currentColor"><path d="M480.07 96H159.93L0 416h96l64-64h320l64 64h96L480.07 96zM248 248h-40v40c0 4.42-3.58 8-8 8h-16c-4.42 0-8-3.58-8-8v-40h-40c-4.42 0-8-3.58-8-8v-16c0-4.42 3.58-8 8-8h40v-40c0-4.42 3.58-8 8-8h16c4.42 0 8 3.58 8 8v40h40c4.42 0 8 3.58 8 8v16c0 4.42-3.58 8-8 8zm208 8c-13.25 0-24-10.75-24-24s10.75-24 24-24 24 10.75 24 24-10.75 24-24 24zm48-48c-13.25 0-24-10.75-24-24s10.75-24 24-24 24 10.75 24 24-10.75 24-24 24z"/></svg>Faospark's Suikoden Mods</a>
         <a href="https://github.com/faospark/PKCore/wiki" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">PKCore Wiki &rarr;</a>
         <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-emerald); color: #34d399;">Nexus Page (#6) &rarr;</a>
       </div>
@@ -632,11 +291,11 @@
             <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem;">
               Delete the following files and folders from your game directory:
             </p>
-            <ul style="margin: 0; padding-left: 1.25rem; color: #fca5a5; font-family: ui-monospace, monospace; font-size: 0.85rem; line-height: 1.6;">
-              <li>❌ <code>BepInEx/plugins/PKextended.dll</code></li>
-              <li>❌ <code>BepInEx/config/faospark.pkextended.cfg</code></li>
-              <li>❌ <code>dxgi.dll</code> or <code>d3d11.dll</code> (whichever Special K injector file you used)</li>
-              <li>❌ Entire <code>SK_Res/</code> folder (no longer needed—PKCore handles textures natively and differently)</li>
+            <ul style="margin: 0; padding-left: 1.25rem; color: #fca5a5; font-family: ui-monospace, monospace; font-size: 0.85rem; line-height: 1.6; list-style: none;">
+              <li><svg width="10" height="10" viewBox="0 0 352 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #f87171;"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg><code>BepInEx/plugins/PKextended.dll</code></li>
+              <li><svg width="10" height="10" viewBox="0 0 352 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #f87171;"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg><code>BepInEx/config/faospark.pkextended.cfg</code></li>
+              <li><svg width="10" height="10" viewBox="0 0 352 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #f87171;"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg><code>dxgi.dll</code> or <code>d3d11.dll</code> (whichever Special K injector file you used)</li>
+              <li><svg width="10" height="10" viewBox="0 0 352 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #f87171;"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>Entire <code>SK_Res/</code> folder (no longer needed—PKCore handles textures natively and differently)</li>
             </ul>
           </div>
 
@@ -670,9 +329,9 @@
             <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0 0 0.5rem;">
               Run <code>Suikoden I and II HD Remaster.exe</code>. PKCore will automatically:
             </p>
-            <ul style="margin: 0 0 0.75rem; padding-left: 1.25rem; color: #a7f3d0; font-size: 0.88rem; line-height: 1.55;">
-              <li>✅ Auto-generate new configuration file: <code>BepInEx/config/faospark.pkcore.cfg</code></li>
-              <li>✅ Load with all default settings enabled</li>
+            <ul style="margin: 0 0 0.75rem; padding-left: 1.25rem; color: #a7f3d0; font-size: 0.88rem; line-height: 1.55; list-style: none;">
+              <li><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #34d399;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>Auto-generate new configuration file: <code>BepInEx/config/faospark.pkcore.cfg</code></li>
+              <li><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 6px; color: #34d399;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>Load with all default settings enabled</li>
             </ul>
             <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0;">
               You are done! You can explore and customize other options in <code>BepInEx/config/faospark.pkcore.cfg</code>.
@@ -990,8 +649,5 @@
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
-
-  <!-- Web Components & Global Lightbox Scripts -->
-  <script src="components.js?v=20261022"></script>
 </body>
 </html>

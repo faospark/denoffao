@@ -4,13 +4,218 @@
  * Fully compatible with XAMPP Apache and GitHub Pages.
  */
 
+// ========================================================
+// Vault 7-Theme Color System & Persistence Manager
+// Available Themes: Blue (default), Purple, Orange, Red, Obsidian, Pink, Yellow
+// ========================================================
+const VAULT_THEMES = [
+  { id: 'blue', name: 'Blue', color: '#38bdf8', gradient: 'linear-gradient(135deg, #38bdf8, #1d4ed8)' },
+  { id: 'purple', name: 'Purple', color: '#c084fc', gradient: 'linear-gradient(135deg, #c084fc, #7e22ce)' },
+  { id: 'orange', name: 'Orange', color: '#fb923c', gradient: 'linear-gradient(135deg, #fb923c, #c2410c)' },
+  { id: 'red', name: 'Red', color: '#f87171', gradient: 'linear-gradient(135deg, #f87171, #b91c1c)' },
+  { id: 'obsidian', name: 'Obsidian', color: '#94a3b8', gradient: 'linear-gradient(135deg, #cbd5e1, #334155)' },
+  { id: 'pink', name: 'Pink', color: '#f472b6', gradient: 'linear-gradient(135deg, #f472b6, #db2777)' },
+  { id: 'yellow', name: 'Yellow', color: '#facc15', gradient: 'linear-gradient(135deg, #facc15, #ca8a04)' }
+];
+
+function getStoredVaultTheme() {
+  try {
+    const saved = localStorage.getItem('denoffao_theme');
+    if (saved && VAULT_THEMES.some(t => t.id === saved)) {
+      return saved;
+    }
+  } catch (e) {}
+  return 'blue';
+}
+
+function applyVaultTheme(themeId) {
+  const theme = VAULT_THEMES.find(t => t.id === themeId) || VAULT_THEMES[0];
+  document.documentElement.setAttribute('data-theme', theme.id);
+  try {
+    localStorage.setItem('denoffao_theme', theme.id);
+  } catch (e) {}
+
+  // Update theme pickers across DOM
+  document.querySelectorAll('.vault-theme-picker').forEach(picker => {
+    const label = picker.querySelector('#themeActiveLabel');
+    const swatch = picker.querySelector('#themeActiveSwatch');
+    const btn = picker.querySelector('#vaultThemeBtn');
+    if (label) label.textContent = theme.name;
+    if (swatch) swatch.style.background = theme.gradient;
+    if (btn) btn.setAttribute('title', `Switch Vault Theme (${theme.name})`);
+    picker.querySelectorAll('.theme-option').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-theme-id') === theme.id);
+    });
+  });
+}
+window.applyVaultTheme = applyVaultTheme;
+
+// Immediate application upon script evaluation
+(function initVaultTheme() {
+  if (typeof document !== 'undefined') {
+    const current = getStoredVaultTheme();
+    document.documentElement.setAttribute('data-theme', current);
+  }
+})();
+
+// Listen for storage changes across tabs
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'denoffao_theme' && e.newValue) {
+      applyVaultTheme(e.newValue);
+    }
+  });
+}
+
+// ========================================================
+// Vault Multi-Language Translation System (Google Translate Powered)
+// Supported: English, Japanese, Thai, Portuguese, Indonesian, Cebuano, Spanish, French
+// ========================================================
+const VAULT_LANGUAGES = [
+  { id: 'en', name: 'English', nativeName: 'English (Original)', shortName: 'EN' },
+  { id: 'ja', name: 'Japanese', nativeName: '日本語', shortName: 'JA' },
+  { id: 'th', name: 'Thai', nativeName: 'ไทย', shortName: 'TH' },
+  { id: 'pt', name: 'Portuguese', nativeName: 'Português', shortName: 'PT' },
+  { id: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia', shortName: 'ID' },
+  { id: 'ceb', name: 'Cebuano', nativeName: 'Binisiya (Cebuano)', shortName: 'CEB' },
+  { id: 'es', name: 'Spanish', nativeName: 'Español', shortName: 'ES' },
+  { id: 'fr', name: 'French', nativeName: 'Français', shortName: 'FR' }
+];
+
+function getStoredVaultLanguage() {
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([a-zA-Z\-]+)/);
+    if (match && match[1]) {
+      const code = match[1].toLowerCase();
+      if (VAULT_LANGUAGES.some(l => l.id === code)) {
+        return code;
+      }
+    }
+    const saved = localStorage.getItem('denoffao_lang');
+    if (saved && VAULT_LANGUAGES.some(l => l.id === saved)) {
+      return saved;
+    }
+  } catch (e) {}
+  return 'en';
+}
+
+function setGoogleTransCookie(val) {
+  try {
+    const host = window.location.hostname;
+    if (val) {
+      document.cookie = `googtrans=${val}; path=/;`;
+      if (host && host !== 'localhost') {
+        document.cookie = `googtrans=${val}; domain=.${host}; path=/;`;
+      }
+    } else {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      if (host && host !== 'localhost') {
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.${host}; path=/;`;
+      }
+    }
+  } catch (e) {}
+}
+
+function applyVaultLanguage(langId) {
+  const target = VAULT_LANGUAGES.find(l => l.id === langId) || VAULT_LANGUAGES[0];
+  const current = getStoredVaultLanguage();
+  if (target.id === current) return;
+
+  if (target.id === 'en') {
+    setGoogleTransCookie('');
+    try {
+      localStorage.removeItem('denoffao_lang');
+    } catch (e) {}
+    window.location.reload();
+    return;
+  }
+
+  setGoogleTransCookie(`/en/${target.id}`);
+  try {
+    localStorage.setItem('denoffao_lang', target.id);
+  } catch (e) {}
+
+  const select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = target.id;
+    select.dispatchEvent(new Event('change'));
+    updateVaultLangUI(target.id);
+  } else {
+    window.location.reload();
+  }
+}
+window.applyVaultLanguage = applyVaultLanguage;
+
+function updateVaultLangUI(langId) {
+  const lang = VAULT_LANGUAGES.find(l => l.id === langId) || VAULT_LANGUAGES[0];
+  document.querySelectorAll('.vault-lang-picker').forEach(picker => {
+    const label = picker.querySelector('#langActiveLabel');
+    const btn = picker.querySelector('#vaultLangBtn');
+    if (label) label.textContent = lang.shortName;
+    if (btn) btn.setAttribute('title', `Translate Website (${lang.nativeName})`);
+    picker.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.getAttribute('data-lang-id') === lang.id);
+    });
+  });
+}
+
+// Immediate cookie check & sync
+(function initVaultLanguage() {
+  if (typeof document !== 'undefined') {
+    try {
+      const saved = localStorage.getItem('denoffao_lang');
+      const hasCookie = /(?:^|;\s*)googtrans=/.test(document.cookie);
+      if (saved && saved !== 'en' && !hasCookie && VAULT_LANGUAGES.some(l => l.id === saved)) {
+        setGoogleTransCookie(`/en/${saved}`);
+      }
+    } catch (e) {}
+  }
+})();
+
+function loadGoogleTranslateScript() {
+  if (typeof document === 'undefined') return;
+  if (document.getElementById('google-translate-script')) return;
+
+  // Add hidden container for Google Translate element if not present
+  if (!document.getElementById('google_translate_element')) {
+    const div = document.createElement('div');
+    div.id = 'google_translate_element';
+    div.className = 'notranslate';
+    div.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;';
+    (document.body || document.documentElement).appendChild(div);
+  }
+
+  window.googleTranslateElementInit = function() {
+    try {
+      new window.google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ja,th,pt,id,ceb,es,fr',
+        autoDisplay: false
+      }, 'google_translate_element');
+    } catch (e) {}
+  };
+
+  const script = document.createElement('script');
+  script.id = 'google-translate-script';
+  script.type = 'text/javascript';
+  script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  (document.body || document.head || document.documentElement).appendChild(script);
+}
+
 // SVG Icon Definitions (Clean, crisp, lightweight vectors)
 const ICONS = {
-  star: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px; margin-left: 4px; display: inline-block; color: var(--accent-amber, #f59e0b);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+  star: `<svg width="12" height="12" viewBox="0 0 576 512" fill="currentColor" style="vertical-align: -1px; margin-right: 3px; display: inline-block; color: var(--accent-amber, #f59e0b);"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>`,
   heart: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px; margin-left: 4px; display: inline-block; color: var(--accent-rose, #f43f5e);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
   vault: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`,
   menu: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`,
-  footerVault: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`
+  footerVault: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`,
+  calendar: `<svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>`,
+  search: `<svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 3px;"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>`,
+  download: `<svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 3px; margin-left: 4px;"><path d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"/></svg>`,
+  bolt: `<svg width="11" height="11" viewBox="0 0 320 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.3 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"/></svg>`,
+  paypal: `<svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></svg>`,
+  youtube: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+  globe: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: -1px; color: var(--accent-cyan);"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>`
 };
 
 class VaultNavbar extends HTMLElement {
@@ -23,6 +228,14 @@ class VaultNavbar extends HTMLElement {
     const isBlog = active === 'blog' || active === 'archives';
     const isDonate = active === 'donate';
 
+    const currentThemeId = getStoredVaultTheme();
+    const currentTheme = VAULT_THEMES.find(t => t.id === currentThemeId) || VAULT_THEMES[0];
+
+    const currentLangId = getStoredVaultLanguage();
+    const currentLang = VAULT_LANGUAGES.find(l => l.id === currentLangId) || VAULT_LANGUAGES[0];
+
+    loadGoogleTranslateScript();
+
     this.innerHTML = `
       <header class="obsidian-topbar">
         <div class="container topbar-content">
@@ -32,10 +245,6 @@ class VaultNavbar extends HTMLElement {
             </span>
           </a>
 
-          <button class="mobile-nav-toggle" id="vaultMobileNavToggle" aria-label="Toggle navigation">
-            ${ICONS.menu}
-          </button>
-
           <ul class="nav-links" id="vaultNavLinks">
             <li><a href="index.html" class="nav-link ${isHome ? 'active' : ''}">Workshop Home</a></li>
             <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Special Projects</a></li>
@@ -43,6 +252,65 @@ class VaultNavbar extends HTMLElement {
             <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog Archives</a></li>
             <li><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Personal Update</a></li>
           </ul>
+
+          <div class="topbar-actions notranslate">
+            <!-- Language Selector Dropdown -->
+            <div class="vault-lang-picker notranslate" id="vaultLangPicker">
+              <button type="button" class="lang-picker-btn notranslate" id="vaultLangBtn" aria-haspopup="true" aria-expanded="false" title="Translate Website (${currentLang.nativeName})">
+                <span class="lang-active-icon notranslate">${ICONS.globe}</span>
+                <span class="lang-active-label notranslate" id="langActiveLabel">${currentLang.shortName}</span>
+                <svg class="lang-chevron notranslate" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="lang-dropdown-menu notranslate" id="langDropdownMenu" role="menu" aria-label="Language options">
+                <div class="lang-dropdown-title notranslate">Translate Language</div>
+                ${VAULT_LANGUAGES.map(l => `
+                  <button type="button" class="lang-option notranslate ${l.id === currentLang.id ? 'active' : ''}" data-lang-id="${l.id}" role="menuitem">
+                    <span class="lang-badge notranslate">${l.shortName}</span>
+                    <div class="lang-labels notranslate">
+                      <span class="lang-name notranslate">${l.nativeName}</span>
+                      ${l.id !== 'en' ? `<span class="lang-subname notranslate">${l.name}</span>` : ''}
+                    </div>
+                    <span class="lang-check notranslate">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Theme Selector Dropdown -->
+            <div class="vault-theme-picker notranslate" id="vaultThemePicker">
+              <button type="button" class="theme-picker-btn notranslate" id="vaultThemeBtn" aria-haspopup="true" aria-expanded="false" title="Switch Vault Theme (${currentTheme.name})">
+                <span class="theme-active-swatch notranslate" id="themeActiveSwatch" style="background: ${currentTheme.gradient};"></span>
+                <span class="theme-active-label notranslate" id="themeActiveLabel">${currentTheme.name}</span>
+                <svg class="theme-chevron notranslate" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="theme-dropdown-menu notranslate" id="themeDropdownMenu" role="menu" aria-label="Theme options">
+                <div class="theme-dropdown-title notranslate">Vault Theme</div>
+                ${VAULT_THEMES.map(t => `
+                  <button type="button" class="theme-option notranslate ${t.id === currentTheme.id ? 'active' : ''}" data-theme-id="${t.id}" role="menuitem">
+                    <span class="theme-swatch notranslate" style="background: ${t.gradient};"></span>
+                    <span class="theme-name notranslate">${t.name}</span>
+                    <span class="theme-check notranslate">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <button class="mobile-nav-toggle notranslate" id="vaultMobileNavToggle" aria-label="Toggle navigation">
+              ${ICONS.menu}
+            </button>
+          </div>
         </div>
       </header>
     `;
@@ -58,6 +326,90 @@ class VaultNavbar extends HTMLElement {
         a.addEventListener('click', () => {
           links.classList.remove('mobile-open');
         });
+      });
+    }
+
+    // Built-in Theme Picker toggle and option selection
+    const picker = this.querySelector('#vaultThemePicker');
+    const themeBtn = this.querySelector('#vaultThemeBtn');
+    if (picker && themeBtn) {
+      themeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (langPicker) {
+          langPicker.classList.remove('open');
+          langBtn?.setAttribute('aria-expanded', 'false');
+        }
+        const isOpen = picker.classList.toggle('open');
+        themeBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      picker.querySelectorAll('.theme-option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetTheme = opt.getAttribute('data-theme-id');
+          if (targetTheme) {
+            applyVaultTheme(targetTheme);
+          }
+          picker.classList.remove('open');
+          themeBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!picker.contains(e.target)) {
+          picker.classList.remove('open');
+          themeBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && picker.classList.contains('open')) {
+          picker.classList.remove('open');
+          themeBtn.setAttribute('aria-expanded', 'false');
+          themeBtn.focus();
+        }
+      });
+    }
+
+    // Built-in Language Picker toggle and option selection
+    const langPicker = this.querySelector('#vaultLangPicker');
+    const langBtn = this.querySelector('#vaultLangBtn');
+    if (langPicker && langBtn) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (picker) {
+          picker.classList.remove('open');
+          themeBtn?.setAttribute('aria-expanded', 'false');
+        }
+        const isOpen = langPicker.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      langPicker.querySelectorAll('.lang-option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetLang = opt.getAttribute('data-lang-id');
+          if (targetLang) {
+            applyVaultLanguage(targetLang);
+          }
+          langPicker.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!langPicker.contains(e.target)) {
+          langPicker.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && langPicker.classList.contains('open')) {
+          langPicker.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+          langBtn.focus();
+        }
       });
     }
   }
@@ -77,7 +429,7 @@ class VaultFooter extends HTMLElement {
         <div class="container">
           <div class="footer-content">
             <div class="community-box">
-              <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif">
+              <img src="assets/kyaro/moogles-and-mods.gif" alt="Moogles and Mods Discord" class="community-gif" loading="lazy">
               <div style="flex-grow: 1; min-width: 240px;">
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
                   <span class="tag tag-cyan">Community Hub</span>
@@ -112,15 +464,30 @@ class VaultFooter extends HTMLElement {
                   <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.002 2.213-3.66 6.84 3.746 5.185 8.16-.38 8.653-3.08.494 2.7 4.908 8.265 8.653 3.08 3.342-4.627.252-6.26-3.66-6.84a8.68 8.68 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.479 0-.687-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
                 </svg>
               </a>
+              <a href="https://www.youtube.com/@faosparkNeo" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="YouTube Channel (@faosparkNeo)">
+                ${ICONS.youtube}
+              </a>
               <a href="https://paypal.me/thefaospark?country.x=PH&locale.x=en_US" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Donate via PayPal">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
+                ${ICONS.paypal}
               </a>
             </div>
           </div>
 
           <div class="footer-bottom">
+            <div class="retro-counter-badge" id="denRetroCounter" title="Retro hit counter (Seeded by counters.csv)">
+              <div class="retro-counter-label">
+                <span class="retro-blinker"></span>
+                <span>VISITOR NO.</span>
+              </div>
+              <div class="retro-odometer" id="retroOdometerDigits">
+                <span class="retro-digit">0</span>
+                <span class="retro-digit">0</span>
+                <span class="retro-digit">0</span>
+                <span class="retro-digit">0</span>
+                <span class="retro-digit">0</span>
+                <span class="retro-digit">0</span>
+              </div>
+            </div>
             <span>${disclaimer}</span>
             <button type="button" class="cookie-settings-btn" id="openCookieSettingsBtn">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Cookie Preferences
@@ -129,6 +496,9 @@ class VaultFooter extends HTMLElement {
         </div>
       </footer>
     `;
+
+    // Initialize retro hit counter from counters.csv
+    initRetroCounter(this);
 
     const prefsBtn = this.querySelector('#openCookieSettingsBtn');
     if (prefsBtn) {
@@ -140,6 +510,59 @@ class VaultFooter extends HTMLElement {
       });
     }
   }
+}
+
+/**
+ * Initializes the retro mechanical hit counter using counters.csv base seeds + localStorage
+ */
+function initRetroCounter(container) {
+  const digitsEl = container.querySelector('#retroOdometerDigits');
+  if (!digitsEl) return;
+
+  let rawPage = window.location.pathname.split('/').pop() || 'index.html';
+  if (!rawPage || rawPage === '/') rawPage = 'index.html';
+
+  const renderDigits = (num) => {
+    const padded = String(Math.max(0, num)).padStart(6, '0').slice(-6);
+    digitsEl.innerHTML = padded.split('').map(d => `<span class="retro-digit">${d}</span>`).join('');
+  };
+
+  fetch('counters.csv')
+    .then(res => {
+      if (!res.ok) throw new Error('CSV not reachable');
+      return res.text();
+    })
+    .then(text => {
+      let baseCount = 18420;
+      const lines = text.trim().split(/\r?\n/);
+      for (let i = 1; i < lines.length; i++) {
+        const parts = lines[i].split(',');
+        if (parts[0] && parts[0].trim().toLowerCase() === rawPage.toLowerCase()) {
+          baseCount = parseInt(parts[1], 10) || baseCount;
+          break;
+        }
+      }
+
+      const storageKey = `den_hits_${rawPage}`;
+      let userHits = 0;
+      try {
+        userHits = parseInt(localStorage.getItem(storageKey) || '0', 10);
+        userHits += 1;
+        localStorage.setItem(storageKey, userHits);
+      } catch (e) {}
+
+      renderDigits(baseCount + userHits);
+    })
+    .catch(() => {
+      let fallback = 24890;
+      try {
+        const key = `den_hits_${rawPage}`;
+        let u = (parseInt(localStorage.getItem(key) || '0', 10)) + 1;
+        localStorage.setItem(key, u);
+        fallback += u;
+      } catch (e) {}
+      renderDigits(fallback);
+    });
 }
 if (!customElements.get('vault-footer')) {
   customElements.define('vault-footer', VaultFooter);
@@ -296,9 +719,9 @@ class FF9Mods extends HTMLElement {
         <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
           <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
-            <span class="tag tag-emerald">📅 ${mod.date}</span>
+            <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
-          <span class="preview-zoom-hint">🔍 Zoom</span>
+          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
         </div>
         <div class="mod-tile-body">
           <div>
@@ -500,9 +923,9 @@ class ApocalypseMods extends HTMLElement {
           <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-purple">${mod.category}</span>
-            <span class="tag tag-emerald">⭐ ${mod.endorsements} | 💾 ${mod.downloads}</span>
+            <span class="tag tag-emerald">${ICONS.star} ${mod.endorsements} | ${ICONS.download} ${mod.downloads}</span>
           </div>
-          <span class="preview-zoom-hint">🔍 Zoom</span>
+          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
         </div>
         <div class="mod-tile-body">
           <div>
@@ -827,17 +1250,6 @@ const ALL_MODS_DATA = [
     "image": "assets/mods/79-1730465189-884409757.png",
     "desc": "Flexible challenge mode modifier: choose between No EXP/AP gain, No EXP but gain AP (classic Level 1 challenge run), doubled EXP, or 8x EXP curve for hardcore progression.",
     "badge": "Nexus Mods (#79)"
-  },
-  {
-    "id": 111,
-    "title": "Moguri Mod Alternative Download Links",
-    "url": "https://www.nexusmods.com/finalfantasy9/mods/111",
-    "game": "Final Fantasy IX",
-    "category": "ffix",
-    "date": "Jul 15, 2025",
-    "image": "assets/mods/111-1752602164-580928720.png",
-    "desc": "Alternative download mirrors and reliable direct links for Moguri Mod FFIX.",
-    "badge": "Nexus Mods (#111)"
   },
   {
     "id": 18,
@@ -1302,12 +1714,14 @@ class ModsCatalog extends HTMLElement {
     const rawLimit = parseInt(this.getAttribute('limit'), 10);
     const limit = (!isNaN(rawLimit) && rawLimit > 0) ? rawLimit : 0;
     const hideHeader = this.hasAttribute('no-header');
+    const targetCategory = (this.getAttribute('category') || this.getAttribute('filter') || '').toLowerCase().trim();
 
-    const displayedMods = limit > 0 ? ALL_MODS_DATA.slice(0, limit) : ALL_MODS_DATA;
+    const sourceData = targetCategory ? ALL_MODS_DATA.filter(m => (m.category || '').toLowerCase() === targetCategory) : ALL_MODS_DATA;
+    const displayedMods = limit > 0 ? sourceData.slice(0, limit) : sourceData;
 
     // Dynamically calculate category counts
-    const counts = { all: ALL_MODS_DATA.length };
-    ALL_MODS_DATA.forEach(m => {
+    const counts = { all: sourceData.length };
+    sourceData.forEach(m => {
       counts[m.category] = (counts[m.category] || 0) + 1;
     });
 
@@ -1322,13 +1736,13 @@ class ModsCatalog extends HTMLElement {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                   </svg>
-                  Latest Mod Releases (Showing ${limit} of ${ALL_MODS_DATA.length})
+                  Latest Mod Releases (Showing ${limit} of ${sourceData.length})
                 </span>
                 <h2 class="section-title">Recent Mod Updates</h2>
               </div>
-              <a href="mods.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                <span>View Full Library (${ALL_MODS_DATA.length} Mods)</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <a href="mods.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
+                <span>Explore all</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </a>
             </div>
             <p class="section-desc">The newest mod releases and updates arranged chronologically. Looking for our complete collection? Visit the dedicated full library with instant search and category filters.</p>
@@ -1343,11 +1757,11 @@ class ModsCatalog extends HTMLElement {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                   </svg>
-                  Complete Catalog (${ALL_MODS_DATA.length} Mods)
+                  Complete Catalog (${sourceData.length} Mods)
                 </span>
                 <h2 class="section-title">All Released Modifications</h2>
               </div>
-              <span class="tag tag-emerald font-mono">⚡ Sorted: Last Updated (Newest First)</span>
+              <span class="tag tag-emerald font-mono">${ICONS.bolt} Sorted: Last Updated (Newest First)</span>
             </div>
             <p class="section-desc">Arranged chronologically by last update date. Search by name, game, category, or release year.</p>
           </div>
@@ -1363,9 +1777,9 @@ class ModsCatalog extends HTMLElement {
         <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
           <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
-            <span class="tag tag-emerald">📅 ${mod.date}</span>
+            <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
-          <span class="preview-zoom-hint">🔍 Zoom</span>
+          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
         </div>
         <div class="mod-tile-body">
           <div>
@@ -1390,18 +1804,12 @@ class ModsCatalog extends HTMLElement {
           <div class="mods-grid-catalog" id="catalogGrid">
             ${cardsHtml}
           </div>
-          <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="mods.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem;">
-              <span>Explore All ${ALL_MODS_DATA.length} Mods in Dedicated Library</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </a>
-          </div>
         </div>
       `;
       return;
     }
 
-    const filterTabsHtml = `
+    const filterTabsHtml = targetCategory ? '' : `
       <div class="filter-tabs">
         <button class="filter-btn active" data-filter="all">All (${counts.all})</button>
         <button class="filter-btn" data-filter="chrono">Chrono Cross (${counts.chrono || 0})</button>
@@ -1413,13 +1821,17 @@ class ModsCatalog extends HTMLElement {
       </div>
     `;
 
+    const searchPlaceholder = targetCategory === 'ffvi'
+      ? 'Search FFVI Old Ver mods (e.g. Sane UI, Celes, Portraits, Backgrounds)...'
+      : 'Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)...';
+
     this.innerHTML = `
       <div class="mods-catalog-wrapper">
         ${headerHtml}
 
         <div class="search-bar-wrap">
           <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="catalogSearchInput" class="search-input" placeholder="Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)..." autocomplete="off">
+          <input type="text" id="catalogSearchInput" class="search-input" placeholder="${searchPlaceholder}" autocomplete="off">
         </div>
 
         ${filterTabsHtml}
@@ -1441,7 +1853,7 @@ class ModsCatalog extends HTMLElement {
     const noResults = this.querySelector('#catalogNoResults');
     const resetBtn = this.querySelector('#catalogResetBtn');
 
-    let currentFilter = 'all';
+    let currentFilter = targetCategory || 'all';
     let currentQuery = '';
 
     const applyFilter = () => {
@@ -1452,7 +1864,7 @@ class ModsCatalog extends HTMLElement {
         const cat = card.getAttribute('data-category');
         const text = card.getAttribute('data-search') || '';
 
-        const matchCat = (currentFilter === 'all' || cat === currentFilter);
+        const matchCat = targetCategory ? (cat === targetCategory) : (currentFilter === 'all' || cat === currentFilter);
         const matchQuery = (!q || text.includes(q));
 
         if (matchCat && matchQuery) {
@@ -1488,7 +1900,7 @@ class ModsCatalog extends HTMLElement {
       resetBtn.addEventListener('click', () => {
         if (searchInput) searchInput.value = '';
         currentQuery = '';
-        currentFilter = 'all';
+        currentFilter = targetCategory || 'all';
         filterBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
         applyFilter();
       });

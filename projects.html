@@ -5,15 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Special Projects &amp; Major Suites — Faospark's Workshop</title>
   
-  <meta name="description" content="Explore Faospark's flagship modification projects: Kupo Mods Library (FFIX), Project Kyaro (Suikoden II), Opera Omnia Portraits Collection, and Darker UI Suites.">
+  <meta name="description" content="Explore Faospark's flagship modification projects: Project Kyaro (Suikoden II), Kupo-UI.PR Framework, SuiSaveEditor, and Kupo Mods Library (FFIX).">
   <meta property="og:url" content="https://denoffao.me/projects.html"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Special Projects — Faospark's Obsidian Vault"/>
-  <meta property="og:description" content="Major multi-module ecosystems, PSX texture overhauls, and iconic portrait suites."/>
+  <meta property="og:title" content="Special Projects — Faospark's Den of Mods"/>
+  <meta property="og:description" content="Major multi-module ecosystems, PSX texture overhauls, and iconic PR frameworks."/>
   <meta property="og:image" content="assets/mods/kupo-mods-library.png"/>
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
 
   <!-- Pure Web-Safe Stylesheet -->
   <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
 </head>
 <body>
   <!-- Ambient background grid -->
@@ -37,94 +43,77 @@
           <span>Back to Mod Workshop</span>
         </a>
 
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <span class="tag tag-emerald">6 Flagship Projects</span>
+          <span class="tag tag-cyan">Curated Directory</span>
+        </div>
       </div>
 
-      <!-- Header Presentation -->
-      <div style="margin-bottom: 1.75rem;">
-        <div class="hero-meta-badge" style="margin-bottom: 0.85rem;">
-          <span class="pulse-dot"></span>
-          <span>Curated Flagships &bull; Multi-Year Overhauls &bull; Deep Modification Hubs</span>
+      <!-- Header Presentation with Dedicated Off-Canvas Jump Box -->
+      <div class="projects-hero-wrap">
+        <div class="projects-hero-info">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+            <span class="pulse-dot"></span>
+            <a href="index.html" class="bc-link">Home</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">Special Projects</span>
+          </nav>
+
+          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+            Special Projects &amp; <span class="text-gradient">Flagship Suites.</span>
+          </h1>
+
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 820px;">
+            While individual mod releases address specific game mechanics or visual tweaks, these <strong>Flagship Projects</strong> represent multi-month architectural undertakings. From the modern <strong>Project Kyaro Suite</strong> for PC and the classic <strong>Project Kyaro (PSX)</strong> overhaul to the <strong>Kupo-UI.PR Framework</strong>, <strong>FFVI Old Ver Mods</strong>, and the modular <strong>Kupo Mods Library</strong>, explore the dedicated hubs below.
+          </p>
         </div>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
-          Special Projects &amp; <span class="text-gradient">Flagship Suites.</span>
-        </h1>
-
-        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
-          While individual mod releases address specific game mechanics or visual tweaks, these <strong>Flagship Projects</strong> represent multi-month architectural undertakings. From the modern <strong>Project Kyaro Suite</strong> for PC and the classic <strong>Project Kyaro (PSX)</strong> overhaul to the complete modular <strong>Kupo Mods Library</strong> for Final Fantasy IX, explore the dedicated hubs below.
-        </p>
-      </div>
-
-      
-      <!-- Quick Jump Row -->
-      <div class="jump-nav-row" style="margin-bottom: 1.5rem;">
-        <a href="#suisaveeditor" class="jump-nav-btn">SuiSaveEditor (Suikoden II Web Tool)</a>
-        <a href="#project-kyaro-pc" class="jump-nav-btn">Project Kyaro Suite (PC Remaster)</a>
-        <a href="#project-kyaro-psx" class="jump-nav-btn">Project Kyaro (PSX)</a>
-        <a href="#kupo-library" class="jump-nav-btn">Kupo Mods Library (FFIX)</a>
-        <a href="#darker-ui" class="jump-nav-btn">Darker UI Series</a>
-      </div>
-
-      <hr class="rpg-divider">
-
-      <!-- FEATURED PROJECT: Suikoden II Remaster Save Editor (SuiSaveEditor) -->
-      <section class="project-entry" id="suisaveeditor">
-        <div class="project-preview" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — Web GUI')">
-          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Featured Web Tool</span>
-            <span class="tag tag-amber">Suikoden II HD Remaster</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Web App &amp; PWA</span>
-              <span class="tag tag-amber">Suikoden II HD</span>
-              <span class="tag tag-cyan">100% Client-Side</span>
-              <span class="tag">SuikodenFix JSON</span>
+        <!-- Off-Canvas Jump Box (Moves back in line on smaller viewports) -->
+        <aside class="projects-jump-box" aria-label="Quick Jump Menu">
+          <div class="jump-box-header">
+            <div class="jump-box-title-group">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="jump-box-icon">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span class="jump-box-title">Quick Jump Box</span>
             </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="suisaveeditor.html" style="color: inherit; text-decoration: none;">Suikoden II HD Remaster Save Editor</a>
-            </h2>
-            <p class="project-description">
-              A minimal, static web-based GUI and Progressive Web Application (PWA) for editing Suikoden II HD Remaster JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any web browser with zero runtime installations and complete client-side data privacy.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Party, Roster &amp; Stats:</strong> Edit 6-character active battle teams, 2 convoy slots, character levels, HP, combat attributes, and recruitment flags.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Visual MP &amp; Smart Runes:</strong> Unique visual MP system with filled/empty squares (■/□) plus slot-specific and character-specific rune restrictions.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Inventories &amp; Castle Aliases:</strong> Key event items, warehouse storage, bath items, Greenhill student aliases, and food menu presets.</span>
-              </li>
-            </ul>
+            <span class="tag tag-cyan" style="font-size: 0.7rem; padding: 0.2rem 0.5rem; text-shadow: none;">6 Suites</span>
           </div>
 
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="suisaveeditor.html" class="btn btn-primary btn-sm">
-                <span>Explore Project Guide &rarr;</span>
-              </a>
-              <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
-                <span>Launch Web Tool &rarr;</span>
-              </a>
-              <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                <span>GitHub Repo</span>
-              </a>
-            </div>
-            <span class="tag tag-emerald">v1.3.2 Live PWA</span>
+          <div class="jump-box-links">
+            <a href="#project-kyaro-pc" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Project Kyaro Suite <span class="jump-box-sub">PC Remaster</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#project-kyaro-psx" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Project Kyaro <span class="jump-box-sub">PSX Classic</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#kupo-ui-pr" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Kupo-UI.PR <span class="jump-box-sub">Framework (FF1–FF6)</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#suisaveeditor" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">SuiSaveEditor <span class="jump-box-sub">Suikoden II Web Tool</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#ffvi-old-ver" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">FFVI Old Ver <span class="jump-box-sub">Mods (Steam)</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#kupo-library" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Kupo Mods <span class="jump-box-sub">Library (FFIX)</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
           </div>
-        </div>
-      </section>
+        </aside>
+      </div>
 
       <hr class="rpg-divider">
 
@@ -136,7 +125,7 @@
             <span class="tag tag-emerald">Updated: Oct 2026</span>
             <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
           </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
         </div>
 
         <div class="project-details">
@@ -182,7 +171,6 @@
                 <span>View PSX Classic Hub &rarr;</span>
               </a>
             </div>
-            <span class="tag tag-emerald">Active PC Suite</span>
           </div>
         </div>
       </section>
@@ -197,7 +185,7 @@
             <span class="tag tag-emerald">Featured by LibRetro</span>
             <span class="tag tag-amber">Suikoden II (PSX)</span>
           </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
         </div>
 
         <div class="project-details">
@@ -242,14 +230,189 @@
                 <span>Pyriel Bugfixes Patch</span>
               </a>
             </div>
-            <span class="tag tag-emerald">V2.6 Active</span>
           </div>
         </div>
       </section>
 
       <hr class="rpg-divider">
 
-      <!-- PROJECT 3: Kupo Mods Library -->
+      <!-- PROJECT 3: Kupo-UI.PR Framework (FF1–FF6 Pixel Remasters) -->
+      <section class="project-entry" id="kupo-ui-pr">
+        <div class="project-preview" onclick="openLightbox('assets/mods/kupo-ui-framework.png', 'Kupo Ui — Preview Handbook for Kupo Ui Framework')">
+          <img src="assets/mods/kupo-ui-framework.png" alt="Preview Handbook for Kupo Ui Framework" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Universal Framework</span>
+            <span class="tag tag-cyan">FF1–FF6 PR</span>
+          </div>
+          <span class="preview-zoom-hint" style="display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
+              <span class="tag tag-cyan">Universal (FF1–FF6)</span>
+              <span class="tag tag-amber">Zero Bundle Editing</span>
+              <span class="tag">Hot-Reloadable</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="project-kupo-ui-pr.html" style="color: inherit; text-decoration: none;">Kupo-UI.PR (Pixel Remaster UI Framework)</a>
+            </h2>
+            <p class="project-description">
+              A comprehensive BepInEx IL2CPP runtime plugin for the <strong>Final Fantasy Pixel Remaster series (FF1–FF6)</strong>. Eradicates tedious Unity bundle unpacking and repacking by providing a 5-layer cascading texture replacement pipeline, dynamic dialogue portrait injection, rich-text inline icons, custom typography, and data-driven GameObject manipulation.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Zero-Bundle Texture Engine:</strong> 5-layer priority cascade with live disk hot-reload, path-based overrides for duplicate assets, and 9-slice sidecar metadata.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Cinematic Dialogue &amp; Portraits:</strong> Injects facial portraits directly into message windows, prepends speaker names, and remaps FF2, FF4, and FF6 menu portraits.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Data-Driven Hierarchy Control:</strong> Reposition, scale, resize, and restyle UI GameObjects via <code>ObjectConfig.json</code> without compiling C#.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-kupo-ui-pr.html" class="btn btn-primary btn-sm">
+                <span>Explore Framework Guide &rarr;</span>
+              </a>
+              <a href="https://github.com/faospark/Kupo-UI.PR" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                <span>GitHub Repo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 4: Suikoden II Remaster Save Editor (SuiSaveEditor) -->
+      <section class="project-entry" id="suisaveeditor">
+        <div class="project-preview" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — Web GUI')">
+          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">Featured Web Tool</span>
+            <span class="tag tag-amber">Suikoden II HD Remaster</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-emerald">Web App &amp; PWA</span>
+              <span class="tag tag-amber">Suikoden II HD</span>
+              <span class="tag tag-cyan">100% Client-Side</span>
+              <span class="tag">SuikodenFix JSON</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="project-suisaveeditor.html" style="color: inherit; text-decoration: none;">SuiSaveEditor (Suikoden II HD Save Editor)</a>
+            </h2>
+            <p class="project-description">
+              A minimal, static web-based GUI and Progressive Web Application (PWA) for editing Suikoden II HD Remaster JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any web browser with zero runtime installations and complete client-side data privacy.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Party, Roster &amp; Stats:</strong> Edit 6-character active battle teams, 2 convoy slots, character levels, HP, combat attributes, and recruitment flags.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Visual MP &amp; Smart Runes:</strong> Unique visual MP system with filled/empty squares (■/□) plus slot-specific and character-specific rune restrictions.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Inventories &amp; Castle Aliases:</strong> Key event items, warehouse storage, bath items, Greenhill student aliases, and food menu presets.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-suisaveeditor.html" class="btn btn-primary btn-sm">
+                <span>Explore Save Editor Guide &rarr;</span>
+              </a>
+              <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
+                <span>Launch Web Tool &rarr;</span>
+              </a>
+              <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                <span>GitHub Repo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 5: Final Fantasy VI (Old Ver.) Mods & Sane UI Suite -->
+      <section class="project-entry" id="ffvi-old-ver">
+        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-ver-showcase.png', 'FFVI Old Ver Mods & Sane UI Suite — Final Fantasy VI (Old Ver.)')">
+          <img src="assets/mods/ffvi-old-ver-showcase.png" alt="FFVI Old Ver Mods and Sane UI Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <div class="preview-badge-overlay">
+            <span class="tag tag-emerald">10 Released Mods</span>
+            <span class="tag tag-purple">Final Fantasy VI (Old Ver.)</span>
+          </div>
+          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+
+        <div class="project-details">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag tag-purple">FFVI Old Ver</span>
+              <span class="tag tag-emerald">10 Curated Mods</span>
+              <span class="tag tag-cyan">Sane UI Suite</span>
+              <span class="tag">PC Steam</span>
+            </div>
+            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+              <a href="project-ffvi-old-ver-mods.html" style="color: inherit; text-decoration: none;">FFVI Old Ver Mods</a>
+            </h2>
+            <p class="project-description">
+              A flagship project featuring a massive collection of mods created over the years for the classic Steam release of Final Fantasy VI. Includes essential overhauls such as the <strong>Sane UI</strong>—the only mod right now featuring a horizontal ATB bar—and the <strong>Celes Patch</strong> restoring her original recruitment scene. In its modded state, it stands light years ahead of the Pixel Remaster with an active future and new modding tools on the way.
+            </p>
+            <ul class="project-features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Sane UI Overhaul:</strong> Banishes mobile touchscreen elements, compacts menus, and adds modern horizontal ATB gauges and custom HUD alignment.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Celes Scene &amp; Visual Fixes:</strong> Restores the uncut South Figaro Celes recruitment sequence, true earthen overworld tilesets, and crisp battle backgrounds.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Opera Omnia Portraits &amp; Clean Fonts:</strong> High-detail DFFOO-inspired character portraits and proportional, scaled-down typography.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="project-card-footer">
+            <div class="download-options">
+              <a href="project-ffvi-old-ver-mods.html" class="btn btn-primary btn-sm">
+                <span>Explore FFVI Old Ver Hub &rarr;</span>
+              </a>
+              <a href="https://www.nexusmods.com/finalfantasy6/mods/19" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>Sane UI on Nexus (#19)</span>
+              </a>
+              <a href="https://www.nexusmods.com/finalfantasy6/mods/32" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <span>Celes Patch on Nexus (#32)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- PROJECT 6: Kupo Mods Library -->
       <section class="project-entry" id="kupo-library">
         <div class="project-preview" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library — Final Fantasy IX')">
           <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Key Art" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy">
@@ -257,7 +420,7 @@
             <span class="tag tag-emerald">Flagship Ecosystem</span>
             <span class="tag tag-purple">Final Fantasy IX</span>
           </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
+          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
         </div>
 
         <div class="project-details">
@@ -269,7 +432,7 @@
               <span class="tag">PC Steam</span>
             </div>
             <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="kupo-library.html" style="color: inherit; text-decoration: none;">Kupo Mods Library</a>
+              <a href="project-kupo-library.html" style="color: inherit; text-decoration: none;">Kupo Mods Library</a>
             </h2>
             <p class="project-description">
               The master enhancement suite for Final Fantasy IX on PC. Formerly known as <em>Mog Add-ons</em> and detailed in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a>, the Kupo Library provides a modular, cohesive experience spanning complete UI overhauls, 6 controller button presets (DualSense, DS4, Xbox, SNES, and Pixel), Extended Cast portraits, quality-of-life adjustments, and the <strong>Kupo Heroes Pack</strong> character balance overhaul.
@@ -292,7 +455,7 @@
 
           <div class="project-card-footer">
             <div class="download-options">
-              <a href="kupo-library.html" class="btn btn-primary btn-sm">
+              <a href="project-kupo-library.html" class="btn btn-primary btn-sm">
                 <span>Open Kupo Library Guide &rarr;</span>
               </a>
               <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
@@ -302,60 +465,6 @@
                 <span>UI Suite on Nexus (#31)</span>
               </a>
             </div>
-            <span class="tag tag-emerald">Active Ecosystem</span>
-          </div>
-        </div>
-      </section>
-
-      <hr class="rpg-divider">
-
- <!-- PROJECT 4: Darker UI & Sane UI Series -->
-      <section class="project-entry" id="darker-ui">
-        <div class="project-preview" onclick="openLightbox('assets/mods/41-1649149778-273543089.png', 'Darker UI Series — Pixel Remasters')">
-          <img src="assets/mods/41-1649149778-273543089.png" alt="Darker UI Series Preview" loading="lazy" onerror="this.src='assets/forup_291x.png'">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Universal UI Series</span>
-            <span class="tag tag-cyan">Pixel Remasters</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom 🔍</span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-cyan">FF1 &bull; FF2 &bull; FF3</span>
-              <span class="tag tag-cyan">FF4 &bull; FF5 &bull; FF6</span>
-              <span class="tag tag-purple">FFVIII Remastered</span>
-              <span class="tag">UI/UX</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              Darker UI &amp; Sane UI Series
-            </h2>
-            <p class="project-description">
-              A comprehensive visual overhaul series addressing the overly bright, washed-out blue windows in the default Square Enix Pixel Remaster releases. Darker UI introduces deep charcoal frames, rich gradients, refined window chrome, and subtle metallic borders that drastically reduce eye strain while honoring the classic dark CRT look.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Full Series Coverage:</strong> Dedicated releases tailored for Final Fantasy I, II, III, IV, V, and VI Pixel Remasters, plus FFVIII Remastered.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>High-Contrast Readability:</strong> Retains crisp white font legibility with zero color banding or compressed alpha artifacts.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="mods.html" class="btn btn-primary btn-sm">
-                <span>Browse All Mods in Library</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasy8remastered/mods/43" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>FFVIII Darker UI (#43)</span>
-              </a>
-            </div>
-            <span class="tag tag-emerald">Complete PR Coverage</span>
           </div>
         </div>
       </section>
@@ -364,21 +473,7 @@
 
   </main>
 
-  <!-- Obsidian Vault Footer Component -->
   <back-to-top></back-to-top>
-
   <vault-footer></vault-footer>
-
-  <!-- Lightbox Modal -->
-  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
-      <img id="lightboxImg" src="" alt="Enlarged Preview">
-      <p id="lightboxCaption" class="lightbox-caption"></p>
-    </div>
-  </div>
-
-  <!-- Web Components & Global Lightbox Scripts -->
-  <script src="components.js?v=20261022"></script>
 </body>
 </html>

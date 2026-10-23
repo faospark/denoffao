@@ -1,5 +1,29 @@
 [
   {
+    "id": "tag:denoffao.me,2026:post-kupo-mods-update-10-10-2026",
+    "slug": "2026-kupo-mods-update-10-10-2026",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "Kupo Mods Update | 10.10.2026",
+    "published": "2026-10-10T10:00:00.000Z",
+    "updated": "2026-10-10T10:00:00.000Z",
+    "year": 2026,
+    "dateFormatted": "Oct 10, 2026",
+    "categories": [
+      "Final Fantasy IX",
+      "Mods",
+      "Kupo Mods",
+      "Memoria"
+    ],
+    "excerpt": "Good day @FF9 Subscribers! For consideration on your next Final Fantasy IX playthrough, here are the latest Kupo Mods updates. All mods are now integrated with the custom Kupo Framework in-game settings config...",
+    "thumbnail": "assets/blog/kupo-mods-update-10-10-2026.png",
+    "imageCount": 1,
+    "commentCount": 0,
+    "comments": [],
+    "wordCount": 165,
+    "readingTime": "1 min read"
+  },
+  {
     "id": "tag:denoffao.me,2026:post-suikoden-2-hd-alternative-world-map",
     "slug": "2026-an-alternative-world-map-of-suikoden-2-hd-remaster",
     "blogName": "Faospark Blog",

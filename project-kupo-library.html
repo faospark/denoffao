@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kupo Mods Library (Formerly Mog Add-Ons) — Final Fantasy IX</title>
+  
+  <meta name="description" content="Official documentation for Faospark's Kupo Mods Library (formerly Mog Add-Ons) for Final Fantasy IX on PC. Complete single-window guide based on Nexus Article #12.">
+  <link rel="canonical" href="https://denoffao.me/project-kupo-library.html">
+  <meta property="og:url" content="https://denoffao.me/project-kupo-library.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Kupo Mods Library (Formerly Mog Add-Ons) — Final Fantasy IX"/>
+  <meta property="og:description" content="Comprehensive guide to the 10 modular enhancements of the Kupo Library for FFIX on PC (Memoria Engine)."/>
+  <meta property="og:image" content="assets/mods/kupo-mods-library.png"/>
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261023"></script>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kupo-library.md"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Special Projects</span>
+        </a>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <span class="tag tag-emerald">Memoria Engine</span>
+          <span class="tag tag-cyan">Final Fantasy IX PC</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 1.75rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Kupo Mods Library</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          Kupo Mods Library: <span class="text-gradient">Final Fantasy IX Ecosystem Architecture.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+          <strong>Kupo Mods Library</strong> (formerly <em>Mog Add-ons</em>) is the definitive master enhancement ecosystem for <strong>Final Fantasy IX on PC</strong>. Documented in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a> and created by <strong>Faospark</strong>, this comprehensive suite details the origins, modular architectural split, and full catalog of all <strong>10 specialized Kupo sub-modules</strong> built for the Memoria Engine.
+        </p>
+      </div>
+
+      <!-- Kupo Mods Official Key Showcase -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library — Final Fantasy IX')">
+        <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library — Official Artwork" class="hero-banner-img" loading="lazy">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">Official Key Art</span>
+          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+        <div class="banner-caption-bar">
+          <span><strong>Kupo Mods Library:</strong> A modular master ecosystem for Final Fantasy IX on PC</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Quick Nav Buttons -->
+      <div class="jump-nav-row">
+        <a href="#what-are-kupo" class="jump-nav-btn">What Are Kupo Mods?</a>
+        <a href="#why-name-change" class="jump-nav-btn">Why the Name Change?</a>
+        <a href="#why-split" class="jump-nav-btn">Why Were They Split?</a>
+        <a href="#retired-mod" class="jump-nav-btn">Retired: Airship Plus</a>
+        <a href="#ff9-mods-catalog" class="jump-nav-btn">All 10 FFIX Mods</a>
+        <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Nexus Article #12 &rarr;</a>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 1: WHAT ARE KUPO MODS? -->
+      <section id="what-are-kupo">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">What Are Kupo Mods?</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          <strong>Kupo Mods</strong> is a collection of mods managed by me, originally part of a larger project called <strong>Mog Add-ons</strong>. Mog Add-ons was first introduced on the <em>Moogles and Mods</em> Discord server so and later uploaded to Nexus Mods in <strong>September 2021</strong>.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          Initially, it started as a graphical enhancement mod focused on improving the UI, character portraits, and controller support for Final Fantasy IX. Over time, it grew significantly, becoming one of the largest mods for the Steam version of the game in terms of scope.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+          As the project expanded, the original mod was split into several standalone mods to better organize and manage its features:
+          <strong style="color: var(--text-pure-white);">Kupo UI Suite &bull; Kupo Heroes Pack &bull; Modern Labels Plus &bull; Kupo Buttons Pack &bull; Kupo Portraits Pack &bull; No EXP Plus &bull; Memoria Launcher Themes &bull; Support Ability Cost Modifier &bull; Kupo Tweaks &bull; Cursor Mod</strong>.<br>
+          Each mod is designed to enhance different aspects of the game while maintaining full compatibility with one another.
+        </p>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 2: WHY THE NAME CHANGE? & WHY SPLIT? -->
+      <section id="why-name-change">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          <div>
+            <h2 style="color: var(--text-pure-white); font-size: 1.45rem; margin-bottom: 0.75rem;">Why the Name Change?</h2>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.92rem; margin-bottom: 0.75rem;">
+              The sudden name change might come as a surprise, but it has been in consideration since 2023. The concept originated after I watched a video where "Mog Add-ons" were consistently called <em>"Kupo Mods"</em>—shout out to <strong>Sugi JRPG</strong>!
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.92rem;">
+              This new name resonated with me, prompting the decision to embrace a new beginning with a fresh, recognizable brand that honors Final Fantasy's iconic moogles.
+            </p>
+          </div>
+
+          <div id="why-split">
+            <h2 style="color: var(--text-pure-white); font-size: 1.45rem; margin-bottom: 0.75rem;">Why Were Mog Add-ons Split?</h2>
+            <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.92rem; margin-bottom: 0.5rem;">
+              There were three major factors considered for the decision:
+            </p>
+            <ul style="color: var(--text-secondary); line-height: 1.65; font-size: 0.92rem; padding-left: 1.25rem; list-style: disc;">
+              <li><strong>Mod Scale:</strong> The single package was becoming excessively large and cumbersome to download.</li>
+              <li><strong>Sub-mod Visibility:</strong> New mods were being made that were nearly identical to submods buried deep inside Mog Add-ons, simply because players didn't realize they were already included.</li>
+              <li><strong>Memoria Integration:</strong> I was specifically asked by the creators of the <strong>Memoria Mod Manager</strong> to separate them for modular 1-click toggling.</li>
+            </ul>
+            <p style="color: var(--accent-cyan); font-size: 0.88rem; margin-top: 0.75rem; font-weight: 600;">
+              Starting with Version 4, the split was finalized. As of January 14, 2025, all mods have separate pages on Nexus Mods and are officially featured inside the Memoria Mod Manager.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 3: HISTORICAL NOTE / RETIRED MOD -->
+      <section id="retired-mod" style="margin-top: 1rem;">
+        <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap;">
+          <img src="assets/mods/31-1736843983-1536393024.png" alt="Airship Plus Retired Banner" loading="lazy" style="width: 220px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer;" onclick="if(window.openLightbox) openLightbox('assets/mods/31-1736843983-1536393024.png', 'Airship Plus (Retired Mod)')">
+          <div style="flex: 1; min-width: 260px;">
+            <h3 style="color: var(--text-pure-white); font-size: 1.15rem; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 576 512" fill="currentColor"><path d="M552 64H448V24c0-13.3-10.7-24-24-24H24C10.7 0 0 10.7 0 24v400c0 48.5 39.5 88 88 88h376c48.5 0 88-39.5 88-88V88c0-13.3-10.7-24-24-24zM88 464c-22.1 0-40-17.9-40-40V48h352v376c0 10.5 4.1 20.1 10.8 27.2-6.5 8-16 12.8-26.8 12.8H88zm416-40c0 22.1-17.9 40-40 40s-40-17.9-40-40V112h80v312z"/></svg>Historical Note: Retired Mod — Airship Plus</span>
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin: 0;">
+              A short-lived submod created alongside the Kupo Heroes Pack featuring faster travel speeds and camera presets when flying the airship or Chocobo. This module was formally retired as the <strong>Memoria Engine</strong> integrated more robust options natively into the engine core, and its hero speed presets were absorbed into the Kupo Heroes Pack.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+
+    </div><!-- End .vault-single-card -->
+      <!-- SECTION 4: FINAL FANTASY IX MODS (Native Web Component) -->
+      <section id="ff9-mods-catalog">
+        <ff9-mods></ff9-mods>
+      </section>
+  </main>
+
+  <back-to-top></back-to-top>
+  <vault-footer disclaimer="&copy; 2018–2026 Faospark. Final Fantasy IX is &copy; Square Enix. Unofficial fan modification project."></vault-footer>
+</body>
+</html>
