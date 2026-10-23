@@ -1842,8 +1842,6 @@ class ModsCatalog extends HTMLElement {
 
     const searchPlaceholder = targetCategory === 'ffvi'
       ? 'Search FFVI Old Ver mods (e.g. Sane UI, Celes, Portraits, Backgrounds)...'
-      : targetCategory === 'chrono'
-      ? 'Search Chrono Cross mods (e.g. Blue Mage, Radical Portraits, Another Eden, QoL, UI)...'
       : 'Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)...';
 
     this.innerHTML = `
