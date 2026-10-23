@@ -1842,6 +1842,8 @@ class ModsCatalog extends HTMLElement {
 
     const searchPlaceholder = targetCategory === 'ffvi'
       ? 'Search FFVI Old Ver mods (e.g. Sane UI, Celes, Portraits, Backgrounds)...'
+      : targetCategory === 'chrono'
+      ? 'Search Chrono Cross mods (e.g. Portraits, Buttons, Another Eden, UI, QoL)...'
       : 'Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)...';
 
     this.innerHTML = `
@@ -2224,6 +2226,23 @@ if (typeof document !== 'undefined') {
         closeLightboxDirect();
       });
     }
+
+    // Prevent parent <a target="_blank"> links from opening a new browser tab
+    // when clicking an image that triggers the lightbox
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!target || typeof target.closest !== 'function') return;
+      const lightboxEl = target.closest('[onclick*="openLightbox"], [onclick*="openModal"], .blog-embedded-img');
+      if (lightboxEl) {
+        const parentAnchor = lightboxEl.closest('a[href]');
+        if (parentAnchor) {
+          e.preventDefault();
+          if (lightboxEl.tagName === 'IMG' && !lightboxEl.hasAttribute('onclick') && !parentAnchor.hasAttribute('onclick')) {
+            openLightbox(lightboxEl.src, lightboxEl.alt || 'Blog Image');
+          }
+        }
+      }
+    });
   }
 
   // Global Escape key support

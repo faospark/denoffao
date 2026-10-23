@@ -1,5 +1,30 @@
 [
   {
+    "id": "tag:denoffao.me,2026:post-new-mod-features-suikoden-remaster-october",
+    "slug": "2026-new-mod-features-for-suikoden-remaster-october",
+    "blogName": "Faospark Blog",
+    "status": "LIVE",
+    "title": "New Mod Features for Suikoden Remaster (October)",
+    "published": "2026-10-13T10:00:00.000Z",
+    "updated": "2026-10-13T10:00:00.000Z",
+    "year": 2026,
+    "dateFormatted": "Oct 13, 2026",
+    "categories": [
+      "Project Kyaro",
+      "Suikoden",
+      "Suikoden 2",
+      "Mods",
+      "HD Remaster"
+    ],
+    "excerpt": "For your next Playthrough players who mod The HD Remaster. Project Kyaro Version 2026.10.13 was updated! Featuring Unlimited Command Runes, Unbalance Penalty Removal, Battle Party Max HP Display, Disable UI Tips Overlay, and Texture Caching & Memory Fixes...",
+    "thumbnail": "assets/blog/new-mod-features-suikoden-remaster-october-2026.png",
+    "imageCount": 1,
+    "commentCount": 0,
+    "comments": [],
+    "wordCount": 195,
+    "readingTime": "1 min read"
+  },
+  {
     "id": "tag:denoffao.me,2026:post-kupo-mods-update-10-10-2026",
     "slug": "2026-kupo-mods-update-10-10-2026",
     "blogName": "Faospark Blog",

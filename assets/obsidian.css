@@ -1405,6 +1405,185 @@ body {
   margin-bottom: 3rem;
 }
 
+/* Split Hero Layout with Analog Clock (Homepage) */
+.hero-split-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.hero-split-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hero-split-content .hero-title {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+.hero-split-content .hero-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 900px;
+  margin-bottom: 1.75rem;
+}
+
+.hero-split-content .hero-actions {
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.hero-clock-wrapper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rpg-analog-clock-card {
+  width: 210px;
+  padding: 0.9rem 0.9rem 0.7rem;
+  border-radius: var(--radius-frame);
+  border: 4px solid var(--frame-inner-black);
+  background: var(--bg-window-card);
+  box-shadow:
+    0 0 0 1px #ffffff,
+    0 0 0 2px #ededed,
+    0 0 0 3px #dadada,
+    0 0 0 4px #c2c2c2,
+    0 0 0 5px #a8a8a8,
+    0 0 0 6px #8c8c8c,
+    0 0 0 7px #707070,
+    0 0 0 8px #545454,
+    0 0 0 9px #383838,
+    0 0 0 10px #1e1e1e,
+    0 0 0 11px #0a0a0a,
+    0 16px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rpg-analog-clock-card:hover {
+  transform: translateY(-2px);
+  background: var(--bg-window-card-hover);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.rpg-clock-dial {
+  width: 164px;
+  height: 164px;
+  position: relative;
+}
+
+.rpg-clock-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.75));
+}
+
+.clock-outer-ring {
+  fill: rgba(6, 9, 16, 0.55);
+  stroke: var(--accent-cyan);
+  stroke-width: 2.5;
+  stroke-opacity: 0.75;
+}
+
+.clock-inner-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.tick-major {
+  stroke: var(--accent-cyan);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.tick-hour {
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.clock-numeral {
+  fill: var(--text-pure-white);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.clock-brand-label {
+  fill: var(--text-muted);
+  font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  opacity: 0.8;
+}
+
+.clock-hand-hour {
+  stroke: var(--text-pure-white);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.clock-hand-min {
+  stroke: var(--accent-cyan);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.clock-hand-sec {
+  stroke: var(--accent-amber, #fbbf24);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.clock-pivot-outer {
+  fill: var(--accent-cyan);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.clock-pivot-inner {
+  fill: var(--frame-inner-black);
+}
+
+.rpg-clock-readout {
+  font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan) !important;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.18rem 0.65rem;
+  border-radius: 4px;
+}
+
+@media (max-width: 860px) {
+  .hero-split-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hero-split-content .hero-actions {
+    justify-content: center;
+  }
+}
+
 /* Quick Metrics Status Bar */
 .obsidian-status-bar {
   display: grid;
@@ -1975,13 +2154,15 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 1.25rem;
 }
 
-/* Unstretched Buttons in Donation Cards */
+/* Centered Buttons in Donation Cards */
 .donation-tier-card .btn {
-  align-self: flex-start;
+  align-self: center;
   width: auto;
 }
 
@@ -1997,13 +2178,19 @@ body {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 1.25rem;
 }
 
 .tier-top {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: center;
+  text-align: center;
+  gap: 0.65rem;
 }
 
 .tier-icon {
@@ -2021,11 +2208,13 @@ body {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-pure-white) !important;
+  text-align: center;
 }
 
 .tier-desc {
   font-size: 0.85rem;
   color: var(--text-secondary) !important;
+  text-align: center;
 }
 
 /* Crypto Wallet Box */
@@ -2828,8 +3017,9 @@ site-footer {
   font-weight: 700;
 }
 
-/* Comments Section inside Reader */
+/* Comments Section inside Reader (Hidden) */
 .blog-comments-container {
+  display: none !important;
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 2px solid #273b62;

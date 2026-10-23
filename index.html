@@ -34,35 +34,75 @@
   <main class="container">
     <!-- Hero Section -->
     <section class="hero-section">
+      <div class="hero-split-layout">
+        <!-- Retro RPG Analog Clock -->
+        <div class="hero-clock-wrapper" aria-label="Analog Clock">
+          <div class="rpg-analog-clock-card">
+            <div class="rpg-clock-dial">
+              <svg viewBox="0 0 200 200" class="rpg-clock-svg">
+                <!-- Outer Decorative Ring -->
+                <circle cx="100" cy="100" r="92" class="clock-outer-ring" />
+                <circle cx="100" cy="100" r="84" class="clock-inner-ring" />
 
+                <!-- 12 Hour & 60 Minute Tick Marks -->
+                <g class="clock-ticks">
+                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(30 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(60 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(90 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(120 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(150 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(180 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(210 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(240 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(270 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(300 100 100)" />
+                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(330 100 100)" />
+                </g>
 
-      <h1 class="hero-title">
-        Living my <span class="text-gradient">Geocities Life.</span>
-      </h1>
+                <!-- Cardinal Numerals -->
+                <text x="100" y="42" text-anchor="middle" class="clock-numeral">XII</text>
+                <text x="163" y="105" text-anchor="middle" class="clock-numeral">III</text>
+                <text x="100" y="168" text-anchor="middle" class="clock-numeral">VI</text>
+                <text x="37" y="105" text-anchor="middle" class="clock-numeral">IX</text>
 
-      <p class="hero-subtitle">
-        Welcome to my personal mod workshop. Handcrafted Dissidia Opera Omnia style character portraits, clean modern UI overhauls, controller button prompts, and texture packs for <strong>Final Fantasy VI</strong>, <strong>Chrono Cross</strong>, <strong>Final Fantasy IX</strong>, <strong>Suikoden I&amp;II</strong>, and the <strong>Pixel Remasters</strong>.
-      </p>
+                <!-- Subtle Workshop Emblem Text -->
+                <text x="100" y="72" text-anchor="middle" class="clock-brand-label">DEN OF FAO</text>
 
-      <div class="hero-actions">
-        <a href="mods.html" class="btn btn-primary btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          <span>Browse All 68 Mods (Full Library)</span>
-        </a>
-        <a href="projects.html" class="btn btn-secondary btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          <span>Flagship Special Projects</span>
-        </a>
-        <a href="#donate" class="btn btn-outline btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
-          <span>Personal Update &amp; Support</span>
-        </a>
+                <!-- Clock Hands -->
+                <line id="rpgClockHour" x1="100" y1="110" x2="100" y2="54" class="clock-hand-hour" />
+                <line id="rpgClockMin" x1="100" y1="114" x2="100" y2="34" class="clock-hand-min" />
+                <line id="rpgClockSec" x1="100" y1="118" x2="100" y2="26" class="clock-hand-sec" />
+
+                <!-- Center Pivot Cap -->
+                <circle cx="100" cy="100" r="6" class="clock-pivot-outer" />
+                <circle cx="100" cy="100" r="2.5" class="clock-pivot-inner" />
+              </svg>
+            </div>
+            <div class="rpg-clock-readout" id="rpgClockReadout">--:--:--</div>
+          </div>
+        </div>
+
+        <div class="hero-split-content">
+          <h1 class="hero-title">
+            Living my <span class="text-gradient">Geocities Life.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Welcome to my personal mod workshop. Where I feature things that ive done in the 
+            last couple of years as modder and a gamer... and also a place where I share my personal updates and thoughts on the modding community and the games I love.
+            Why is there a clock? I dont know, I just grabbed widgets back in the day 
+          </p>
+
+          <div class="hero-actions">
+            <a href="#donate" class="btn btn-outline btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <span>Personal Update &amp; Support</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Quick Metrics Strip -->
@@ -89,14 +129,22 @@
     <!-- SECTION 1: Featured Major Projects Spotlight (Arranged by Last Updated) -->
     <section id="showcase">
       <div class="section-header">
-        <span class="section-eyebrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          Flagship Showcases
-        </span>
-        <h2 class="section-title">Major Projects &amp; Suites</h2>
-        <p class="section-desc">Arranged chronologically by last update. Extensive overhauls built with meticulous care for game UI, portraits, and audio-visual consistency.</p>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-eyebrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              Flagship Showcases
+            </span>
+            <h2 class="section-title">Major Projects &amp; Suites</h2>
+          </div>
+          <a href="projects.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
+            <span>Explore all</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+        <p class="section-desc">The Following Massive Projects that have either High coverage and/or is a utility. Most of these are massive in scope and is often much better to be called suites.</p>
       </div>
 
       <!-- Showcase 1: Project Kyaro Suite (Suikoden I & II HD Remaster) — Updated Oct 14, 2026 -->
@@ -146,144 +194,6 @@
           </div>
         </div>
       </article>
-
-      <!-- Showcase 2: FFVI Old Tile Tool (Final Fantasy VI Old Ver.) — Updated Oct 23, 2026 -->
-      <article class="project-card">
-        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-tile-tool.png', 'FFVI Old Tile Tool (ffvi_tileConverter) — Map BIN Section Graphics &amp; Tile Editor')">
-          <img src="assets/mods/ffvi-old-tile-tool.png" alt="FFVI Old Tile Tool Preview" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Version 2026.5.2</span>
-            <span class="tag tag-purple">Final Fantasy VI (Old Ver.)</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Desktop Utility</span>
-              <span class="tag tag-purple">FFVI Old Ver</span>
-              <span class="tag tag-cyan">Section 1 &amp; 2 I/O</span>
-            </div>
-            <h3 class="project-title">FFVI Old Tile Tool</h3>
-            <p class="project-description">
-              A modernized desktop application for viewing, exporting, importing, and managing section graphics and indexed tiles stored in <strong>Final Fantasy VI (Old Ver.)</strong> map <code>.bin</code> files. Resolves Section 1 reinsertion corruption, automates mirrored palette updates, and adds batch processing and tile filtering.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Reliable Section 1 &amp; Section 2 reinsertion, mirrored palette synchronization, and <code>050505</code> transparency preview.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Mass Export/Import (PNG/BMP), built-in Snow/Grass/Magitek filters, Dark Mode, and native Gzip (<code>.bin.gz</code>) support.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-ffvi-old-ver-tile-tool.html" class="btn btn-primary btn-sm">
-                <span>Explore Tile Tool Guide &rarr;</span>
-              </a>
-              <a href="https://github.com/faospark/ffvi_tileConverter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                <span>GitHub Repo</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Showcase 3: SuiSaveEditor (Suikoden II HD Remaster) -->
-      <article class="project-card">
-        <div class="project-preview" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — Web GUI')">
-          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Featured Web Tool</span>
-            <span class="tag tag-amber">Suikoden II HD Remaster</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Web App &amp; PWA</span>
-              <span class="tag tag-amber">Suikoden II HD</span>
-              <span class="tag tag-cyan">100% Client-Side</span>
-            </div>
-            <h3 class="project-title">SuiSaveEditor</h3>
-            <p class="project-description">
-              A minimal, static web-based GUI and Progressive Web Application (PWA) for editing <strong>Suikoden II HD Remaster</strong> JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any browser with zero runtime installations and complete client-side privacy.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Edit active battle teams, convoy slots, character levels, stats, visual MP squares (■/□), and smart rune restrictions.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Manage key event items, warehouse storage, Greenhill aliases, restaurant menus, and 108 Stars recruitment flags.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-suisaveeditor.html" class="btn btn-primary btn-sm">
-                <span>Explore Save Editor Guide &rarr;</span>
-              </a>
-              <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
-                <span>Launch Web Tool &rarr;</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Showcase 4: Kupo Mods Library (Final Fantasy IX) — Updated Oct 10, 2026 -->
-      <article class="project-card">
-        <div class="project-preview" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library for Final Fantasy IX')">
-          <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Preview" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy">
-          <div class="preview-badge-overlay">
-            <span class="tag tag-emerald">Updated: Oct 10, 2026</span>
-            <span class="tag tag-purple">Final Fantasy IX</span>
-          </div>
-          <span class="preview-zoom-hint">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
-        </div>
-
-        <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-purple">FFIX Master Suite</span>
-              <span class="tag tag-cyan">10 Integrated Modules</span>
-              <span class="tag">Memoria Engine</span>
-            </div>
-            <h3 class="project-title">Kupo Mods Library</h3>
-            <p class="project-description">
-              The premier modular enhancement ecosystem for Final Fantasy IX on PC. Documented in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a> and formerly known as Mog Add-ons, the Kupo Mods Library unites 10 dedicated modules: complete UI reskins, 6-preset controller button packs, Extended Cast portraits, gameplay balance reworks, and Memoria Launcher themes.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>8 Dialogue box colorways, 3 custom title screens, mist reduction, and responsive airship handling.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kupo-library.html" class="btn btn-primary btn-sm">
-                <span>Explore Kupo Library Guide &rarr;</span>
-              </a>
-             
-              
-            </div>
-            <span class="tag tag-emerald">Active Ecosystem</span>
-          </div>
-        </div>
-      </article>
     </section>
 
     <!-- SECTION 2: Latest Mod Releases (Top 4 Featured Updates) -->
@@ -301,11 +211,11 @@
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
           </svg>
-          Vault Chronicles &amp;
+          Update, Blog Chronicles &amp; Notes.
         </span>
         <h2 class="section-title">The Historical Blog Vault</h2>
         <p class="section-desc">
-          just a record of Shenanigans over the years
+          Things that I recently did and A complete reconstruction of published articles salvaged from the Google Takeout Blogger archives (2010–2021) and recent community research notes.
         </p>
       </div>
 
@@ -568,7 +478,6 @@
                   <span><svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>${post.dateFormatted}</span>
                   <span>&bull;</span>
                   <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime}</span>
-                  ${post.commentCount > 0 ? `<span>&bull;</span><span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/></svg>${post.commentCount}</span>` : ''}
                 </div>
                 <h3 class="blog-card-title">
                   <a href="#blog-${post.slug}" onclick="openHomeBlogReader('${post.slug}'); return false;">${escapeHtml(post.title)}</a>
@@ -603,31 +512,10 @@
           ${tagHtml ? `<span style="margin-left: 0.5rem;">${tagHtml}</span>` : ''}
         `;
 
-        let commentsHtml = '';
-        if (post.comments && post.comments.length > 0) {
-          commentsHtml = `
-            <div class="blog-comments-container">
-              <h3 class="blog-comments-header"><svg width="13" height="13" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 5px;"><path d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64z"/></svg>Reconstructed Comments (${post.comments.length})</h3>
-              <div class="blog-comments-list">
-                ${post.comments.map(c => `
-                  <div class="blog-comment-item">
-                    <div class="blog-comment-author-bar">
-                      <span class="blog-comment-author"><svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>${escapeHtml(c.author)}</span>
-                      <span class="blog-comment-date">${c.dateFormatted || c.published}</span>
-                    </div>
-                    <div class="blog-comment-text">${c.text}</div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          `;
-        }
-
         homeModalBody.innerHTML = `
           <div class="blog-article-body">
             ${post.content}
           </div>
-          ${commentsHtml}
         `;
 
         homeReaderModal.classList.add('active');
@@ -671,6 +559,39 @@
 
       // Initial Render
       renderHomeBlog();
+
+      // Retro RPG Analog Clock
+      (function initRpgAnalogClock() {
+        const hourHand = document.getElementById('rpgClockHour');
+        const minHand = document.getElementById('rpgClockMin');
+        const secHand = document.getElementById('rpgClockSec');
+        const readout = document.getElementById('rpgClockReadout');
+        if (!hourHand || !minHand || !secHand) return;
+
+        function updateClock() {
+          const now = new Date();
+          const ms = now.getMilliseconds();
+          const sec = now.getSeconds() + ms / 1000;
+          const min = now.getMinutes() + sec / 60;
+          const hr = (now.getHours() % 12) + min / 60;
+
+          hourHand.setAttribute('transform', `rotate(${hr * 30} 100 100)`);
+          minHand.setAttribute('transform', `rotate(${min * 6} 100 100)`);
+          secHand.setAttribute('transform', `rotate(${Math.floor(now.getSeconds()) * 6} 100 100)`);
+
+          if (readout) {
+            const h24 = now.getHours();
+            const ampm = h24 >= 12 ? 'PM' : 'AM';
+            const h12 = String(h24 % 12 || 12).padStart(2, '0');
+            const mStr = String(now.getMinutes()).padStart(2, '0');
+            const sStr = String(now.getSeconds()).padStart(2, '0');
+            readout.textContent = `${h12}:${mStr}:${sStr} ${ampm}`;
+          }
+        }
+
+        updateClock();
+        setInterval(updateClock, 250);
+      })();
     })();
   </script>
 </body>
