@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261024b">
   <!-- Native Web Components -->
   <script src="components.js?v=20261023"></script>
 </head>
@@ -59,26 +59,112 @@
         </div>
       </div>
 
-      <!-- Header Presentation -->
-      <div style="margin-bottom: 2rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
-          <span class="pulse-dot"></span>
-          <a href="index.html" class="bc-link">Home</a>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">All Mods</span>
-        </nav>
+      <!-- Header Presentation + Interactive RPG Archive Bookshelf -->
+      <div class="mods-hero-split">
+        <div class="mods-hero-info">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem; width: fit-content;">
+            <span class="pulse-dot"></span>
+            <a href="index.html" class="bc-link">Home</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">All Mods</span>
+          </nav>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
-          Complete Mods <span class="text-gradient">Library.</span>
-        </h1>
+          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+            Complete Mods <span class="text-gradient">Library.</span>
+          </h1>
 
-        <div style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px; display: flex; flex-direction: column; gap: 0.85rem;">
-          <p style="margin: 0;">
-            Explore a growing archive of handcrafted modifications created since 2018. Featuring custom character portraits, clean dark-themed UI overhauls, controller button prompt replacements, texture enhancements, visual upgrades, quality-of-life improvements, and more.
-          </p>
-          <p style="margin: 0;">
-            Use the search bar or filter categories below to quickly browse by project type, mod category, or release year.
-          </p>
+          <div style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 720px; display: flex; flex-direction: column; gap: 0.85rem;">
+            <p style="margin: 0;">
+              Explore a growing archive of handcrafted modifications created since 2018. Featuring custom character portraits, clean dark-themed UI overhauls, controller button prompt replacements, texture enhancements, visual upgrades, quality-of-life improvements, and more.
+            </p>
+            <p style="margin: 0;">
+              Use the search bar, filter categories below, or <strong>pull a tome from the archive shelf</strong> to browse by project type.
+            </p>
+          </div>
+        </div>
+
+        <!-- JavaScript-Powered Interactive & Animated RPG Bookshelf -->
+        <div class="mods-bookshelf-wrap" aria-label="Interactive Mod Archive Bookshelf">
+          <div class="rpg-bookshelf-card" id="rpgBookshelfCard">
+            <div class="bookshelf-header-bar">
+              <span class="bookshelf-title-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span>Archive Tomes</span>
+              </span>
+              <button type="button" class="bookshelf-shuffle-btn" id="bookshelfShuffleBtn" title="Animate &amp; Reshelve Volumes">&#x21bb; Reshelve</button>
+            </div>
+
+            <div class="bookshelf-stage" id="bookshelfStage">
+              <canvas id="bookshelfParticleCanvas" width="330" height="138"></canvas>
+
+              <div class="bookshelf-row" id="bookshelfRow">
+                <!-- Save Crystal Bookend -->
+                <div class="bookshelf-crystal-prop" title="Archive Save Crystal">
+                  <div class="crystal-gem"></div>
+                  <div class="crystal-pedestal"></div>
+                </div>
+
+                <!-- Volume 0: Complete Omnibus (All 68) -->
+                <div class="rpg-book-tome is-active" data-filter="all" data-title="Omnibus Compendium" data-count="68 Mods"
+                     style="--book-w: 34px; --book-h: 94px; --book-bg: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #172554 100%); --book-gem: #38bdf8;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">OMNIBUS</span>
+                </div>
+
+                <!-- Volume 1: Chrono Cross (13) -->
+                <div class="rpg-book-tome" data-filter="chrono" data-title="Chrono Cross Vol." data-count="13 Mods"
+                     style="--book-w: 31px; --book-h: 88px; --book-bg: linear-gradient(90deg, #064e3b 0%, #10b981 50%, #022c22 100%); --book-gem: #34d399;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">CHRONO</span>
+                </div>
+
+                <!-- Volume 2: Pixel Remasters (19) -->
+                <div class="rpg-book-tome" data-filter="ffpr" data-title="Pixel Remasters" data-count="19 Mods"
+                     style="--book-w: 34px; --book-h: 92px; --book-bg: linear-gradient(90deg, #4c1d95 0%, #8b5cf6 50%, #2e1065 100%); --book-gem: #c084fc;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">FFPR I-VI</span>
+                </div>
+
+                <!-- Volume 3: FFIX (5) -->
+                <div class="rpg-book-tome" data-filter="ffix" data-title="Final Fantasy IX" data-count="5 Mods"
+                     style="--book-w: 28px; --book-h: 82px; --book-bg: linear-gradient(90deg, #78350f 0%, #d97706 50%, #451a03 100%); --book-gem: #fbbf24;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">FFIX</span>
+                </div>
+
+                <!-- Volume 4: FFVI Classic (19) -->
+                <div class="rpg-book-tome" data-filter="ffvi" data-title="FFVI Classic Ver." data-count="19 Mods"
+                     style="--book-w: 33px; --book-h: 90px; --book-bg: linear-gradient(90deg, #7f1d1d 0%, #ef4444 50%, #450a0a 100%); --book-gem: #f87171;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">FFVI OLD</span>
+                </div>
+
+                <!-- Volume 5: Suikoden (7) -->
+                <div class="rpg-book-tome" data-filter="suikoden" data-title="Suikoden I &amp; II" data-count="7 Mods"
+                     style="--book-w: 30px; --book-h: 85px; --book-bg: linear-gradient(90deg, #0c4a6e 0%, #0ea5e9 50%, #082f49 100%); --book-gem: #7dd3fc;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">SUIKODEN</span>
+                </div>
+
+                <!-- Volume 6: Other Remasters (5) -->
+                <div class="rpg-book-tome" data-filter="other" data-title="Other Remasters" data-count="5 Mods"
+                     style="--book-w: 28px; --book-h: 79px; --book-bg: linear-gradient(90deg, #334155 0%, #64748b 50%, #0f172a 100%); --book-gem: #e2e8f0;">
+                  <span class="rpg-book-gem"></span>
+                  <span class="rpg-book-spine-label">OTHER</span>
+                </div>
+              </div>
+
+              <div class="bookshelf-plank"></div>
+            </div>
+
+            <div class="bookshelf-readout" id="bookshelfReadout">
+              <span class="bookshelf-readout-title" id="bookshelfReadoutTitle">[VOL] Omnibus Compendium</span>
+              <span class="bookshelf-readout-count" id="bookshelfReadoutCount">68 Mods</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -104,5 +190,273 @@
       <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
+
+  <!-- JavaScript-Powered Interactive RPG Archive Bookshelf Engine -->
+  <script>
+    (function () {
+      const stage = document.getElementById('bookshelfStage');
+      const row = document.getElementById('bookshelfRow');
+      const canvas = document.getElementById('bookshelfParticleCanvas');
+      const readoutTitle = document.getElementById('bookshelfReadoutTitle');
+      const readoutCount = document.getElementById('bookshelfReadoutCount');
+      const shuffleBtn = document.getElementById('bookshelfShuffleBtn');
+
+      if (!stage || !row || !canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let tomes = Array.from(row.querySelectorAll('.rpg-book-tome'));
+      let selectedFilter = 'all';
+      let isHoveringShelf = false;
+      let idleIndex = 0;
+      let width = 330;
+      let height = 138;
+
+      // 1. Responsive Canvas Sizing
+      function resizeCanvas() {
+        const rect = stage.getBoundingClientRect();
+        width = Math.max(220, Math.floor(rect.width));
+        height = Math.max(110, Math.floor(rect.height));
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // 2. Ambient Archive Dust Motes + Burst Sparkles
+      const motes = Array.from({ length: 22 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * (height - 18),
+        r: 0.8 + Math.random() * 1.5,
+        vy: -0.15 - Math.random() * 0.25,
+        vx: (Math.random() - 0.5) * 0.2,
+        phase: Math.random() * Math.PI * 2,
+        hue: Math.random() > 0.45 ? '#38bdf8' : '#fde047'
+      }));
+
+      const bursts = [];
+      function spawnSparkleBurst(x, y, color) {
+        for (let i = 0; i < 9; i++) {
+          const angle = -Math.PI * 0.15 - Math.random() * Math.PI * 0.7;
+          const speed = 0.6 + Math.random() * 1.6;
+          bursts.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 0.3,
+            r: 1.4 + Math.random() * 1.4,
+            alpha: 1,
+            color: color || '#fde047'
+          });
+        }
+      }
+
+      function renderParticles(now) {
+        const t = now * 0.001;
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle warm archive spotlight rays
+        const grad = ctx.createRadialGradient(width * 0.5, 10, 8, width * 0.5, height * 0.6, width * 0.65);
+        grad.addColorStop(0, 'rgba(56, 189, 248, 0.10)');
+        grad.addColorStop(1, 'rgba(5, 9, 18, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Ambient floating rune motes
+        motes.forEach(m => {
+          m.x += m.vx + Math.sin(t + m.phase) * 0.08;
+          m.y += m.vy;
+          if (m.y < 6) {
+            m.y = height - 18;
+            m.x = Math.random() * width;
+          }
+          if (m.x < 0) m.x = width;
+          if (m.x > width) m.x = 0;
+
+          const alpha = 0.25 + 0.55 * Math.abs(Math.sin(t * 1.6 + m.phase));
+          ctx.fillStyle = m.hue;
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Interactive burst sparkles
+        for (let i = bursts.length - 1; i >= 0; i--) {
+          const b = bursts[i];
+          b.x += b.vx;
+          b.y += b.vy;
+          b.alpha -= 0.028;
+          if (b.alpha <= 0) {
+            bursts.splice(i, 1);
+            continue;
+          }
+          ctx.fillStyle = b.color;
+          ctx.globalAlpha = b.alpha;
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(renderParticles);
+      }
+      requestAnimationFrame(renderParticles);
+
+      // 3. Readout & Tome State Helpers
+      function updateReadout(tome, prefix) {
+        if (!tome) return;
+        const title = tome.getAttribute('data-title') || 'Archive Volume';
+        const count = tome.getAttribute('data-count') || '';
+        readoutTitle.textContent = `${prefix || '[VOL]'} ${title}`;
+        readoutCount.textContent = count;
+      }
+
+      function applyTomeTransforms(mouseX) {
+        const stageRect = stage.getBoundingClientRect();
+        tomes.forEach((tome) => {
+          const isSelected = tome.getAttribute('data-filter') === selectedFilter;
+          const isPeek = tome.classList.contains('is-idle-peek');
+
+          if (typeof mouseX === 'number') {
+            const rect = tome.getBoundingClientRect();
+            const centerX = (rect.left - stageRect.left) + rect.width / 2;
+            const dist = mouseX - centerX;
+            const absDist = Math.abs(dist);
+            const maxRadius = 95;
+
+            if (absDist < maxRadius) {
+              const factor = Math.cos((absDist / maxRadius) * (Math.PI / 2));
+              const lift = -12 * factor - (isSelected ? 4 : 0);
+              const tilt = (dist / maxRadius) * -4.5 * factor;
+              tome.style.transform = `translateY(${lift.toFixed(1)}px) rotate(${tilt.toFixed(1)}deg)`;
+              return;
+            }
+          }
+
+          if (isSelected) {
+            tome.style.transform = 'translateY(-9px)';
+          } else if (isPeek) {
+            tome.style.transform = 'translateY(-6px) rotate(-1.5deg)';
+          } else {
+            tome.style.transform = 'translateY(0px) rotate(0deg)';
+          }
+        });
+      }
+
+      // 4. Mouse Proximity Wave Physics & Hover Inspection
+      stage.addEventListener('mousemove', (e) => {
+        isHoveringShelf = true;
+        tomes.forEach(t => t.classList.remove('is-idle-peek'));
+        const rect = stage.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        applyTomeTransforms(mouseX);
+      });
+
+      stage.addEventListener('mouseleave', () => {
+        isHoveringShelf = false;
+        applyTomeTransforms(null);
+        const activeTome = tomes.find(t => t.getAttribute('data-filter') === selectedFilter) || tomes[0];
+        updateReadout(activeTome, '[ACTIVE]');
+      });
+
+      function bindTomeEvents() {
+        tomes.forEach((tome) => {
+          tome.addEventListener('mouseenter', () => {
+            updateReadout(tome, '[INSPECT]');
+            const sRect = stage.getBoundingClientRect();
+            const tRect = tome.getBoundingClientRect();
+            const gemColor = getComputedStyle(tome).getPropertyValue('--book-gem').trim() || '#fde047';
+            spawnSparkleBurst((tRect.left - sRect.left) + tRect.width / 2, (tRect.top - sRect.top) + 6, gemColor);
+          });
+
+          tome.addEventListener('click', () => {
+            const filterVal = tome.getAttribute('data-filter') || 'all';
+            selectedFilter = filterVal;
+            tomes.forEach(t => t.classList.toggle('is-active', t === tome));
+            updateReadout(tome, '[ACTIVE]');
+            applyTomeTransforms(null);
+
+            const sRect = stage.getBoundingClientRect();
+            const tRect = tome.getBoundingClientRect();
+            spawnSparkleBurst((tRect.left - sRect.left) + tRect.width / 2, (tRect.top - sRect.top) + 4, '#fde047');
+
+            // Sync with <mods-catalog> filter buttons below
+            const catalogBtn = document.querySelector(`mods-catalog .filter-btn[data-filter="${filterVal}"]`);
+            if (catalogBtn) {
+              catalogBtn.click();
+            }
+          });
+        });
+      }
+      bindTomeEvents();
+
+      // 5. Two-way Sync when User Clicks a Filter Tab inside <mods-catalog>
+      document.addEventListener('click', (e) => {
+        const filterBtn = e.target.closest('mods-catalog .filter-btn');
+        if (!filterBtn) return;
+        const filterVal = filterBtn.getAttribute('data-filter') || 'all';
+        selectedFilter = filterVal;
+        tomes.forEach(t => {
+          const match = t.getAttribute('data-filter') === filterVal;
+          t.classList.toggle('is-active', match);
+          if (match) updateReadout(t, '[ACTIVE]');
+        });
+        applyTomeTransforms(null);
+      });
+
+      // 6. Auto-Librarian Idle Animation Cycle
+      setInterval(() => {
+        if (isHoveringShelf || document.hidden) return;
+        tomes.forEach(t => t.classList.remove('is-idle-peek'));
+        idleIndex = (idleIndex + 1) % tomes.length;
+        const peekTome = tomes[idleIndex];
+        if (!peekTome) return;
+
+        peekTome.classList.add('is-idle-peek');
+        updateReadout(peekTome, '[ARCHIVE]');
+        applyTomeTransforms(null);
+
+        const sRect = stage.getBoundingClientRect();
+        const tRect = peekTome.getBoundingClientRect();
+        const gemColor = getComputedStyle(peekTome).getPropertyValue('--book-gem').trim() || '#38bdf8';
+        spawnSparkleBurst((tRect.left - sRect.left) + tRect.width / 2, (tRect.top - sRect.top) + 8, gemColor);
+
+        setTimeout(() => {
+          if (!isHoveringShelf) {
+            peekTome.classList.remove('is-idle-peek');
+            applyTomeTransforms(null);
+          }
+        }, 1400);
+      }, 3200);
+
+      // 7. Interactive "Reshelve" Cascade Shuffle Button
+      if (shuffleBtn) {
+        shuffleBtn.addEventListener('click', () => {
+          // Keep Omnibus first, shuffle the remaining category volumes
+          const [omnibus, ...rest] = tomes;
+          for (let i = rest.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [rest[i], rest[j]] = [rest[j], rest[i]];
+          }
+          const newOrder = [omnibus, ...rest];
+          newOrder.forEach((tome, idx) => {
+            row.appendChild(tome);
+            tome.style.transform = 'translateY(-16px) scale(0.95)';
+            setTimeout(() => {
+              const sRect = stage.getBoundingClientRect();
+              const tRect = tome.getBoundingClientRect();
+              spawnSparkleBurst((tRect.left - sRect.left) + tRect.width / 2, (tRect.top - sRect.top) + 10, '#38bdf8');
+              applyTomeTransforms(null);
+            }, 65 * (idx + 1));
+          });
+          tomes = Array.from(row.querySelectorAll('.rpg-book-tome'));
+        });
+      }
+
+      // Initialize default active tome transform
+      applyTomeTransforms(null);
+    })();
+  </script>
 </body>
 </html>

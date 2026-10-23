@@ -526,7 +526,7 @@ code, .font-mono {
 .obsidian-topbar {
   position: sticky;
   top: 0;
-  z-index: 10000;
+  z-index: 1000;
   background: var(--bg-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -2825,11 +2825,12 @@ site-footer {
   inset: 0;
   background: rgba(4, 7, 14, 0.88);
   backdrop-filter: blur(8px);
-  z-index: 20000;
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 90000;
   display: none;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 6.25rem 1.5rem 1.5rem;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -2839,10 +2840,17 @@ site-footer {
   opacity: 1;
 }
 
+body.blog-modal-open .obsidian-topbar,
+body:has(.blog-reader-modal.active) .obsidian-topbar {
+  z-index: 1;
+  pointer-events: none;
+}
+
 .blog-reader-dialog {
   width: 100%;
   max-width: 860px;
-  max-height: 90vh;
+  max-height: calc(100vh - 7.75rem);
+  margin: 0 auto;
   background: var(--bg-window-card);
   border: 3px solid var(--btn-secondary-border);
   border-radius: 8px;
@@ -2851,6 +2859,15 @@ site-footer {
   flex-direction: column;
   overflow: hidden;
   animation: modalScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  .blog-reader-modal {
+    padding: 5.25rem 0.75rem 1rem;
+  }
+  .blog-reader-dialog {
+    max-height: calc(100vh - 6.25rem);
+  }
 }
 
 @keyframes modalScaleIn {
@@ -4469,4 +4486,391 @@ details.wiki-accordion .accordion-content {
 .project-entry {
   scroll-margin-top: 5.5rem;
 }
+
+/* ==========================================================================
+   Retro RPG Flagship Ocean Widget (Special Projects Hero)
+   ========================================================================== */
+.flagship-widget-card {
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-frame);
+  border: 4px solid var(--frame-inner-black);
+  background: var(--bg-window-card);
+  box-shadow:
+    0 0 0 1px #ffffff,
+    0 0 0 2px #ededed,
+    0 0 0 3px #dadada,
+    0 0 0 4px #c2c2c2,
+    0 0 0 5px #a8a8a8,
+    0 0 0 6px #8c8c8c,
+    0 0 0 7px #707070,
+    0 0 0 8px #545454,
+    0 0 0 9px #383838,
+    0 0 0 10px #1e1e1e,
+    0 0 0 11px #0a0a0a,
+    0 14px 34px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flagship-widget-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.flagship-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(120px, 18vw, 155px);
+  background: linear-gradient(180deg, #070d1b 0%, #0f1f3d 55%, #16325c 100%);
+}
+
+#flagshipOceanCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Retro RPG Animated Bookshelf Widget (Complete Mods Library Hero)
+   ========================================================================== */
+.mods-hero-split {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.mods-hero-info {
+  flex: 1 1 540px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mods-bookshelf-wrap {
+  flex: 0 0 360px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rpg-bookshelf-card {
+  position: relative;
+  width: 100%;
+  padding: 0.85rem 0.95rem 0.75rem;
+  border-radius: var(--radius-frame);
+  border: 4px solid var(--frame-inner-black);
+  background: var(--bg-window-card);
+  box-shadow:
+    0 0 0 1px #ffffff,
+    0 0 0 2px #ededed,
+    0 0 0 3px #dadada,
+    0 0 0 4px #c2c2c2,
+    0 0 0 5px #a8a8a8,
+    0 0 0 6px #8c8c8c,
+    0 0 0 7px #707070,
+    0 0 0 8px #545454,
+    0 0 0 9px #383838,
+    0 0 0 10px #1e1e1e,
+    0 0 0 11px #0a0a0a,
+    0 14px 34px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.rpg-bookshelf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.bookshelf-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  z-index: 2;
+}
+
+.bookshelf-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  text-shadow: var(--rpg-text-shadow);
+}
+
+.bookshelf-shuffle-btn {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bookshelf-shuffle-btn:hover {
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  background: rgba(56, 189, 248, 0.18);
+}
+
+.bookshelf-stage {
+  position: relative;
+  width: 100%;
+  height: 138px;
+  background: linear-gradient(180deg, rgba(5, 9, 18, 0.92) 0%, rgba(16, 24, 42, 0.88) 78%, #2a1810 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 6px 16px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px 12px 14px;
+  overflow: hidden;
+}
+
+#bookshelfParticleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bookshelf-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  height: 104px;
+  padding: 0 4px;
+}
+
+/* Carved RPG Wooden & Brass Shelf Plank */
+.bookshelf-plank {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+  background: linear-gradient(180deg, #78350f 0%, #451a03 55%, #270e02 100%);
+  border-top: 2px solid #fbbf24;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 -2px 8px rgba(0, 0, 0, 0.7);
+  z-index: 3;
+}
+
+.bookshelf-plank::before,
+.bookshelf-plank::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  width: 18px;
+  height: 6px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fde047, #b45309);
+  border: 1px solid #451a03;
+}
+
+.bookshelf-plank::before { left: 14px; }
+.bookshelf-plank::after { right: 14px; }
+
+/* Decorative Crystal Bookend */
+.bookshelf-crystal-prop {
+  position: relative;
+  width: 22px;
+  height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 3px;
+  flex-shrink: 0;
+}
+
+.crystal-gem {
+  width: 14px;
+  height: 26px;
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 45%, #0284c7 100%);
+  clip-path: polygon(50% 0%, 100% 30%, 82% 100%, 18% 100%, 0% 30%);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+  animation: crystalFloat 2.8s ease-in-out infinite;
+}
+
+.crystal-pedestal {
+  width: 20px;
+  height: 12px;
+  background: linear-gradient(180deg, #94a3b8, #334155);
+  border: 1px solid #cbd5e1;
+  border-radius: 2px 2px 0 0;
+}
+
+@keyframes crystalFloat {
+  0%, 100% { transform: translateY(0px); filter: brightness(1); }
+  50% { transform: translateY(-4px); filter: brightness(1.25); }
+}
+
+/* Individual RPG Tome Spine */
+.rpg-book-tome {
+  position: relative;
+  width: var(--book-w, 32px);
+  height: var(--book-h, 88px);
+  background: var(--book-bg, linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #172554 100%));
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 2px 5px;
+  box-shadow:
+    inset 2px 0 3px rgba(255, 255, 255, 0.25),
+    inset -2px 0 4px rgba(0, 0, 0, 0.65),
+    2px 0 5px rgba(0, 0, 0, 0.6);
+  transform-origin: bottom center;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, filter 0.22s ease;
+  flex-shrink: 1;
+}
+
+/* Metallic Spine Bands */
+.rpg-book-tome::before,
+.rpg-book-tome::after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #b45309 0%, #fde047 50%, #92400e 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  flex-shrink: 0;
+}
+
+.rpg-book-spine-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.95);
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.rpg-book-gem {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--book-gem, #38bdf8);
+  box-shadow: 0 0 6px var(--book-gem, #38bdf8);
+  flex-shrink: 0;
+}
+
+.rpg-book-tome.is-active,
+.rpg-book-tome:hover {
+  filter: brightness(1.18);
+  border-color: #fde047;
+  box-shadow:
+    0 -4px 14px rgba(250, 204, 21, 0.45),
+    inset 2px 0 4px rgba(255, 255, 255, 0.4),
+    2px 0 8px rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+
+.rpg-book-tome.is-idle-peek {
+  filter: brightness(1.14);
+  box-shadow:
+    0 -3px 12px rgba(56, 189, 248, 0.4),
+    inset 2px 0 3px rgba(255, 255, 255, 0.35);
+}
+
+/* Bottom Digital Readout Strip */
+.bookshelf-readout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: rgba(6, 9, 16, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+  padding: 0.35rem 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-off-white);
+  text-shadow: var(--rpg-text-shadow);
+  z-index: 2;
+}
+
+.bookshelf-readout-title {
+  color: #fde047;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookshelf-readout-count {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
+  .mods-hero-split {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  .mods-hero-info {
+    flex: 1 1 auto;
+  }
+  .mods-bookshelf-wrap {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .rpg-bookshelf-card {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .bookshelf-row {
+    gap: 3px;
+  }
+  .rpg-book-tome {
+    width: calc(var(--book-w, 32px) * 0.86);
+  }
+  .rpg-book-spine-label {
+    font-size: 0.56rem;
+  }
+}
+
+
 
