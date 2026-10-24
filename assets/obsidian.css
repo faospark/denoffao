@@ -557,31 +557,32 @@ code, .font-mono {
 }
 
 .vault-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-}
-
-.vault-icon {
-  width: 28px;
-  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--vault-icon-bg, linear-gradient(135deg, #2563eb, #1d4ed8));
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  color: #fff;
-  box-shadow: 0 0 12px var(--vault-icon-glow, rgba(56, 189, 248, 0.5));
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background 0.3s ease;
+  color: var(--text-off-white);
+  text-decoration: none;
+  padding: 2px 4px;
+  transition: color var(--transition-fast), filter var(--transition-fast);
 }
 
+.vault-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
+}
+
+.vault-brand:hover,
 .vault-brand:hover .vault-icon {
-  transform: translateY(-1px) scale(1.06);
-  box-shadow: 0 0 16px var(--card-hover-glow, rgba(56, 189, 248, 0.85));
+  color: var(--accent-cyan);
+  filter: drop-shadow(0 0 6px var(--vault-icon-glow, rgba(56, 189, 248, 0.65)));
+  box-shadow: none;
 }
 
 .vault-breadcrumb {

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traveler's Guestbook — Faospark's Den of Mods</title>
+
+  <meta name="description" content="Sign the Traveler's Guestbook at Faospark's Den of Mods — leave a message, share your favorite classic RPG or mod, and say hello!">
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <link rel="canonical" href="https://denoffao.me/guestbook.html">
+  <meta property="og:url" content="https://denoffao.me/guestbook.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Traveler's Guestbook — Faospark's Den of Mods"/>
+  <meta property="og:description" content="Sign the workshop logbook and leave a note for Faospark and fellow classic RPG fans."/>
+  <meta property="og:image" content="assets/forup_291x.png"/>
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Den of Fao" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261024">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261024"></script>
+
+  <style>
+    .guestbook-hero-banner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.5rem;
+      border-radius: 14px;
+      background: var(--bg-window-card);
+      border: 1px solid var(--btn-secondary-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 24px rgba(0, 0, 0, 0.35);
+      margin-bottom: 1.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .guestbook-hero-banner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .guestbook-cta-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-end;
+    }
+
+    @media (max-width: 768px) {
+      .guestbook-cta-box {
+        align-items: stretch;
+      }
+    }
+
+    .guestbook-security-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .guestbook-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--btn-secondary-border);
+    }
+
+    .guestbook-search-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--btn-secondary-border);
+      color: var(--text-pure-white);
+      padding: 0.55rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      min-width: 240px;
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .guestbook-search-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.75;
+    }
+
+    .guestbook-search-input:focus {
+      background: var(--bg-tertiary);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--card-hover-glow), inset 0 2px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    .guestbook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .guestbook-entry-card {
+      background: var(--bg-window-card);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: 12px;
+      padding: 1.15rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.85rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .guestbook-entry-card:hover {
+      transform: translateY(-2px);
+      background: var(--bg-window-card-hover);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 16px var(--card-hover-glow), 0 8px 24px -8px rgba(0, 0, 0, 0.55);
+    }
+
+    .guestbook-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .guestbook-author-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .guestbook-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--btn-primary-bg);
+      border: 1px solid var(--btn-primary-border);
+      color: var(--text-pure-white);
+      text-shadow: var(--rpg-text-shadow);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px var(--btn-primary-shadow);
+    }
+
+    .guestbook-author-name {
+      font-weight: 700;
+      color: var(--text-pure-white);
+      font-size: 0.98rem;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .guestbook-entry-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .guestbook-message {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .guestbook-setup-card {
+      background: var(--bg-window-card);
+      border: 1px dashed var(--accent-cyan);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .guestbook-setup-card h3 {
+      margin: 0 0 0.6rem 0;
+      color: var(--text-pure-white);
+      font-size: 1.1rem;
+    }
+
+    .guestbook-setup-card ol {
+      margin: 0.5rem 0 0 1.2rem;
+      padding: 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .guestbook-setup-card code {
+      background: var(--bg-secondary);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--accent-cyan);
+      font-size: 0.84rem;
+    }
+
+    /* In-Page Guestbook Form Styling (Theme-Aware across all 7 Vault Themes) */
+    .guestbook-form-card {
+      background: var(--bg-window-card);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .guestbook-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .guestbook-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .guestbook-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .guestbook-field label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .guestbook-input,
+    .guestbook-textarea {
+      background: var(--bg-secondary);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: 8px;
+      color: var(--text-pure-white);
+      padding: 0.65rem 0.85rem;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .guestbook-input::placeholder,
+    .guestbook-textarea::placeholder {
+      color: var(--text-muted);
+      opacity: 0.72;
+    }
+
+    .guestbook-input:focus,
+    .guestbook-textarea:focus {
+      background: var(--bg-tertiary);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--card-hover-glow), inset 0 2px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Prevent browser autofill from forcing dark navy/white boxes over theme colors */
+    .guestbook-input:-webkit-autofill,
+    .guestbook-input:-webkit-autofill:hover,
+    .guestbook-input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--text-pure-white);
+      -webkit-box-shadow: 0 0 0px 1000px var(--bg-secondary) inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .guestbook-textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .guestbook-form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .guestbook-status-msg {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar breadcrumb="guestbook.md" active="guestbook"></vault-navbar>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    <div class="vault-single-card">
+
+      <!-- Top Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Mod Workshop</span>
+        </a>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <span class="tag tag-emerald" id="guestbookCountBadge">Loading Entries...</span>
+          <span class="tag tag-cyan">Google Sheets Powered</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div class="guestbook-hero-banner">
+        <div>
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+            <span class="pulse-dot"></span>
+            <a href="index.html" class="bc-link">Home</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">Guestbook</span>
+          </nav>
+
+          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.65rem 0; font-size: 2.2rem;">
+            Traveler's <span class="text-gradient">Guestbook.</span>
+          </h1>
+
+          <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 680px;">
+            Welcome to the Save Point logbook! Drop a message, share which classic RPG or mod brought you here, or just say hello like we used to back in the Geocities days.
+          </p>
+        </div>
+
+        <div class="guestbook-cta-box">
+          <a id="signGuestbookBtn" href="#guestbookFormCard" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 700;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            <span>Write in the Logbook</span>
+          </a>
+          <span class="guestbook-security-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Your email stays strictly private &amp; is never displayed publicly
+          </span>
+        </div>
+      </div>
+
+      <!-- In-Page Custom Guestbook Form (No leaving the website!) -->
+      <form id="guestbookFormCard" class="guestbook-form-card" autocomplete="on">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <h2 style="margin: 0; font-size: 1.15rem; color: var(--text-pure-white, #fff);">✍️ Sign the Traveler's Logbook</h2>
+          <span class="tag">Direct In-Page Entry</span>
+        </div>
+
+        <!-- Hidden anti-bot honeypot field -->
+        <input type="text" id="gbWebsiteTrap" name="website" tabindex="-1" autocomplete="off" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+
+        <div class="guestbook-form-grid">
+          <div class="guestbook-field">
+            <label for="gbNameInput">Name or Handle *</label>
+            <input type="text" id="gbNameInput" class="guestbook-input" placeholder="e.g. Locke Cole" required maxlength="60">
+          </div>
+
+          <div class="guestbook-field">
+            <label for="gbEmailInput">Email Address (Private — Never Shown) *</label>
+            <input type="email" id="gbEmailInput" class="guestbook-input" placeholder="Used only for spam/troll verification" required maxlength="120">
+          </div>
+        </div>
+
+        <div class="guestbook-field" style="margin-bottom: 1rem;">
+          <label for="gbRpgInput">Favorite RPG or Mod (Optional Badge)</label>
+          <input type="text" id="gbRpgInput" class="guestbook-input" placeholder="e.g. Suikoden II, Final Fantasy VI, Chrono Cross..." maxlength="50">
+        </div>
+
+        <div class="guestbook-field">
+          <label for="gbMessageInput">Your Message *</label>
+          <textarea id="gbMessageInput" class="guestbook-textarea" placeholder="Leave a note for the workshop logbook..." required maxlength="800"></textarea>
+        </div>
+
+        <div class="guestbook-form-footer">
+          <span id="guestbookFormStatus" class="guestbook-status-msg"></span>
+          <button type="submit" id="gbSubmitBtn" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700;">
+            <span>Post to Guestbook &rarr;</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Setup Notice (Automatically hidden once configured) -->
+      <div id="guestbookSetupNotice" class="guestbook-setup-card" style="display: none;">
+        <h3>⚙️ Connect Your Google Form &amp; Sheet (Private Email + Troll-Proof Setup)</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.5rem 0;">
+          To see everyone's verified email privately (so you can spot trolls) while keeping emails 100% hidden from the public website:
+        </p>
+        <ol>
+          <li>Create a <strong>Google Form</strong> with 3 questions:
+            <ul>
+              <li><strong>Name / Handle</strong> (Short answer, Required)</li>
+              <li><strong>Favorite RPG or Mod</strong> (Short answer, Optional)</li>
+              <li><strong>Message</strong> (Paragraph, Required)</li>
+            </ul>
+          </li>
+          <li>In your Form's <strong>Settings &rarr; Responses</strong>, set <strong>"Collect email addresses"</strong> to <strong>Verified</strong>. <em>(Now visitors must log into Google, and Google logs their real email in Column B)</em>.</li>
+          <li>In the Form's <strong>Responses</strong> tab, click <strong>Link to Sheets</strong>. Keep the Sheet <strong>Restricted (Private to Only You)</strong>.</li>
+          <li>Inside that Sheet, click the <strong>+</strong> button at the bottom-left to add a second tab named <code>Public</code>, and paste this formula into cell <code>A1</code> of the <code>Public</code> tab:<br>
+            <code>=QUERY('Form Responses 1'!A:F, "SELECT A, C, D, E WHERE F IS NULL", 1)</code><br>
+            <em>(This copies Timestamp, Name, RPG, and Message—completely skipping Column B (Email)—and if anyone trolls, you just type an <code>x</code> in Column F of your main tab to instantly hide their post!)</em>
+          </li>
+          <li>Go to <strong>File &rarr; Share &rarr; Publish to web</strong>, change <em>Entire Document</em> to <strong>Public</strong> (only that tab), select <strong>Comma-separated values (.csv)</strong>, click <strong>Publish</strong>, and copy the link.</li>
+          <li>Paste your Form link and Published CSV link into <code>GUESTBOOK_CONFIG</code> in <code>guestbook.html</code>!</li>
+        </ol>
+      </div>
+
+      <!-- Toolbar: Search & Refresh -->
+      <div class="guestbook-toolbar">
+        <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+          <input type="search" id="guestbookSearchInput" class="guestbook-search-input" placeholder="Search messages, names, or RPGs..." aria-label="Search guestbook entries">
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <button type="button" id="refreshGuestbookBtn" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span>Refresh Logbook</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Entries Grid -->
+      <div id="guestbookEntriesGrid" class="guestbook-grid" aria-live="polite">
+        <!-- Populated live from Google Sheets -->
+      </div>
+
+    </div>
+  </main>
+
+  <back-to-top></back-to-top>
+  <vault-footer></vault-footer>
+
+  <script>
+    // =========================================================================
+    // GUESTBOOK CONFIGURATION
+    // =========================================================================
+    const GUESTBOOK_CONFIG = {
+      // 1. Paste your Google Sheet "Extensions -> Apps Script" Web App URL here for 100% in-page submission:
+      appsScriptUrl: 'https://script.google.com/macros/s/AKfycbx7OXezKkVnkB14g1J1hWaUeqtNCogIC8HnESMq2pcGHlBV9Wkl7cOroaUU6u6vLueC/exec',
+
+      // 2. Your Google Sheet "Publish to web (CSV)" link (Public tab):
+      googleSheetUrlOrId: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUag16YropGZqDmt5uMloGSggtNz1puu48HSlL_IbAde7Xcs_JRdivtCiTJWa8nU6_Y0D9DDGlfe3S/pub?gid=1654922725&single=true&output=csv',
+
+      // 3. Optional fallback Google Form link:
+      googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfqOV810nEwQrfHulvhz881DalExdnUoHlG7jMBKyVgzzdEZg/viewform?usp=dialog',
+
+      // 4. Optional Sheet tab name if using direct Sheet ID instead of Published CSV:
+      sheetTabName: ''
+    };
+
+    // Fallback starter entry shown before a live sheet is connected
+    const STARTER_ENTRIES = [
+      {
+        timestamp: 'Oct 24, 2026',
+        name: 'Faospark',
+        favoriteRpg: 'Workshop Host',
+        message: 'Welcome to the Traveler\'s Guestbook! Once connected to Google Sheets, every message submitted through the Google Form will appear right here automatically.'
+      }
+    ];
+
+    let allGuestbookEntries = [];
+
+    function isPublishedCsvUrl(input) {
+      if (!input) return false;
+      const s = input.trim();
+      return s.includes('output=csv') || s.includes('/pub?');
+    }
+
+    function extractSheetId(input) {
+      if (!input) return '';
+      const trimmed = input.trim();
+      const match = trimmed.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+      if (match && match[1]) return match[1];
+      return trimmed;
+    }
+
+    // Full RFC-4180 CSV parser (handles multi-line messages, commas, and quotes)
+    function parseCsvRows(csvText) {
+      const rows = [];
+      let currentRow = [];
+      let currentField = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < csvText.length; i++) {
+        const ch = csvText[i];
+        const next = csvText[i + 1];
+
+        if (inQuotes) {
+          if (ch === '"' && next === '"') {
+            currentField += '"';
+            i++;
+          } else if (ch === '"') {
+            inQuotes = false;
+          } else {
+            currentField += ch;
+          }
+        } else {
+          if (ch === '"') {
+            inQuotes = true;
+          } else if (ch === ',') {
+            currentRow.push(currentField.trim());
+            currentField = '';
+          } else if (ch === '\r' && next === '\n') {
+            currentRow.push(currentField.trim());
+            rows.push(currentRow);
+            currentRow = [];
+            currentField = '';
+            i++;
+          } else if (ch === '\n' || ch === '\r') {
+            currentRow.push(currentField.trim());
+            rows.push(currentRow);
+            currentRow = [];
+            currentField = '';
+          } else {
+            currentField += ch;
+          }
+        }
+      }
+      if (currentField.length > 0 || currentRow.length > 0) {
+        currentRow.push(currentField.trim());
+        rows.push(currentRow);
+      }
+      return rows;
+    }
+
+    function formatEntryDate(raw) {
+      if (!raw) return '';
+      // Handle Google Visualization Date(yyyy,m,d,h,m,s) format if present
+      const gvizMatch = String(raw).match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)/);
+      if (gvizMatch) {
+        const d = new Date(
+          Number(gvizMatch[1]),
+          Number(gvizMatch[2]),
+          Number(gvizMatch[3]),
+          Number(gvizMatch[4] || 0),
+          Number(gvizMatch[5] || 0),
+          Number(gvizMatch[6] || 0)
+        );
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+      const parsed = new Date(raw);
+      if (!isNaN(parsed.getTime())) {
+        return parsed.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+      return String(raw);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str == null ? '' : String(str);
+      return div.innerHTML;
+    }
+
+    function renderGuestbookEntries(entries) {
+      const grid = document.getElementById('guestbookEntriesGrid');
+      const badge = document.getElementById('guestbookCountBadge');
+      if (!grid) return;
+
+      if (badge) {
+        badge.textContent = `${entries.length} ${entries.length === 1 ? 'Entry' : 'Entries'}`;
+      }
+
+      if (entries.length === 0) {
+        grid.innerHTML = `
+          <div class="guestbook-entry-card" style="grid-column: 1 / -1; text-align: center; padding: 2.25rem;">
+            <p class="guestbook-message" style="color: var(--text-muted);">No matching guestbook entries found yet. Be the first to sign!</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = entries.map(entry => {
+        const name = entry.name || 'Anonymous Traveler';
+        const initial = name.trim().charAt(0).toUpperCase() || '?';
+        const badgeHtml = entry.favoriteRpg
+          ? `<span class="tag tag-amber" style="font-size: 0.72rem;">${escapeHtml(entry.favoriteRpg)}</span>`
+          : '';
+
+        return `
+          <article class="guestbook-entry-card">
+            <div>
+              <div class="guestbook-entry-header">
+                <div class="guestbook-author-wrap">
+                  <div class="guestbook-avatar" aria-hidden="true">${escapeHtml(initial)}</div>
+                  <div>
+                    <div class="guestbook-author-name">${escapeHtml(name)}</div>
+                    <div class="guestbook-entry-date">${escapeHtml(entry.timestamp || '')}</div>
+                  </div>
+                </div>
+                ${badgeHtml}
+              </div>
+              <p class="guestbook-message" style="margin-top: 0.85rem;">${escapeHtml(entry.message)}</p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    async function loadGuestbookFromGoogleSheet() {
+      const rawSource = (GUESTBOOK_CONFIG.googleSheetUrlOrId || '').trim();
+      const setupNotice = document.getElementById('guestbookSetupNotice');
+
+      if (!rawSource) {
+        if (setupNotice) setupNotice.style.display = 'block';
+        allGuestbookEntries = STARTER_ENTRIES;
+        renderGuestbookEntries(allGuestbookEntries);
+        return;
+      }
+
+      if (setupNotice) setupNotice.style.display = 'none';
+
+      try {
+        let cellRows = [];
+
+        if (isPublishedCsvUrl(rawSource)) {
+          const res = await fetch(rawSource, { cache: 'no-store' });
+          const csvText = await res.text();
+          cellRows = parseCsvRows(csvText);
+        } else {
+          const sheetId = extractSheetId(rawSource);
+          const sheetParam = GUESTBOOK_CONFIG.sheetTabName
+            ? `&sheet=${encodeURIComponent(GUESTBOOK_CONFIG.sheetTabName)}`
+            : '';
+          const url = `https://docs.google.com/spreadsheets/d/${encodeURIComponent(sheetId)}/gviz/tq?tqx=out:json${sheetParam}`;
+          const res = await fetch(url, { cache: 'no-store' });
+          const text = await res.text();
+          const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?/);
+          if (!jsonMatch || !jsonMatch[1]) {
+            throw new Error('Unexpected response format from Google Sheets.');
+          }
+          const data = JSON.parse(jsonMatch[1]);
+          const rows = (data.table && data.table.rows) || [];
+          cellRows = rows.map(row =>
+            (row.c || []).map(cell => {
+              if (!cell) return '';
+              return cell.f != null ? String(cell.f).trim() : (cell.v != null ? String(cell.v).trim() : '');
+            })
+          );
+        }
+
+        const parsedEntries = [];
+        for (const cells of cellRows) {
+          // Skip completely empty rows or header rows
+          if (cells.every(val => !val)) continue;
+          if (cells[0].toLowerCase() === 'timestamp') continue;
+
+          const timestamp = formatEntryDate(cells[0]);
+          const name = cells[1] || 'Anonymous Traveler';
+          const favoriteRpg = cells.length >= 4 ? (cells[2] || '') : '';
+          const message = cells.length >= 4 ? (cells[3] || '') : (cells[2] || '');
+
+          if (!message) continue;
+
+          parsedEntries.push({
+            timestamp,
+            name,
+            favoriteRpg,
+            message
+          });
+        }
+
+        // Newest messages first
+        allGuestbookEntries = parsedEntries.reverse();
+        renderGuestbookEntries(allGuestbookEntries);
+      } catch (err) {
+        console.error('Failed to load Google Sheet guestbook:', err);
+        const grid = document.getElementById('guestbookEntriesGrid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="guestbook-entry-card" style="grid-column: 1 / -1;">
+              <div class="guestbook-author-name" style="color: #f87171;">Could not load Google Sheet entries</div>
+              <p class="guestbook-message">Make sure your Google Sheet sharing is set to <strong>"Anyone with the link can view"</strong> and that the Sheet link in <code>GUESTBOOK_CONFIG</code> is correct.</p>
+            </div>
+          `;
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadGuestbookFromGoogleSheet();
+
+      const searchInput = document.getElementById('guestbookSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.trim().toLowerCase();
+          if (!q) {
+            renderGuestbookEntries(allGuestbookEntries);
+            return;
+          }
+          const filtered = allGuestbookEntries.filter(e =>
+            (e.name && e.name.toLowerCase().includes(q)) ||
+            (e.favoriteRpg && e.favoriteRpg.toLowerCase().includes(q)) ||
+            (e.message && e.message.toLowerCase().includes(q))
+          );
+          renderGuestbookEntries(filtered);
+        });
+      }
+
+      const refreshBtn = document.getElementById('refreshGuestbookBtn');
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+          loadGuestbookFromGoogleSheet();
+        });
+      }
+
+      const form = document.getElementById('guestbookFormCard');
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const trap = document.getElementById('gbWebsiteTrap');
+          if (trap && trap.value) return;
+
+          const name = (document.getElementById('gbNameInput')?.value || '').trim();
+          const email = (document.getElementById('gbEmailInput')?.value || '').trim();
+          const favoriteRpg = (document.getElementById('gbRpgInput')?.value || '').trim();
+          const message = (document.getElementById('gbMessageInput')?.value || '').trim();
+          const statusEl = document.getElementById('guestbookFormStatus');
+          const submitBtn = document.getElementById('gbSubmitBtn');
+
+          if (!name || !email || !message) return;
+
+          if (!GUESTBOOK_CONFIG.appsScriptUrl) {
+            if (GUESTBOOK_CONFIG.googleFormUrl) {
+              window.open(GUESTBOOK_CONFIG.googleFormUrl, '_blank', 'noopener');
+            }
+            if (statusEl) {
+              statusEl.style.color = '#fbbf24';
+              statusEl.textContent = 'Paste your Apps Script Web App URL into GUESTBOOK_CONFIG.appsScriptUrl for 100% in-page posting!';
+            }
+            return;
+          }
+
+          try {
+            if (submitBtn) submitBtn.disabled = true;
+            if (statusEl) {
+              statusEl.style.color = 'var(--accent-cyan, #38bdf8)';
+              statusEl.textContent = 'Saving to the workshop logbook...';
+            }
+
+            await fetch(GUESTBOOK_CONFIG.appsScriptUrl, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ name, email, favoriteRpg, message })
+            });
+
+            // Immediately show the new entry at the top of the guestbook
+            const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            allGuestbookEntries.unshift({
+              timestamp: today,
+              name,
+              favoriteRpg,
+              message
+            });
+            renderGuestbookEntries(allGuestbookEntries);
+
+            form.reset();
+            if (statusEl) {
+              statusEl.style.color = '#34d399';
+              statusEl.textContent = '✓ Message posted to the Guestbook!';
+            }
+          } catch (err) {
+            if (statusEl) {
+              statusEl.style.color = '#f87171';
+              statusEl.textContent = 'Could not submit right now. Please try again.';
+            }
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

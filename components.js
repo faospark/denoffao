@@ -56,24 +56,46 @@ window.applyVaultTheme = applyVaultTheme;
     const current = getStoredVaultTheme();
     document.documentElement.setAttribute('data-theme', current);
 
-    // Ensure favicon & manifest links exist in <head> across all pages
+    // Ensure favicon, manifest & PWA theme-color exist in <head> across all pages
     const head = document.head || document.getElementsByTagName('head')[0];
-    if (head && !head.querySelector('link[rel="icon"]')) {
-      const icons = [
-        { rel: 'icon', type: 'image/png', href: 'favicon-96x96.png', sizes: '96x96' },
-        { rel: 'icon', type: 'image/svg+xml', href: 'favicon.svg' },
-        { rel: 'shortcut icon', href: 'favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: 'apple-touch-icon.png' },
-        { rel: 'manifest', href: 'site.webmanifest' }
-      ];
-      icons.forEach(attrs => {
-        const link = document.createElement('link');
-        Object.keys(attrs).forEach(k => link.setAttribute(k, attrs[k]));
-        head.appendChild(link);
-      });
+    if (head) {
+      if (!head.querySelector('link[rel="icon"]')) {
+        const icons = [
+          { rel: 'icon', type: 'image/png', href: 'favicon-96x96.png', sizes: '96x96' },
+          { rel: 'icon', type: 'image/svg+xml', href: 'favicon.svg' },
+          { rel: 'shortcut icon', href: 'favicon.ico' },
+          { rel: 'apple-touch-icon', sizes: '180x180', href: 'apple-touch-icon.png' }
+        ];
+        icons.forEach(attrs => {
+          const link = document.createElement('link');
+          Object.keys(attrs).forEach(k => link.setAttribute(k, attrs[k]));
+          head.appendChild(link);
+        });
+      }
+      if (!head.querySelector('link[rel="manifest"]')) {
+        const manifestLink = document.createElement('link');
+        manifestLink.setAttribute('rel', 'manifest');
+        manifestLink.setAttribute('href', 'site.webmanifest');
+        head.appendChild(manifestLink);
+      }
+      if (!head.querySelector('meta[name="theme-color"]')) {
+        const themeMeta = document.createElement('meta');
+        themeMeta.setAttribute('name', 'theme-color');
+        themeMeta.setAttribute('content', '#081120');
+        head.appendChild(themeMeta);
+      }
     }
   }
 })();
+
+// Register Progressive Web App Service Worker (sw.js)
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    if (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  });
+}
 
 // Listen for storage changes across tabs
 if (typeof window !== 'undefined') {
@@ -223,7 +245,22 @@ function loadGoogleTranslateScript() {
 const ICONS = {
   star: `<svg width="12" height="12" viewBox="0 0 576 512" fill="currentColor" style="vertical-align: -1px; margin-right: 3px; display: inline-block; color: var(--accent-amber, #f59e0b);"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>`,
   heart: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px; margin-left: 4px; display: inline-block; color: var(--accent-rose, #f43f5e);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
-  vault: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`,
+  vault: `<svg class="js-home-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible; display: block;">
+    <g class="home-svg-smoke" stroke="none">
+      <circle class="smoke-puff" cx="17.5" cy="3.5" r="1.2" fill="var(--accent-cyan, #38bdf8)" opacity="0.65"></circle>
+      <circle class="smoke-puff" cx="18.2" cy="1.5" r="1.5" fill="var(--accent-cyan, #38bdf8)" opacity="0.4"></circle>
+      <circle class="smoke-puff" cx="17.0" cy="-0.5" r="1.8" fill="var(--accent-amber, #fbbf24)" opacity="0.2"></circle>
+    </g>
+    <g class="home-svg-house">
+      <path class="home-svg-body" d="M5 10.2V20a1.8 1.8 0 0 0 1.8 1.8h10.4A1.8 1.8 0 0 0 19 20v-9.8" fill="rgba(15, 23, 42, 0.55)"></path>
+      <rect class="home-svg-door" x="9.5" y="13.5" width="5" height="8.3" rx="1" fill="var(--accent-amber, #fbbf24)" fill-opacity="0.28"></rect>
+      <circle class="home-svg-window" cx="12" cy="9.2" r="1.4" fill="var(--accent-cyan, #38bdf8)" stroke="none"></circle>
+    </g>
+    <g class="home-svg-roof-group" style="transform-origin: 12px 7px;">
+      <path class="home-svg-chimney" d="M15.8 5.2V3.2h2.8v4.3" fill="rgba(15, 23, 42, 0.7)"></path>
+      <path class="home-svg-roof" d="M2.2 11.2L12 2.8l9.8 8.4"></path>
+    </g>
+  </svg>`,
   menu: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`,
   footerVault: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 18 6 6 6 6 2"></polygon><rect x="3" y="6" width="18" height="16" rx="2"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`,
   calendar: `<svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>`,
@@ -243,6 +280,7 @@ class VaultNavbar extends HTMLElement {
     const isProjects = active === 'projects' || active === 'special-projects';
     const isMods = active === 'mods' || active === 'catalog';
     const isBlog = active === 'blog' || active === 'archives';
+    const isGuestbook = active === 'guestbook';
     const isDonate = active === 'donate';
 
     const currentThemeId = getStoredVaultTheme();
@@ -267,6 +305,7 @@ class VaultNavbar extends HTMLElement {
             <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Projects</a></li>
             <li><a href="mods.html" class="nav-link ${isMods ? 'active' : ''}">All Mods</a></li>
             <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog</a></li>
+            <li><a href="guestbook.html" class="nav-link ${isGuestbook ? 'active' : ''}">Guestbook</a></li>
             <li><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Personal Update</a></li>
           </ul>
 
@@ -331,6 +370,87 @@ class VaultNavbar extends HTMLElement {
         </div>
       </header>
     `;
+
+    // JavaScript-Powered Animated RPG Home SVG Engine (Unboxed)
+    const brandLink = this.querySelector('.vault-brand');
+    const homeSvg = this.querySelector('.js-home-svg');
+    if (brandLink && homeSvg) {
+      const puffs = Array.from(homeSvg.querySelectorAll('.smoke-puff'));
+      const roofGroup = homeSvg.querySelector('.home-svg-roof-group');
+      const door = homeSvg.querySelector('.home-svg-door');
+      const atticWin = homeSvg.querySelector('.home-svg-window');
+
+      let isHovered = false;
+      let targetTilt = 0;
+      let currentTilt = 0;
+      let roofY = 0;
+      let roofVy = 0;
+
+      brandLink.addEventListener('mouseenter', () => {
+        isHovered = true;
+        // Trigger elastic roof hop velocity on hover
+        roofVy = -2.2;
+      });
+
+      brandLink.addEventListener('mousemove', (e) => {
+        const rect = brandLink.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const dx = (e.clientX - cx) / (rect.width / 2 || 1);
+        targetTilt = Math.max(-12, Math.min(12, dx * 10));
+      });
+
+      brandLink.addEventListener('mouseleave', () => {
+        isHovered = false;
+        targetTilt = 0;
+      });
+
+      const animateHomeIcon = (now) => {
+        const t = now * 0.001;
+        const speed = isHovered ? 2.4 : 1.0;
+
+        // 1. Rising Chimney Smoke / Rune Puffs
+        puffs.forEach((puff, i) => {
+          const cycle = (t * 0.65 * speed + i * 0.33) % 1;
+          const cy = 3.8 - cycle * 6.8;
+          const cx = 17.2 + Math.sin(t * 2.5 + i * 1.7) * (0.6 + cycle * 1.1);
+          const r = 0.8 + cycle * 1.35;
+          const alpha = Math.sin(cycle * Math.PI) * (isHovered ? 0.95 : 0.65);
+
+          puff.setAttribute('cx', cx.toFixed(2));
+          puff.setAttribute('cy', cy.toFixed(2));
+          puff.setAttribute('r', r.toFixed(2));
+          puff.setAttribute('opacity', Math.max(0, alpha).toFixed(2));
+        });
+
+        // 2. Spring Physics for Roof Hop & Cursor Tilt
+        const stiffness = 0.18;
+        const damping = 0.78;
+        const targetRoofY = isHovered ? -1.4 : 0;
+        roofVy = (roofVy + (targetRoofY - roofY) * stiffness) * damping;
+        roofY += roofVy;
+        currentTilt += (targetTilt - currentTilt) * 0.2;
+
+        if (roofGroup) {
+          roofGroup.style.transform = `translateY(${roofY.toFixed(2)}px) rotate(${(currentTilt * 0.45).toFixed(2)}deg)`;
+        }
+        homeSvg.style.transform = `rotate(${currentTilt.toFixed(2)}deg) scale(${isHovered ? 1.12 : 1})`;
+
+        // 3. Cozy Pulsing Hearth Door & Attic Window Glow
+        const hearthPulse = isHovered
+          ? 0.65 + 0.25 * Math.sin(t * 8)
+          : 0.24 + 0.12 * Math.sin(t * 2.5);
+        if (door) {
+          door.setAttribute('fill-opacity', hearthPulse.toFixed(2));
+        }
+        if (atticWin) {
+          const winScale = isHovered ? 1.25 + 0.15 * Math.sin(t * 7) : 1 + 0.08 * Math.sin(t * 2);
+          atticWin.setAttribute('r', (1.3 * winScale).toFixed(2));
+        }
+
+        requestAnimationFrame(animateHomeIcon);
+      };
+      requestAnimationFrame(animateHomeIcon);
+    }
 
     // Built-in Mobile Nav toggle handler
     const toggle = this.querySelector('#vaultMobileNavToggle');
