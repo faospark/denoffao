@@ -2555,10 +2555,17 @@ site-footer {
   flex-shrink: 0;
 }
 
+.footer-content community-box {
+  flex: 0 1 auto;
+}
+
 .footer-socials {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  flex: 1;
+  min-width: 220px;
 }
 
 .footer-social-icon {
