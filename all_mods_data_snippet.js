@@ -4,6 +4,17 @@
  */
 const ALL_MODS_DATA = [
   {
+    "id": "saga-button-prompts",
+    "title": "SagaButtonPrompts",
+    "url": "https://github.com/faospark/SagaButtonPrompts",
+    "game": "SaGa Frontier Remastered",
+    "category": "other",
+    "date": "Oct 25, 2026",
+    "image": "assets/mods/saga-prompts-ps-color.jpg",
+    "desc": "Custom in-game controller button prompt replacements for SaGa Frontier Remastered on PC. Press F9 in-game to cycle styles on-the-fly (PS4, PS5, PS1, Switch, Xbox).",
+    "badge": "GitHub"
+  },
+  {
     "id": 6,
     "title": "Project Kyaro Suite",
     "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/6",

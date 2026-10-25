@@ -1,0 +1,176 @@
+{
+  ".vscode/settings.json": {
+    "mtime": 1792749712.5956643,
+    "seen": 1792930145.6802,
+    "ast_hash": "e88fdb1d7777fa462f6bc652e37f35d0",
+    "semantic_hash": "e88fdb1d7777fa462f6bc652e37f35d0"
+  },
+  "all_mods_data_snippet.js": {
+    "mtime": 1792637806.960993,
+    "seen": 1792930145.6802,
+    "ast_hash": "fe647f66d35c55487ac53610f1dab5b1",
+    "semantic_hash": "fe647f66d35c55487ac53610f1dab5b1"
+  },
+  "assets/blog/blog_data.js": {
+    "mtime": 1792773506.0302088,
+    "seen": 1792930145.6802,
+    "ast_hash": "7062cf0971eadb9828f4baa014197e6a",
+    "semantic_hash": "7062cf0971eadb9828f4baa014197e6a"
+  },
+  "assets/blog/blog_index.json": {
+    "mtime": 1792773509.3944004,
+    "seen": 1792930145.6802,
+    "ast_hash": "00ad0992c13d7c2b0e412ad6977acbaf",
+    "semantic_hash": "00ad0992c13d7c2b0e412ad6977acbaf"
+  },
+  "assets/blog/blog_posts.json": {
+    "mtime": 1792773507.5745862,
+    "seen": 1792930145.6802,
+    "ast_hash": "196619d290cbc1f111ddcc6bda411ffc",
+    "semantic_hash": "196619d290cbc1f111ddcc6bda411ffc"
+  },
+  "common.js": {
+    "mtime": 1764162716.71856,
+    "seen": 1792930145.6802,
+    "ast_hash": "f98ce1d3f7522e858d18edc56864ad7b",
+    "semantic_hash": "f98ce1d3f7522e858d18edc56864ad7b"
+  },
+  "components.js": {
+    "mtime": 1792933589.2674618,
+    "seen": 1792939784.2432795,
+    "ast_hash": "469e533b91c1a63b80cff871e01d4741",
+    "semantic_hash": ""
+  },
+  "components.min.js": {
+    "mtime": 1792749669.1824865,
+    "seen": 1792930145.6802,
+    "ast_hash": "8d345c1feaf75367c2ff39d8968ddb1d",
+    "semantic_hash": "8d345c1feaf75367c2ff39d8968ddb1d"
+  },
+  "package.json": {
+    "mtime": 1792628654.7795281,
+    "seen": 1792930145.6802,
+    "ast_hash": "da758e5e489dc1c45d646e067476e4e1",
+    "semantic_hash": "da758e5e489dc1c45d646e067476e4e1"
+  },
+  "sw.js": {
+    "mtime": 1792939739.6674726,
+    "seen": 1792939784.2432795,
+    "ast_hash": "dcbbf71b7d64e552c29c54c9943afb7c",
+    "semantic_hash": ""
+  },
+  ".agents/rules/legacy-pages.md": {
+    "mtime": 1792570411.5202627,
+    "seen": 1792930145.6802,
+    "ast_hash": "3034106afe96a7860c64f32dd90e4b85",
+    "semantic_hash": "3034106afe96a7860c64f32dd90e4b85"
+  },
+  "AGENTS.md": {
+    "mtime": 1792740104.7837827,
+    "seen": 1792930145.6802,
+    "ast_hash": "98ebfc0c5066b178a6a072837c357576",
+    "semantic_hash": "98ebfc0c5066b178a6a072837c357576"
+  },
+  "README.md": {
+    "mtime": 1764162716.707577,
+    "seen": 1792930145.6802,
+    "ast_hash": "424133846ae91318d4c73adeaa76afdc",
+    "semantic_hash": "424133846ae91318d4c73adeaa76afdc"
+  },
+  "blog.html": {
+    "mtime": 1792933110.888698,
+    "seen": 1792939784.2432795,
+    "ast_hash": "0d69ea6001a307958e05268f38754328",
+    "semantic_hash": ""
+  },
+  "ffvi-mods.html": {
+    "mtime": 1792549325.833514,
+    "seen": 1792930145.6802,
+    "ast_hash": "9e8ab2b95a2310642e3317c66185c6c9",
+    "semantic_hash": "9e8ab2b95a2310642e3317c66185c6c9"
+  },
+  "guestbook.html": {
+    "mtime": 1792923575.1815085,
+    "seen": 1792930145.6802,
+    "ast_hash": "2b857873c2d29d5b652de29474ae84e3",
+    "semantic_hash": "2b857873c2d29d5b652de29474ae84e3"
+  },
+  "index.html": {
+    "mtime": 1792928159.260951,
+    "seen": 1792930145.6802,
+    "ast_hash": "2a211a54eb3c01661c776abb0dbae3e9",
+    "semantic_hash": "2a211a54eb3c01661c776abb0dbae3e9"
+  },
+  "mods.html": {
+    "mtime": 1792923575.1841898,
+    "seen": 1792930145.6802,
+    "ast_hash": "57633bfe258e279963dd6c8d0c8df899",
+    "semantic_hash": "57633bfe258e279963dd6c8d0c8df899"
+  },
+  "project-chrono-cross.html": {
+    "mtime": 1792923575.1896977,
+    "seen": 1792930145.6802,
+    "ast_hash": "633f31b40b7910b008f70a92313d4779",
+    "semantic_hash": "633f31b40b7910b008f70a92313d4779"
+  },
+  "project-ffvi-old-ver-mods.html": {
+    "mtime": 1792923575.1927032,
+    "seen": 1792930145.6802,
+    "ast_hash": "80fb12678c59e1e4a0959b6d084942f1",
+    "semantic_hash": "80fb12678c59e1e4a0959b6d084942f1"
+  },
+  "project-ffvi-old-ver-tile-tool.html": {
+    "mtime": 1792923575.1957035,
+    "seen": 1792930145.6802,
+    "ast_hash": "6738da7db1192d5661de3efc52dfe609",
+    "semantic_hash": "6738da7db1192d5661de3efc52dfe609"
+  },
+  "project-kupo-library.html": {
+    "mtime": 1792923575.1992025,
+    "seen": 1792930145.6802,
+    "ast_hash": "7aa2c3ad80c5f4574caee1e1dd4d472f",
+    "semantic_hash": "7aa2c3ad80c5f4574caee1e1dd4d472f"
+  },
+  "project-kupo-ui-pr.html": {
+    "mtime": 1792923575.2022028,
+    "seen": 1792930145.6802,
+    "ast_hash": "5b1f0f559a7b0afbae240d60c9a46f61",
+    "semantic_hash": "5b1f0f559a7b0afbae240d60c9a46f61"
+  },
+  "project-kyaro-pc.html": {
+    "mtime": 1792923575.2087138,
+    "seen": 1792930145.6802,
+    "ast_hash": "15dd1f7d9ae24b572143d228a13c9c7f",
+    "semantic_hash": "15dd1f7d9ae24b572143d228a13c9c7f"
+  },
+  "project-kyaro.html": {
+    "mtime": 1792923575.2167227,
+    "seen": 1792930145.6802,
+    "ast_hash": "a54ed63668b93e58f2fec3491ce5b925",
+    "semantic_hash": "a54ed63668b93e58f2fec3491ce5b925"
+  },
+  "project-suisaveeditor.html": {
+    "mtime": 1792923575.2207217,
+    "seen": 1792930145.6802,
+    "ast_hash": "9886d47079f08ad1600cdab27f39839e",
+    "semantic_hash": "9886d47079f08ad1600cdab27f39839e"
+  },
+  "projects.html": {
+    "mtime": 1792939727.9340532,
+    "seen": 1792939784.2432795,
+    "ast_hash": "066f6deadaa19eb70bfc8f304c41bb61",
+    "semantic_hash": ""
+  },
+  "robots.txt": {
+    "mtime": 1792748213.7125685,
+    "seen": 1792930145.6802,
+    "ast_hash": "c1e5bcd3b25b3a07e61d7c21b80798e5",
+    "semantic_hash": "c1e5bcd3b25b3a07e61d7c21b80798e5"
+  },
+  "project-saga-frontier.html": {
+    "mtime": 1792939631.0953255,
+    "seen": 1792939784.2432795,
+    "ast_hash": "910987644ee7c0a899c88d5e7095ceb9",
+    "semantic_hash": ""
+  }
+}

@@ -26,9 +26,9 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261024">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
   <!-- Native Web Components -->
-  <script src="components.js?v=20261023"></script>
+  <script src="components.js?v=20261025"></script>
 </head>
 <body>
   <!-- Ambient background grid -->
@@ -90,16 +90,6 @@
         </span>
         <input type="text" id="blogSearchInput" class="search-input" placeholder="Search 48 published posts by title, tag, or content keywords...">
         <button id="clearSearchBtn" onclick="clearBlogSearch()" style="position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--text-dim); cursor: pointer; display: none;" title="Clear search"><svg width="12" height="12" viewBox="0 0 352 512" fill="currentColor"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></button>
-      </div>
-
-      <!-- Category Filter Pills -->
-      <div class="filter-pills-row" id="blogCategoryPills">
-        <button class="filter-btn active" data-filter="all">All Topics (<span id="countAll">48</span>)</button>
-        <button class="filter-btn" data-filter="mods">Mods &amp; Suikoden (<span id="countMods">8</span>)</button>
-        <button class="filter-btn" data-filter="emulation">DeSmuME &amp; Emulation (<span id="countEmu">8</span>)</button>
-        <button class="filter-btn" data-filter="pokemon">Pokemon &amp; Action Replay (<span id="countPkm">11</span>)</button>
-        <button class="filter-btn" data-filter="artwork">Vector Art &amp; Restorations (<span id="countArt">5</span>)</button>
-        <button class="filter-btn" data-filter="tech">Tech &amp; Notes (<span id="countTech">7</span>)</button>
       </div>
 
       <!-- Year Selector Pills -->
@@ -199,7 +189,6 @@
   <script>
     // State
     let posts = window.BLOG_POSTS || [];
-    let currentCategory = 'all';
     let currentYear = 'all';
     let searchQuery = '';
     let currentPage = 1;
@@ -207,49 +196,11 @@
     let filteredPosts = [];
     let currentOpenIndex = -1;
 
-
-    // Helper to categorize post
-    function matchesCategory(p, cat) {
-      if (cat === 'all') return true;
-      const cats = (p.categories || []).map(c => c.toLowerCase());
-      const title = (p.title || '').toLowerCase();
-      const content = (p.content || '').toLowerCase();
-
-      if (cat === 'mods') {
-        return cats.some(c => c.includes('mod') || c.includes('suikoden')) || title.includes('kyaro') || title.includes('mod');
-      }
-      if (cat === 'emulation') {
-        return cats.some(c => c.includes('desmume') || c.includes('emu')) || title.includes('desmume') || title.includes('emulator') || title.includes('no$gba');
-      }
-      if (cat === 'pokemon') {
-        return cats.some(c => c.includes('pokemon') || c.includes('action replay') || c.includes('hex')) || title.includes('pokemon') || title.includes('action replay') || title.includes('pkm');
-      }
-      if (cat === 'artwork') {
-        return cats.some(c => c.includes('artwork') || c.includes('digimon')) || title.includes('vector') || title.includes('monodramon') || title.includes('patamon') || title.includes('gatomon') || title.includes('wormmon');
-      }
-      if (cat === 'tech') {
-        return cats.some(c => c.includes('note') || c.includes('blogger') || c.includes('xampp')) || title.includes('ssl') || title.includes('seo') || title.includes('css3') || title.includes('xampp');
-      }
-      return false;
-    }
-
-    // Update Category Counts
-    function updateCategoryCounts() {
-      if (!posts.length) return;
-      document.getElementById('countAll').textContent = posts.length;
-      document.getElementById('countMods').textContent = posts.filter(p => matchesCategory(p, 'mods')).length;
-      document.getElementById('countEmu').textContent = posts.filter(p => matchesCategory(p, 'emulation')).length;
-      document.getElementById('countPkm').textContent = posts.filter(p => matchesCategory(p, 'pokemon')).length;
-      document.getElementById('countArt').textContent = posts.filter(p => matchesCategory(p, 'artwork')).length;
-      document.getElementById('countTech').textContent = posts.filter(p => matchesCategory(p, 'tech')).length;
-    }
-
     // Filter & Search Engine
     function filterPosts() {
       const q = searchQuery.toLowerCase().trim();
 
       filteredPosts = posts.filter(p => {
-        if (!matchesCategory(p, currentCategory)) return false;
         if (currentYear !== 'all' && String(p.year) !== String(currentYear)) return false;
 
         if (q) {
@@ -275,7 +226,6 @@
 
       showingCount.textContent = filteredPosts.length;
       let descParts = [];
-      if (currentCategory !== 'all') descParts.push(`in "${currentCategory}"`);
       if (currentYear !== 'all') descParts.push(`from ${currentYear}`);
       if (searchQuery) descParts.push(`matching "${searchQuery}"`);
       filterDesc.textContent = descParts.length ? `(${descParts.join(', ')})` : '';
@@ -425,18 +375,6 @@
       openBlogReaderByGlobalIndex(nextIndex);
     }
 
-    // Category Buttons
-    const categoryBtns = document.querySelectorAll('#blogCategoryPills .filter-btn');
-    categoryBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        categoryBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.getAttribute('data-filter');
-        currentPage = 1;
-        filterPosts();
-      });
-    });
-
     // Year Buttons
     const yearBtns = document.querySelectorAll('#yearSelectorRow .archive-year-btn');
     yearBtns.forEach(btn => {
@@ -470,14 +408,12 @@
     }
 
     function resetBlogFilters() {
-      currentCategory = 'all';
       currentYear = 'all';
       searchQuery = '';
       currentPage = 1;
       if (searchInput) searchInput.value = '';
       if (clearBtn) clearBtn.style.display = 'none';
 
-      categoryBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
       yearBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-year') === 'all'));
 
       filterPosts();
@@ -517,7 +453,6 @@
 
     // Initialization
     function init() {
-      updateCategoryCounts();
       filterPosts();
       checkUrlHash();
       window.addEventListener('hashchange', checkUrlHash);

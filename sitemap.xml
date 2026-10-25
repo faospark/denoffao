@@ -28,6 +28,12 @@
 
   <!-- Flagship Project Documentation & Suites -->
   <url>
+    <loc>https://denoffao.me/update-project-kyaro-realignment.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://denoffao.me/project-kyaro-pc.html</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -72,6 +78,12 @@
   <url>
     <loc>https://denoffao.me/project-chrono-cross.html</loc>
     <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://denoffao.me/project-saga-frontier.html</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

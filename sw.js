@@ -13,7 +13,7 @@ const CORE_ASSETS = [
   './blog.html',
   './guestbook.html',
   './project-chrono-cross.html',
-  './project-chrono-cross-mods.html',
+  './project-saga-frontier.html',
   './project-ffvi-old-ver-mods.html',
   './project-ffvi-old-ver-tile-tool.html',
   './project-kupo-library.html',

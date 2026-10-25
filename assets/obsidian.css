@@ -556,6 +556,12 @@ code, .font-mono {
   justify-content: space-between;
 }
 
+.vault-brand-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .vault-brand {
   display: inline-flex;
   align-items: center;
@@ -564,6 +570,26 @@ code, .font-mono {
   text-decoration: none;
   padding: 2px 4px;
   transition: color var(--transition-fast), filter var(--transition-fast);
+}
+
+.vault-home-link {
+  color: var(--text-off-white) !important;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.vault-home-link:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.vault-home-link.active {
+  color: var(--text-off-white) !important;
+  background: transparent !important;
 }
 
 .vault-icon {
@@ -602,6 +628,67 @@ code, .font-mono {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+/* Donate Button — PayPal Colored Navigation Action */
+.nav-update-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: linear-gradient(180deg, #ffc439 0%, #f59e0b 100%);
+  border: none !important;
+  color: #000000 !important;
+  padding: 0.38rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav-update-btn span {
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+.nav-update-heart {
+  display: inline-block;
+  flex-shrink: 0;
+  color: #dc2626 !important;
+  fill: #dc2626 !important;
+  transition: transform var(--transition-fast);
+}
+
+.nav-update-btn:hover {
+  background: linear-gradient(180deg, #ffe082 0%, #ffb300 100%);
+  border: none !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
+}
+
+.nav-update-btn:hover span {
+  color: #000000 !important;
+}
+
+.nav-update-btn:hover .nav-update-heart {
+  transform: scale(1.18);
+}
+
+.nav-update-btn:active {
+  transform: translateY(0);
+  box-shadow: none !important;
+}
+
+.nav-update-btn.active {
+  box-shadow: none !important;
 }
 
 /* ==========================================================================
@@ -1016,6 +1103,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   list-style: none;
+  margin-left: 0.75rem;
+  margin-right: auto;
 }
 
 .nav-link {
@@ -1030,6 +1119,34 @@ body {
 .nav-link:hover {
   color: #fff !important;
   background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+  color: var(--accent-cyan) !important;
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.mobile-only-nav {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-only-nav {
+    display: block;
+  }
+}
+
+@media (max-width: 580px) {
+  .nav-update-btn {
+    padding: 0.32rem 0.55rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-update-btn {
+    display: none;
+  }
 }
 
 .nav-donate-pill {
@@ -2684,6 +2801,7 @@ site-footer {
     top: 100%;
     left: 0;
     right: 0;
+    margin: 0;
     background: var(--mobile-nav-bg, #090e18);
     border-bottom: 4px solid var(--frame-inner-black);
     padding: 1.25rem;

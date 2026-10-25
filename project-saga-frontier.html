@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SagaButtonPrompts (SaGa Frontier Remastered) — Faospark's Workshop</title>
+  
+  <meta name="description" content="Custom in-game controller button prompt replacements for SaGa Frontier Remastered on PC. High-clarity PlayStation, Xbox, and Nintendo Switch glyphs by Faospark.">
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <link rel="canonical" href="https://denoffao.me/project-saga-frontier.html">
+  <meta property="og:url" content="https://denoffao.me/project-saga-frontier.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="SagaButtonPrompts — SaGa Frontier Remastered"/>
+  <meta property="og:description" content="Custom controller button prompt replacements for SaGa Frontier Remastered on PC by Faospark."/>
+  <meta property="og:image" content="assets/mods/saga-frontier-remastered.jpg"/>
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Den of Fao" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <!-- Native Web Components -->
+  <script src="components.js?v=20261025"></script>
+</head>
+<body>
+  <!-- Ambient background grid -->
+  <div class="ambient-grid"></div>
+
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar active="projects"></vault-navbar>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+    
+    <div class="vault-single-card">
+      
+      <!-- Top Navigation & Stats Bar inside Card -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
+          <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Special Projects</span>
+          </a>
+          <a href="mods.html" class="back-home-link" style="margin-bottom: 0; color: var(--text-muted);">
+            <span>&bull; View Full Mod Library</span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="tag tag-emerald font-mono">GitHub Release</span>
+          <span class="tag tag-purple font-mono">SaGa Frontier Remastered</span>
+          <span class="tag tag-cyan font-mono">Controller Prompts</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation with Thumbnail Preview -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; align-items: center; margin-bottom: 1.5rem;">
+        <div>
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+            <span class="pulse-dot"></span>
+            <a href="index.html" class="bc-link">Home</a>
+            <span class="bc-sep">/</span>
+            <a href="projects.html" class="bc-link">Projects</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">SagaButtonPrompts</span>
+          </nav>
+
+          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+            SagaButtonPrompts <span class="text-gradient">for SaGa Frontier.</span>
+          </h1>
+
+          <div style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin: 0 0 1.25rem 0; display: flex; flex-direction: column; gap: 0.85rem;">
+            <p style="margin: 0;">
+              <strong>SagaButtonPrompts</strong> is a BepInEx 6 (IL2CPP) texture and glyph modification for <strong>SaGa Frontier Remastered</strong> on PC. It replaces the default Xbox controller glyphs in both the UI and dialogue text tags with crisp, high-definition button prompt textures.
+            </p>
+            <p style="margin: 0;">
+              Includes presets for <strong>PlayStation</strong> (PS4 Color, PS5 DualSense, PS1 Classic), <strong>Xbox</strong> (A/B/X/Y), and <strong>Nintendo Switch</strong> (B/A/Y/X). Built with an <strong>in-game hotkey (<kbd style="background: rgba(255,255,255,0.12); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.25); color: #fff; font-family: monospace;">F9</kbd>)</strong> to cycle styles on-the-fly!
+            </p>
+          </div>
+
+          <!-- Download & Repository Actions -->
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+            <a href="https://github.com/faospark/SagaButtonPrompts" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px; margin-right: 4px;">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>Download on GitHub &rarr;</span>
+            </a>
+            <a href="https://github.com/faospark/SagaButtonPrompts" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>View Repository</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Official Key Art / Thumbnail Preview -->
+        <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.85));" onclick="openLightbox('assets/mods/saga-frontier-remastered.jpg', 'SaGa Frontier Remastered — SagaButtonPrompts')">
+          <img src="assets/mods/saga-frontier-remastered.jpg" alt="SaGa Frontier Remastered Thumbnail" class="hero-banner-img" style="object-fit: contain; max-height: 260px; padding: 1.25rem;" loading="lazy">
+          <div class="banner-overlay-badge">
+            <span class="tag tag-emerald">Button Prompts</span>
+            <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="rpg-divider">
+
+      <!-- Available Controller Presets -->
+      <section style="margin-top: 1.5rem; margin-bottom: 2rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 1rem;">Included Controller Layouts</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+              <span class="tag tag-cyan">PlayStation</span>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Colored &amp; DualSense Presets</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              Classic color-coded symbols (Blue Cross, Red Circle, Pink Square, Green Triangle) plus modern monochrome DualSense (PS5) styling.
+            </p>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+              <span class="tag tag-emerald">Xbox</span>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Xbox A / B / X / Y Glyphs</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              Standard Xbox controller prompts with colored face buttons, bumper, trigger (RT/RB/LB), and view/menu button indicators.
+            </p>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+              <span class="tag tag-red">Nintendo Switch</span>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Nintendo Switch Face Buttons</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              Nintendo layout (B at bottom, A on right, Y on left, X on top) matching official Switch controller button positioning.
+            </p>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+              <span class="tag tag-cyan font-mono">In-Game Hotkey</span>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Instant Hotkey Cycling (F9)</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+              Press <kbd style="background: rgba(255,255,255,0.12); padding: 1px 5px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.25); color: #fff;">F9</kbd> anytime during gameplay to cycle through styles on-the-fly (PS4 &rarr; PS5 &rarr; PS1 &rarr; Switch &rarr; Xbox &rarr; Custom) with instant UI updates and auto-saved config.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Media & Screenshot Showcase Gallery -->
+      <section id="gallery" style="margin-top: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin: 0;">In-Game Showcase &amp; Previews</h2>
+          <span style="font-size: 0.825rem; color: var(--text-muted);">Captured directly from the in-game Controller Remapping screen</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          <!-- PlayStation Colored Prompts -->
+          <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-color.jpg', 'SaGa Frontier Remastered — PlayStation Colored Controller Prompts')">
+            <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
+              <img src="assets/mods/saga-prompts-ps-color.jpg" alt="PlayStation Colored Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <div class="banner-overlay-badge">
+                <span class="tag tag-cyan">PlayStation (Color)</span>
+                <span class="tag tag-emerald">Click to Zoom</span>
+              </div>
+            </div>
+            <div style="padding: 0.85rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <strong style="color: #fff;">PlayStation Colored Glyphs:</strong> Classic colored Cross, Circle, Square, and Triangle prompts integrated into the in-game Controller Remapping UI.
+            </div>
+          </div>
+
+          <!-- PlayStation Monochrome / DualSense -->
+          <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-mono.jpg', 'SaGa Frontier Remastered — PlayStation Monochrome / DualSense Prompts')">
+            <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
+              <img src="assets/mods/saga-prompts-ps-mono.jpg" alt="PlayStation Monochrome DualSense Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <div class="banner-overlay-badge">
+                <span class="tag tag-purple">PlayStation (DualSense)</span>
+                <span class="tag tag-emerald">Click to Zoom</span>
+              </div>
+            </div>
+            <div style="padding: 0.85rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <strong style="color: #fff;">Monochrome DualSense Theme:</strong> Clean white glyph styling matching the modern PS5 and DualSense visual language.
+            </div>
+          </div>
+
+          <!-- Xbox Controller Prompts -->
+          <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-xbox.jpg', 'SaGa Frontier Remastered — Xbox Controller Prompts (A / B / X / Y)')">
+            <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
+              <img src="assets/mods/saga-prompts-xbox.jpg" alt="Xbox Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <div class="banner-overlay-badge">
+                <span class="tag tag-emerald">Xbox Layout</span>
+                <span class="tag tag-cyan">Click to Zoom</span>
+              </div>
+            </div>
+            <div style="padding: 0.85rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <strong style="color: #fff;">Xbox Standard Colored Glyphs:</strong> Native Xbox button indicators (A, B, X, Y) with color-matched rings, triggers (RT, RB, LB), and menu controls.
+            </div>
+          </div>
+
+          <!-- Nintendo Switch Controller Prompts -->
+          <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-switch.jpg', 'SaGa Frontier Remastered — Nintendo Switch Controller Prompts')">
+            <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
+              <img src="assets/mods/saga-prompts-switch.jpg" alt="Nintendo Switch Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <div class="banner-overlay-badge">
+                <span class="tag tag-red">Nintendo Switch</span>
+                <span class="tag tag-emerald">Click to Zoom</span>
+              </div>
+            </div>
+            <div style="padding: 0.85rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <strong style="color: #fff;">Nintendo Switch Layout:</strong> Accurate Nintendo face buttons (B/A/Y/X) with shoulder prompts (ZR, R, L, +) and swapped confirmation actions.
+            </div>
+          </div>
+
+          <!-- PlayStation Alternative / Classic Layout -->
+          <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-alt.jpg', 'SaGa Frontier Remastered — PlayStation Classic Remap Configuration')">
+            <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
+              <img src="assets/mods/saga-prompts-ps-alt.jpg" alt="PlayStation Classic Remap Configuration" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <div class="banner-overlay-badge">
+                <span class="tag tag-cyan">PlayStation Alternate</span>
+                <span class="tag tag-emerald">Click to Zoom</span>
+              </div>
+            </div>
+            <div style="padding: 0.85rem; font-size: 0.875rem; color: var(--text-secondary);">
+              <strong style="color: #fff;">Controller Remapping Screen:</strong> Demonstrating full in-game compatibility across prompt sets with complete Japanese/Western action mappings.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- End .vault-single-card -->
+
+  </main>
+
+  <!-- Back To Top Web Component -->
+  <back-to-top></back-to-top>
+
+  <!-- Obsidian Vault Footer Web Component -->
+  <vault-footer disclaimer="&copy; 2018–2026 Faospark. SaGa Frontier is &copy; Square Enix. Unofficial fan modification project."></vault-footer>
+
+  <!-- Lightbox Modal for Full Screenshot Previews -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
+      <img id="lightboxImg" src="" alt="Enlarged Preview">
+      <p id="lightboxCaption" class="lightbox-caption"></p>
+    </div>
+  </div>
+</body>
+</html>

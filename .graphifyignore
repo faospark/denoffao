@@ -1,0 +1,9 @@
+svgs/
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico
+

@@ -294,22 +294,32 @@ class VaultNavbar extends HTMLElement {
     this.innerHTML = `
       <header class="obsidian-topbar">
         <div class="container topbar-content">
-          <a href="index.html" class="vault-brand" title="Home" aria-label="Home" style="text-decoration: none;">
-            <span class="vault-icon">
-              ${ICONS.vault}
-            </span>
-          </a>
+          <div class="vault-brand-group">
+            <a href="index.html" class="vault-brand" title="Home" aria-label="Home" style="text-decoration: none;">
+              <span class="vault-icon">
+                ${ICONS.vault}
+              </span>
+            </a>
+            <a href="index.html" class="nav-link vault-home-link">Home</a>
+          </div>
 
           <ul class="nav-links" id="vaultNavLinks">
-            <li><a href="index.html" class="nav-link ${isHome ? 'active' : ''}">Home</a></li>
+            <li class="mobile-only-nav"><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="projects.html" class="nav-link ${isProjects ? 'active' : ''}">Projects</a></li>
             <li><a href="mods.html" class="nav-link ${isMods ? 'active' : ''}">All Mods</a></li>
             <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog</a></li>
             <li><a href="guestbook.html" class="nav-link ${isGuestbook ? 'active' : ''}">Guestbook</a></li>
-            <li><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Personal Update</a></li>
+            <li class="mobile-only-nav"><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Donate</a></li>
           </ul>
 
           <div class="topbar-actions notranslate">
+            <a href="index.html#donate" class="nav-update-btn notranslate ${isDonate ? 'active' : ''}" title="Donate">
+              <svg class="nav-update-heart" width="13" height="13" viewBox="0 0 24 24" fill="#dc2626">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <span>Donate</span>
+            </a>
+
             <!-- Language Selector Dropdown -->
             <div class="vault-lang-picker notranslate" id="vaultLangPicker">
               <button type="button" class="lang-picker-btn notranslate" id="vaultLangBtn" aria-haspopup="true" aria-expanded="false" title="Translate Website (${currentLang.nativeName})">
@@ -374,6 +384,7 @@ class VaultNavbar extends HTMLElement {
     // JavaScript-Powered Animated RPG Home SVG Engine (Unboxed)
     const brandLink = this.querySelector('.vault-brand');
     const homeSvg = this.querySelector('.js-home-svg');
+    const homeLink = this.querySelector('.vault-home-link');
     if (brandLink && homeSvg) {
       const puffs = Array.from(homeSvg.querySelectorAll('.smoke-puff'));
       const roofGroup = homeSvg.querySelector('.home-svg-roof-group');
@@ -386,23 +397,21 @@ class VaultNavbar extends HTMLElement {
       let roofY = 0;
       let roofVy = 0;
 
-      brandLink.addEventListener('mouseenter', () => {
+      const onEnter = () => {
         isHovered = true;
-        // Trigger elastic roof hop velocity on hover
         roofVy = -2.2;
-      });
-
-      brandLink.addEventListener('mousemove', (e) => {
-        const rect = brandLink.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const dx = (e.clientX - cx) / (rect.width / 2 || 1);
-        targetTilt = Math.max(-12, Math.min(12, dx * 10));
-      });
-
-      brandLink.addEventListener('mouseleave', () => {
+      };
+      const onLeave = () => {
         isHovered = false;
         targetTilt = 0;
-      });
+      };
+
+      brandLink.addEventListener('mouseenter', onEnter);
+      brandLink.addEventListener('mouseleave', onLeave);
+      if (homeLink) {
+        homeLink.addEventListener('mouseenter', onEnter);
+        homeLink.addEventListener('mouseleave', onLeave);
+      }
 
       const animateHomeIcon = (now) => {
         const t = now * 0.001;
@@ -1121,6 +1130,17 @@ if (!customElements.get('ff6-mods')) {
  * Chronologically ordered by last updated date (Newest First)
  */
 const ALL_MODS_DATA = [
+  {
+    "id": "saga-button-prompts",
+    "title": "SagaButtonPrompts",
+    "url": "https://github.com/faospark/SagaButtonPrompts",
+    "game": "SaGa Frontier Remastered",
+    "category": "other",
+    "date": "Oct 25, 2026",
+    "image": "assets/mods/saga-prompts-ps-color.jpg",
+    "desc": "Custom in-game controller button prompt replacements for SaGa Frontier Remastered on PC. Press F9 in-game to cycle styles on-the-fly (PS4, PS5, PS1, Switch, Xbox).",
+    "badge": "GitHub"
+  },
   {
     "id": 6,
     "title": "Project Kyaro Suite",
