@@ -1125,11 +1125,54 @@ if (!customElements.get('ff6-mods')) {
 }
 
 /**
-/**
- * ALL_MODS_DATA — Complete Catalog of all 68 Released Mods
+ * ALL_MODS_DATA — Complete Catalog of all 72 Released Mods
  * Chronologically ordered by last updated date (Newest First)
  */
 const ALL_MODS_DATA = [
+  {
+    "id": 44,
+    "title": "S2 NPC Bath Patch",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/44",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Oct 26, 2026",
+    "image": "assets/mods/44-1793029695-2078402831.png",
+    "desc": "A BepInEx 6 (IL2CPP) mod for Suikoden I & II HD Remaster (Steam) that restores the cut 1998 PlayStation feature allowing recruited castle companions and NPCs to take a bath with you.",
+    "badge": "Nexus Mods (#44)"
+  },
+  {
+    "id": 38,
+    "title": "Rune Sage Plus",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/38",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Oct 26, 2026",
+    "image": "assets/mods/38-1793028178-661169028.png",
+    "desc": "A BepInEx 6 (IL2CPP) mod for Suikoden I & II HD Remaster (Steam) that gives Jean in Suikoden 1 her rune shop and gives access to the Sajah Village Runes Shop on Suikoden 2.",
+    "badge": "Nexus Mods (#38)"
+  },
+  {
+    "id": 37,
+    "title": "S1 Castle Storage Anywhere",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/37",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Oct 26, 2026",
+    "image": "assets/mods/37-1792953695-1236505018.png",
+    "desc": "A BepInEx 6 (IL2CPP) mod for Suikoden I & II HD Remaster (Steam) that enables remote, instant access to Rock's Toran Castle Vault from anywhere across towns, dungeons, and the world map.",
+    "badge": "Nexus Mods (#37)"
+  },
+  {
+    "id": 36,
+    "title": "Tenzan Pass Patch",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/36",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Oct 26, 2026",
+    "image": "assets/mods/36-1792952016-523926006.png",
+    "desc": "A BepInEx 6 (IL2CPP) mod for Suikoden I & II HD Remaster (Steam) that restores the missing Chimera monster encounters and rare Cyclone Rune drops in Tenzan Pass (va11).",
+    "badge": "Nexus Mods (#36)"
+  },
   {
     "id": "saga-button-prompts",
     "title": "SagaButtonPrompts",
@@ -1882,7 +1925,7 @@ const ALL_MODS_DATA = [
 
 /**
  * ModsCatalog — Native Web Component (<mods-catalog>)
- * Renders the complete 68-mod catalog with live instant search, category tabs,
+ * Renders the complete 72-mod catalog with live instant search, category tabs,
  * auto-calculated counts, and lightbox modal support.
  */
 class ModsCatalog extends HTMLElement {
