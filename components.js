@@ -2208,6 +2208,8 @@ if (typeof document !== 'undefined') {
     window.dataLayer.push(arguments);
   };
 
+  const hasStaticGtag = !!document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+
   // 2. Read existing user consent preference (null if first visit)
   let savedConsent = null;
   try {
@@ -2218,13 +2220,15 @@ if (typeof document !== 'undefined') {
 
   // 3. Google Consent Mode v2 — Set default consent state BEFORE gtag('config')
   // Under EU GDPR, non-essential cookies must be 'denied' until the user affirmatively accepts.
-  window.gtag('consent', 'default', {
-    'analytics_storage': isGranted ? 'granted' : 'denied',
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'wait_for_update': 500
-  });
+  if (!hasStaticGtag) {
+    window.gtag('consent', 'default', {
+      'analytics_storage': isGranted ? 'granted' : 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+  }
 
   // 4. Check for local development (XAMPP / file protocol)
   const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname) ||
@@ -2232,8 +2236,8 @@ if (typeof document !== 'undefined') {
 
   if (isLocal) {
     console.info(`[Analytics] Running locally (${window.location.hostname || 'file'}). Tracking paused to protect live metrics.`);
-  } else {
-    // Inject official Google gtag script
+  } else if (!hasStaticGtag) {
+    // Inject official Google gtag script if not already present statically in <head>
     const script = document.createElement('script');
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;

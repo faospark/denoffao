@@ -27,6 +27,26 @@
 
   <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
   <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    (function(){
+      var s=null;try{s=localStorage.getItem('den_cookie_consent');}catch(e){}
+      gtag('consent','default',{
+        'analytics_storage':s==='granted'?'granted':'denied',
+        'ad_storage':'denied',
+        'ad_user_data':'denied',
+        'ad_personalization':'denied',
+        'wait_for_update':500
+      });
+    })();
+    gtag('js', new Date());
+    if (!['localhost', '127.0.0.1', ''].includes(window.location.hostname) && window.location.protocol !== 'file:') {
+      gtag('config', 'G-BMED35LCVS', { anonymize_ip: true });
+    }
+  </script>
   <!-- Native Web Components -->
   <script src="components.js?v=20261025"></script>
 </head>
