@@ -251,7 +251,7 @@
       filterDesc.textContent = descParts.length ? `(${descParts.join(', ')})` : '';
 
       if (filteredPosts.length === 0) {
-        grid.innerHTML = '';
+        grid.replaceChildren();
         noResults.style.display = 'block';
         pagination.style.display = 'none';
         return;
