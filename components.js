@@ -884,22 +884,18 @@ class FF9Mods extends HTMLElement {
     `;
 
     const cardsHtml = FF9_MODS_DATA.map(mod => {
-      const escapedTitle = mod.title.replace(/'/g, "\\'");
       return `
       <article class="mod-tile-card" data-category="ffix">
-        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
-          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+        <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
+          <img src="${mod.image}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
-          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
-        </div>
+        </a>
         <div class="mod-tile-body">
-          <div>
-            <div class="mod-tile-game">${mod.game}</div>
-            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-            <p class="mod-tile-desc">${mod.desc}</p>
-          </div>
+          <div class="mod-tile-game">${mod.game}</div>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+          <p class="mod-tile-desc">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -1087,23 +1083,19 @@ class ApocalypseMods extends HTMLElement {
     `;
 
     const cardsHtml = FF6_MODS_DATA.map(mod => {
-      const escapedTitle = mod.title.replace(/'/g, "\\'");
       return `
       <article class="mod-tile-card" data-category="ffvi" data-mod-id="${mod.id}">
-        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
-          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+        <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
+          <img src="${mod.image}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-purple">${mod.category}</span>
             <span class="tag tag-emerald">${ICONS.star} ${mod.endorsements} | ${ICONS.download} ${mod.downloads}</span>
           </div>
-          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
-        </div>
+        </a>
         <div class="mod-tile-body">
-          <div>
-            <div class="mod-tile-game">${mod.game}</div>
-            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-            <p class="mod-tile-desc">${mod.desc}</p>
-          </div>
+          <div class="mod-tile-game">${mod.game}</div>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+          <p class="mod-tile-desc">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -1995,17 +1987,16 @@ class ModsCatalog extends HTMLElement {
     }
 
     const cardsHtml = displayedMods.map(mod => {
-      const escapedTitle = (mod.title || '').replace(/'/g, "\\\'").replace(/"/g, '&quot;');
+      const escapedTitle = (mod.title || '').replace(/"/g, '&quot;');
       const searchable = `${mod.title} ${mod.game} ${mod.category} ${mod.desc} ${mod.date}`.toLowerCase();
       return `
       <article class="mod-tile-card" data-category="${mod.category}" data-search="${searchable}">
-        <div class="mod-tile-thumb" onclick="if(window.openLightbox){openLightbox('${mod.image}', '${escapedTitle}')}">
-          <img src="${mod.image}" alt="${mod.title}" loading="lazy" onerror="this.src='assets/forup_291x.png'">
+        <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${escapedTitle}">
+          <img src="${mod.image}" alt="${escapedTitle}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
-          <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
-        </div>
+        </a>
         <div class="mod-tile-body">
           <div class="mod-tile-game">${mod.game}</div>
           <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>

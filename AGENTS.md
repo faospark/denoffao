@@ -11,7 +11,8 @@
 ## Forbidden Assets (Do Not Ever Use)
 - **`assets/logus.png` and `assets/logus (Custom).png`**: This asset displays "FFVI ART OMNIA" and must **NEVER** be used anywhere on the website (especially never for Suikoden, Project Kyaro, or general project cards). Under no circumstances should this image be referenced, linked, or embedded.
 
-## Static Search Index Maintenance
+## Static Search Index & Minified Asset Maintenance
 - **Always Rebuild `assets/search-index.json`**: Whenever a new HTML page, project guide, mod entry (in `components.js`), or blog post (in `assets/blog/blog_data.js`) is added or substantially updated, **always run `npm run build-search`** (`node scripts/build-search-index.mjs`) before finishing so the static site-wide search index stays in sync.
+- **Always Rebuild Minified Assets**: All active HTML pages load `assets/obsidian.min.css` and `components.min.js`. Whenever `assets/obsidian.css` or `components.js` is edited, **always run `npm run build-minify`** (or `npm run build` to run both minification and search index rebuild) before finishing.
 
 

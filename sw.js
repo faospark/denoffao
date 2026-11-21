@@ -3,7 +3,7 @@
  * Compatible with XAMPP Apache (/denoffao/) and GitHub Pages (denoffao.me)
  */
 
-const CACHE_NAME = 'denoffao-pwa-v2';
+const CACHE_NAME = 'denoffao-pwa-v3';
 
 const CORE_ASSETS = [
   './',
@@ -22,9 +22,9 @@ const CORE_ASSETS = [
   './project-kyaro.html',
   './project-kyaro-pc.html',
   './project-suisaveeditor.html',
-  './assets/obsidian.css',
+  './assets/obsidian.min.css',
   './assets/search-index.json',
-  './components.js',
+  './components.min.js',
   './site.webmanifest',
   './favicon.svg',
   './favicon-96x96.png',

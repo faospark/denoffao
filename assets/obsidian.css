@@ -389,6 +389,45 @@ html {
   color-scheme: dark;
 }
 
+/* Cross-Document View Transitions (Progressive Enhancement) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .obsidian-topbar {
+    view-transition-name: vault-topbar;
+  }
+
+  ::view-transition-old(root) {
+    animation: 180ms ease-out both vaultPageFadeOut;
+  }
+
+  ::view-transition-new(root) {
+    animation: 220ms ease-out both vaultPageFadeIn;
+  }
+}
+
+@keyframes vaultPageFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vaultPageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--body-bg, linear-gradient(180deg, #273b62 0%, #1a2a49 20%, #101c34 50%, #080f1d 80%, #03060d 100%)) fixed;
@@ -1807,6 +1846,28 @@ body {
   font-size: 1rem;
   color: var(--text-secondary) !important;
   max-width: 640px;
+}
+
+.announcement-title a,
+.project-title a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.announcement-title a:hover,
+.project-title a:hover {
+  color: var(--accent-cyan) !important;
+}
+
+a.announcement-thumb,
+a.mod-tile-thumb,
+a.blog-card-thumb {
+  display: block;
+  text-decoration: none;
+}
+
+a.project-preview {
+  text-decoration: none;
 }
 
 /* Major Project Showcase Card */
