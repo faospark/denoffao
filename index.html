@@ -27,7 +27,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Zero external Google fonts) -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261026">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -49,12 +49,9 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar breadcrumb="den-of-mods.md" active="home"></vault-navbar>
 
@@ -64,51 +61,47 @@
     <section class="hero-section">
       <div class="hero-split-layout">
         <!-- Retro RPG Analog Clock -->
-        <div class="hero-clock-wrapper" aria-label="Analog Clock">
-          <div class="rpg-analog-clock-card">
-            <div class="rpg-clock-dial">
-              <svg viewBox="0 0 200 200" class="rpg-clock-svg">
-                <!-- Outer Decorative Ring -->
-                <circle cx="100" cy="100" r="92" class="clock-outer-ring" />
-                <circle cx="100" cy="100" r="84" class="clock-inner-ring" />
+        <div class="rpg-analog-clock-card" aria-label="Analog Clock">
+          <svg viewBox="0 0 200 200" class="rpg-clock-svg">
+            <!-- Outer Decorative Ring -->
+            <circle cx="100" cy="100" r="92" class="clock-outer-ring" />
+            <circle cx="100" cy="100" r="84" class="clock-inner-ring" />
 
-                <!-- 12 Hour & 60 Minute Tick Marks -->
-                <g class="clock-ticks">
-                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(30 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(60 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(90 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(120 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(150 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(180 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(210 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(240 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(270 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(300 100 100)" />
-                  <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(330 100 100)" />
-                </g>
+            <!-- 12 Hour & 60 Minute Tick Marks -->
+            <g class="clock-ticks">
+              <line x1="100" y1="16" x2="100" y2="26" class="tick-major" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(30 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(60 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(90 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(120 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(150 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(180 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(210 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(240 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="26" class="tick-major" transform="rotate(270 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(300 100 100)" />
+              <line x1="100" y1="16" x2="100" y2="23" class="tick-hour" transform="rotate(330 100 100)" />
+            </g>
 
-                <!-- Cardinal Numerals -->
-                <text x="100" y="42" text-anchor="middle" class="clock-numeral">XII</text>
-                <text x="163" y="105" text-anchor="middle" class="clock-numeral">III</text>
-                <text x="100" y="168" text-anchor="middle" class="clock-numeral">VI</text>
-                <text x="37" y="105" text-anchor="middle" class="clock-numeral">IX</text>
+            <!-- Cardinal Numerals -->
+            <text x="100" y="42" text-anchor="middle" class="clock-numeral">XII</text>
+            <text x="163" y="105" text-anchor="middle" class="clock-numeral">III</text>
+            <text x="100" y="168" text-anchor="middle" class="clock-numeral">VI</text>
+            <text x="37" y="105" text-anchor="middle" class="clock-numeral">IX</text>
 
-                <!-- Subtle Workshop Emblem Text -->
-                <text x="100" y="72" text-anchor="middle" class="clock-brand-label">DEN OF FAO</text>
+            <!-- Subtle Workshop Emblem Text -->
+            <text x="100" y="72" text-anchor="middle" class="clock-brand-label">DEN OF FAO</text>
 
-                <!-- Clock Hands -->
-                <line id="rpgClockHour" x1="100" y1="110" x2="100" y2="54" class="clock-hand-hour" />
-                <line id="rpgClockMin" x1="100" y1="114" x2="100" y2="34" class="clock-hand-min" />
-                <line id="rpgClockSec" x1="100" y1="118" x2="100" y2="26" class="clock-hand-sec" />
+            <!-- Clock Hands -->
+            <line id="rpgClockHour" x1="100" y1="110" x2="100" y2="54" class="clock-hand-hour" />
+            <line id="rpgClockMin" x1="100" y1="114" x2="100" y2="34" class="clock-hand-min" />
+            <line id="rpgClockSec" x1="100" y1="118" x2="100" y2="26" class="clock-hand-sec" />
 
-                <!-- Center Pivot Cap -->
-                <circle cx="100" cy="100" r="6" class="clock-pivot-outer" />
-                <circle cx="100" cy="100" r="2.5" class="clock-pivot-inner" />
-              </svg>
-            </div>
-            <div class="rpg-clock-readout" id="rpgClockReadout">--:--:--</div>
-          </div>
+            <!-- Center Pivot Cap -->
+            <circle cx="100" cy="100" r="6" class="clock-pivot-outer" />
+            <circle cx="100" cy="100" r="2.5" class="clock-pivot-inner" />
+          </svg>
+          <div class="rpg-clock-readout" id="rpgClockReadout">--:--:--</div>
         </div>
 
         <div class="hero-split-content">
@@ -156,56 +149,50 @@
 
     <!-- SPECIAL ANNOUNCEMENT SPOTLIGHT: Project Kyaro Realignment -->
     <section class="announcement-spotlight-card">
-      <div class="announcement-spotlight-inner">
-        <div class="announcement-thumb" onclick="openLightbox('assets/kyaro/project-kyaro-realignment.png', 'Project Kyaro Realignment — October 25, 2026')">
-          <img src="assets/kyaro/project-kyaro-realignment.png" alt="Project Kyaro Realignment" loading="lazy">
+      <div class="announcement-thumb" onclick="openLightbox('assets/kyaro/project-kyaro-realignment.png', 'Project Kyaro Realignment — October 25, 2026')">
+        <img src="assets/kyaro/project-kyaro-realignment.png" alt="Project Kyaro Realignment" loading="lazy" width="1024" height="576" decoding="async">
+      </div>
+      <div class="announcement-content">
+        <div class="announcement-meta-row">
+          <span class="tag tag-amber font-mono" style="font-size: 0.72rem;">Special Announcement</span>
+          <span class="tag tag-emerald font-mono" style="font-size: 0.72rem;">October 25, 2026</span>
+          <span class="tag tag-cyan font-mono" style="font-size: 0.72rem;">Project Kyaro</span>
         </div>
-        <div class="announcement-content">
-          <div class="announcement-meta-row">
-            <span class="tag tag-amber font-mono" style="font-size: 0.72rem;">Special Announcement</span>
-            <span class="tag tag-emerald font-mono" style="font-size: 0.72rem;">October 25, 2026</span>
-            <span class="tag tag-cyan font-mono" style="font-size: 0.72rem;">Project Kyaro</span>
-          </div>
-          <h2 class="announcement-title">
-            Project Kyaro Realignment
-          </h2>
-          <p class="announcement-text">
-            Today, I woke up excited to release a new version of Project Kyaro. But after spending some time reading through old notes, patch logs, and feedback, something finally clicked. Project Kyaro has grown far beyond what it originally set out to be—reaching 65 configuration options alone. Today, I made an executive decision to realign the project, separate features into thematic packages, and prepare standalone releases like the Tenzan Patch...
-          </p>
-          <div class="announcement-action-row">
-            <a href="update-project-kyaro-realignment.html" class="btn btn-primary btn-sm">
-              <span>Read More &rarr;</span>
-            </a>
-          </div>
+        <h2 class="announcement-title">
+          Project Kyaro Realignment
+        </h2>
+        <p class="announcement-text">
+          Today, I woke up excited to release a new version of Project Kyaro. But after spending some time reading through old notes, patch logs, and feedback, something finally clicked. Project Kyaro has grown far beyond what it originally set out to be—reaching 65 configuration options alone. Today, I made an executive decision to realign the project, separate features into thematic packages, and prepare standalone releases like the Tenzan Patch...
+        </p>
+        <div class="announcement-action-row">
+          <a href="update-project-kyaro-realignment.html" class="btn btn-primary btn-sm">
+            <span>Read More &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
 
     <!-- SECTION 1: Featured Major Projects Spotlight (Arranged by Last Updated) -->
     <section id="showcase">
-      <div class="section-header">
-        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <span class="section-eyebrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-              Flagship Showcases
-            </span>
-            <h2 class="section-title">Major Projects &amp; Suites</h2>
-          </div>
-          <a href="projects.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
-            <span>Explore all</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </a>
-        </div>
+      <header class="section-header section-header--with-cta">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Flagship Showcases
+        </span>
+        <h2 class="section-title">Major Projects &amp; Suites</h2>
+        <a href="projects.html" class="btn btn-primary btn-lg section-header-cta">
+          <span>Explore all</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
         <p class="section-desc">The Following Massive Projects that have either High coverage and/or is a utility. Most of these are massive in scope and is often much better to be called suites.</p>
-      </div>
+      </header>
 
       <!-- Showcase 1: Project Kyaro Suite (Suikoden I & II HD Remaster) — Updated Oct 14, 2026 -->
       <article class="project-card">
-        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'Project Kyaro Suite - Suikoden I & II HD Remaster')">
-          <img src="assets/kyaro/project-kyaro-suite.png" alt="Project Kyaro Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.webp', 'Project Kyaro Suite - Suikoden I & II HD Remaster')">
+          <img src="assets/kyaro/project-kyaro-suite.webp" alt="Project Kyaro Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Updated: Oct 25, 2026</span>
             <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
@@ -214,42 +201,38 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Most Recent Update</span>
-              <span class="tag tag-amber">Suikoden Series</span>
-              <span class="tag">Texture Suite</span>
-            </div>
-            <h3 class="project-title">Project Kyaro Suite</h3>
-            <p class="project-description">
-              A comprehensive texture and visual enhancement suite for <strong>Suikoden I&amp;II HD Remaster</strong>. Sharpened portraits, high-detail UI elements, and quality-of-life adjustments crafted specifically to enhance the modern remaster experience.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Special Announcement (Oct 25, 2026):</strong> Suite realignment into thematic packages &amp; standalone patches. <a href="update-project-kyaro-realignment.html" style="color: var(--accent-cyan); text-decoration: underline;">Read Full Update &rarr;</a></span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Faithful high-definition portrait overlays and character alignments.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Read the history behind the original PSX texture mod on the dedicated <a href="project-kyaro.html" style="color: var(--accent-cyan); text-decoration: underline;">Project Kyaro Hub</a>.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">Most Recent Update</span>
+            <span class="tag tag-amber">Suikoden Series</span>
+            <span class="tag">Texture Suite</span>
           </div>
+          <h3 class="project-title">Project Kyaro Suite</h3>
+          <p class="project-description">
+            A comprehensive texture and visual enhancement suite for <strong>Suikoden I&amp;II HD Remaster</strong>. Sharpened portraits, high-detail UI elements, and quality-of-life adjustments crafted specifically to enhance the modern remaster experience.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Special Announcement (Oct 25, 2026):</strong> Suite realignment into thematic packages &amp; standalone patches. <a href="update-project-kyaro-realignment.html" style="color: var(--accent-cyan); text-decoration: underline;">Read Full Update &rarr;</a></span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Faithful high-definition portrait overlays and character alignments.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Read the history behind the original PSX texture mod on the dedicated <a href="project-kyaro.html" style="color: var(--accent-cyan); text-decoration: underline;">Project Kyaro Hub</a>.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
-                <span>PC Remaster Guide &rarr;</span>
-              </a>
-              <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span>NexusMods (#6)</span>
-              </a>
-            </div>
+            <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
+              <span>PC Remaster Guide &rarr;</span>
+            </a>
+            <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>NexusMods (#6)</span>
+            </a>
           </div>
         </div>
       </article>
@@ -264,27 +247,23 @@
          SECTION 3: VAULT CHRONICLES & RECONSTRUCTED HISTORICAL BLOG (41 ARTICLES)
          ========================================================================== -->
     <section id="blog" style="margin-top: 5rem;">
-      <div class="section-header">
-        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <span class="section-eyebrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-              </svg>
-              Update, Blog Chronicles &amp; Notes.
-            </span>
-            <h2 class="section-title">Latest Updates</h2>
-          </div>
-          <a href="blog.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
-            <span>Explore more</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </a>
-        </div>
+      <header class="section-header section-header--with-cta">
+        <span class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          Update, Blog Chronicles &amp; Notes.
+        </span>
+        <h2 class="section-title">Latest Updates</h2>
+        <a href="blog.html" class="btn btn-primary btn-lg section-header-cta">
+          <span>Explore more</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
         <p class="section-desc">
           The latest articles, research notes, and project updates.
         </p>
-      </div>
+      </header>
 
 
       <!-- Home Blog Grid (Shows Top/Filtered Reconstructed Posts) -->
@@ -297,9 +276,8 @@
          A PERSONAL UPDATE & DONATION APPEAL (2-Column Desktop Grid)
          ========================================================================== -->
     <section id="donate" class="donation-section">
-      <div class="donation-layout">
-        <!-- Personal Update Letter (Left Column) -->
-        <div class="personal-letter-box">
+      <!-- Personal Update Letter (Left Column) -->
+      <div class="personal-letter-box">
           <div class="letter-badge-row">
             <span class="tag tag-purple">#personal-update</span>
             <span class="tag tag-emerald"><svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>October 21, 2026</span>
@@ -372,7 +350,6 @@
             </a>
           </div>
         </div>
-      </div>
     </section>
   </main>
 
@@ -380,14 +357,6 @@
   <back-to-top></back-to-top>
 
   <vault-footer></vault-footer>
-
-  <!-- Lightbox Modal for Full Image Inspection -->
-  <div class="image-modal" id="imageModal" onclick="closeLightbox(event)">
-    <div class="image-modal-content">
-      <button class="image-modal-close" onclick="closeLightbox()">&times;</button>
-      <img id="modalImage" src="" alt="Screenshot Full View">
-    </div>
-  </div>
 
   <!-- Toast Notification for Copy Address -->
   <div class="toast-notice" id="toastNotice">
@@ -417,7 +386,7 @@
           <h2 class="blog-reader-title" id="homeModalPostTitle">Post Title</h2>
           <div class="blog-reader-meta" id="homeModalPostMeta"></div>
         </div>
-        <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <div class="inline-row">
           <a id="homeModalFullLink" href="blog.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem;">
             <span>Archive View</span> &rarr;
           </a>
@@ -518,7 +487,7 @@
           if (post.thumbnail) {
             thumbHtml = `
               <div class="blog-card-thumb" onclick="openHomeBlogReader('${post.slug}')">
-                <img src="${post.thumbnail}" alt="${escapeHtml(post.title)}" loading="lazy">
+                <img src="${post.thumbnail}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async">
                 <span class="blog-card-badge">${escapeHtml(post.year)}</span>
               </div>
             `;

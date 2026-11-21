@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,12 +48,9 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kupo-library.md"></vault-navbar>
 
@@ -63,7 +60,7 @@
     <div class="vault-single-card">
       
       <!-- Top Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+      <div class="card-top-bar">
         <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -72,7 +69,7 @@
           <span>Back to Special Projects</span>
         </a>
 
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald">Memoria Engine</span>
           <span class="tag tag-cyan">Final Fantasy IX PC</span>
         </div>
@@ -100,7 +97,7 @@
 
       <!-- Kupo Mods Official Key Showcase -->
       <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library — Final Fantasy IX')">
-        <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library — Official Artwork" class="hero-banner-img" loading="lazy">
+        <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library — Official Artwork" class="hero-banner-img" loading="lazy" width="1024" height="576" decoding="async">
         <div class="banner-overlay-badge">
           <span class="tag tag-emerald">Official Key Art</span>
           <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -176,7 +173,7 @@
       <!-- SECTION 3: HISTORICAL NOTE / RETIRED MOD -->
       <section id="retired-mod" style="margin-top: 1rem;">
         <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 1.25rem 1.5rem; display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap;">
-          <img src="assets/mods/31-1736843983-1536393024.png" alt="Airship Plus Retired Banner" loading="lazy" style="width: 220px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer;" onclick="if(window.openLightbox) openLightbox('assets/mods/31-1736843983-1536393024.png', 'Airship Plus (Retired Mod)')">
+          <img src="assets/mods/31-1736843983-1536393024.png" alt="Airship Plus Retired Banner" loading="lazy" style="width: 220px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer;" onclick="if(window.openLightbox) openLightbox('assets/mods/31-1736843983-1536393024.png', 'Airship Plus (Retired Mod)')" width="450" height="150" decoding="async">
           <div style="flex: 1; min-width: 260px;">
             <h3 style="color: var(--text-pure-white); font-size: 1.15rem; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
               <span style="display: inline-flex; align-items: center; gap: 0.4rem;"><svg width="14" height="14" viewBox="0 0 576 512" fill="currentColor"><path d="M552 64H448V24c0-13.3-10.7-24-24-24H24C10.7 0 0 10.7 0 24v400c0 48.5 39.5 88 88 88h376c48.5 0 88-39.5 88-88V88c0-13.3-10.7-24-24-24zM88 464c-22.1 0-40-17.9-40-40V48h352v376c0 10.5 4.1 20.1 10.8 27.2-6.5 8-16 12.8-26.8 12.8H88zm416-40c0 22.1-17.9 40-40 40s-40-17.9-40-40V112h80v312z"/></svg>Historical Note: Retired Mod — Airship Plus</span>

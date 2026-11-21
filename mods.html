@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,12 +48,9 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component (Icon-only brand per user request) -->
   <vault-navbar active="mods"></vault-navbar>
 
@@ -63,7 +60,7 @@
     <div class="vault-single-card">
       
       <!-- Top Navigation & Stats Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+      <div class="card-top-bar">
         <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -72,7 +69,7 @@
           <span>Back to Workshop Home</span>
         </a>
 
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald font-mono">72 Released Mods</span>
           <span class="tag tag-purple font-mono">Chrono Cross &bull; FFPR &bull; FFIX &bull; Suikoden</span>
           <span class="tag tag-cyan font-mono">100% Free &bull; NexusMods</span>
@@ -104,8 +101,7 @@
         </div>
 
         <!-- JavaScript-Powered Interactive & Animated RPG Bookshelf -->
-        <div class="mods-bookshelf-wrap" aria-label="Interactive Mod Archive Bookshelf">
-          <div class="rpg-bookshelf-card" id="rpgBookshelfCard">
+        <div class="rpg-bookshelf-card" id="rpgBookshelfCard" aria-label="Interactive Mod Archive Bookshelf">
             <div class="bookshelf-header-bar">
               <span class="bookshelf-title-badge">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
@@ -184,7 +180,6 @@
               <span class="bookshelf-readout-title" id="bookshelfReadoutTitle">[VOL] Omnibus Compendium</span>
               <span class="bookshelf-readout-count" id="bookshelfReadoutCount">72 Mods</span>
             </div>
-          </div>
         </div>
       </div>
 
@@ -202,14 +197,6 @@
   <!-- Obsidian Vault Footer Web Component -->
   <vault-footer></vault-footer>
 
-  <!-- Lightbox Modal for Full Screenshot Previews -->
-  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
-      <img id="lightboxImg" src="" alt="Enlarged Preview">
-      <p id="lightboxCaption" class="lightbox-caption"></p>
-    </div>
-  </div>
 
   <!-- JavaScript-Powered Interactive RPG Archive Bookshelf Engine -->
   <script>

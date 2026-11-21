@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,7 +48,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 
   <style>
     .guestbook-hero-banner {
@@ -329,18 +329,14 @@
   </style>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar breadcrumb="guestbook.md" active="guestbook"></vault-navbar>
 
   <!-- Main Container -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
-    <div class="vault-single-card">
+  <main class="container vault-single-card">
 
       <!-- Top Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+      <div class="card-top-bar">
         <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -349,7 +345,7 @@
           <span>Back to Mod Workshop</span>
         </a>
 
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald" id="guestbookCountBadge">Loading Entries...</span>
           <span class="tag tag-cyan">Google Sheets Powered</span>
         </div>
@@ -479,7 +475,6 @@
         <!-- Populated live from Google Sheets -->
       </div>
 
-    </div>
   </main>
 
   <back-to-top></back-to-top>

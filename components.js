@@ -313,6 +313,12 @@ class VaultNavbar extends HTMLElement {
           </ul>
 
           <div class="topbar-actions notranslate">
+            <button type="button" class="nav-search-btn notranslate" id="vaultSearchBtn" aria-label="Search site (Ctrl+K)" title="Search site (Ctrl+K)">
+              ${ICONS.search}
+              <span class="nav-search-label">Search</span>
+              <kbd class="nav-search-kbd">Ctrl K</kbd>
+            </button>
+
             <a href="index.html#donate" class="nav-update-btn notranslate ${isDonate ? 'active' : ''}" title="Donate">
               <svg class="nav-update-heart" width="13" height="13" viewBox="0 0 24 24" fill="#dc2626">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -2001,11 +2007,9 @@ class ModsCatalog extends HTMLElement {
           <span class="preview-zoom-hint">${ICONS.search} Zoom</span>
         </div>
         <div class="mod-tile-body">
-          <div>
-            <div class="mod-tile-game">${mod.game}</div>
-            <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-            <p class="mod-tile-desc">${mod.desc}</p>
-          </div>
+          <div class="mod-tile-game">${mod.game}</div>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
+          <p class="mod-tile-desc">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -2018,11 +2022,9 @@ class ModsCatalog extends HTMLElement {
 
     if (limit > 0) {
       this.innerHTML = `
-        <div class="mods-catalog-wrapper">
-          ${headerHtml}
-          <div class="mods-grid-catalog" id="catalogGrid">
-            ${cardsHtml}
-          </div>
+        ${headerHtml}
+        <div class="mods-grid-catalog" id="catalogGrid">
+          ${cardsHtml}
         </div>
       `;
       return;
@@ -2047,24 +2049,22 @@ class ModsCatalog extends HTMLElement {
       : 'Search by mod name, game, category, or year (e.g. Kyaro, Kupo, Chrono, 2026)...';
 
     this.innerHTML = `
-      <div class="mods-catalog-wrapper">
-        ${headerHtml}
+      ${headerHtml}
 
-        <div class="search-bar-wrap">
-          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="catalogSearchInput" class="search-input" placeholder="${searchPlaceholder}" autocomplete="off">
-        </div>
+      <div class="search-bar-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="catalogSearchInput" class="search-input" placeholder="${searchPlaceholder}" autocomplete="off">
+      </div>
 
-        ${filterTabsHtml}
+      ${filterTabsHtml}
 
-        <div class="mods-grid-catalog" id="catalogGrid">
-          ${cardsHtml}
-        </div>
+      <div class="mods-grid-catalog" id="catalogGrid">
+        ${cardsHtml}
+      </div>
 
-        <div id="catalogNoResults" style="display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-          <p style="font-size: 1.15rem;">No mods match your search query.</p>
-          <button id="catalogResetBtn" class="btn btn-secondary btn-sm" style="margin-top: 1rem;">Clear Search</button>
-        </div>
+      <div id="catalogNoResults" style="display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+        <p style="font-size: 1.15rem;">No mods match your search query.</p>
+        <button id="catalogResetBtn" class="btn btn-secondary btn-sm" style="margin-top: 1rem;">Clear Search</button>
       </div>
     `;
 
@@ -2360,15 +2360,13 @@ if (typeof document !== 'undefined') {
   function ensureLightboxModal() {
     let modal = document.getElementById('lightboxModal') || document.getElementById('imageModal');
     if (!modal) {
-      modal = document.createElement('div');
+      modal = document.createElement('dialog');
       modal.id = 'lightboxModal';
       modal.className = 'lightbox-modal';
       modal.innerHTML = `
-        <div class="lightbox-content">
-          <button type="button" class="lightbox-close" aria-label="Close image preview">&times;</button>
-          <img id="lightboxImg" src="" alt="Enlarged Preview">
-          <p id="lightboxCaption" class="lightbox-caption"></p>
-        </div>
+        <button type="button" class="lightbox-close" aria-label="Close image preview">&times;</button>
+        <img id="lightboxImg" src="" alt="Enlarged Preview">
+        <p id="lightboxCaption" class="lightbox-caption"></p>
       `;
       document.body.appendChild(modal);
     }
@@ -2394,7 +2392,11 @@ if (typeof document !== 'undefined') {
       caption.textContent = captionText || '';
       caption.style.display = captionText ? '' : 'none';
     }
-    modal.classList.add('active');
+    if (modal.tagName === 'DIALOG' && typeof modal.showModal === 'function') {
+      if (!modal.open) modal.showModal();
+    } else {
+      modal.classList.add('active');
+    }
     document.body.style.overflow = 'hidden';
   }
 
@@ -2409,12 +2411,22 @@ if (typeof document !== 'undefined') {
   function closeLightboxDirect() {
     const modal = document.getElementById('lightboxModal') || document.getElementById('imageModal');
     if (!modal) return;
-    modal.classList.remove('active');
+    if (modal.tagName === 'DIALOG' && typeof modal.close === 'function') {
+      if (modal.open) modal.close();
+    } else {
+      modal.classList.remove('active');
+    }
     document.body.style.overflow = '';
   }
 
   function setupLightboxEvents() {
     const modal = ensureLightboxModal();
+
+    if (modal.tagName === 'DIALOG') {
+      modal.addEventListener('close', () => {
+        document.body.style.overflow = '';
+      });
+    }
 
     modal.addEventListener('click', (e) => {
       const img = modal.querySelector('img') || document.getElementById('lightboxImg') || document.getElementById('modalImage');
@@ -2430,6 +2442,31 @@ if (typeof document !== 'undefined') {
         closeLightboxDirect();
       });
     }
+
+    // Make clickable lightbox preview containers keyboard-accessible (Tab + Enter/Space)
+    const enhanceLightboxTriggers = () => {
+      document.querySelectorAll('[onclick*="openLightbox"], [onclick*="openModal"]').forEach((el) => {
+        if (el.tagName === 'BUTTON' || el.tagName === 'A') return;
+        if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+        if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+        if (!el.hasAttribute('aria-label')) {
+          const img = el.querySelector('img');
+          const alt = img && img.alt ? `Zoom image: ${img.alt}` : 'Zoom image preview';
+          el.setAttribute('aria-label', alt);
+        }
+      });
+    };
+    enhanceLightboxTriggers();
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const target = e.target;
+      if (!target || target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+      if (target.matches && target.matches('[onclick*="openLightbox"], [onclick*="openModal"]')) {
+        e.preventDefault();
+        target.click();
+      }
+    });
 
     // Prevent parent <a target="_blank"> links from opening a new browser tab
     // when clicking an image that triggers the lightbox
@@ -2474,6 +2511,273 @@ if (typeof document !== 'undefined') {
   } else {
     setupLightboxEvents();
   }
+})();
+
+// ========================================================
+// Static Site-Wide Search Modal (<dialog>)
+// Lazily loads assets/search-index.json on first open
+// ========================================================
+(function() {
+  if (typeof window === 'undefined') return;
+
+  let searchItems = null;
+  let loadPromise = null;
+  let activeFilter = 'all';
+  let activeIndex = -1;
+  let currentResults = [];
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function ensureSearchDialog() {
+    let dlg = document.getElementById('vaultSearchDialog');
+    if (dlg) return dlg;
+
+    dlg = document.createElement('dialog');
+    dlg.id = 'vaultSearchDialog';
+    dlg.className = 'vault-search-dialog';
+    dlg.setAttribute('aria-label', 'Site-wide search');
+    dlg.innerHTML = `
+      <header class="vault-search-header">
+        <span class="vault-search-icon" aria-hidden="true">${ICONS.search}</span>
+        <input type="search" id="vaultSearchInput" class="vault-search-input" placeholder="Search pages, mods, guides, and blog posts..." autocomplete="off" spellcheck="false">
+        <button type="button" class="vault-search-close" id="vaultSearchClose" aria-label="Close search">&times;</button>
+      </header>
+      <div class="vault-search-filters" role="tablist" aria-label="Filter search results">
+        <button type="button" class="vault-search-tab active" data-type="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="vault-search-tab" data-type="page" role="tab" aria-selected="false">Pages</button>
+        <button type="button" class="vault-search-tab" data-type="mod" role="tab" aria-selected="false">Mods</button>
+        <button type="button" class="vault-search-tab" data-type="blog" role="tab" aria-selected="false">Blog</button>
+        <span class="vault-search-count" id="vaultSearchCount"></span>
+      </div>
+      <div class="vault-search-results" id="vaultSearchResults" role="listbox"></div>
+      <footer class="vault-search-footer">
+        <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> Navigate</span>
+        <span><kbd>Enter</kbd> Open</span>
+        <span><kbd>Esc</kbd> Close</span>
+      </footer>
+    `;
+    document.body.appendChild(dlg);
+
+    const input = dlg.querySelector('#vaultSearchInput');
+    const closeBtn = dlg.querySelector('#vaultSearchClose');
+    const tabs = dlg.querySelectorAll('.vault-search-tab');
+
+    closeBtn.addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    dlg.addEventListener('close', () => {
+      document.body.style.overflow = '';
+    });
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        activeFilter = tab.getAttribute('data-type') || 'all';
+        tabs.forEach((t) => {
+          const isActive = t === tab;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', String(isActive));
+        });
+        renderResults(input.value);
+      });
+    });
+
+    input.addEventListener('input', () => renderResults(input.value));
+    input.addEventListener('keydown', (e) => {
+      if (!currentResults.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIndex = (activeIndex + 1) % currentResults.length;
+        updateActiveHighlight();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIndex = (activeIndex - 1 + currentResults.length) % currentResults.length;
+        updateActiveHighlight();
+      } else if (e.key === 'Enter' && activeIndex >= 0) {
+        const activeLink = dlg.querySelector(`.vault-search-item[data-idx="${activeIndex}"]`);
+        if (activeLink) {
+          e.preventDefault();
+          activeLink.click();
+        }
+      }
+    });
+
+    return dlg;
+  }
+
+  function loadIndex() {
+    if (searchItems) return Promise.resolve(searchItems);
+    if (loadPromise) return loadPromise;
+
+    loadPromise = fetch('assets/search-index.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then((data) => {
+        searchItems = Array.isArray(data.items) ? data.items : [];
+        return searchItems;
+      })
+      .catch(() => {
+        loadPromise = null;
+        return null;
+      });
+    return loadPromise;
+  }
+
+  function scoreItem(item, terms) {
+    const title = (item.title || '').toLowerCase();
+    const tags = (item.tags || []).join(' ').toLowerCase();
+    const desc = (item.description || '').toLowerCase();
+    const text = (item.text || '').toLowerCase();
+    const combined = `${title} ${tags} ${desc} ${text}`;
+
+    for (const term of terms) {
+      if (!combined.includes(term)) return 0;
+    }
+
+    let score = 0;
+    for (const term of terms) {
+      if (title === term) score += 40;
+      else if (title.startsWith(term)) score += 25;
+      else if (title.includes(term)) score += 15;
+      if (tags.includes(term)) score += 8;
+      if (desc.includes(term)) score += 5;
+      if (text.includes(term)) score += 2;
+    }
+    if (item.type === 'page') score += 2;
+    return score;
+  }
+
+  function updateActiveHighlight() {
+    const container = document.getElementById('vaultSearchResults');
+    if (!container) return;
+    container.querySelectorAll('.vault-search-item').forEach((el, idx) => {
+      const isSelected = idx === activeIndex;
+      el.classList.toggle('is-selected', isSelected);
+      if (isSelected) el.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  function renderResults(rawQuery) {
+    const container = document.getElementById('vaultSearchResults');
+    const countEl = document.getElementById('vaultSearchCount');
+    if (!container) return;
+
+    if (!searchItems) {
+      container.innerHTML = '<p class="vault-search-status">Loading search index...</p>';
+      if (countEl) countEl.textContent = '';
+      return;
+    }
+
+    const q = (rawQuery || '').trim().toLowerCase();
+    const pool = activeFilter === 'all' ? searchItems : searchItems.filter((i) => i.type === activeFilter);
+
+    if (!q) {
+      const defaults = pool.slice(0, 12);
+      currentResults = defaults;
+      activeIndex = defaults.length ? 0 : -1;
+      if (countEl) countEl.textContent = `${pool.length} indexed`;
+      container.innerHTML = defaults.map((item, idx) => renderItemHtml(item, idx)).join('');
+      updateActiveHighlight();
+      return;
+    }
+
+    const terms = q.split(/\s+/).filter(Boolean);
+    const matched = [];
+    for (const item of pool) {
+      const s = scoreItem(item, terms);
+      if (s > 0) matched.push({ item, score: s });
+    }
+    matched.sort((a, b) => b.score - a.score);
+
+    currentResults = matched.slice(0, 30).map((m) => m.item);
+    activeIndex = currentResults.length ? 0 : -1;
+    if (countEl) countEl.textContent = `${matched.length} result${matched.length === 1 ? '' : 's'}`;
+
+    if (!currentResults.length) {
+      container.innerHTML = `<p class="vault-search-status">No results found for "<strong>${escapeHtml(rawQuery)}</strong>".</p>`;
+      return;
+    }
+
+    container.innerHTML = currentResults.map((item, idx) => renderItemHtml(item, idx)).join('');
+    updateActiveHighlight();
+  }
+
+  function renderItemHtml(item, idx) {
+    const badgeMap = {
+      page: { label: 'Page', cls: 'tag-cyan' },
+      mod: { label: 'Mod', cls: 'tag-emerald' },
+      blog: { label: 'Blog', cls: 'tag-purple' }
+    };
+    const badge = badgeMap[item.type] || badgeMap.page;
+    const targetAttr = item.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+    const meta = item.meta ? `<span class="vault-search-meta">${escapeHtml(item.meta)}</span>` : '';
+    const desc = item.description ? `<p class="vault-search-desc">${escapeHtml(item.description)}</p>` : '';
+    return `
+      <a href="${escapeHtml(item.url)}" class="vault-search-item" data-idx="${idx}" role="option"${targetAttr}>
+        <div class="vault-search-item-top">
+          <span class="tag ${badge.cls} vault-search-badge">${badge.label}</span>
+          <span class="vault-search-title">${escapeHtml(item.title)}</span>
+          ${meta}
+        </div>
+        ${desc}
+      </a>
+    `;
+  }
+
+  function openSiteSearch() {
+    const dlg = ensureSearchDialog();
+    const input = dlg.querySelector('#vaultSearchInput');
+    if (!dlg.open) {
+      dlg.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+    input.focus();
+    input.select();
+
+    loadIndex().then((items) => {
+      if (items === null) {
+        const container = document.getElementById('vaultSearchResults');
+        if (container) {
+          container.innerHTML = '<p class="vault-search-status">Could not load <code>assets/search-index.json</code>. Serve the site over HTTP/HTTPS (e.g. XAMPP or GitHub Pages).</p>';
+        }
+        return;
+      }
+      renderResults(input.value);
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target && e.target.closest ? e.target.closest('#vaultSearchBtn') : null;
+    if (btn) {
+      e.preventDefault();
+      openSiteSearch();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openSiteSearch();
+      return;
+    }
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      const tag = (e.target && e.target.tagName) || '';
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !(e.target && e.target.isContentEditable)) {
+        e.preventDefault();
+        openSiteSearch();
+      }
+    }
+  });
+
+  window.openSiteSearch = openSiteSearch;
 })();
 
 

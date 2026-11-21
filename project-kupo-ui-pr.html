@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,22 +48,17 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar breadcrumb="project-kupo-ui-pr.md" active="projects"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
-    
-    <div class="vault-single-card">
+  <main class="container vault-single-card">
       
       <!-- Top Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+      <div class="card-top-bar">
         <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -72,7 +67,7 @@
           <span>Back to Special Projects</span>
         </a>
 
-        <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <div class="inline-row">
           <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
           <span class="tag tag-cyan">FF1 &bull; FF2 &bull; FF3 &bull; FF4 &bull; FF5 &bull; FF6</span>
         </div>
@@ -99,8 +94,8 @@
       </div>
 
       <!-- HERO BANNER SHOWCASE: All 6 Games In-Game Menus -->
-      <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-ui-pr-showcase.png', 'KupoUI.PR In-Game Menu Showcase Across FF1, FF2, FF3, FF4, FF5, and FF6 Pixel Remaster')">
-        <img src="assets/mods/kupo-ui-pr-showcase.png" alt="Kupo-UI.PR In-Game Menu Showcase" class="hero-banner-img" loading="lazy">
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-ui-pr-showcase.webp', 'KupoUI.PR In-Game Menu Showcase Across FF1, FF2, FF3, FF4, FF5, and FF6 Pixel Remaster')">
+        <img src="assets/mods/kupo-ui-pr-showcase.webp" alt="Kupo-UI.PR In-Game Menu Showcase" class="hero-banner-img" loading="lazy" width="1024" height="925" decoding="async">
         <div class="banner-overlay-badge">
           <span class="tag tag-emerald">Universal Coverage (FF1–FF6)</span>
           <span class="tag tag-cyan">Custom Layouts &amp; Portraits</span>
@@ -526,8 +521,6 @@
           </ol>
         </div>
       </section>
-
-    </div><!-- End .vault-single-card -->
 
   </main>
 

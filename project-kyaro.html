@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,23 +48,18 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kyaro.md"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
-    
-    <div class="vault-single-card">
+  <main class="container vault-single-card">
       
       <!-- Top Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+      <div class="card-top-bar">
+        <div class="card-top-links">
           <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -77,7 +72,7 @@
           </a>
         </div>
 
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald">Beetle PSX HW</span>
           <span class="tag tag-cyan">DuckStation &bull; RetroArch</span>
         </div>
@@ -104,8 +99,8 @@
       </div>
 
       <!-- Hero Banner Showcase: Click to Zoom -->
-      <div class="hero-banner-container" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.png', 'Project Kyaro — Suikoden II PSX Visual Suite & Texture Overhaul')">
-        <img src="assets/kyaro/kyaro-showcase-collage.png" alt="Project Kyaro Suikoden II Showcase" class="hero-banner-img" loading="lazy">
+      <div class="hero-banner-container" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.webp', 'Project Kyaro — Suikoden II PSX Visual Suite & Texture Overhaul')">
+        <img src="assets/kyaro/kyaro-showcase-collage.webp" alt="Project Kyaro Suikoden II Showcase" class="hero-banner-img" loading="lazy" width="1203" height="900" decoding="async">
         <div class="banner-overlay-badge">
           <span class="tag tag-emerald">Official Showcase</span>
           <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -137,7 +132,7 @@
 
       <!-- SECTION: DOWNLOADS HUB -->
       <section id="downloads">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <div class="section-head-row">
           <div>
             <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">Download Links &amp; Releases</h2>
             <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Direct downloads and repository links for Project Kyaro v2.6, beta builds, and bonus packages.</p>
@@ -373,7 +368,7 @@ Suikoden II/
 
           <!-- Step 2 Screenshot -->
           <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step2-folder-structure.png', 'Step II: Recommended Game Directory &amp; Texture Folders')">
-            <img src="assets/kyaro/step2-folder-structure.png" alt="Recommended Directory Structure for Suikoden II" class="step-screenshot-img" loading="lazy">
+            <img src="assets/kyaro/step2-folder-structure.png" alt="Recommended Directory Structure for Suikoden II" class="step-screenshot-img" loading="lazy" width="449" height="162" decoding="async">
             <figcaption class="step-screenshot-caption">
               <span><strong>Folder Hierarchy:</strong> Companion <code>-texture-dump</code> and <code>-texture-replacements</code> folders</span>
               <span style="color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -397,7 +392,7 @@ Suikoden II/
               Launch Suikoden II and press <kbd style="background: rgba(255,255,255,0.1); padding: 0.15rem 0.4rem; border-radius: 3px; font-family: monospace;">F1</kbd> to open the RetroArch Quick Menu. Scroll down and enter <strong>Core Options</strong>.
             </p>
             <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3a-core-options.png', 'Step 3A: RetroArch Quick Menu -> Core Options')">
-              <img src="assets/kyaro/step3a-core-options.png" alt="RetroArch Quick Menu Core Options" class="step-screenshot-img" loading="lazy">
+              <img src="assets/kyaro/step3a-core-options.png" alt="RetroArch Quick Menu Core Options" class="step-screenshot-img" loading="lazy" width="1218" height="495" decoding="async">
               <figcaption class="step-screenshot-caption">
                 <span><strong>Quick Menu:</strong> Core Options highlighted</span>
                 <span style="color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -414,7 +409,7 @@ Suikoden II/
               Under Core Options, set <strong>Renderer (Restart Required)</strong> to <strong>Hardware (Vulkan)</strong>. Close and restart RetroArch so the Vulkan driver initializes.
             </p>
             <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3b-renderer-vulkan.png', 'Step 3B: Core Options -> Renderer Hardware Vulkan')">
-              <img src="assets/kyaro/step3b-renderer-vulkan.png" alt="Setting Renderer to Hardware Vulkan" class="step-screenshot-img" loading="lazy">
+              <img src="assets/kyaro/step3b-renderer-vulkan.png" alt="Setting Renderer to Hardware Vulkan" class="step-screenshot-img" loading="lazy" width="1232" height="514" decoding="async">
               <figcaption class="step-screenshot-caption">
                 <span><strong>Renderer:</strong> Select Hardware (Vulkan) and restart RetroArch</span>
                 <span style="color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -436,7 +431,7 @@ Suikoden II/
               <div>&bull; <strong style="color: var(--accent-cyan);">Texture Filtering:</strong> xBR <em style="color: var(--text-muted);">(SABR is also good; choose Nearest if you wish to keep raw pixels)</em></div>
             </div>
             <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3c-video-settings-xbr.png', 'Step 3C: Video Resolution &amp; xBR Texture Filtering')">
-              <img src="assets/kyaro/step3c-video-settings-xbr.png" alt="Video Resolution and Texture Filtering Settings" class="step-screenshot-img" loading="lazy">
+              <img src="assets/kyaro/step3c-video-settings-xbr.png" alt="Video Resolution and Texture Filtering Settings" class="step-screenshot-img" loading="lazy" width="1280" height="801" decoding="async">
               <figcaption class="step-screenshot-caption">
                 <span><strong>Video Settings:</strong> 4x Resolution, Dithering OFF, Texture Filtering xBR</span>
                 <span style="color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -459,7 +454,7 @@ Suikoden II/
               <div>&bull; <strong style="color: var(--accent-cyan);">Software Framebuffer:</strong> OFF</div>
             </div>
             <figure class="step-screenshot-figure" onclick="openLightbox('assets/kyaro/step3d-texture-tracking-settings.png', 'Step 3D: Texture Tracking, Replacement &amp; Framebuffer')">
-              <img src="assets/kyaro/step3d-texture-tracking-settings.png" alt="Texture Replacement and Tracking Settings" class="step-screenshot-img" loading="lazy">
+              <img src="assets/kyaro/step3d-texture-tracking-settings.png" alt="Texture Replacement and Tracking Settings" class="step-screenshot-img" loading="lazy" width="1280" height="806" decoding="async">
               <figcaption class="step-screenshot-caption">
                 <span><strong>Texture Tracking &amp; Replacement:</strong> Multi-Sampled 1x, Track ON, Replace ON, Framebuffer OFF</span>
                 <span style="color: var(--accent-cyan); display: inline-flex; align-items: center; gap: 0.35rem;">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -487,7 +482,7 @@ Suikoden II/
 
       <!-- SECTION 5: GAMESHARK CODES -->
       <section id="gameshark">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <div class="section-head-row">
           <div>
             <h2 style="color: var(--text-pure-white); font-size: 1.55rem; margin: 0 0 0.25rem;">80+ Curated GameShark / Action Replay Codes</h2>
             <p style="color: var(--text-secondary); margin: 0; font-size: 0.92rem;">Hand-curated overtime to assist testing, screenshot staging, and overcoming grueling war battle encounters.</p>
@@ -545,11 +540,11 @@ Suikoden II/
         <!-- Profile Links -->
         <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
           <a href="https://www.nexusmods.com/users/71883233" target="_blank" rel="noopener noreferrer" class="jump-nav-btn">
-            <img src="assets/kyaro/icon-nexus.png" alt="Nexus Mods" style="width: 18px; height: 18px; object-fit: contain;" loading="lazy">
+            <img src="assets/kyaro/icon-nexus.png" alt="Nexus Mods" style="width: 18px; height: 18px; object-fit: contain;" loading="lazy" width="80" height="80" decoding="async">
             <span>Faospark on Nexus Mods</span>
           </a>
           <a href="https://www.reddit.com/user/faospark" target="_blank" rel="noopener noreferrer" class="jump-nav-btn">
-            <img src="assets/kyaro/icon-reddit.png" alt="Reddit" style="width: 18px; height: 18px; object-fit: contain;" loading="lazy">
+            <img src="assets/kyaro/icon-reddit.png" alt="Reddit" style="width: 18px; height: 18px; object-fit: contain;" loading="lazy" width="80" height="80" decoding="async">
             <span>u/faospark on Reddit</span>
           </a>
           <a href="https://bsky.app/profile/faospark.bsky.social" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
@@ -558,8 +553,6 @@ Suikoden II/
           </a>
         </div>
       </section>
-
-    </div><!-- End .vault-single-card -->
 
   </main>
 

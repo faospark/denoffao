@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,12 +48,9 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar active="projects"></vault-navbar>
 
@@ -63,8 +60,8 @@
     <div class="vault-single-card">
       
       <!-- Top Navigation & Stats Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
+      <div class="card-top-bar">
+        <div class="card-top-links">
           <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -73,11 +70,11 @@
             <span>Back to Special Projects</span>
           </a>
           <a href="mods.html" class="back-home-link" style="margin-bottom: 0; color: var(--text-muted);">
-            <span>&bull; View Full 68-Mod Library</span>
+            <span>&bull; View Full 72-Mod Library</span>
           </a>
         </div>
 
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald font-mono">13 Released Mods</span>
           <span class="tag tag-purple font-mono">Chrono Cross: The Radical Dreamers Edition</span>
           <span class="tag tag-cyan font-mono">100% Free &bull; NexusMods</span>
@@ -111,8 +108,8 @@
         </div>
 
         <!-- Pip Collection Thumbnail Preview -->
-        <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.85));" onclick="openLightbox('assets/mods/chrono-cross-collection.png', 'Chrono Cross Mod Collection — Flagship Suite')">
-          <img src="assets/mods/chrono-cross-collection.png" alt="Chrono Cross Mod Collection Thumbnail" class="hero-banner-img" style="object-fit: contain; max-height: 260px; padding: 1rem;" loading="lazy">
+        <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.85));" onclick="openLightbox('assets/mods/chrono-cross-collection.webp', 'Chrono Cross Mod Collection — Flagship Suite')">
+          <img src="assets/mods/chrono-cross-collection.webp" alt="Chrono Cross Mod Collection Thumbnail" class="hero-banner-img" style="object-fit: contain; max-height: 260px; padding: 1rem;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="banner-overlay-badge">
             <span class="tag tag-emerald">Flagship Collection</span>
             <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -133,14 +130,6 @@
   <!-- Obsidian Vault Footer Web Component -->
   <vault-footer disclaimer="&copy; 2018–2026 Faospark. Chrono Cross is &copy; Square Enix. Unofficial fan modification project."></vault-footer>
 
-  <!-- Lightbox Modal for Full Screenshot Previews -->
-  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
-      <img id="lightboxImg" src="" alt="Enlarged Preview">
-      <p id="lightboxCaption" class="lightbox-caption"></p>
-    </div>
-  </div>
 </body>
 </html>
 

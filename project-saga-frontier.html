@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,23 +48,18 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar active="projects"></vault-navbar>
 
   <!-- Main Container -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
-    
-    <div class="vault-single-card">
+  <main class="container vault-single-card">
       
       <!-- Top Navigation & Stats Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap;">
+      <div class="card-top-bar">
+        <div class="card-top-links">
           <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -77,7 +72,7 @@
           </a>
         </div>
 
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald font-mono">GitHub Release</span>
           <span class="tag tag-purple font-mono">SaGa Frontier Remastered</span>
           <span class="tag tag-cyan font-mono">Controller Prompts</span>
@@ -125,7 +120,7 @@
 
         <!-- Official Key Art / Thumbnail Preview -->
         <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.85));" onclick="openLightbox('assets/mods/saga-frontier-remastered.jpg', 'SaGa Frontier Remastered — SagaButtonPrompts')">
-          <img src="assets/mods/saga-frontier-remastered.jpg" alt="SaGa Frontier Remastered Thumbnail" class="hero-banner-img" style="object-fit: contain; max-height: 260px; padding: 1.25rem;" loading="lazy">
+          <img src="assets/mods/saga-frontier-remastered.jpg" alt="SaGa Frontier Remastered Thumbnail" class="hero-banner-img" style="object-fit: contain; max-height: 260px; padding: 1.25rem;" loading="lazy" width="1024" height="695" decoding="async">
           <div class="banner-overlay-badge">
             <span class="tag tag-emerald">Button Prompts</span>
             <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
@@ -140,7 +135,7 @@
         <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 1rem;">Included Controller Layouts</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
           <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <div class="inline-row-mb">
               <span class="tag tag-cyan">PlayStation</span>
             </div>
             <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Colored &amp; DualSense Presets</h3>
@@ -150,7 +145,7 @@
           </div>
 
           <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <div class="inline-row-mb">
               <span class="tag tag-emerald">Xbox</span>
             </div>
             <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Xbox A / B / X / Y Glyphs</h3>
@@ -160,7 +155,7 @@
           </div>
 
           <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <div class="inline-row-mb">
               <span class="tag tag-red">Nintendo Switch</span>
             </div>
             <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Nintendo Switch Face Buttons</h3>
@@ -170,7 +165,7 @@
           </div>
 
           <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--btn-secondary-border); border-radius: 6px; padding: 1.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem;">
+            <div class="inline-row-mb">
               <span class="tag tag-cyan font-mono">In-Game Hotkey</span>
             </div>
             <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.5rem;">Instant Hotkey Cycling (F9)</h3>
@@ -192,7 +187,7 @@
           <!-- PlayStation Colored Prompts -->
           <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-color.jpg', 'SaGa Frontier Remastered — PlayStation Colored Controller Prompts')">
             <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
-              <img src="assets/mods/saga-prompts-ps-color.jpg" alt="PlayStation Colored Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <img src="assets/mods/saga-prompts-ps-color.jpg" alt="PlayStation Colored Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy" width="1024" height="576" decoding="async">
               <div class="banner-overlay-badge">
                 <span class="tag tag-cyan">PlayStation (Color)</span>
                 <span class="tag tag-emerald">Click to Zoom</span>
@@ -206,7 +201,7 @@
           <!-- PlayStation Monochrome / DualSense -->
           <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-mono.jpg', 'SaGa Frontier Remastered — PlayStation Monochrome / DualSense Prompts')">
             <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
-              <img src="assets/mods/saga-prompts-ps-mono.jpg" alt="PlayStation Monochrome DualSense Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <img src="assets/mods/saga-prompts-ps-mono.jpg" alt="PlayStation Monochrome DualSense Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy" width="1024" height="576" decoding="async">
               <div class="banner-overlay-badge">
                 <span class="tag tag-purple">PlayStation (DualSense)</span>
                 <span class="tag tag-emerald">Click to Zoom</span>
@@ -220,7 +215,7 @@
           <!-- Xbox Controller Prompts -->
           <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-xbox.jpg', 'SaGa Frontier Remastered — Xbox Controller Prompts (A / B / X / Y)')">
             <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
-              <img src="assets/mods/saga-prompts-xbox.jpg" alt="Xbox Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <img src="assets/mods/saga-prompts-xbox.jpg" alt="Xbox Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy" width="1024" height="576" decoding="async">
               <div class="banner-overlay-badge">
                 <span class="tag tag-emerald">Xbox Layout</span>
                 <span class="tag tag-cyan">Click to Zoom</span>
@@ -234,7 +229,7 @@
           <!-- Nintendo Switch Controller Prompts -->
           <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-switch.jpg', 'SaGa Frontier Remastered — Nintendo Switch Controller Prompts')">
             <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
-              <img src="assets/mods/saga-prompts-switch.jpg" alt="Nintendo Switch Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <img src="assets/mods/saga-prompts-switch.jpg" alt="Nintendo Switch Controller Prompts" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy" width="1024" height="576" decoding="async">
               <div class="banner-overlay-badge">
                 <span class="tag tag-red">Nintendo Switch</span>
                 <span class="tag tag-emerald">Click to Zoom</span>
@@ -248,7 +243,7 @@
           <!-- PlayStation Alternative / Classic Layout -->
           <div class="rpg-screenshot-card" onclick="openLightbox('assets/mods/saga-prompts-ps-alt.jpg', 'SaGa Frontier Remastered — PlayStation Classic Remap Configuration')">
             <div class="hero-banner-container" style="margin: 0; background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.9));">
-              <img src="assets/mods/saga-prompts-ps-alt.jpg" alt="PlayStation Classic Remap Configuration" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy">
+              <img src="assets/mods/saga-prompts-ps-alt.jpg" alt="PlayStation Classic Remap Configuration" class="hero-banner-img" style="object-fit: cover; max-height: 200px;" loading="lazy" width="1024" height="576" decoding="async">
               <div class="banner-overlay-badge">
                 <span class="tag tag-cyan">PlayStation Alternate</span>
                 <span class="tag tag-emerald">Click to Zoom</span>
@@ -261,8 +256,6 @@
         </div>
       </section>
 
-    </div><!-- End .vault-single-card -->
-
   </main>
 
   <!-- Back To Top Web Component -->
@@ -271,13 +264,5 @@
   <!-- Obsidian Vault Footer Web Component -->
   <vault-footer disclaimer="&copy; 2018–2026 Faospark. SaGa Frontier is &copy; Square Enix. Unofficial fan modification project."></vault-footer>
 
-  <!-- Lightbox Modal for Full Screenshot Previews -->
-  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightboxDirect()">&times;</button>
-      <img id="lightboxImg" src="" alt="Enlarged Preview">
-      <p id="lightboxCaption" class="lightbox-caption"></p>
-    </div>
-  </div>
 </body>
 </html>

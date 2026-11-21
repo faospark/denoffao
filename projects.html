@@ -26,7 +26,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.css?v=20261025">
+  <link rel="stylesheet" href="assets/obsidian.css?v=20261121">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -48,22 +48,17 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.js?v=20261025"></script>
+  <script src="components.js?v=20261121"></script>
 </head>
 <body>
-  <!-- Ambient background grid -->
-  <div class="ambient-grid"></div>
-
   <!-- Obsidian Vault Topbar Component -->
   <vault-navbar breadcrumb="special-projects.md" active="projects"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
-    
-    <div class="vault-single-card">
+  <main class="container vault-single-card">
       
       <!-- Top Bar inside Card -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+      <div class="card-top-bar">
         <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -72,7 +67,7 @@
           <span>Back to Mod Workshop</span>
         </a>
 
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <div class="card-top-tags">
           <span class="tag tag-emerald">8 Flagship Projects</span>
           <span class="tag tag-cyan">Curated Directory</span>
         </div>
@@ -98,9 +93,7 @@
 
           <!-- JavaScript-Powered Retro RPG Flagship Ocean Widget -->
           <div class="flagship-widget-card" aria-label="Sailing Flagship Animation">
-            <div class="flagship-canvas-wrap">
-              <canvas id="flagshipOceanCanvas" width="760" height="150"></canvas>
-            </div>
+            <canvas id="flagshipOceanCanvas" width="760" height="150"></canvas>
           </div>
         </div>
 
@@ -170,8 +163,8 @@
 
       <!-- PROJECT 1: The PROJECT KYARO Suite (Suikoden I & II HD Remaster PC) -->
       <section class="project-entry" id="project-kyaro-pc">
-        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.png', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
-          <img src="assets/kyaro/project-kyaro-suite.png" alt="The PROJECT KYARO Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/project-kyaro-suite.webp', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
+          <img src="assets/kyaro/project-kyaro-suite.webp" alt="The PROJECT KYARO Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Updated: Oct 2026</span>
             <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
@@ -180,55 +173,51 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">PC Remaster</span>
-              <span class="tag tag-amber">Suikoden I &amp; II</span>
-              <span class="tag tag-cyan">PKCore Engine</span>
-              <span class="tag">BepInEx 6 IL2CPP</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-kyaro-pc.html" style="color: inherit; text-decoration: none;">The PROJECT KYARO Suite (PC)</a>
-            </h2>
-            <p class="project-description">
-              The flagship visual remaster and modding architecture for <strong>Suikoden I &amp; II HD Remaster</strong> on PC (Steam). Powered by the <strong>PKCore</strong> BepInEx 6 framework, it provides zero-lag native texture injection, sharp character portrait overlays, toggleable sprite smoothing, UI color theme personalization, and essential quality-of-life adjustments.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Special Announcement (Oct 25, 2026):</strong> Project Kyaro Realignment — modular reorganization into thematic packages &amp; standalone patches. <a href="update-project-kyaro-realignment.html" style="color: var(--accent-cyan); text-decoration: underline;">Read Announcement &rarr;</a></span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>PKCore BepInEx Framework:</strong> Native IL2CPP texture injection replacing Special K dependency with zero stutter and instant texture loading.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>High-Definition Portraits &amp; Sprites:</strong> Faithful high-detail portrait alignments across both games with optional sprite smoothing toggles.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>QoL &amp; UI Customization:</strong> Custom window themes, running speed options, audio polish, and complete SuikodenFix compatibility.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">PC Remaster</span>
+            <span class="tag tag-amber">Suikoden I &amp; II</span>
+            <span class="tag tag-cyan">PKCore Engine</span>
+            <span class="tag">BepInEx 6 IL2CPP</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-kyaro-pc.html" style="color: inherit; text-decoration: none;">The PROJECT KYARO Suite (PC)</a>
+          </h2>
+          <p class="project-description">
+            The flagship visual remaster and modding architecture for <strong>Suikoden I &amp; II HD Remaster</strong> on PC (Steam). Powered by the <strong>PKCore</strong> BepInEx 6 framework, it provides zero-lag native texture injection, sharp character portrait overlays, toggleable sprite smoothing, UI color theme personalization, and essential quality-of-life adjustments.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Special Announcement (Oct 25, 2026):</strong> Project Kyaro Realignment — modular reorganization into thematic packages &amp; standalone patches. <a href="update-project-kyaro-realignment.html" style="color: var(--accent-cyan); text-decoration: underline;">Read Announcement &rarr;</a></span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>PKCore BepInEx Framework:</strong> Native IL2CPP texture injection replacing Special K dependency with zero stutter and instant texture loading.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>High-Definition Portraits &amp; Sprites:</strong> Faithful high-detail portrait alignments across both games with optional sprite smoothing toggles.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>QoL &amp; UI Customization:</strong> Custom window themes, running speed options, audio polish, and complete SuikodenFix compatibility.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
-                <span>Explore PC Remaster Guide &rarr;</span>
-              </a>
-              <a href="update-project-kyaro-realignment.html" class="btn btn-secondary btn-sm" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24;">
-                <span>Realignment Update &rarr;</span>
-              </a>
-              <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                <span>NexusMods (#6)</span>
-              </a>
-              <a href="project-kyaro.html" class="btn btn-secondary btn-sm">
-                <span>View PSX Classic Hub &rarr;</span>
-              </a>
-            </div>
+            <a href="project-kyaro-pc.html" class="btn btn-primary btn-sm">
+              <span>Explore PC Remaster Guide &rarr;</span>
+            </a>
+            <a href="update-project-kyaro-realignment.html" class="btn btn-secondary btn-sm" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24;">
+              <span>Realignment Update &rarr;</span>
+            </a>
+            <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/6" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>NexusMods (#6)</span>
+            </a>
+            <a href="project-kyaro.html" class="btn btn-secondary btn-sm">
+              <span>View PSX Classic Hub &rarr;</span>
+            </a>
           </div>
         </div>
       </section>
@@ -238,7 +227,7 @@
       <!-- PROJECT 2: Kupo-UI.PR Framework (FF1–FF6 Pixel Remasters) -->
       <section class="project-entry" id="kupo-ui-pr">
         <div class="project-preview" onclick="openLightbox('assets/mods/kupo-ui-framework.png', 'Kupo Ui — Preview Handbook for Kupo Ui Framework')">
-          <img src="assets/mods/kupo-ui-framework.png" alt="Preview Handbook for Kupo Ui Framework" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <img src="assets/mods/kupo-ui-framework.png" alt="Preview Handbook for Kupo Ui Framework" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="829" height="753" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Universal Framework</span>
             <span class="tag tag-cyan">FF1–FF6 PR</span>
@@ -247,45 +236,41 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
-              <span class="tag tag-cyan">Universal (FF1–FF6)</span>
-              <span class="tag tag-amber">Zero Bundle Editing</span>
-              <span class="tag">Hot-Reloadable</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-kupo-ui-pr.html" style="color: inherit; text-decoration: none;">Kupo-UI.PR (Pixel Remaster UI Framework)</a>
-            </h2>
-            <p class="project-description">
-              A comprehensive BepInEx IL2CPP runtime plugin for the <strong>Final Fantasy Pixel Remaster series (FF1–FF6)</strong>. Eradicates tedious Unity bundle unpacking and repacking by providing a 5-layer cascading texture replacement pipeline, dynamic dialogue portrait injection, rich-text inline icons, custom typography, and data-driven GameObject manipulation.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Zero-Bundle Texture Engine:</strong> 5-layer priority cascade with live disk hot-reload, path-based overrides for duplicate assets, and 9-slice sidecar metadata.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Cinematic Dialogue &amp; Portraits:</strong> Injects facial portraits directly into message windows, prepends speaker names, and remaps FF2, FF4, and FF6 menu portraits.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Data-Driven Hierarchy Control:</strong> Reposition, scale, resize, and restyle UI GameObjects via <code>ObjectConfig.json</code> without compiling C#.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
+            <span class="tag tag-cyan">Universal (FF1–FF6)</span>
+            <span class="tag tag-amber">Zero Bundle Editing</span>
+            <span class="tag">Hot-Reloadable</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-kupo-ui-pr.html" style="color: inherit; text-decoration: none;">Kupo-UI.PR (Pixel Remaster UI Framework)</a>
+          </h2>
+          <p class="project-description">
+            A comprehensive BepInEx IL2CPP runtime plugin for the <strong>Final Fantasy Pixel Remaster series (FF1–FF6)</strong>. Eradicates tedious Unity bundle unpacking and repacking by providing a 5-layer cascading texture replacement pipeline, dynamic dialogue portrait injection, rich-text inline icons, custom typography, and data-driven GameObject manipulation.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Zero-Bundle Texture Engine:</strong> 5-layer priority cascade with live disk hot-reload, path-based overrides for duplicate assets, and 9-slice sidecar metadata.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Cinematic Dialogue &amp; Portraits:</strong> Injects facial portraits directly into message windows, prepends speaker names, and remaps FF2, FF4, and FF6 menu portraits.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Data-Driven Hierarchy Control:</strong> Reposition, scale, resize, and restyle UI GameObjects via <code>ObjectConfig.json</code> without compiling C#.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kupo-ui-pr.html" class="btn btn-primary btn-sm">
-                <span>Explore Framework Guide &rarr;</span>
-              </a>
-              <a href="https://github.com/faospark/Kupo-UI.PR" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                <span>GitHub Repo</span>
-              </a>
-            </div>
+            <a href="project-kupo-ui-pr.html" class="btn btn-primary btn-sm">
+              <span>Explore Framework Guide &rarr;</span>
+            </a>
+            <a href="https://github.com/faospark/Kupo-UI.PR" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span>GitHub Repo</span>
+            </a>
           </div>
         </div>
       </section>
@@ -294,8 +279,8 @@
 
       <!-- PROJECT 3: Final Fantasy VI (Old Ver.) Mods & Sane UI Suite -->
       <section class="project-entry" id="ffvi-old-ver">
-        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-ver-showcase.png', 'FFVI Old Ver Mods & Sane UI Suite — Final Fantasy VI (Old Ver.)')">
-          <img src="assets/mods/ffvi-old-ver-showcase.png" alt="FFVI Old Ver Mods and Sane UI Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-ver-showcase.webp', 'FFVI Old Ver Mods & Sane UI Suite — Final Fantasy VI (Old Ver.)')">
+          <img src="assets/mods/ffvi-old-ver-showcase.webp" alt="FFVI Old Ver Mods and Sane UI Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="578" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">10 Released Mods</span>
             <span class="tag tag-purple">Final Fantasy VI (Old Ver.)</span>
@@ -304,47 +289,43 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-purple">FFVI Old Ver</span>
-              <span class="tag tag-emerald">10 Curated Mods</span>
-              <span class="tag tag-cyan">Sane UI Suite</span>
-              <span class="tag">PC Steam</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-ffvi-old-ver-mods.html" style="color: inherit; text-decoration: none;">FFVI Old Ver Mods</a>
-            </h2>
-            <p class="project-description">
-              A flagship project featuring a massive collection of mods created over the years for the classic Steam release of Final Fantasy VI. Includes essential overhauls such as the <strong>Sane UI</strong>—the only mod right now featuring a horizontal ATB bar—and the <strong>Celes Patch</strong> restoring her original recruitment scene. In its modded state, it stands light years ahead of the Pixel Remaster with an active future and new modding tools on the way.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Sane UI Overhaul:</strong> Banishes mobile touchscreen elements, compacts menus, and adds modern horizontal ATB gauges and custom HUD alignment.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Celes Scene &amp; Visual Fixes:</strong> Restores the uncut South Figaro Celes recruitment sequence, true earthen overworld tilesets, and crisp battle backgrounds.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Opera Omnia Portraits &amp; Clean Fonts:</strong> High-detail DFFOO-inspired character portraits and proportional, scaled-down typography.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-purple">FFVI Old Ver</span>
+            <span class="tag tag-emerald">10 Curated Mods</span>
+            <span class="tag tag-cyan">Sane UI Suite</span>
+            <span class="tag">PC Steam</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-ffvi-old-ver-mods.html" style="color: inherit; text-decoration: none;">FFVI Old Ver Mods</a>
+          </h2>
+          <p class="project-description">
+            A flagship project featuring a massive collection of mods created over the years for the classic Steam release of Final Fantasy VI. Includes essential overhauls such as the <strong>Sane UI</strong>—the only mod right now featuring a horizontal ATB bar—and the <strong>Celes Patch</strong> restoring her original recruitment scene. In its modded state, it stands light years ahead of the Pixel Remaster with an active future and new modding tools on the way.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Sane UI Overhaul:</strong> Banishes mobile touchscreen elements, compacts menus, and adds modern horizontal ATB gauges and custom HUD alignment.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Celes Scene &amp; Visual Fixes:</strong> Restores the uncut South Figaro Celes recruitment sequence, true earthen overworld tilesets, and crisp battle backgrounds.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Opera Omnia Portraits &amp; Clean Fonts:</strong> High-detail DFFOO-inspired character portraits and proportional, scaled-down typography.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-ffvi-old-ver-mods.html" class="btn btn-primary btn-sm">
-                <span>Explore FFVI Old Ver Hub &rarr;</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasy6/mods/19" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Sane UI on Nexus (#19)</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasy6/mods/32" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Celes Patch on Nexus (#32)</span>
-              </a>
-            </div>
+            <a href="project-ffvi-old-ver-mods.html" class="btn btn-primary btn-sm">
+              <span>Explore FFVI Old Ver Hub &rarr;</span>
+            </a>
+            <a href="https://www.nexusmods.com/finalfantasy6/mods/19" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Sane UI on Nexus (#19)</span>
+            </a>
+            <a href="https://www.nexusmods.com/finalfantasy6/mods/32" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Celes Patch on Nexus (#32)</span>
+            </a>
           </div>
         </div>
       </section>
@@ -353,8 +334,8 @@
 
       <!-- PROJECT 4: Chrono Cross Mod Collection -->
       <section class="project-entry" id="chrono-cross-collection">
-        <div class="project-preview" onclick="openLightbox('assets/mods/chrono-cross-collection.png', 'Chrono Cross Mod Collection — Radical Dreamers Edition')">
-          <img src="assets/mods/chrono-cross-collection.png" alt="Chrono Cross Mod Collection Thumbnail" style="object-fit: contain; width: 100%; height: 100%; padding: 0.75rem;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/mods/chrono-cross-collection.webp', 'Chrono Cross Mod Collection — Radical Dreamers Edition')">
+          <img src="assets/mods/chrono-cross-collection.webp" alt="Chrono Cross Mod Collection Thumbnail" style="object-fit: contain; width: 100%; height: 100%; padding: 0.75rem;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">13 Released Mods</span>
             <span class="tag tag-cyan">Chrono Cross: RDE</span>
@@ -363,47 +344,43 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-cyan">Chrono Cross: RDE</span>
-              <span class="tag tag-emerald">13 Curated Mods</span>
-              <span class="tag tag-purple">Flagship Collection</span>
-              <span class="tag">PC Steam</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-chrono-cross.html" style="color: inherit; text-decoration: none;">Chrono Cross Mod Collection</a>
-            </h2>
-            <p class="project-description">
-              A flagship collection of 13 community mods created for <strong>Chrono Cross: The Radical Dreamers Edition</strong>. Built out of a deep love for Chrono Cross—even over <em>Chrono Trigger</em>—this suite spans color-corrected portraits, custom UI and window themes, PlayStation button prompts, HD world map &amp; boat retextures, and quality-of-life enhancements, with recent developments on the modding scene opening the door to revisit these mods in the future.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Portraits &amp; Graphics Swaps:</strong> CC Radical Portraits Plus color corrections, Blue Mage overhaul, and Old/New Graphics Mode portrait swaps.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>UI, Menus &amp; Prompts:</strong> Another Menu UI, Cross Window Sets, Another Eden Main Menu &amp; Backgrounds, PlayStation Buttons Pack, and Dark Themed Launcher.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>QoL &amp; World Retextures:</strong> Unlocks missable Level 7 tech skills, opens the Bend of Time door on first playthrough, and upgrades the Another World boat &amp; world map.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-cyan">Chrono Cross: RDE</span>
+            <span class="tag tag-emerald">13 Curated Mods</span>
+            <span class="tag tag-purple">Flagship Collection</span>
+            <span class="tag">PC Steam</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-chrono-cross.html" style="color: inherit; text-decoration: none;">Chrono Cross Mod Collection</a>
+          </h2>
+          <p class="project-description">
+            A flagship collection of 13 community mods created for <strong>Chrono Cross: The Radical Dreamers Edition</strong>. Built out of a deep love for Chrono Cross—even over <em>Chrono Trigger</em>—this suite spans color-corrected portraits, custom UI and window themes, PlayStation button prompts, HD world map &amp; boat retextures, and quality-of-life enhancements, with recent developments on the modding scene opening the door to revisit these mods in the future.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Portraits &amp; Graphics Swaps:</strong> CC Radical Portraits Plus color corrections, Blue Mage overhaul, and Old/New Graphics Mode portrait swaps.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>UI, Menus &amp; Prompts:</strong> Another Menu UI, Cross Window Sets, Another Eden Main Menu &amp; Backgrounds, PlayStation Buttons Pack, and Dark Themed Launcher.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>QoL &amp; World Retextures:</strong> Unlocks missable Level 7 tech skills, opens the Bend of Time door on first playthrough, and upgrades the Another World boat &amp; world map.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-chrono-cross.html" class="btn btn-primary btn-sm">
-                <span>Explore Chrono Cross Hub &rarr;</span>
-              </a>
-              <a href="https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/54" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Radical Portraits Plus (#54)</span>
-              </a>
-              <a href="https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/66" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>QoL Stuff (#66)</span>
-              </a>
-            </div>
+            <a href="project-chrono-cross.html" class="btn btn-primary btn-sm">
+              <span>Explore Chrono Cross Hub &rarr;</span>
+            </a>
+            <a href="https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/54" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Radical Portraits Plus (#54)</span>
+            </a>
+            <a href="https://www.nexusmods.com/chronocrosstheradicaldreamersedition/mods/66" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>QoL Stuff (#66)</span>
+            </a>
           </div>
         </div>
       </section>
@@ -412,8 +389,8 @@
 
       <!-- PROJECT 5: Project Kyaro (PSX Classic) -->
       <section class="project-entry" id="project-kyaro-psx">
-        <div class="project-preview" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.png', 'Project Kyaro — Suikoden II PSX Texture Overhaul')">
-          <img src="assets/kyaro/kyaro-showcase-collage.png" alt="Project Kyaro Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/kyaro/kyaro-showcase-collage.webp', 'Project Kyaro — Suikoden II PSX Texture Overhaul')">
+          <img src="assets/kyaro/kyaro-showcase-collage.webp" alt="Project Kyaro Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1203" height="900" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Featured by LibRetro</span>
             <span class="tag tag-amber">Suikoden II (PSX)</span>
@@ -422,47 +399,43 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-amber">Suikoden II</span>
-              <span class="tag tag-cyan">Version 2.6</span>
-              <span class="tag">Beetle PSX HW &bull; RetroArch</span>
-              <span class="tag">PSX Classic</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-kyaro.html" style="color: inherit; text-decoration: none;">Project Kyaro (PSX)</a>
-            </h2>
-            <p class="project-description">
-              A landmark visual enhancement and texture restoration project for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement backends on Beetle PSX HW and RetroArch, Project Kyaro eliminates pixel artifacting on modern displays while providing pixel purists the option to run crisp Nearest Neighbor filtering.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>161 Character Portraits:</strong> Sharp high-resolution facial portraits with custom outlines across the 108 Stars of Destiny, plus Pilika, Neclord, Jowy, and Julia.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Internationalization &amp; Art:</strong> Accented text support, war battle typography, ending backgrounds, and rune transparency fixes.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Curated Cheat Database:</strong> Includes 80+ essential GameShark and Action Replay hex codes for stats, runes, and strategic war battle advantages.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-amber">Suikoden II</span>
+            <span class="tag tag-cyan">Version 2.6</span>
+            <span class="tag">Beetle PSX HW &bull; RetroArch</span>
+            <span class="tag">PSX Classic</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-kyaro.html" style="color: inherit; text-decoration: none;">Project Kyaro (PSX)</a>
+          </h2>
+          <p class="project-description">
+            A landmark visual enhancement and texture restoration project for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement backends on Beetle PSX HW and RetroArch, Project Kyaro eliminates pixel artifacting on modern displays while providing pixel purists the option to run crisp Nearest Neighbor filtering.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>161 Character Portraits:</strong> Sharp high-resolution facial portraits with custom outlines across the 108 Stars of Destiny, plus Pilika, Neclord, Jowy, and Julia.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Internationalization &amp; Art:</strong> Accented text support, war battle typography, ending backgrounds, and rune transparency fixes.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Curated Cheat Database:</strong> Includes 80+ essential GameShark and Action Replay hex codes for stats, runes, and strategic war battle advantages.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kyaro.html" class="btn btn-primary btn-sm">
-                <span>Explore PSX Hub &rarr;</span>
-              </a>
-              <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Original Google Sites</span>
-              </a>
-              <a href="https://github.com/pyriell/gs2-bugfixes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Pyriel Bugfixes Patch</span>
-              </a>
-            </div>
+            <a href="project-kyaro.html" class="btn btn-primary btn-sm">
+              <span>Explore PSX Hub &rarr;</span>
+            </a>
+            <a href="https://sites.google.com/view/hub-of-faospark/project-kyaro" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Original Google Sites</span>
+            </a>
+            <a href="https://github.com/pyriell/gs2-bugfixes" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Pyriel Bugfixes Patch</span>
+            </a>
           </div>
         </div>
       </section>
@@ -472,7 +445,7 @@
       <!-- PROJECT: SaGa Frontier Remastered - SagaButtonPrompts -->
       <section class="project-entry" id="saga-frontier">
         <div class="project-preview" onclick="openLightbox('assets/mods/saga-frontier-remastered.jpg', 'SagaButtonPrompts — SaGa Frontier Remastered')">
-          <img src="assets/mods/saga-frontier-remastered.jpg" alt="SagaButtonPrompts Key Art" style="object-fit: contain; width: 100%; height: 100%; padding: 0.85rem;" loading="lazy">
+          <img src="assets/mods/saga-frontier-remastered.jpg" alt="SagaButtonPrompts Key Art" style="object-fit: contain; width: 100%; height: 100%; padding: 0.85rem;" loading="lazy" width="1024" height="695" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">GitHub Release</span>
             <span class="tag tag-purple">SaGa Frontier</span>
@@ -481,46 +454,43 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">GitHub Release</span>
-              <span class="tag tag-purple">SaGa Frontier Remastered</span>
-              <span class="tag tag-cyan">Button Prompts</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-saga-frontier.html" style="color: inherit; text-decoration: none;">SagaButtonPrompts</a>
-            </h2>
-            <p class="project-description">
-              Custom controller button prompt texture replacement for <strong>SaGa Frontier Remastered</strong> on PC. Replaces default in-game controller prompts with crisp, high-definition button glyphs tailored to your controller of choice.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>PlayStation Dual Presets:</strong> Classic color-coded symbols and clean modern DualSense monochrome styling.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Xbox Standard Prompts:</strong> Native A, B, X, Y colored face buttons, triggers (RT, RB, LB), and view controls.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Nintendo Switch Layout:</strong> Accurate Nintendo face button orientation (B/A/Y/X) with shoulder prompts (ZR, R, L, +).</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>In-Game Hotkey Cycling (F9):</strong> Press <strong>F9</strong> anytime during gameplay to cycle through styles on-the-fly (PS4 &rarr; PS5 &rarr; PS1 &rarr; Switch &rarr; Xbox) with instant UI updates.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">GitHub Release</span>
+            <span class="tag tag-purple">SaGa Frontier Remastered</span>
+            <span class="tag tag-cyan">Button Prompts</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-saga-frontier.html" style="color: inherit; text-decoration: none;">SagaButtonPrompts</a>
+          </h2>
+          <p class="project-description">
+            Custom controller button prompt texture replacement for <strong>SaGa Frontier Remastered</strong> on PC. Replaces default in-game controller prompts with crisp, high-definition button glyphs tailored to your controller of choice.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>PlayStation Dual Presets:</strong> Classic color-coded symbols and clean modern DualSense monochrome styling.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Xbox Standard Prompts:</strong> Native A, B, X, Y colored face buttons, triggers (RT, RB, LB), and view controls.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Nintendo Switch Layout:</strong> Accurate Nintendo face button orientation (B/A/Y/X) with shoulder prompts (ZR, R, L, +).</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>In-Game Hotkey Cycling (F9):</strong> Press <strong>F9</strong> anytime during gameplay to cycle through styles on-the-fly (PS4 &rarr; PS5 &rarr; PS1 &rarr; Switch &rarr; Xbox) with instant UI updates.</span>
+            </li>
+          </ul>
+
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="https://github.com/faospark/SagaButtonPrompts" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-                <span>Download on GitHub &rarr;</span>
-              </a>
-              <a href="project-saga-frontier.html" class="btn btn-secondary btn-sm">
-                <span>View In-Game Showcase &rarr;</span>
-              </a>
-            </div>
+            <a href="https://github.com/faospark/SagaButtonPrompts" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>Download on GitHub &rarr;</span>
+            </a>
+            <a href="project-saga-frontier.html" class="btn btn-secondary btn-sm">
+              <span>View In-Game Showcase &rarr;</span>
+            </a>
           </div>
         </div>
       </section>
@@ -529,8 +499,8 @@
 
       <!-- PROJECT 6: FFVI Old Tile Tool (ffvi_tileConverter) -->
       <section class="project-entry" id="ffvi-old-ver-tile-tool">
-        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-tile-tool.png', 'FFVI Old Tile Tool (ffvi_tileConverter) — Map BIN Section Graphics &amp; Tile Editor')">
-          <img src="assets/mods/ffvi-old-tile-tool.png" alt="FFVI Old Tile Tool GUI Preview" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+        <div class="project-preview" onclick="openLightbox('assets/mods/ffvi-old-tile-tool.webp', 'FFVI Old Tile Tool (ffvi_tileConverter) — Map BIN Section Graphics &amp; Tile Editor')">
+          <img src="assets/mods/ffvi-old-tile-tool.webp" alt="FFVI Old Tile Tool GUI Preview" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Version 2026.5.2</span>
             <span class="tag tag-purple">Final Fantasy VI (Old Ver.)</span>
@@ -539,48 +509,44 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Desktop Utility</span>
-              <span class="tag tag-purple">FFVI Old Ver</span>
-              <span class="tag tag-cyan">Section 1 &amp; 2 I/O</span>
-              <span class="tag">MIT Open Source</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-ffvi-old-ver-tile-tool.html" style="color: inherit; text-decoration: none;">FFVI Old Tile Tool (ffvi_tileConverter)</a>
-            </h2>
-            <p class="project-description">
-              A modernized desktop application for viewing, exporting, importing, and managing section graphics and indexed tiles stored in <strong>Final Fantasy VI (Old Ver.)</strong> map <code>.bin</code> files. Built upon Maki's original FFVI Tile Tool, this release finally resolves Section 1 reinsertion corruption, automates mirrored palette updates, and adds batch processing and tile filtering.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Fixed Section 1 &amp; 2 Reinsertion:</strong> Re-injects both fixed <code>512&times;512</code> Section 1 and variable-height Section 2 8-bit indexed images without corrupting map binaries.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Mirrored Palette Sync &amp; Diagnostics:</strong> Automatically detects and updates mirrored palette repetitions per <code>.bin</code> file on import, with <code>050505</code> transparency preview.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Mass I/O, Filters &amp; Gzip Support:</strong> Folder-driven Mass Export/Import (PNG/BMP), built-in Snow/Grass/Magitek filters, file isolation, Dark Mode, and <code>.bin.gz</code> decompression.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">Desktop Utility</span>
+            <span class="tag tag-purple">FFVI Old Ver</span>
+            <span class="tag tag-cyan">Section 1 &amp; 2 I/O</span>
+            <span class="tag">MIT Open Source</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-ffvi-old-ver-tile-tool.html" style="color: inherit; text-decoration: none;">FFVI Old Tile Tool (ffvi_tileConverter)</a>
+          </h2>
+          <p class="project-description">
+            A modernized desktop application for viewing, exporting, importing, and managing section graphics and indexed tiles stored in <strong>Final Fantasy VI (Old Ver.)</strong> map <code>.bin</code> files. Built upon Maki's original FFVI Tile Tool, this release finally resolves Section 1 reinsertion corruption, automates mirrored palette updates, and adds batch processing and tile filtering.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Fixed Section 1 &amp; 2 Reinsertion:</strong> Re-injects both fixed <code>512&times;512</code> Section 1 and variable-height Section 2 8-bit indexed images without corrupting map binaries.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Mirrored Palette Sync &amp; Diagnostics:</strong> Automatically detects and updates mirrored palette repetitions per <code>.bin</code> file on import, with <code>050505</code> transparency preview.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Mass I/O, Filters &amp; Gzip Support:</strong> Folder-driven Mass Export/Import (PNG/BMP), built-in Snow/Grass/Magitek filters, file isolation, Dark Mode, and <code>.bin.gz</code> decompression.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-ffvi-old-ver-tile-tool.html" class="btn btn-primary btn-sm">
-                <span>Explore Tile Tool Guide &rarr;</span>
-              </a>
-              <a href="https://github.com/faospark/ffvi_tileConverter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                <span>GitHub Repo</span>
-              </a>
-              <a href="project-ffvi-old-ver-mods.html" class="btn btn-secondary btn-sm">
-                <span>FFVI Old Ver Mods &rarr;</span>
-              </a>
-            </div>
+            <a href="project-ffvi-old-ver-tile-tool.html" class="btn btn-primary btn-sm">
+              <span>Explore Tile Tool Guide &rarr;</span>
+            </a>
+            <a href="https://github.com/faospark/ffvi_tileConverter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span>GitHub Repo</span>
+            </a>
+            <a href="project-ffvi-old-ver-mods.html" class="btn btn-secondary btn-sm">
+              <span>FFVI Old Ver Mods &rarr;</span>
+            </a>
           </div>
         </div>
       </section>
@@ -590,7 +556,7 @@
       <!-- PROJECT 7: Suikoden II Remaster Save Editor (SuiSaveEditor) -->
       <section class="project-entry" id="suisaveeditor">
         <div class="project-preview" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — Web GUI')">
-          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+          <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden II HD Remaster Save Editor GUI" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="707" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Featured Web Tool</span>
             <span class="tag tag-amber">Suikoden II HD Remaster</span>
@@ -599,48 +565,44 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-emerald">Web App &amp; PWA</span>
-              <span class="tag tag-amber">Suikoden II HD</span>
-              <span class="tag tag-cyan">100% Client-Side</span>
-              <span class="tag">SuikodenFix JSON</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-suisaveeditor.html" style="color: inherit; text-decoration: none;">SuiSaveEditor (Suikoden II HD Save Editor)</a>
-            </h2>
-            <p class="project-description">
-              A minimal, static web-based GUI and Progressive Web Application (PWA) for editing Suikoden II HD Remaster JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any web browser with zero runtime installations and complete client-side data privacy.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Party, Roster &amp; Stats:</strong> Edit 6-character active battle teams, 2 convoy slots, character levels, HP, combat attributes, and recruitment flags.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Visual MP &amp; Smart Runes:</strong> Unique visual MP system with filled/empty squares (■/□) plus slot-specific and character-specific rune restrictions.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Inventories &amp; Castle Aliases:</strong> Key event items, warehouse storage, bath items, Greenhill student aliases, and food menu presets.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-emerald">Web App &amp; PWA</span>
+            <span class="tag tag-amber">Suikoden II HD</span>
+            <span class="tag tag-cyan">100% Client-Side</span>
+            <span class="tag">SuikodenFix JSON</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-suisaveeditor.html" style="color: inherit; text-decoration: none;">SuiSaveEditor (Suikoden II HD Save Editor)</a>
+          </h2>
+          <p class="project-description">
+            A minimal, static web-based GUI and Progressive Web Application (PWA) for editing Suikoden II HD Remaster JSON save files decrypted by SuikodenFix or SuikodenSaveDecrypter. Runs directly in any web browser with zero runtime installations and complete client-side data privacy.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Party, Roster &amp; Stats:</strong> Edit 6-character active battle teams, 2 convoy slots, character levels, HP, combat attributes, and recruitment flags.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Visual MP &amp; Smart Runes:</strong> Unique visual MP system with filled/empty squares (■/□) plus slot-specific and character-specific rune restrictions.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Inventories &amp; Castle Aliases:</strong> Key event items, warehouse storage, bath items, Greenhill student aliases, and food menu presets.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-suisaveeditor.html" class="btn btn-primary btn-sm">
-                <span>Explore Save Editor Guide &rarr;</span>
-              </a>
-              <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
-                <span>Launch Web Tool &rarr;</span>
-              </a>
-              <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                <span>GitHub Repo</span>
-              </a>
-            </div>
+            <a href="project-suisaveeditor.html" class="btn btn-primary btn-sm">
+              <span>Explore Save Editor Guide &rarr;</span>
+            </a>
+            <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="border-color: var(--accent-cyan); color: #fff;">
+              <span>Launch Web Tool &rarr;</span>
+            </a>
+            <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle; margin-right: 0.25rem;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              <span>GitHub Repo</span>
+            </a>
           </div>
         </div>
       </section>
@@ -650,7 +612,7 @@
       <!-- PROJECT 8: Kupo Mods Library -->
       <section class="project-entry" id="kupo-library">
         <div class="project-preview" onclick="openLightbox('assets/mods/kupo-mods-library.png', 'Kupo Mods Library — Final Fantasy IX')">
-          <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Key Art" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy">
+          <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Key Art" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Flagship Ecosystem</span>
             <span class="tag tag-purple">Final Fantasy IX</span>
@@ -659,52 +621,46 @@
         </div>
 
         <div class="project-details">
-          <div>
-            <div class="project-tag-row">
-              <span class="tag tag-purple">Final Fantasy IX</span>
-              <span class="tag tag-cyan">10 Integrated Modules</span>
-              <span class="tag">Memoria Engine</span>
-              <span class="tag">PC Steam</span>
-            </div>
-            <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
-              <a href="project-kupo-library.html" style="color: inherit; text-decoration: none;">Kupo Mods Library</a>
-            </h2>
-            <p class="project-description">
-              The master enhancement suite for Final Fantasy IX on PC. Formerly known as <em>Mog Add-ons</em> and detailed in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a>, the Kupo Library provides a modular, cohesive experience spanning complete UI overhauls, 6 controller button presets (DualSense, DS4, Xbox, SNES, and Pixel), Extended Cast portraits, quality-of-life adjustments, and the <strong>Kupo Heroes Pack</strong> character balance overhaul.
-            </p>
-            <ul class="project-features">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Kupo UI Suite:</strong> 8 dialogue box colorways, 3 custom title loops, high-contrast menus, and reduced world map mist.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Kupo Heroes Pack:</strong> In-depth character reworks including Freya 3x High Jump, Vivi &amp; Steiner multi-element Aero/Quake/Water magic, Steiner Save the Queen, Beatrix Paladin integration, and Quina chef buffs.</span>
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span><strong>Modular Freedom:</strong> Pick and choose individual components or run the entire suite together via the Memoria launcher.</span>
-              </li>
-            </ul>
+          <div class="project-tag-row">
+            <span class="tag tag-purple">Final Fantasy IX</span>
+            <span class="tag tag-cyan">10 Integrated Modules</span>
+            <span class="tag">Memoria Engine</span>
+            <span class="tag">PC Steam</span>
           </div>
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+            <a href="project-kupo-library.html" style="color: inherit; text-decoration: none;">Kupo Mods Library</a>
+          </h2>
+          <p class="project-description">
+            The master enhancement suite for Final Fantasy IX on PC. Formerly known as <em>Mog Add-ons</em> and detailed in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a>, the Kupo Library provides a modular, cohesive experience spanning complete UI overhauls, 6 controller button presets (DualSense, DS4, Xbox, SNES, and Pixel), Extended Cast portraits, quality-of-life adjustments, and the <strong>Kupo Heroes Pack</strong> character balance overhaul.
+          </p>
+          <ul class="project-features">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Kupo UI Suite:</strong> 8 dialogue box colorways, 3 custom title loops, high-contrast menus, and reduced world map mist.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Kupo Heroes Pack:</strong> In-depth character reworks including Freya 3x High Jump, Vivi &amp; Steiner multi-element Aero/Quake/Water magic, Steiner Save the Queen, Beatrix Paladin integration, and Quina chef buffs.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span><strong>Modular Freedom:</strong> Pick and choose individual components or run the entire suite together via the Memoria launcher.</span>
+            </li>
+          </ul>
 
           <div class="project-card-footer">
-            <div class="download-options">
-              <a href="project-kupo-library.html" class="btn btn-primary btn-sm">
-                <span>Open Kupo Library Guide &rarr;</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>Read Nexus Article #12</span>
-              </a>
-              <a href="https://www.nexusmods.com/finalfantasyix/mods/31" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                <span>UI Suite on Nexus (#31)</span>
-              </a>
-            </div>
+            <a href="project-kupo-library.html" class="btn btn-primary btn-sm">
+              <span>Open Kupo Library Guide &rarr;</span>
+            </a>
+            <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Read Nexus Article #12</span>
+            </a>
+            <a href="https://www.nexusmods.com/finalfantasyix/mods/31" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>UI Suite on Nexus (#31)</span>
+            </a>
           </div>
         </div>
       </section>
-
-    </div><!-- End .vault-single-card -->
 
   </main>
 

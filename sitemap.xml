@@ -25,11 +25,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://denoffao.me/guestbook.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Flagship Project Documentation & Suites -->
   <url>
     <loc>https://denoffao.me/update-project-kyaro-realignment.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>

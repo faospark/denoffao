@@ -3,7 +3,7 @@
  * Compatible with XAMPP Apache (/denoffao/) and GitHub Pages (denoffao.me)
  */
 
-const CACHE_NAME = 'denoffao-pwa-v1';
+const CACHE_NAME = 'denoffao-pwa-v2';
 
 const CORE_ASSETS = [
   './',
@@ -12,6 +12,7 @@ const CORE_ASSETS = [
   './mods.html',
   './blog.html',
   './guestbook.html',
+  './update-project-kyaro-realignment.html',
   './project-chrono-cross.html',
   './project-saga-frontier.html',
   './project-ffvi-old-ver-mods.html',
@@ -22,6 +23,7 @@ const CORE_ASSETS = [
   './project-kyaro-pc.html',
   './project-suisaveeditor.html',
   './assets/obsidian.css',
+  './assets/search-index.json',
   './components.js',
   './site.webmanifest',
   './favicon.svg',
@@ -75,6 +77,7 @@ self.addEventListener('fetch', (event) => {
   const isCodeOrStyle =
     url.pathname.endsWith('.css') ||
     url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.json') ||
     url.pathname.endsWith('.webmanifest');
 
   // Network-First for HTML, CSS, and JS so live updates always appear immediately when online
