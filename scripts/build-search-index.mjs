@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const ROOT = process.cwd();
-const EXCLUDED_HTML = new Set(['ffvi-mods.html']);
+const EXCLUDED_HTML = new Set(['ffvi-mods.html', 'update-project-kyaro-realignment.html']);
 const OUTPUT_PATH = path.join(ROOT, 'assets', 'search-index.json');
 
 function decodeEntities(str) {

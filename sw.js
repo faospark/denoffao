@@ -12,7 +12,6 @@ const CORE_ASSETS = [
   './mods.html',
   './blog.html',
   './guestbook.html',
-  './update-project-kyaro-realignment.html',
   './project-chrono-cross.html',
   './project-saga-frontier.html',
   './project-ffvi-old-ver-mods.html',
