@@ -1134,6 +1134,39 @@ if (!customElements.get('ff6-mods')) {
  */
 const ALL_MODS_DATA = [
   {
+    "id": 18,
+    "title": "Kraken Patch",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/18",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 02, 2026",
+    "image": "assets/mods/18-1746327126-166158825.png",
+    "desc": "Now converted to a BepInEx plugin! Early Chuchara recruitment at HQ Docks plus full party availability for Abizboah and Rulodia while saving your Listening Crystals for Feather and Siegfried.",
+    "badge": "Nexus Mods (#18)"
+  },
+  {
+    "id": 17,
+    "title": "Open Paths Mod",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/17",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 02, 2026",
+    "image": "assets/mods/17-1745535249-663424833.png",
+    "desc": "Now converted to a BepInEx plugin! Opens Tinto Mines shortcuts, solves the Cave of the Wind boulders automatically, and unlocks the Forest Village Armor Shop door early.",
+    "badge": "Nexus Mods (#17)"
+  },
+  {
+    "id": 14,
+    "title": "True Matilda Glitch Restoration",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/14",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 01, 2026",
+    "image": "assets/mods/14-1793786019-1111914935.png",
+    "desc": "Now converted to a BepInEx plugin! Recreates the classic PS1 Matilda border gate glitch so you can actually see yourself pushing the gate/wall (or set it to stay open).",
+    "badge": "Nexus Mods (#14)"
+  },
+  {
     "id": 44,
     "title": "S2 NPC Bath Patch",
     "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/44",
@@ -1475,17 +1508,6 @@ const ALL_MODS_DATA = [
     "badge": "Nexus Mods (#79)"
   },
   {
-    "id": 18,
-    "title": "Kraken Patch",
-    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/18",
-    "game": "Suikoden I&II HD Remaster",
-    "category": "suikoden",
-    "date": "May 18, 2025",
-    "image": "assets/mods/18-1746327126-166158825.png",
-    "desc": "Allows you to recruit Chuchara and along side with him Abizboah , Rulodia without Listening Crystals required and can be done even if you have Feather and Siegfried recruited",
-    "badge": "Nexus Mods (#18)"
-  },
-  {
     "id": 2,
     "title": "Genso Force PSX Buttons",
     "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/2",
@@ -1497,17 +1519,6 @@ const ALL_MODS_DATA = [
     "badge": "Nexus Mods (#2)"
   },
   {
-    "id": 17,
-    "title": "Open Paths Mod",
-    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/17",
-    "game": "Suikoden I&II HD Remaster",
-    "category": "suikoden",
-    "date": "Apr 24, 2025",
-    "image": "assets/mods/17-1745535249-663424833.png",
-    "desc": "Removes rocks that block path way in Tinto Mines creating short cuts ,Plus Solves Puzzle Boulders in Cave of the mind making you not need to push the bouldersCompatible with v1.0.3",
-    "badge": "Nexus Mods (#17)"
-  },
-  {
     "id": 1267,
     "title": "Suikoden I and II HD Remaster Basic Vortex Support",
     "url": "https://www.nexusmods.com/site/mods/1267",
@@ -1517,17 +1528,6 @@ const ALL_MODS_DATA = [
     "image": "assets/mods/1267-1744934907-675657779.png",
     "desc": "Adds Basic Vortex Mod Manager for Suikoden I&II HD Remaster",
     "badge": "Nexus Mods (#1267)"
-  },
-  {
-    "id": 14,
-    "title": "True Matilda Glitch Restoration",
-    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/14",
-    "game": "Suikoden I&II HD Remaster",
-    "category": "suikoden",
-    "date": "Apr 10, 2025",
-    "image": "assets/mods/14-1744294086-625319889.png",
-    "desc": "Compatible to v1.0.4 , Matilda glitch restoration.. promise These 2 method works. see videos on on the mod page",
-    "badge": "Nexus Mods (#14)"
   },
   {
     "id": 20,
@@ -1963,10 +1963,16 @@ class ModsCatalog extends HTMLElement {
                 </span>
                 <h2 class="section-title">Recent Mod Updates</h2>
               </div>
-              <a href="mods.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
-                <span>Explore all</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </a>
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="recent-updates.html" class="btn btn-secondary btn-lg" style="display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.45rem; font-size: 1rem; font-weight: 700; border-color: rgba(52, 211, 153, 0.5); color: #34d399;">
+                  <span>Nov 2026 Release Notes</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+                <a href="mods.html" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.9rem 1.85rem; font-size: 1.1rem; font-weight: 700;">
+                  <span>Explore all</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+              </div>
             </div>
             <p class="section-desc">The newest mod releases and updates arranged chronologically. Looking for our complete collection? Visit the dedicated full library with instant search and category filters.</p>
           </div>
