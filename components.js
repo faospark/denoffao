@@ -42,7 +42,11 @@ function applyVaultTheme(themeId) {
     const btn = picker.querySelector('#vaultThemeBtn');
     if (label) label.textContent = theme.name;
     if (swatch) swatch.style.background = theme.gradient;
-    if (btn) btn.setAttribute('title', `Switch Vault Theme (${theme.name})`);
+    if (btn) {
+      const themeLabel = `Switch Vault Theme (${theme.name})`;
+      btn.setAttribute('title', themeLabel);
+      btn.setAttribute('aria-label', themeLabel);
+    }
     picker.querySelectorAll('.theme-option').forEach(opt => {
       opt.classList.toggle('active', opt.getAttribute('data-theme-id') === theme.id);
     });
@@ -191,7 +195,11 @@ function updateVaultLangUI(langId) {
     const label = picker.querySelector('#langActiveLabel');
     const btn = picker.querySelector('#vaultLangBtn');
     if (label) label.textContent = lang.shortName;
-    if (btn) btn.setAttribute('title', `Translate Website (${lang.nativeName})`);
+    if (btn) {
+      const langLabel = `Translate Website (${lang.nativeName})`;
+      btn.setAttribute('title', langLabel);
+      btn.setAttribute('aria-label', langLabel);
+    }
     picker.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.getAttribute('data-lang-id') === lang.id);
     });
@@ -281,7 +289,7 @@ class VaultNavbar extends HTMLElement {
     const isMods = active === 'mods' || active === 'catalog';
     const isBlog = active === 'blog' || active === 'archives';
     const isGuestbook = active === 'guestbook';
-    const isDonate = active === 'donate';
+    const isDonate = active === 'donate' || active === 'support';
 
     const currentThemeId = getStoredVaultTheme();
     const currentTheme = VAULT_THEMES.find(t => t.id === currentThemeId) || VAULT_THEMES[0];
@@ -309,31 +317,26 @@ class VaultNavbar extends HTMLElement {
             <li><a href="mods.html" class="nav-link ${isMods ? 'active' : ''}">All Mods</a></li>
             <li><a href="blog.html" class="nav-link ${isBlog ? 'active' : ''}">Blog</a></li>
             <li><a href="guestbook.html" class="nav-link ${isGuestbook ? 'active' : ''}">Guestbook</a></li>
-            <li class="mobile-only-nav"><a href="index.html#donate" class="nav-link ${isDonate ? 'active' : ''}">Donate</a></li>
+            <li class="mobile-only-nav"><a href="support.html" class="nav-link ${isDonate ? 'active' : ''}">Donate</a></li>
           </ul>
 
           <div class="topbar-actions notranslate">
             <button type="button" class="nav-search-btn notranslate" id="vaultSearchBtn" aria-label="Search site (Ctrl+K)" title="Search site (Ctrl+K)">
-              ${ICONS.search}
-              <span class="nav-search-label">Search</span>
-              <kbd class="nav-search-kbd">Ctrl K</kbd>
-            </button>
-
-            <a href="index.html#donate" class="nav-update-btn notranslate ${isDonate ? 'active' : ''}" title="Donate">
-              <svg class="nav-update-heart" width="13" height="13" viewBox="0 0 24 24" fill="#dc2626">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              <svg class="nav-search-icon" width="15" height="15" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+                <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/>
               </svg>
-              <span>Donate</span>
-            </a>
+            </button>
 
             <!-- Language Selector Dropdown -->
             <div class="vault-lang-picker notranslate" id="vaultLangPicker">
-              <button type="button" class="lang-picker-btn notranslate" id="vaultLangBtn" aria-haspopup="true" aria-expanded="false" title="Translate Website (${currentLang.nativeName})">
-                <span class="lang-active-icon notranslate">${ICONS.globe}</span>
-                <span class="lang-active-label notranslate" id="langActiveLabel">${currentLang.shortName}</span>
-                <svg class="lang-chevron notranslate" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+              <button type="button" class="lang-picker-btn notranslate" id="vaultLangBtn" aria-haspopup="true" aria-expanded="false" aria-label="Translate Website (${currentLang.nativeName})" title="Translate Website (${currentLang.nativeName})">
+                <span class="lang-active-icon notranslate" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                </span>
               </button>
               <div class="lang-dropdown-menu notranslate" id="langDropdownMenu" role="menu" aria-label="Language options">
                 <div class="lang-dropdown-title notranslate">Translate Language</div>
@@ -345,7 +348,7 @@ class VaultNavbar extends HTMLElement {
                       ${l.id !== 'en' ? `<span class="lang-subname notranslate">${l.name}</span>` : ''}
                     </div>
                     <span class="lang-check notranslate">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                     </span>
@@ -356,21 +359,17 @@ class VaultNavbar extends HTMLElement {
 
             <!-- Theme Selector Dropdown -->
             <div class="vault-theme-picker notranslate" id="vaultThemePicker">
-              <button type="button" class="theme-picker-btn notranslate" id="vaultThemeBtn" aria-haspopup="true" aria-expanded="false" title="Switch Vault Theme (${currentTheme.name})">
-                <span class="theme-active-swatch notranslate" id="themeActiveSwatch" style="background: ${currentTheme.gradient};"></span>
-                <span class="theme-active-label notranslate" id="themeActiveLabel">${currentTheme.name}</span>
-                <svg class="theme-chevron notranslate" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+              <button type="button" class="theme-picker-btn notranslate" id="vaultThemeBtn" aria-haspopup="true" aria-expanded="false" aria-label="Switch Vault Theme (${currentTheme.name})" title="Switch Vault Theme (${currentTheme.name})">
+                <span class="theme-active-swatch notranslate" id="themeActiveSwatch" aria-hidden="true" style="background: ${currentTheme.gradient};"></span>
               </button>
               <div class="theme-dropdown-menu notranslate" id="themeDropdownMenu" role="menu" aria-label="Theme options">
                 <div class="theme-dropdown-title notranslate">Vault Theme</div>
                 ${VAULT_THEMES.map(t => `
                   <button type="button" class="theme-option notranslate ${t.id === currentTheme.id ? 'active' : ''}" data-theme-id="${t.id}" role="menuitem">
-                    <span class="theme-swatch notranslate" style="background: ${t.gradient};"></span>
+                    <span class="theme-swatch notranslate" aria-hidden="true" style="background: ${t.gradient};"></span>
                     <span class="theme-name notranslate">${t.name}</span>
                     <span class="theme-check notranslate">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                     </span>
@@ -378,6 +377,13 @@ class VaultNavbar extends HTMLElement {
                 `).join('')}
               </div>
             </div>
+
+            <a href="support.html" class="nav-update-btn notranslate ${isDonate ? 'active' : ''}" title="Support Me">
+              <svg class="nav-update-heart" width="13" height="13" viewBox="0 0 24 24" fill="#dc2626" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <span>Donate</span>
+            </a>
 
             <button class="mobile-nav-toggle notranslate" id="vaultMobileNavToggle" aria-label="Toggle navigation">
               ${ICONS.menu}
@@ -617,7 +623,7 @@ class VaultFooter extends HTMLElement {
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                 </svg>
               </a>
-              <a href="https://github.com/faospark/denoffao" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="GitHub Repository">
+              <a href="https://github.com/faospark" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="GitHub Profile">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                 </svg>
@@ -629,9 +635,6 @@ class VaultFooter extends HTMLElement {
               </a>
               <a href="https://www.youtube.com/@faosparkNeo" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="YouTube Channel (@faosparkNeo)">
                 ${ICONS.youtube}
-              </a>
-              <a href="https://paypal.me/thefaospark?country.x=PH&locale.x=en_US" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Donate via PayPal">
-                ${ICONS.paypal}
               </a>
             </div>
           </div>
@@ -652,9 +655,12 @@ class VaultFooter extends HTMLElement {
               </div>
             </div>
             <span>${disclaimer}</span>
-            <button type="button" class="cookie-settings-btn" id="openCookieSettingsBtn">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Cookie Preferences
-            </button>
+            <div class="inline-row" style="flex-wrap: wrap; justify-content: center;">
+              <a href="privacy.html" class="cookie-settings-btn" style="text-decoration: none;">Privacy Policy</a>
+              <button type="button" class="cookie-settings-btn" id="openCookieSettingsBtn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -1px; margin-right: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Cookie Preferences
+              </button>
+            </div>
           </div>
         </div>
       </footer>
@@ -887,7 +893,7 @@ class FF9Mods extends HTMLElement {
       return `
       <article class="mod-tile-card" data-category="ffix">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
-          <img src="${mod.image}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
@@ -1086,7 +1092,7 @@ class ApocalypseMods extends HTMLElement {
       return `
       <article class="mod-tile-card" data-category="ffvi" data-mod-id="${mod.id}">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
-          <img src="${mod.image}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-purple">${mod.category}</span>
             <span class="tag tag-emerald">${ICONS.star} ${mod.endorsements} | ${ICONS.download} ${mod.downloads}</span>
@@ -1992,7 +1998,7 @@ class ModsCatalog extends HTMLElement {
       return `
       <article class="mod-tile-card" data-category="${mod.category}" data-search="${searchable}">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${escapedTitle}">
-          <img src="${mod.image}" alt="${escapedTitle}" loading="lazy" decoding="async" onerror="this.src='assets/forup_291x.png'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${escapedTitle}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
@@ -2249,7 +2255,10 @@ if (typeof document !== 'undefined') {
     } catch (e) {}
 
     window.gtag('consent', 'update', {
-      'analytics_storage': status
+      'analytics_storage': status,
+      'ad_storage': status,
+      'ad_user_data': status,
+      'ad_personalization': status
     });
 
     const banner = document.getElementById('denCookieBanner');
@@ -2303,10 +2312,10 @@ if (typeof document !== 'undefined') {
             </svg>
             <span class="cookie-title">Privacy &amp; Cookie Preferences</span>
           </div>
-          <span class="cookie-badge">EU / GDPR</span>
+          <span class="cookie-badge">PH DPA / GDPR</span>
         </div>
         <p class="cookie-desc">
-          We use lightweight, anonymized Google Analytics cookies to track mod downloads and site traffic. No personal advertising or commercial trackers are used.
+          We use lightweight, anonymized Google Analytics cookies to track mod downloads and site traffic. Read our <a href="privacy.html" style="text-decoration: underline;">Privacy Policy</a> for details.
         </p>
         <div class="cookie-actions">
           <button type="button" class="btn btn-primary btn-sm cookie-btn-accept" id="btnAcceptCookies">

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kupo Engine 6 — FFVI Enhancement Engine &amp; Suite | Faospark</title>
+  
+  <meta name="description" content="Kupo Engine 6 (KupoEngine6) by Faospark: next-gen enhancement engine, DirectX 11 CRT shader bridge, 32-column widescreen, 30-slot save system, and RE framework for Final Fantasy VI (2015 Steam).">
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <link rel="canonical" href="https://denoffao.me/project-kupo-engine-6.html">
+  <meta property="og:url" content="https://denoffao.me/project-kupo-engine-6.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Kupo Engine 6 (KupoEngine6) — Final Fantasy VI Enhancement Engine &amp; Suite — Faospark"/>
+  <meta property="og:description" content="All-in-one C++17 enhancement engine for Final Fantasy VI (2015 Steam Release): DirectX 11 zero-copy presentation bridge, SNES Classic CRT shaders, 32-column widescreen, composite HD scene pipeline, 30-slot save system, and Dear ImGui RE suite."/>
+  <meta property="og:image" content="https://denoffao.me/assets/mods/ffvi-old-ver-showcase.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kupo Engine 6 — FFVI Enhancement Engine &amp; Suite | Faospark" />
+  <meta name="twitter:description" content="Kupo Engine 6 (KupoEngine6) by Faospark: next-gen enhancement engine, DirectX 11 CRT shader bridge, 32-column widescreen, 30-slot save system, and RE framework for Final Fantasy VI (2015 Steam)." />
+  <meta name="twitter:image" content="https://denoffao.me/assets/mods/ffvi-old-ver-showcase.png" />
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Den of Fao" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <script>
+    (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
+
+  <!-- Pure Web-Safe Stylesheet -->
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261123">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    (function(){
+      var s=null;try{s=localStorage.getItem('den_cookie_consent');}catch(e){}
+      gtag('consent','default',{
+        'analytics_storage':s==='granted'?'granted':'denied',
+        'ad_storage':'denied',
+        'ad_user_data':'denied',
+        'ad_personalization':'denied',
+        'wait_for_update':500
+      });
+    })();
+    gtag('js', new Date());
+    if (!['localhost', '127.0.0.1', ''].includes(window.location.hostname) && window.location.protocol !== 'file:') {
+      gtag('config', 'G-BMED35LCVS', { anonymize_ip: true });
+    }
+  </script>
+  <!-- Native Web Components -->
+  <script src="components.min.js?v=20261123"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kupo Engine 6 (KupoEngine6)",
+    "description": "The Next-Gen Enhancement Engine, Presentation Suite & Reverse-Engineering Framework for Final Fantasy VI (2015 Steam Release).",
+    "url": "https://denoffao.me/project-kupo-engine-6.html",
+    "image": "https://denoffao.me/assets/mods/ffvi-old-ver-showcase.png",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Windows",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Faospark",
+      "url": "https://denoffao.me/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Obsidian Vault Topbar Component -->
+  <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kupo-engine-6.md" active="projects"></vault-navbar>
+
+  <!-- Main Container: Single Unified Card Body -->
+  <main class="container vault-single-card">
+      
+      <!-- Top Bar inside Card -->
+      <div class="card-top-bar">
+        <div class="card-top-links">
+          <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Special Projects</span>
+          </a>
+          <a href="project-ffvi-old-ver-mods.html" class="back-home-link" style="margin-bottom: 0; color: var(--accent-cyan);">
+            <span>&bull; FFVI Old Ver Mods &rarr;</span>
+          </a>
+          <a href="project-ffvi-old-ver-tile-tool.html" class="back-home-link" style="margin-bottom: 0; color: var(--text-muted);">
+            <span>&bull; FFVI Old Tile Tool &rarr;</span>
+          </a>
+        </div>
+
+        <div class="card-top-tags">
+          <span class="tag tag-emerald font-mono">C++17 &bull; DirectX 11 Interop</span>
+          <span class="tag tag-purple font-mono">Final Fantasy VI (2015 Steam)</span>
+          <span class="tag tag-cyan font-mono">MIT License &bull; Open Source</span>
+        </div>
+      </div>
+
+      <!-- Header Presentation -->
+      <div style="margin-bottom: 1.75rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <span class="pulse-dot"></span>
+          <a href="index.html" class="bc-link">Home</a>
+          <span class="bc-sep">/</span>
+          <a href="projects.html" class="bc-link">Projects</a>
+          <span class="bc-sep">/</span>
+          <span class="bc-current">Kupo Engine 6</span>
+        </nav>
+
+        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          Kupo Engine 6: <span class="text-gradient">Next-Gen FFVI Enhancement Engine.</span>
+        </h1>
+
+        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65; margin: 0; max-width: 960px;">
+          <strong>Kupo Engine 6</strong> (<code>KupoEngine6</code>, formerly <em>KupoEngine</em> / <em>KupoHook</em>) is an all-in-one enhancement engine, modern graphics pipeline, reverse-engineering framework, and in-game presentation suite built specifically for the legacy PC release of <strong>Final Fantasy VI (2015 Steam Release)</strong>. Built via zero-modification DLL proxying (<code>glew32.dll</code>) from a complete 100% static and dynamic audit of all <strong>772,705 lines across 6,144 decompiled functions</strong> in <code>FF6.exe</code>, it seamlessly modernizes rendering, unlocks true 32-column widescreen field and battle presentation, restores classic mechanics, eliminates input lag, and exposes extensive real-time modding and debugging tools.
+        </p>
+      </div>
+
+      <!-- Hero Banner Showcase -->
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/ffvi-old-ver-showcase.webp', 'Kupo Engine 6 (KupoEngine6) — DirectX 11 Presentation Bridge, 32-Column Widescreen &amp; Classic Battle HUD')">
+        <img src="assets/mods/ffvi-old-ver-showcase.webp" alt="Kupo Engine 6 Widescreen and Presentation Suite Showcase" class="hero-banner-img" fetchpriority="high" width="1024" height="578" decoding="async">
+        <div class="banner-overlay-badge">
+          <span class="tag tag-emerald">26+ Integrated Subsystems</span>
+          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+        </div>
+        <div class="banner-caption-bar">
+          <span><strong>Kupo Engine 6:</strong> Zero-copy DirectX 11 presentation bridge, 32-column field widescreen, SNES Classic CRT shaders &amp; native HUD</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Quick Jump Row -->
+      <nav aria-label="Page sections" class="jump-nav-row">
+        <a href="#core-engines" class="jump-nav-btn">Core Subsystems</a>
+        <a href="#widescreen" class="jump-nav-btn">32-Column Widescreen</a>
+        <a href="#composite-pipeline" class="jump-nav-btn">HD Composite Maps &amp; Weather</a>
+        <a href="#qol-restorations" class="jump-nav-btn">QoL &amp; 30-Slot Saves</a>
+        <a href="#re-methodology" class="jump-nav-btn">Reverse Engineering Marvel</a>
+        <a href="#hotkeys" class="jump-nav-btn">Hotkeys &amp; Config</a>
+        <a href="https://github.com/faospark/KupoEngine6" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: #38bdf8; color: #fff;">GitHub Repository &rarr;</a>
+      </nav>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 1: CORE ARCHITECTURAL ENGINES -->
+      <section id="core-engines" style="margin-bottom: 2.5rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <h2 style="font-size: 1.75rem; color: #fff; margin: 0 0 0.5rem 0;">Core Architectural Pillars</h2>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            Kupo Engine 6 replaces legacy mobile port compromises with hardware-accelerated rendering, authentic console timing, and zero-repack modding pipelines:
+          </p>
+        </div>
+
+        <div class="engine-grid">
+          
+          <!-- Pillar 1: DX11 Bridge -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  1. DirectX 11 Bridge &amp; CRT Shaders
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Transfers OpenGL 2.x frames directly in VRAM to a modern Direct3D 11 flip-model swapchain (~0.02ms latency) with VRR, G-Sync, FreeSync, and Windows 11 Auto-HDR support.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Screen-Space Subpixel Anti-Shimmer:</strong> 5-tap luminance contrast reconstruction eliminates crawling tile edges during scrolling with zero 512&times;512 texture atlas bleed.</li>
+              <li><strong>HLSL Color Grading &amp; CRT Simulation:</strong> <em>SNES Classic Warm CRT</em>, <em>Super Famicom 9300K Cool</em>, <em>Dark &amp; Moody (World of Ruin Gothic)</em>, 240p/480p sinusoidal scanlines, RGB aperture grille triad mask, and barrel curvature.</li>
+              <li><strong>AMD FSR 1.0 &amp; Motion Smoothing:</strong> In-engine EASU spatial upscaling, RCAS sharpening, and temporal CRT phosphor persistence.</li>
+              <li><strong>10 PSX 3D Battle Transitions:</strong> Hardware Vortex, Ripple, Mirror Shatter, Falling Sand Melt, Horizontal Raster Shear, Diamond Iris, Radial Zoom, Wave, Curtain, and Roulette.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 2: 32-Column Widescreen -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple, #c084fc)" stroke-width="2" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                  2. 32-Column True Widescreen
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Expands field map tile generation from 16 to <strong>32 columns</strong> (1024px native / 512px GBA) and +40 vertical rows via stack-safe multi-pass paging without stretching pixels.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Surgical Lateral Frustum Bypass:</strong> Patches AOT ARM simulation branch <code>0x1634F7</code> while preserving vertical slot-recycling branches to guarantee zero duplicated townspeople.</li>
+              <li><strong>Symmetrical OAM 8-Bit Coordinate Expansion:</strong> Expands top headroom to 48px (<code>0x30</code>) and bottom vertex threshold to <code>0xD0</code> across all 4 recompiled sprite routines.</li>
+              <li><strong>Sub-Room Entity Partitioning:</strong> Queries live ROM <code>npcProperties</code> (<code>0x71D34C</code>) in <code>FUN_0044b110</code> to isolate composite interior rooms (e.g. Figaro Castle, Blackjack).</li>
+              <li><strong>Mode 7 &amp; Combat Widescreen:</strong> Edge-to-edge battle backdrops (<code>Land000..055</code>), Opening Snow March Mode 7 widescreen, and customizable Overworld Navimap HUD.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 3: Area Composite Scene Pipeline -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber, #f59e0b)" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  3. Composite HD Maps &amp; Weather
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Breaks free from restrictive 16&times;16 tile limits and 16-color palettes by liberating field rooms into full-scale, multi-layer high-definition composite artwork.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>Live EWRAM &amp; LZSS ROM Unpacker:</strong> Dumps active decompressed field layers or unpacks any of the 432 maps directly from the embedded GBA ROM with semantic collision mask PNGs.</li>
+              <li><strong>Runtime Layer Replacer:</strong> Ingests loose HD layers from <code>obb/maps/composite/{MapID}/</code> with subpixel camera-synchronized world-origin quads.</li>
+              <li><strong>Sidecar JSON &amp; FOV Compensation:</strong> Real-time X/Y pixel and UV offset tuning in <code>composite.json</code> with native tile suppression (<code>SuppressVanillaTiles = 1</code>).</li>
+              <li><strong>Atmospheric Weather Engine:</strong> Procedural multi-layer falling snow with depth parallax and wind sway across Narshe maps.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 4: 30-Slot Save System & Classic Battle HUD -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald, #10b981)" stroke-width="2" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  4. 30-Slot Saves &amp; Classic Battle HUD
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Replaces clunky mobile menus with a 30-slot glassmorphic save manager and an authentic SNES-style "Tab - Left" native battle interface.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>30 Save Slots + Quicksave Continue:</strong> Hooks <code>FUN_004a1000</code> to replace the 5-slot mobile screen with 3 paged tabs (Slots 1–30), Quicksave Continue banner, and Steam Cloud auto-import.</li>
+              <li><strong>Virtual Staging Engine:</strong> Stages custom save files through native slot 0 buffers for 100% authentic deserialization with zero binary buffer overflows.</li>
+              <li><strong>Classic Native Battle HUD:</strong> Enforces "Tab - Left" layout, injects native FreeType/FLB hero names above HP numbers, suppresses mobile bust portraits, and highlights active turns in yellow (<code>#F8D800</code>).</li>
+              <li><strong>Triangle / Button Y Turn Switch:</strong> Binds active party turn cycling directly to Gamepad Triangle / Y with authentic audio chirps.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 5: 60 FPS, FMV Cinema & Polyphonic Audio -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-rose, #f43f5e)" stroke-width="2" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  5. 60 FPS, FMV Cinema &amp; Audio Suite
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Unlocks fluid 60 FPS gameplay, hardware-accelerated boot/cutscene FMV playback with retro CRT post-processing, and polyphonic audio mixing.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>60 FPS &amp; Fast-Forward (1.25x–10x):</strong> Live RAM delta-time patching across Field, Town, and Airship scenes with stutter-free F1 / R2 speed cycling.</li>
+              <li><strong>In-Process FMV Cinema Player:</strong> Native Windows Media Foundation H.264/MP4 decoding (<code>OPEN.mp4</code> boot autoplay) with dedicated PS1 240p/480i CRT scanlines, FSR 1.0, and frame interpolation.</li>
+              <li><strong>Polyphonic Audio &amp; Master Volume:</strong> Multi-voice polyphonic audio mixer, WASAPI master volume attenuation (<code>0%..100%</code>), restored menu cancel SFX (<code>0x165</code>), and loose <code>sounds/*.wav</code> replacement.</li>
+              <li><strong>600+ ID Sound Debugger:</strong> Live in-game SFX scanner and audition player.</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 6: VFS, Retranslation & Dear ImGui RE Suite -->
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <h3 class="engine-card-title">
+                <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  6. VFS, Retranslation &amp; ImGui Suite
+                </span>
+              </h3>
+            </div>
+            <p class="engine-card-desc">
+              Eliminates 700+ MB <code>main.obb</code> archive repacking and exposes real-time entity spawning, perceptual sprite hashing, script retranslation, and UI inspection.
+            </p>
+            <ul class="engine-feature-list">
+              <li><strong>13-Language Script Dumper &amp; Retranslator:</strong> Extracts all 8,838 strings across 13 languages to JSON/TXT and hot-reloads custom translations via <code>FUN_00548a00</code> with zero byte-length limits.</li>
+              <li><strong>Live NPC Spawner &amp; Variant Cycling:</strong> Instant EWRAM slot 4..31 NPC injection with 120+ sprite archetypes, viewport tile picking, and dormant Square Enix NPC sprite sheet cycling.</li>
+              <li><strong>pHash Visual Object Inspector:</strong> Click-to-Pick any on-screen sprite, monster, or UI quad using 64-bit <code>dHash</code>/<code>aHash</code> Hamming distance search and 1-click PNG template export.</li>
+              <li><strong>Unity-Style FLB Object Explorer:</strong> Live hierarchy inspector and Numpad 2 asset package dumper for all 455 game UI layouts.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 2: NOSTALGIC MECHANIC RESTORATIONS & QOL -->
+      <section id="qol-restorations" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Nostalgic Mechanic Restorations &amp; Real-Time Editor</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          Beyond graphics and widescreen presentation, Kupo Engine 6 restores beloved Super Nintendo mechanics and equips players with a comprehensive Dear ImGui overlay:
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Instant Bushido &amp; Blitz Leniency</h3>
+            </div>
+            <p class="feature-card-desc">
+              Eliminates Cyan's 24-second Level 8 Bushido charge wait (supporting Instant Mode, 2x/4x/8x/16x multipliers, and SNES ATB freeze) and restores forgiving Sabin Blitz input timing and diagonal substitutions.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Gau Rage Master Database</h3>
+            </div>
+            <p class="feature-card-desc">
+              Complete searchable directory of all 256 Rages with elemental affinities, signature skill descriptions, meta rankings (Stray Cat, Nightshade, Intangir, Rafflesia), multi-mode sorting, and an in-battle companion.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Overworld Navimap &amp; Airship HUD</h3>
+            </div>
+            <p class="feature-card-desc">
+              Real-time translation, scaling (0.50x to 2.00x), opacity control, and 1-click Quick Dock presets for the overworld minimap radar HUD, plus touch compass suppression and decoupled Mode 7 airship sprite scaling.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Diverse NPC Variant Cycling</h3>
+            </div>
+            <p class="feature-card-desc">
+              Unlocks dozens of official high-definition Square Enix character variant sprite sheets bundled in <code>obb/character/</code> (Cultists, Aristocrats, Dancers, Soldiers, Returners, Townspeople) that were left unreferenced in vanilla FF6.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Vanish/Doom, Steal Boost &amp; Dash</h3>
+            </div>
+            <p class="feature-card-desc">
+              Toggle the legendary SNES Vanish/Doom speedrun exploit, guarantee 100% rare item steals with Thief's Glove/Sneak Ring, enable inherent Sprint Shoes dash without using a relic slot, and scale encounter rates from <code>0.0x</code> to <code>8.0x</code>.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">Event Fixes &amp; Console Soft Reset</h3>
+            </div>
+            <p class="feature-card-desc">
+              One-click editors for Solitary Island Cid health, Imperial Banquet score, Cursed Shield 255-battle uncursing, 423-enemy Bestiary completion, authentic <code>L1+R1+Start+Select</code> console soft reset, and an Alt+F4 close confirmation safeguard.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 3: REVERSE ENGINEERING METHODOLOGY -->
+      <section id="re-methodology" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Reverse Engineering Methodology &amp; Technical Marvel</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          The creation of Kupo Engine 6 and its surgical fixes for decades-old engine limitations were driven by exhaustive static decompilation paired with live binary telemetry:
+        </p>
+
+        <div class="feature-grid" style="margin-bottom: 1.25rem;">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">NSA Ghidra: 772,705 Lines / 6,144 Functions</h3>
+            </div>
+            <p class="feature-card-desc">
+              Complete 100% static audit of the 17.6 MB Win32 PE executable (<code>FF6.exe</code>), mapping how the Ahead-Of-Time (AOT) statically recompiled Japanese GBA ROM (<code>BZ6J</code>) bridges emulated EWRAM (<code>0x02000000</code>), IWRAM (<code>0x03000000</code>), VRAM (<code>0x06000000</code>), and OAM (<code>0x07000000</code>) into host memory.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">REA Telemetry: AOT Frustum &amp; Slot Preservation</h3>
+            </div>
+            <p class="feature-card-desc">
+              Pinpointed the 5 upstream field simulation branches in the recompiled ARM core (<code>0x1634F7..0x163BE8</code>), diagnosing why prior community attempts to disable NPC culling corrupted entity slot recycling and spawned duplicate townspeople.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <h3 class="feature-card-title">8-Bit Wraparound OAM Vertex Math</h3>
+            </div>
+            <p class="feature-card-desc">
+              Uncovered the 8-bit unsigned wraparound arithmetic (<code>sub ecx, 0x100</code>) inside host OpenGL vertex decoders (<code>FUN_0044b190</code>, <code>FUN_00452330</code>, <code>FUN_00433d30</code>), symmetrically balancing vertical thresholds to eliminate top and bottom sprite popping under expanded FOV.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 4: HOTKEYS & DIRECTORY STRUCTURE -->
+      <section id="hotkeys" style="margin-bottom: 2.5rem;">
+        <h2 id="hotkeys-table-heading" style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Default Hotkeys &amp; Directory Architecture</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
+          All hotkeys and subsystem toggles are configurable live in-game or via the self-documenting <code>kupoengine_config.ini</code> file generated on launch:
+        </p>
+
+        <div tabindex="0" role="region" aria-labelledby="hotkeys-table-heading" style="overflow-x: auto; max-inline-size: 100%; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+            <thead>
+              <tr style="background: rgba(15, 23, 42, 0.85); color: #fff; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                <th style="padding: 0.75rem 1rem;">Input / Hotkey</th>
+                <th style="padding: 0.75rem 1rem;">Engine Action</th>
+                <th style="padding: 0.75rem 1rem;">Scope</th>
+              </tr>
+            </thead>
+            <tbody style="color: var(--text-secondary);">
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>F11</code> / <code>Insert</code></th>
+                <td style="padding: 0.65rem 1rem;">Toggle Kupo Engine 6 In-Game Overlay (Dear ImGui)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-emerald">Global</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>F1</code> / <code>Controller R2</code></th>
+                <td style="padding: 0.65rem 1rem;">Cycle / Toggle Fast-Forward Speed Multipliers (1.25x–10.0x)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-emerald">Global</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>F2</code></th>
+                <td style="padding: 0.65rem 1rem;">Toggle Battle Booster (Full HP/MP Lock &amp; Continuous Status Cleanse)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-purple">In-Battle</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>Gamepad Triangle</code> (Button Y)</th>
+                <td style="padding: 0.65rem 1rem;">Switch Active Party Member (Next Ready ATB Turn)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-purple">In-Battle</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>Numpad 1</code></th>
+                <td style="padding: 0.65rem 1rem;">Dump Current Map Composite Layers, Collision Mask &amp; JSON (<code>engine/dumps/maps/</code>)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-cyan">Field Maps</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>Numpad 2</code></th>
+                <td style="padding: 0.65rem 1rem;">Dump Active Screen FLB UI Packages &amp; Embedded PNGs (<code>engine/dumps/flb/</code>)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-cyan">Menus &amp; UI</span></td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>Numpad 3</code> / <code>Numpad 4</code></th>
+                <td style="padding: 0.65rem 1rem;">Dump Live GPU VRAM Texture Atlas / Dump Live Game State &amp; Event Flags JSON</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-emerald">Global</span></td>
+              </tr>
+              <tr>
+                <th style="padding: 0.65rem 1rem; color: var(--accent-cyan); font-weight: 600;"><code>Ctrl+Shift+F12</code> / <code>L1+R1+Start+Select</code></th>
+                <td style="padding: 0.65rem 1rem;">Authentic Console Soft Reset to Title Screen (Hold ~18 frames)</td>
+                <td style="padding: 0.65rem 1rem;"><span class="tag tag-emerald">Global</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="dir-layout-heading" style="font-size: 1.15rem; color: #fff; margin: 1.25rem 0 0.5rem;">Installation &amp; Directory Layout</h3>
+        <pre role="region" aria-labelledby="dir-layout-heading" tabindex="0" class="code-box"><code><span class="hl-cyan">Final Fantasy 6/</span>
+  ├── <span class="hl-gold">FF6.exe</span>
+  ├── <span class="hl-green">glew32.dll</span>                  <span class="hl-dim">&lt;-- Kupo Engine 6 proxy DLL</span>
+  ├── <span class="hl-dim">glew32_orig.dll</span>             <span class="hl-dim">&lt;-- Original renamed GLEW library</span>
+  ├── <span class="hl-cyan">kupoengine_config.ini</span>       <span class="hl-dim">&lt;-- Self-documenting BepInEx-style settings</span>
+  ├── <span class="hl-cyan">engine/</span>
+  │   ├── <span class="hl-gold">saves/</span>                  <span class="hl-dim">&lt;-- 30 expanded save slots (slot_01..30.dat) + continue.dat</span>
+  │   ├── <span class="hl-gold">npcs/</span>                   <span class="hl-dim">&lt;-- Persistent custom NPC map presets (custom_npcs.json)</span>
+  │   ├── <span class="hl-gold">translations/</span>           <span class="hl-dim">&lt;-- 13-language script dumps &amp; hot-reloadable retranslations</span>
+  │   └── <span class="hl-gold">ui/</span>                     <span class="hl-dim">&lt;-- Persistent text layout coordinate overrides</span>
+  ├── <span class="hl-cyan">textures/</span>
+  │   ├── <span class="hl-dim">dumped_textures/</span>        <span class="hl-dim">&lt;-- Dumped OpenGL textures with asset hints &amp; manifest</span>
+  │   └── <span class="hl-gold">replacements/</span>           <span class="hl-dim">&lt;-- Custom PNG / DDS textures &amp; pHash sprite replacements</span>
+  ├── <span class="hl-cyan">sounds/</span>                     <span class="hl-dim">&lt;-- Loose .wav sound effect overrides</span>
+  ├── <span class="hl-cyan">ips/</span>                        <span class="hl-dim">&lt;-- Non-destructive .ips ROM patches applied in RAM</span>
+  └── <span class="hl-cyan">obb/</span>                        <span class="hl-dim">&lt;-- Zero-repack VFS loose asset &amp; composite HD map overrides</span></code></pre>
+      </section>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 5: COMPANION FFVI ECOSYSTEM -->
+      <section id="companion-mods" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Faospark's Final Fantasy VI (Old Ver.) Ecosystem</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          Kupo Engine 6 unifies and supercharges Faospark's entire catalog of visual overhauls, UI mods, and development utilities for the 2015 Steam release of <em>Final Fantasy VI</em>:
+        </p>
+
+        <div class="mod-grid">
+          <a href="project-ffvi-old-ver-mods.html" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>FFVI Old Ver Mods Hub</span>
+              <span class="tag tag-emerald font-mono">10 Releases</span>
+            </div>
+            <p class="mod-card-desc">Explore the complete 10-mod catalog for Final Fantasy VI (2015 Steam), including Sane UI and Celes Scene Restoration.</p>
+          </a>
+
+          <a href="project-ffvi-old-ver-tile-tool.html" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>FFVI Old Tile Tool</span>
+              <span class="tag tag-cyan font-mono">Map BIN Utility</span>
+            </div>
+            <p class="mod-card-desc">Desktop utility for viewing, exporting, and re-importing Section 1 &amp; Section 2 indexed map tiles and palettes.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/19" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Sane UI Overhaul</span>
+              <span class="tag tag-purple font-mono">Nexus #19</span>
+            </div>
+            <p class="mod-card-desc">Complete UI transformation featuring the only horizontal ATB gauge bar and compact desktop menus.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/32" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Celes Recruitment Patch</span>
+              <span class="tag font-mono">Nexus #32</span>
+            </div>
+            <p class="mod-card-desc">Restores Celes's original uncut recruitment scene in South Figaro.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/21" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Grass or Green Fix</span>
+              <span class="tag font-mono">Nexus #21</span>
+            </div>
+            <p class="mod-card-desc">Replaces overly bright neon-green grass tiles with natural, grounded earthen tones.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/finalfantasy6/mods/14" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Opera Omnia Portraits</span>
+              <span class="tag font-mono">Nexus #14</span>
+            </div>
+            <p class="mod-card-desc">High-resolution Dissidia Final Fantasy Opera Omnia style character portraits with two distinct presets.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION 6: ACTION & LAUNCH -->
+      <section style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 2rem;">
+        <h2 style="color: #fff; font-size: 1.75rem; margin-bottom: 0.75rem;">Explore Kupo Engine 6 on GitHub</h2>
+        <p style="color: var(--text-secondary); max-width: 660px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+          Browse the full C++17 source code, 6,144-function architectural audit documentation, build instructions, and releases on GitHub.
+        </p>
+        <div class="btn-row-center">
+          <a href="https://github.com/faospark/KupoEngine6" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>View KupoEngine6 on GitHub &rarr;</span>
+          </a>
+          <a href="https://github.com/faospark/KupoEngine6/releases" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>Download Releases</span>
+          </a>
+          <a href="project-ffvi-old-ver-mods.html" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>Explore FFVI Old Ver Mods</span>
+          </a>
+        </div>
+      </section>
+
+  </main>
+
+  <back-to-top></back-to-top>
+  <vault-footer disclaimer="&copy; 2018–2026 Faospark. Final Fantasy VI is &copy; Square Enix. Unofficial fan modification &amp; reverse-engineering project."></vault-footer>
+</body>
+</html>

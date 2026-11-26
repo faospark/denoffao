@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SuiSaveEditor — Suikoden II Save Editor | Faospark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bright Shield Save Editor (SuiSaveEditor) — Suikoden II Save Editor | Faospark</title>
   
-  <meta name="description" content="SuiSaveEditor by Faospark: a static web GUI and offline PWA for editing Suikoden II HD Remaster JSON save files decrypted with SuikodenFix.">
+  <meta name="description" content="Bright Shield Save Editor (formerly SuiSaveEditor) by Faospark: choose between the Native Rust Desktop app (BrightShield.exe v2.0.0), Tauri Desktop (v1.4.14), or Instant Web Editor for Suikoden II HD Remaster.">
   <meta name="robots" content="index, follow, noai, noimageai">
   <link rel="canonical" href="https://denoffao.me/project-suisaveeditor.html">
   <meta property="og:url" content="https://denoffao.me/project-suisaveeditor.html"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:title" content="SuiSaveEditor — Suikoden II HD Remaster Save Editor — Faospark"/>
-  <meta property="og:description" content="Static web-based GUI and offline PWA for editing party rosters, stats, runes, inventories, castle menus, and recruitment flags in Suikoden II HD Remaster."/>
+  <meta property="og:title" content="Bright Shield Save Editor — Suikoden II HD Remaster Save Editor — Faospark"/>
+  <meta property="og:description" content="Choose your edition of Bright Shield Save Editor for Suikoden II HD Remaster: Native Rust Desktop (BrightShield.exe v2.0.0), Tauri Desktop (v1.4.14), or Instant Web Editor."/>
   <meta property="og:image" content="https://denoffao.me/assets/mods/suisaveeditor-banner.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SuiSaveEditor — Suikoden II Save Editor | Faospark" />
-  <meta name="twitter:description" content="SuiSaveEditor by Faospark: a static web GUI and offline PWA for editing Suikoden II HD Remaster JSON save files decrypted with SuikodenFix." />
+  <meta name="twitter:title" content="Bright Shield Save Editor (SuiSaveEditor) — Suikoden II Save Editor | Faospark" />
+  <meta name="twitter:description" content="Choose your edition of Bright Shield Save Editor for Suikoden II HD Remaster: Native Rust Desktop (BrightShield.exe v2.0.0), Tauri Desktop (v1.4.14), or Instant Web Editor." />
   <meta name="twitter:image" content="https://denoffao.me/assets/mods/suisaveeditor-banner.png" />
 
   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261121">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261123">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,17 +52,18 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261121"></script>
+  <script src="components.min.js?v=20261123"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "SuiSaveEditor — Suikoden II Save Editor",
-    "description": "SuiSaveEditor by Faospark: a static web GUI and offline PWA for editing Suikoden II HD Remaster JSON save files decrypted with SuikodenFix.",
+    "name": "Bright Shield Save Editor (SuiSaveEditor) — Suikoden II Save Editor",
+    "softwareVersion": "2.0.0",
+    "description": "Choose your edition of Bright Shield Save Editor (formerly SuiSaveEditor) for Suikoden II HD Remaster: Native Rust Desktop (BrightShield.exe v2.0.0), Tauri Desktop (v1.4.14), or Instant Web Editor.",
     "url": "https://denoffao.me/project-suisaveeditor.html",
     "image": "https://denoffao.me/assets/mods/suisaveeditor-banner.png",
     "applicationCategory": "GameApplication",
-    "operatingSystem": "Windows",
+    "operatingSystem": "Windows, Web",
     "isAccessibleForFree": true,
     "offers": {
       "@type": "Offer",
@@ -87,7 +88,7 @@
       <!-- Top Bar inside Card -->
       <div class="card-top-bar">
         <a href="projects.html" class="back-home-link" style="margin-bottom: 0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
@@ -95,7 +96,8 @@
         </a>
 
         <div class="card-top-tags">
-          <span class="tag tag-emerald">Web App &bull; PWA Offline</span>
+          <span class="tag tag-amber">Bright Shield v2.0.0 (Native Rust)</span>
+          <span class="tag tag-emerald">Tauri &amp; Web v1.4.14</span>
           <span class="tag tag-cyan">Suikoden II HD Remaster</span>
         </div>
       </div>
@@ -108,93 +110,178 @@
           <span class="bc-sep">/</span>
           <a href="projects.html" class="bc-link">Projects</a>
           <span class="bc-sep">/</span>
-          <span class="bc-current">SuiSaveEditor</span>
+          <span class="bc-current">Bright Shield Save Editor</span>
         </nav>
 
         <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
-          SuiSaveEditor: <span class="text-gradient">Suikoden II HD Save Architecture.</span>
+          Bright Shield Save Editor: <span class="text-gradient">Suikoden II HD Save Architecture.</span>
         </h1>
 
         <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
-          <strong>SuiSaveEditor</strong> is a minimal, static web-based GUI and Progressive Web Application (PWA) crafted specifically for editing decrypted <strong>Suikoden II HD Remaster</strong> JSON save files produced by <strong>SuikodenFix</strong>. Designed with a clean, responsive interface, it gives players granular control over party formations, combat stats, smart rune restrictions, inventories, and castle progression—with zero installation and 100% client-side privacy.
+          <strong>Bright Shield Save Editor</strong> (formerly <em>SuiSaveEditor</em>) is a complete save-editing suite for <strong>Suikoden II HD Remaster</strong>. Now led by the pure <strong>Native Rust Desktop Edition</strong> (<code>v2.0.0</code> / <code>BrightShield.exe</code>) as the primary, actively developed release alongside the classic <strong>Tauri Desktop</strong> and <strong>Web Save Editor</strong> editions (<code>v1.4.14</code>), it gives players granular control over party formations, combat stats, smart rune restrictions, Tessai's Hammers, S1 Transfer data, inventories, and castle progression.
         </p>
       </div>
 
       <!-- Hero Banner Showcase -->
-      <div class="hero-banner-container" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Suikoden II HD Remaster Save Editor (SuiSaveEditor) — v1.3.2 GUI Overview')">
-        <img src="assets/mods/suisaveeditor-banner.png" alt="Suikoden 2 Remaster Save Editor GUI Interface" class="hero-banner-img" loading="lazy" width="1024" height="707" decoding="async">
+      <div class="hero-banner-container" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Bright Shield Save Editor (SuiSaveEditor) — Suikoden II HD Remaster Save Editor')">
+        <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.0.0 Native Rust GUI Interface for Suikoden II HD Remaster" class="hero-banner-img" fetchpriority="high" width="1024" height="679" decoding="async">
         <div class="banner-overlay-badge">
-          <span class="tag tag-emerald">Live v1.3.2</span>
-          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+          <span class="tag tag-amber">Bright Shield v2.0.0</span>
+          <span class="tag tag-emerald">Web &amp; Tauri v1.4.14</span>
+          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
         </div>
         <div class="banner-caption-bar">
-          <span><strong>SuiSaveEditor v1.3.2:</strong> Web-based JSON GUI with instant parsing, smart rune filtering, and offline PWA support</span>
+          <span><strong>Bright Shield Save Editor:</strong> Native Rust Desktop (<code>v2.0.0</code>), Tauri Desktop (<code>v1.4.14</code>), and Instant Web Editor (<code>v1.4.14</code>)</span>
           <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
         </div>
       </div>
 
       <!-- Quick Jump Row -->
       <div class="jump-nav-row">
-        <a href="#overview" class="jump-nav-btn">Tool Overview</a>
-        <a href="#how-it-works" class="jump-nav-btn">How It Works</a>
+        <a href="#editions" class="jump-nav-btn">Choose Your Edition</a>
+        <a href="#author-note" class="jump-nav-btn">Why Native Rust?</a>
+        <a href="#how-it-works" class="jump-nav-btn">Requirements</a>
         <a href="#features" class="jump-nav-btn">Editor Features</a>
         <a href="#workflow" class="jump-nav-btn">Step-by-Step Guide</a>
-        <a href="#offline-pwa" class="jump-nav-btn">Offline PWA Support</a>
         <a href="#companion-mods" class="jump-nav-btn">Companion Suikoden Mods</a>
-        <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: #38bdf8; color: #fff;">Open Live App &rarr;</a>
+        <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="jump-nav-btn" style="border-color: #38bdf8; color: #fff;">Open Edition Hub &rarr;</a>
       </div>
 
       <hr class="rpg-divider">
 
-      <!-- SECTION 1: OVERVIEW -->
-      <section id="overview" style="margin-bottom: 2.5rem;">
-        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Why SuiSaveEditor?</h2>
-        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
-          Traditional save editors often require heavy desktop runtime dependencies (.NET runtimes, Python interpreters, or Java environments) and carry risks when executing third-party executables. <strong>SuiSaveEditor</strong> takes a modern, web-first approach:
+      <!-- SECTION 1: CHOOSE YOUR EDITION (3 EDITIONS) -->
+      <section id="editions" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin: 0;">Choose Your Edition &mdash; Current State &amp; Direction</h2>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="tag tag-amber">Bright Shield v2.0.0</span>
+            <span class="tag">Web &amp; Tauri v1.4.14</span>
+          </div>
+        </div>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
+          The <strong>Native Rust Desktop Edition</strong> is now <strong>Bright Shield Save Editor</strong> (<code>v2.0.0</code> / <code>BrightShield.exe</code>) and serves as the primary, actively developed version going forward. The <strong>Tauri Desktop</strong> and <strong>Web</strong> editions remain at <code>v1.4.14</code> with full core save-editing parity in <strong>Legacy (maintenance-only)</strong> status while new features focus on <strong>Bright Shield Save Editor</strong>.
+        </p>
+
+        <div class="feature-grid">
+          <!-- Edition 1: Bright Shield Save Editor (Native Rust) -->
+          <article class="feature-card" style="border: 1.5px solid rgba(251, 191, 36, 0.55); background: linear-gradient(180deg, rgba(251, 191, 36, 0.08) 0%, rgba(15, 23, 42, 0.75) 45%); display: flex; flex-direction: column;">
+            <div class="feature-card-header" style="justify-content: space-between; flex-wrap: wrap;">
+              <span class="tag tag-amber">Recommended &bull; v2.0.0</span>
+              <span class="tag font-mono">.zip &bull; Windows x64</span>
+            </div>
+            <h3 class="feature-card-title" style="font-size: 1.2rem; margin: 0.35rem 0 0.5rem; color: var(--text-pure-white);">Bright Shield Save Editor (Native Rust)</h3>
+            <p class="feature-card-desc" style="margin-bottom: 0.85rem;">
+              The primary Suikoden II desktop edition &mdash; a pure native Windows app (<code>BrightShield.exe</code>) with zero browser overhead, instant tab switching, and low memory usage.
+            </p>
+            <ul style="margin: 0 0 1.15rem; padding-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; flex-grow: 1;">
+              <li>Auto-scanned <strong>Saves</strong> home tab with portraits, search &amp; sort</li>
+              <li>Immutable <code>backups\*.bak</code>, <strong>Restore Diff Modal</strong> &amp; Full <code>.zip</code> Snapshots</li>
+              <li><strong>8 Languages</strong> (EN, JA, DE, ES, FR, IT, 简/繁中文) + bundled Noto Sans CJK &amp; icons</li>
+              <li><strong>6 Base Themes</strong> (incl. Dark Red) &amp; 6 Accent Themes</li>
+              <li><strong>Tessai's Hammers</strong>, S1 Transfer Card, location hints &amp; Copy/Paste</li>
+            </ul>
+            <a href="https://github.com/faospark/suisaveeditor/releases/latest/download/BrightShield-win64.zip" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;">
+              <span>Download Bright Shield (.zip) &rarr;</span>
+            </a>
+          </article>
+
+          <!-- Edition 2: Tauri Desktop Edition -->
+          <article class="feature-card" style="display: flex; flex-direction: column;">
+            <div class="feature-card-header" style="justify-content: space-between; flex-wrap: wrap;">
+              <span class="tag tag-cyan">Tauri &bull; v1.4.14</span>
+              <span class="tag font-mono">.zip &bull; Windows x64</span>
+            </div>
+            <h3 class="feature-card-title" style="font-size: 1.2rem; margin: 0.35rem 0 0.5rem; color: var(--text-pure-white);">Tauri Desktop Edition</h3>
+            <p class="feature-card-desc" style="margin-bottom: 0.85rem;">
+              Standalone Windows desktop build powered by Tauri, pairing the classic Web UI with native filesystem access and offline reliability.
+            </p>
+            <ul style="margin: 0 0 0.85rem; padding-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; flex-grow: 1;">
+              <li>Classic Web UI in a standalone Windows app</li>
+              <li>Silent on-disk <code>.bak</code> backup next to your save</li>
+              <li>Save As opens directly in your loaded save folder</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--text-muted); background: rgba(148, 163, 184, 0.08); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 6px; padding: 0.5rem 0.65rem; margin: 0 0 0.9rem; line-height: 1.45;">
+              Fixed at <code>v1.4.14</code> parity. Transitioning to legacy status as active development moves forward on Native Rust.
+            </p>
+            <a href="https://github.com/faospark/suisaveeditor/releases/latest/download/SuiSaveEditor-Tauri-win64.zip" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center;">
+              <span>Download Tauri (.zip)</span>
+            </a>
+          </article>
+
+          <!-- Edition 3: Web Save Editor -->
+          <article class="feature-card" style="display: flex; flex-direction: column;">
+            <div class="feature-card-header" style="justify-content: space-between; flex-wrap: wrap;">
+              <span class="tag tag-emerald">Web &bull; v1.4.14</span>
+              <span class="tag font-mono">Browser &bull; Zero Install</span>
+            </div>
+            <h3 class="feature-card-title" style="font-size: 1.2rem; margin: 0.35rem 0 0.5rem; color: var(--text-pure-white);">Web Save Editor</h3>
+            <p class="feature-card-desc" style="margin-bottom: 0.85rem;">
+              Run the classic editor directly in your browser without downloading anything. Everything runs locally on your device &mdash; nothing is uploaded.
+            </p>
+            <ul style="margin: 0 0 0.85rem; padding-left: 1.2rem; color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; flex-grow: 1;">
+              <li>Instant access on any OS with a modern browser</li>
+              <li>Silent <code>.bak</code> snapshot cached in <code>localStorage</code></li>
+              <li>Note: browsers may save exported files to Downloads</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--text-muted); background: rgba(148, 163, 184, 0.08); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 6px; padding: 0.5rem 0.65rem; margin: 0 0 0.9rem; line-height: 1.45;">
+              Fixed at <code>v1.4.14</code> parity. Will remain online as a legacy browser option while new features target Native Rust.
+            </p>
+            <a href="https://faospark.github.io/suisaveeditor/editor.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center; border-color: rgba(34, 197, 94, 0.45); color: #86efac;">
+              <span>Launch Web Editor &rarr;</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 2: AUTHOR'S NOTE — WHY NATIVE RUST? -->
+      <section id="author-note" style="margin-bottom: 2.5rem;">
+        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Why Native Rust? &mdash; A Note from the Author</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.15rem; font-size: 0.95rem;">
+          A quick, honest explanation of why <strong>Bright Shield Save Editor</strong> moved toward a <strong>Native Rust</strong> desktop application instead of staying purely web-based:
         </p>
         <div class="feature-grid">
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-emerald">100% Client-Side</span>
-              <h3 class="feature-card-title">Absolute Privacy</h3>
+              <span class="tag tag-cyan">From Web to Tauri</span>
+              <h3 class="feature-card-title">Hand-Built Foundation</h3>
             </div>
             <p class="feature-card-desc">
-              Your save files never leave your computer. All JSON parsing, data manipulation, validation, and serialization occur directly within your web browser's local memory using vanilla JavaScript.
+              Almost the entire Web Save Editor was built by hand &mdash; the game research, the save-structure mapping, the manual coding, and even picking the CSS framework. After accomplishing a lot with the web version, a <strong>Tauri</strong> desktop build was packaged to work around browser restrictions. While Tauri solved a few pain points, at the end of the day it is still the web editor wrapped in an executable.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-cyan">Zero Install</span>
-              <h3 class="feature-card-title">Instant Cross-Platform</h3>
+              <span class="tag tag-amber">Native Rust Port</span>
+              <h3 class="feature-card-title">Fast Native Software</h3>
             </div>
             <p class="feature-card-desc">
-              Runs seamlessly on Windows, macOS, Linux, and the Steam Deck browser without installing extra software or command-line scripts. Just open the URL and load your save.
+              With AI assistance, the editor was ported into a pure <strong>Native Rust</strong> application (<code>BrightShield.exe</code>). When you already know the domain and exactly what needs to be built, pairing Rust with AI assistance makes it possible to deliver fast, reliable native software with zero browser overhead, instant tab switching, and low memory usage.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-purple">Smart Logic</span>
-              <h3 class="feature-card-title">Safety &amp; Filtering</h3>
+              <span class="tag tag-emerald">What's Next</span>
+              <h3 class="feature-card-title">Reaching Maturity</h3>
             </div>
             <p class="feature-card-desc">
-              Built-in data dictionaries and validation protect against invalid rune slots, corrupted character arrays, and incorrect item IDs, helping prevent softlocks or crashes.
+              As Bright Shield Save Editor gets close to feature saturation, the remaining major features simply aren't practical in a browser: <strong>built-in native save decryption &amp; conversion</strong> (editing saves directly without needing SuikodenFix or an external decrypter first) and <strong>automatic game &amp; save folder detection</strong> on Windows.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2: HOW IT WORKS & REQUIREMENTS -->
+      <!-- SECTION 3: HOW IT WORKS & REQUIREMENTS -->
       <section id="how-it-works" style="margin-bottom: 2.5rem;">
         <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Requirements &amp; Save Decryption</h2>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
-          The official PC release of <em>Suikoden I &amp; II HD Remaster</em> stores save files in an encrypted binary format. To inspect and edit these values with SuiSaveEditor, you need the save file in human-readable JSON format.
+          Bright Shield Save Editor currently edits decrypted JSON save files from <strong>Suikoden II HD Remaster</strong> generated by <strong>SuikodenFix</strong> or <strong>SuikodenSaveDecrypter</strong>.
         </p>
 
         <div class="nexus-quote-box warning">
-          <strong style="color: #f59e0b; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;"><svg width="16" height="16" viewBox="0 0 576 512" fill="currentColor"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.983 12.654z"/></svg>Critical Save Precautions:</strong>
+          <strong style="color: #f59e0b; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;"><svg width="16" height="16" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.983 12.654z"/></svg>Critical Save Precautions:</strong>
           <ul style="margin: 0; padding-left: 1.25rem;">
-            <li><strong>Always create a manual backup</strong> of your original save files before opening or saving with any editor.</li>
-            <li><strong>Turn off Steam Cloud saving</strong> for <em>Suikoden I &amp; II HD Remaster</em> temporarily while editing saves to avoid Steam Cloud overwriting your changes.</li>
+            <li><strong>Turn off Steam Cloud saving</strong> for <em>Suikoden I &amp; II HD Remaster</em> before editing saves to avoid Steam Cloud overwriting your changes.</li>
+            <li><strong>Always keep a backup</strong> of your original save files (Bright Shield Native Rust also maintains immutable <code>backups\*.bak</code> snapshots, a Restore Diff Modal, and full <code>.zip</code> snapshots).</li>
           </ul>
         </div>
 
@@ -214,83 +301,83 @@
               <h3 class="feature-card-title">SuikodenSaveDecrypter</h3>
             </div>
             <p class="feature-card-desc">
-              Use <a href="https://github.com/d3xMachina/SuikodenSaveDecrypter" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">SuikodenSaveDecrypter by d3xMachina</a> to manually decrypt your raw binary save file into JSON before loading it into SuiSaveEditor.
+              Use <a href="https://github.com/d3xMachina/SuikodenSaveDecrypter" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">SuikodenSaveDecrypter by d3xMachina</a> to manually decrypt your raw binary save file into JSON before loading it into Bright Shield Save Editor.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 3: CORE FEATURES BREAKDOWN -->
+      <!-- SECTION 4: CORE FEATURES BREAKDOWN -->
       <section id="features" style="margin-bottom: 2.5rem;">
         <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Comprehensive Editor Capabilities</h2>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
-          SuiSaveEditor organizes complex Suikoden II game structures into distinct, intuitive tabs designed for both quick tweaks and deep customization:
+          Bright Shield Save Editor organizes complex Suikoden II game structures into distinct, high-speed tabs designed for both quick tweaks and deep customization:
         </p>
 
         <div class="feature-grid">
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-emerald">Party</span>
-              <h3 class="feature-card-title">Active Battle Roster</h3>
+              <span class="tag tag-amber">Native Rust v2.0.0</span>
+              <h3 class="feature-card-title">Auto-Scanned Saves &amp; Diff Restore</h3>
             </div>
             <p class="feature-card-desc">
-              Manage your 6-character active battle squad and 2 convoy support slots using character selection dropdowns. Easily swap team members in or out at any point in the story.
+              Auto-scanned <strong>Saves</strong> home tab with character portraits, instant search and sorting, immutable <code>backups\*.bak</code> generation, an interactive <strong>Restore Diff Modal</strong>, and full <code>.zip</code> save folder snapshots.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-purple">Combat</span>
-              <h3 class="feature-card-title">Battle Characters Stats</h3>
+              <span class="tag tag-emerald">Party &amp; Stats</span>
+              <h3 class="feature-card-title">Active Roster &amp; Combat Attributes</h3>
             </div>
             <p class="feature-card-desc">
-              Organized sections for character level, Current &amp; Max HP, Strength, Technique, Magic, Defense, Speed, and Luck with clear numeric inputs and boundaries.
+              Manage your 6-character active battle squad and 2 convoy support slots, character level, Current &amp; Max HP, Strength, Technique, Magic, Defense, Speed, Luck, and Copy/Paste character presets.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-cyan">Magic</span>
-              <h3 class="feature-card-title">Visual MP System (■/□)</h3>
+              <span class="tag tag-cyan">Magic &amp; Runes</span>
+              <h3 class="feature-card-title">Visual MP (■/□) &amp; Smart Rune Filtering</h3>
             </div>
             <p class="feature-card-desc">
-              Authentic visual representation using filled and empty squares (■/□) showing Magic Point capacity per level (Levels 1 through 4), exactly mirroring in-game spell slots.
+              Authentic visual MP squares (■/□) for Levels 1&ndash;4, plus Head, Right Hand, and Left Hand rune equipment with slot-specific and character-specific restrictions and locked rune support.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-amber">Runes &amp; Gear</span>
-              <h3 class="feature-card-title">Smart Rune Filtering</h3>
+              <span class="tag tag-purple">Blacksmith &amp; S1</span>
+              <h3 class="feature-card-title">Tessai's Hammers &amp; S1 Transfer Card</h3>
             </div>
             <p class="feature-card-desc">
-              Full rune equipment for Head, Right Hand, and Left Hand slots with slot-specific and character-specific restrictions, locked rune support (e.g. Bright Shield), plus weapon levels and weapon-attached runes.
+              Dedicated editing support for <strong>Tessai's Hammers</strong> (Iron, Copper, Silver, Gold hammer progression), weapon levels, weapon-attached runes, and the <strong>Suikoden I Transfer Card</strong> state.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-emerald">Items</span>
-              <h3 class="feature-card-title">Key Items &amp; Inventories</h3>
+              <span class="tag tag-emerald">Items &amp; Castle</span>
+              <h3 class="feature-card-title">Inventories, Aliases &amp; 108 Stars</h3>
             </div>
             <p class="feature-card-desc">
-              Dedicated 2-column layout for story-critical key items (<code>event_item</code> array), party bag contents, warehouse storage, and bath inventory with automatic item name resolution.
+              Story key items (<code>event_item</code>), party bag, warehouse storage, bath inventory, Greenhill student aliases, Castle Restaurant menu presets, and 108 Stars of Destiny recruitment flags with location hints.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card-header">
-              <span class="tag tag-purple">Castle HQ</span>
-              <h3 class="feature-card-title">Castle &amp; Aliases Editor</h3>
+              <span class="tag tag-cyan">Localization &amp; UI</span>
+              <h3 class="feature-card-title">8 Languages &amp; 12 Theme Combinations</h3>
             </div>
             <p class="feature-card-desc">
-              Combined editor for Greenhill student aliases and Castle Restaurant food menu presets in a single view, plus recruitment flag tracking across the 108 Stars of Destiny.
+              Supports <strong>8 Languages</strong> (EN, JA, DE, ES, FR, IT, Simplified &amp; Traditional Chinese) with bundled Noto Sans CJK fonts and icons, plus <strong>6 Base Themes</strong> (including Dark Red) and <strong>6 Accent Themes</strong>.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 4: STEP-BY-STEP WORKFLOW -->
+      <!-- SECTION 5: STEP-BY-STEP WORKFLOW -->
       <section id="workflow" style="margin-bottom: 2.5rem;">
         <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Step-by-Step Workflow</h2>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
@@ -303,7 +390,7 @@
             <div class="step-content">
               <h3 class="step-title">Generate or Decrypt Your Save File</h3>
               <p class="step-desc">
-                Ensure the save edit feature is turned on in <strong>SuikodenFix</strong>. When you save or boot Suikoden II Remaster, a JSON representation of your save is placed in <code>(GAME_PATH)\SuikodenFix\Backup\gsd2\</code> (or the root folder). Copy this JSON file to a safe work location.
+                Ensure the save edit feature is turned on in <strong>SuikodenFix</strong> (or decrypt via <strong>SuikodenSaveDecrypter</strong>). When you save or boot Suikoden II Remaster, a JSON representation of your save is placed in <code>(GAME_PATH)\SuikodenFix\Backup\gsd2\</code> (or the root folder).
               </p>
             </div>
           </div>
@@ -311,9 +398,9 @@
           <div class="workflow-step">
             <div class="step-badge">2</div>
             <div class="step-content">
-              <h3 class="step-title">Open SuiSaveEditor in Browser</h3>
+              <h3 class="step-title">Launch Your Preferred Edition</h3>
               <p class="step-desc">
-                Navigate to <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">faospark.github.io/suisaveeditor/</a> on your PC, Steam Deck, or tablet.
+                Run <code>BrightShield.exe</code> from the <strong>Bright Shield Save Editor (Native Rust v2.0.0)</strong> download, launch the standalone <strong>Tauri Desktop Edition</strong>, or open the <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Web Save Editor Hub</a> in your browser.
               </p>
             </div>
           </div>
@@ -321,9 +408,9 @@
           <div class="workflow-step">
             <div class="step-badge">3</div>
             <div class="step-content">
-              <h3 class="step-title">Load JSON File &amp; Verify Slot</h3>
+              <h3 class="step-title">Select Save Slot &amp; Automatic Backup</h3>
               <p class="step-desc">
-                Click <strong>Choose File</strong> and select your <code>.json</code> save. SuiSaveEditor immediately parses the file, displaying an active save file indicator badge and unlocking the editor navigation tabs.
+                In <strong>Bright Shield (Native Rust)</strong>, pick your save directly from the auto-scanned <strong>Saves</strong> home tab with portraits, search, and sort. A silent backup (<code>backups\*.bak</code> on desktop or <code>localStorage</code> snapshot on web) is created automatically.
               </p>
             </div>
           </div>
@@ -331,9 +418,9 @@
           <div class="workflow-step">
             <div class="step-badge">4</div>
             <div class="step-content">
-              <h3 class="step-title">Modify Desired Values</h3>
+              <h3 class="step-title">Modify Party, Runes, Items &amp; Castle</h3>
               <p class="step-desc">
-                Navigate across the <strong>Active Party</strong>, <strong>Battle Characters</strong>, <strong>Inventories</strong>, and <strong>Castle</strong> tabs. Adjust stats, equip legendary runes, or add missing key items.
+                Navigate across the editor tabs to customize your 6-character squad, combat stats, visual MP squares, runes, Tessai's Hammers, S1 Transfer data, inventories, and 108 Stars recruitment flags.
               </p>
             </div>
           </div>
@@ -341,50 +428,11 @@
           <div class="workflow-step">
             <div class="step-badge">5</div>
             <div class="step-content">
-              <h3 class="step-title">Export &amp; Replace</h3>
+              <h3 class="step-title">Save Changes &amp; Load In-Game</h3>
               <p class="step-desc">
-                Click the <strong>Save / Download JSON</strong> button. Place the updated JSON file back into the SuikodenFix backup directory and load your game. SuikodenFix will inject the modified values back into memory!
+                Save directly to your save directory (or use the <strong>Restore Diff Modal</strong> anytime to compare and roll back changes) and load your game in <em>Suikoden II HD Remaster</em>.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 5: OFFLINE PWA & DEVELOPER FEATURES -->
-      <section id="offline-pwa" style="margin-bottom: 2.5rem;">
-        <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Offline PWA &amp; Built-In Debug Features</h2>
-        <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem;">
-          SuiSaveEditor is built as a complete Progressive Web App with dedicated Service Worker caching:
-        </p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-card-header">
-              <span class="tag tag-amber">Offline Ready</span>
-              <h3 class="feature-card-title">Full PWA Capabilities</h3>
-            </div>
-            <p class="feature-card-desc">
-              After your first visit, the entire web application is cached locally via its service worker. You can use it completely offline on airplanes, commutes, or portable Steam Deck sessions without an active internet connection.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-card-header">
-              <span class="tag tag-emerald">Dev Shortcut</span>
-              <h3 class="feature-card-title">Debug Mode (<kbd>Ctrl+D</kbd>)</h3>
-            </div>
-            <p class="feature-card-desc">
-              Press <kbd>Ctrl+D</kbd> to toggle Debug Mode, which automatically loads built-in sample save files for testing without having an actual save file handy. The toggle state persists across browser sessions.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-card-header">
-              <span class="tag tag-purple">Status Bar</span>
-              <h3 class="feature-card-title">Visual Status Indicators</h3>
-            </div>
-            <p class="feature-card-desc">
-              The status bar header provides instant visual feedback: green indicates Debug Mode is active, orange shows Offline PWA Mode, and purple denotes combined states.
-            </p>
           </div>
         </div>
       </section>
@@ -393,7 +441,7 @@
       <section id="companion-mods" style="margin-bottom: 2.5rem;">
         <h2 style="color: var(--text-pure-white); font-size: 1.6rem; margin-bottom: 0.75rem;">Faospark's Suikoden Remaster Modding Suite</h2>
         <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem; font-size: 0.95rem;">
-          SuiSaveEditor was designed to work hand-in-hand with Faospark's extensive collection of mods for <em>Suikoden I &amp; II HD Remaster</em> on PC:
+          Bright Shield Save Editor works hand-in-hand with Faospark's full collection of mods for <em>Suikoden I &amp; II HD Remaster</em> on PC:
         </p>
 
         <div class="mod-grid">
@@ -405,12 +453,36 @@
             <p class="mod-card-desc">Flagship BepInEx IL2CPP texture overhaul with crisp portraits, UI skinning, and QoL options.</p>
           </a>
 
-          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/16" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/44" target="_blank" rel="noopener noreferrer" class="mod-card-link">
             <div class="mod-card-name">
-              <span>Early Recruitment Patch</span>
-              <span class="tag font-mono">Nexus #16</span>
+              <span>Suikoden 2 NPC Bath Patch</span>
+              <span class="tag font-mono">Nexus #44</span>
             </div>
-            <p class="mod-card-desc">Recruit key characters earlier in the campaign for greater party composition freedom.</p>
+            <p class="mod-card-desc">Restores the cut 1998 PlayStation feature allowing recruited castle companions and NPCs to join the bath.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/38" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Rune Sage Plus</span>
+              <span class="tag font-mono">Nexus #38</span>
+            </div>
+            <p class="mod-card-desc">Gives Jeane her rune shop in Suikoden 1 and unlocks access to the Sajah Village Rune Shop in Suikoden 2.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/37" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>S1 Castle Storage Anywhere</span>
+              <span class="tag font-mono">Nexus #37</span>
+            </div>
+            <p class="mod-card-desc">Enables remote, instant access to Rock's Toran Castle Vault from anywhere across towns, dungeons, and the world map.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/36" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Tenzan Pass Patch</span>
+              <span class="tag font-mono">Nexus #36</span>
+            </div>
+            <p class="mod-card-desc">Restores the missing Chimera monster encounters and rare Cyclone Rune drops in Tenzan Pass (va11).</p>
           </a>
 
           <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/18" target="_blank" rel="noopener noreferrer" class="mod-card-link">
@@ -418,7 +490,7 @@
               <span>Kraken Patch</span>
               <span class="tag font-mono">Nexus #18</span>
             </div>
-            <p class="mod-card-desc">Expanded encounter balances and adjustments for the iconic Kraken naval battle sequence.</p>
+            <p class="mod-card-desc">Recruit Chuchara alongside Abizboah and Rulodia without Listening Crystals, even with Feather and Siegfried recruited.</p>
           </a>
 
           <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/17" target="_blank" rel="noopener noreferrer" class="mod-card-link">
@@ -426,12 +498,20 @@
               <span>Open Paths Mod</span>
               <span class="tag font-mono">Nexus #17</span>
             </div>
-            <p class="mod-card-desc">Removes artificial gate barriers and restrictions across world map routes for non-linear exploration.</p>
+            <p class="mod-card-desc">Removes blocking rocks in Tinto Mines for shortcuts and solves Cave of the Mind puzzle boulders automatically.</p>
+          </a>
+
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/16" target="_blank" rel="noopener noreferrer" class="mod-card-link">
+            <div class="mod-card-name">
+              <span>Early Recruitment Patch</span>
+              <span class="tag font-mono">Nexus #16</span>
+            </div>
+            <p class="mod-card-desc">Recruit key characters like Tessai, Gantetsu, Genshu, and L.C. Chan earlier in the campaign.</p>
           </a>
 
           <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/14" target="_blank" rel="noopener noreferrer" class="mod-card-link">
             <div class="mod-card-name">
-              <span>True Matilda Glitch</span>
+              <span>True Matilda Glitch Restoration</span>
               <span class="tag font-mono">Nexus #14</span>
             </div>
             <p class="mod-card-desc">Faithful restoration of the legendary PSX Matilda border gate push glitch in the HD Remaster.</p>
@@ -450,7 +530,7 @@
               <span>Suikoden Reworded Plus</span>
               <span class="tag font-mono">Nexus #5</span>
             </div>
-            <p class="mod-card-desc">Polished English dialogue script addressing typos, grammatical errors, and inconsistencies.</p>
+            <p class="mod-card-desc">Polished English dialogue script combining classic and modern terminologies with helpful in-game hints.</p>
           </a>
 
           <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/2" target="_blank" rel="noopener noreferrer" class="mod-card-link">
@@ -458,7 +538,7 @@
               <span>Genso Force PSX Buttons</span>
               <span class="tag font-mono">Nexus #2</span>
             </div>
-            <p class="mod-card-desc">Authentic classic PlayStation button prompt glyphs replacing generic gamepad icons.</p>
+            <p class="mod-card-desc">Authentic classic PlayStation button prompt glyphs replacing generic gamepad icons on XInput controllers.</p>
           </a>
         </div>
       </section>
@@ -466,18 +546,18 @@
       <!-- SECTION 7: ACTION & LAUNCH -->
       <section style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 2rem; text-align: center; margin-top: 2rem;">
         <h2 style="color: #fff; font-size: 1.75rem; margin-bottom: 0.75rem;">Ready to Edit Your Save?</h2>
-        <p style="color: var(--text-secondary); max-width: 640px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.6;">
-          Launch SuiSaveEditor directly in your browser or explore the open-source code on GitHub. No downloads or installations necessary.
+        <p style="color: var(--text-secondary); max-width: 680px; margin: 0 auto 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+          Download <strong>Bright Shield Save Editor v2.0.0 (Native Rust)</strong> for Windows, or visit the edition hub for the Tauri Desktop build (<code>v1.4.14</code>) and Instant Web Editor.
         </p>
         <div class="btn-row-center">
-          <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
-            <span>Launch SuiSaveEditor Web App &rarr;</span>
+          <a href="https://github.com/faospark/suisaveeditor/releases/latest/download/BrightShield-win64.zip" class="btn btn-primary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
+            <span>Download Bright Shield v2.0.0 (.zip) &rarr;</span>
+          </a>
+          <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem; border-color: var(--accent-cyan); color: #fff;">
+            <span>Open Edition Hub &amp; Web Editor &rarr;</span>
           </a>
           <a href="https://github.com/faospark/suisaveeditor" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
-            <span>View Source on GitHub</span>
-          </a>
-          <a href="projects.html" class="btn btn-secondary" style="padding: 0.65rem 1.5rem; font-size: 1rem;">
-            <span>Browse All Special Projects</span>
+            <span>View Releases &amp; Source on GitHub</span>
           </a>
         </div>
       </section>

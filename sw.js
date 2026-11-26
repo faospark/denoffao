@@ -3,7 +3,7 @@
  * Compatible with XAMPP Apache (/denoffao/) and GitHub Pages (denoffao.me)
  */
 
-const CACHE_NAME = 'denoffao-pwa-v3';
+const CACHE_NAME = 'denoffao-pwa-v5';
 
 const CORE_ASSETS = [
   './',
@@ -12,10 +12,13 @@ const CORE_ASSETS = [
   './mods.html',
   './blog.html',
   './guestbook.html',
+  './support.html',
+  './privacy.html',
   './project-chrono-cross.html',
   './project-saga-frontier.html',
   './project-ffvi-old-ver-mods.html',
   './project-ffvi-old-ver-tile-tool.html',
+  './project-kupo-engine-6.html',
   './project-kupo-library.html',
   './project-kupo-ui-pr.html',
   './project-kyaro.html',
