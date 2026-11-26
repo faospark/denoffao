@@ -3,7 +3,7 @@
  * Compatible with XAMPP Apache (/denoffao/) and GitHub Pages (denoffao.me)
  */
 
-const CACHE_NAME = 'denoffao-pwa-v5';
+const CACHE_NAME = 'denoffao-pwa-v6';
 
 const CORE_ASSETS = [
   './',
