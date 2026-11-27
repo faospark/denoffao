@@ -1138,6 +1138,17 @@ if (!customElements.get('ff6-mods')) {
  */
 const ALL_MODS_DATA = [
   {
+    "id": 6,
+    "title": "Project Kyaro Suite",
+    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/6",
+    "game": "Suikoden I&II HD Remaster",
+    "category": "suikoden",
+    "date": "Nov 27, 2026",
+    "image": "assets/mods/6-1770657087-1226613141.png",
+    "desc": "Comprehensive BepInEx 6 (IL2CPP) modding framework & visual overhaul for Suikoden I & II HD Remaster — featuring Save General Kiba, Bright Shield Rune enhancements, Live Cook-Off Score Helper, Battle Camera Zoom, Memory Auto-Battle, and Smart After-Battle Healing.",
+    "badge": "Nexus Mods (#6)"
+  },
+  {
     "id": 18,
     "title": "Kraken Patch",
     "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/18",
@@ -1224,17 +1235,6 @@ const ALL_MODS_DATA = [
     "image": "assets/mods/saga-prompts-ps-color.jpg",
     "desc": "Custom in-game controller button prompt replacements for SaGa Frontier Remastered on PC. Press F9 in-game to cycle styles on-the-fly (PS4, PS5, PS1, Switch, Xbox).",
     "badge": "GitHub"
-  },
-  {
-    "id": 6,
-    "title": "Project Kyaro Suite",
-    "url": "https://www.nexusmods.com/suikoden1and2hdremaster/mods/6",
-    "game": "Suikoden I&II HD Remaster",
-    "category": "suikoden",
-    "date": "Oct 14, 2026",
-    "image": "assets/mods/6-1770657087-1226613141.png",
-    "desc": "A BepInEx Plugin that is a Modding Suite Compatible with SuikodenFix",
-    "badge": "Nexus Mods"
   },
   {
     "id": 96,

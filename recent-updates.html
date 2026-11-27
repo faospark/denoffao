@@ -29,7 +29,7 @@
     (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
   </script>
 
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-10">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -49,7 +49,7 @@
       gtag('config', 'G-BMED35LCVS', { anonymize_ip: true });
     }
   </script>
-  <script src="components.min.js?v=20261127-2"></script>
+  <script src="components.min.js?v=20261127-10"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -91,9 +91,37 @@
         </h1>
 
         <p style="font-size: 1.02rem; color: var(--text-secondary); line-height: 1.65; margin: 0; max-width: 880px;">
-          A quick heads-up on my recent <strong>Suikoden I &amp; II HD Remaster</strong> updates: <strong>Kraken Patch</strong>, <strong>Open Paths Mod</strong>, and <strong>True Matilda Glitch Restoration</strong> have now been converted into <strong>BepInEx plugins</strong> (no more replacing game bundle files), and the <strong>Bright Shield Save Editor</strong> now has a native Windows desktop build.
+          A quick heads-up on my recent <strong>Suikoden I &amp; II HD Remaster</strong> updates: <strong>Project Kyaro (PKCore) v2026-11-27</strong> hotfixes &amp; Save General Kiba expansion, <strong>Kraken Patch</strong>, <strong>Open Paths Mod</strong>, and <strong>True Matilda Glitch Restoration</strong> converted into <strong>BepInEx plugins</strong>, plus the <strong>Bright Shield Save Editor</strong> native Windows desktop build.
         </p>
       </div>
+
+      <hr class="rpg-divider">
+
+      <!-- SECTION 0: PROJECT KYARO (PKCORE) UPDATE -->
+      <section id="project-kyaro-update" style="margin-bottom: 2.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+          <h2 style="color: var(--text-pure-white); font-size: 1.5rem; margin: 0;">Project Kyaro (PKCore) &mdash; 2026-11-27 Major Update</h2>
+          <span class="tag tag-emerald">Major Release</span>
+        </div>
+
+        <div class="hero-banner-container" style="margin: 0 auto 1.25rem 0;" onclick="openLightbox('assets/mods/project-kyaro-update-banner.webp', 'Project Kyaro (PKCore) — 2026-11-27 Major Update')">
+          <img src="assets/mods/project-kyaro-update-banner.webp" alt="Project Kyaro Update Banner" class="hero-banner-img" itemprop="image" fetchpriority="high" width="1024" height="576" decoding="async">
+        </div>
+        <p style="color: var(--text-secondary); line-height: 1.65; font-size: 0.95rem; margin: 0 0 1rem;">
+          Stand-alone <code>PKBattlePatch</code>, <code>PKButtonPrompts</code>, and <code>PKReplayPlus</code> DLLs are now consolidated directly into <code>PKCore.dll</code> (delete your existing <code>PKCore</code> folder before installing). Highlights include:
+        </p>
+        <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; padding-left: 1.25rem; margin: 0 0 1.25rem; list-style: disc;">
+          <li><strong>Save General Kiba &amp; L'Renouille War Unit (S2):</strong> With all 108 Stars recruited (<code>EnableSaveKiba</code>), prevents Kiba's scripted death at Mercenary Fortress Ruins, restores him to Dunan Castle HQ with new dialogue and epilogue card, and deploys him as a standalone general unit in War Battle 16.</li>
+          <li><strong>Bright Shield Rune Enhancement (S2):</strong> <em>Great Blessing</em> now also applies Clay Guardian (1.5x DEF), <em>Shining Light</em> adds 2x recruit count to magic damage, and <em>Battle Oath</em> adds an independent 50% Awakened roll alongside Anger.</li>
+          <li><strong>Cook-Off Live Score Helper, Infinite Loop &amp; Accuracy Fixes (S2):</strong> Live judge ratings (/20) and top-5 menu recommendations, infinite 12-chef circuit loop with cooldown control, Tetsu flag fix, plus fixed dish score mismatches (<em>Sunomono</em> &amp; <em>Flaming Sea</em>) and active judge taste detection.</li>
+          <li><strong>Clive Quest Replay, Final Boss Gauntlet &amp; Epilogue Restoration (S2):</strong> Replayable Clive pursuit questline, configurable L'Renouille Final Boss Gauntlet replay, repeatable Guardian Deity statue rewards, and restored Leona Tavern &amp; Castle Minigames in the epilogue (restricted to post-Beast Rune to prevent earlier story crashes).</li>
+          <li><strong>Battle &amp; Combat Overhaul (S1 &amp; S2):</strong> Configurable Battle Camera Zoom-Out (125% default), live Enemy Level &amp; HP in target selection, Memory Auto-Battle, Smart After-Battle Healing, streamlined reusable Command Runes, and Freed Y / Chuchara Medium-range overrides.</li>
+          <li><strong>Performance, Display &amp; Stability:</strong> Persistent disk caching for Save Slot party portraits (eliminating scroll stutter), true Win32 Floating Borderless Window Mode, runtime mouse cursor toggle, and a mid-battle Soft Reset crash fix.</li>
+        </ul>
+        <a href="project-kyaro-pc.html#changelog" class="btn btn-primary btn-sm">
+          <span>View Full Project Kyaro Changelog &rarr;</span>
+        </a>
+      </section>
 
       <hr class="rpg-divider">
 
@@ -163,17 +191,28 @@
       <!-- SECTION 2: SAVE EDITOR UPDATE & DOWNLOAD -->
       <section id="save-editor" style="margin-bottom: 1.5rem;">
         <h2 style="color: var(--text-pure-white); font-size: 1.5rem; margin-bottom: 0.75rem;">Bright Shield Save Editor v2.1.0</h2>
-        <p style="color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.25rem; font-size: 0.95rem;">
-          The Suikoden II Save Editor is now <strong>Bright Shield Save Editor v2.1.0</strong> &mdash; a fast, native Windows desktop app (<code>BrightShield.exe</code>) with an auto-scanned Saves tab, automatic backups, and 9 languages (with the Web and Tauri versions still available).
+        <p style="color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; font-size: 0.95rem;">
+          The Suikoden II Save Editor is now <strong>Bright Shield Save Editor v2.1.0</strong> &mdash; a fast, native Windows desktop app (<code>BrightShield.exe</code>) replacing browser overhead with instant tab switching and low memory usage (with the Web and Tauri v1.4.14 editions still available).
         </p>
 
-        <div class="hero-banner-container" style="margin-bottom: 1.5rem;" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Bright Shield Save Editor v2.1.0')">
+        <ul style="color: var(--text-secondary); line-height: 1.7; font-size: 0.93rem; padding-left: 1.25rem; margin: 0 0 1.25rem; list-style: disc;">
+          <li><strong>Auto-Scanned Saves Tab:</strong> Automatically detects saves with character portraits, search, and sorting.</li>
+          <li><strong>Backups &amp; Snapshots:</strong> Immutable <code>backups\*.bak</code> files, a <strong>Restore Diff Modal</strong>, and full <code>.zip</code> backup snapshots.</li>
+          <li><strong>9 Languages &amp; Bundled Fonts:</strong> EN, JA, DE, ES, FR, IT, and 简/繁中文 with bundled Noto Sans CJK &amp; icons.</li>
+          <li><strong>6 Base Themes &amp; 6 Accent Themes:</strong> Includes the new Dark Red base theme.</li>
+          <li><strong>Expanded Save Tools:</strong> Tessai's Hammers, S1 Transfer Card, location hints, and character Copy/Paste.</li>
+        </ul>
+
+        <div class="hero-banner-container" style="margin: 0 auto 1.5rem 0;" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Bright Shield Save Editor v2.1.0')">
           <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.1.0" class="hero-banner-img" itemprop="image" loading="lazy" width="1024" height="679" decoding="async">
         </div>
 
-        <div class="btn-row-center" style="justify-content: flex-start;">
+        <div class="btn-row-center" style="justify-content: flex-start; gap: 0.75rem; flex-wrap: wrap;">
           <a href="https://faospark.github.io/suisaveeditor/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
             <span>Download / Launch Save Editor &rarr;</span>
+          </a>
+          <a href="project-suisaveeditor.html" class="btn btn-secondary">
+            <span>View Full Project Page &rarr;</span>
           </a>
         </div>
       </section>

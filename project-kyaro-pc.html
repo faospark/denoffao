@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-10">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261127-2"></script>
+  <script src="components.min.js?v=20261127-10"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -170,7 +170,7 @@
             </a>
             <a href="#changelog" class="jump-box-link">
               <span class="jump-box-dot"></span>
-              <span class="jump-box-label">Changelog &amp; Patch Notes <span class="jump-box-sub">Version 2026-10-13</span></span>
+              <span class="jump-box-label">Changelog &amp; Patch Notes <span class="jump-box-sub">Version 2026-11-27</span></span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
             <a href="#features-list" class="jump-box-link">
@@ -233,60 +233,96 @@
               Log file output location: <code>{gameroot}\PKCore\Logs\ChangeLog.txt</code>
             </p>
           </div>
-          <span class="tag tag-emerald">Version: 2026-10-13</span>
+          <span class="tag tag-emerald">Version: 2026-11-27</span>
         </div>
 
         <pre class="changelog-prebox"><code><span class="hl-gold">=========================================================================================================</span>
 - Change log file location : {gameroot}\PKCore\Logs\ChangeLog.txt
 <span class="hl-gold">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
-<span class="hl-cyan">Patch Notes - Version: 2026-10-13 (2026-09-15 to 2026-10-13)</span>
+<span class="hl-cyan">Patch Notes - Version: 2026-11-27 (2026-10-14 to 2026-11-27)</span>
 <span class="hl-gold">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 * <span style="color: #f87171; font-weight: bold;">MAKE SURE to delete existing PKCore Folder for this update before you install the new one.</span>
-  There are new configuration options and internal patch updates.
-* This update focuses on battle combat mechanics, reusable character command runes, quality of
-  life improvements, UI customizations, and texture engine performance.
+  Stand-alone PKBattlePatch, PKButtonPrompts, and PKReplayPlus DLLs have been consolidated directly
+  into PKCore.dll (PKCore automatically skips duplicate legacy standalone DLLs if detected).
+* This update introduces the Save General Kiba 108-Stars story expansion &amp; L'Renouille War Unit,
+  Bright Shield Rune enhancements, the Live Cook-Off Score Helper &amp; infinite circuit loop, Clive
+  &amp; Final Boss Gauntlet replay loops, Battle Camera Zoom, Enemy HP/Level display, Memory
+  Auto-Battle, Smart After-Battle Auto-Healing, and persistent Save Slot Portrait disk caching.
 
 ----------------------
 : Release Highlights :
 ----------------------
-- <span class="hl-cyan">[Unlimited Command Runes]</span> Removed the 1-use-per-battle lockouts for unique character command
-  runes in Suikoden 2. Characters can now reuse their signature command runes every turn:
-    * <strong>Meg &amp; Gadget</strong>: Trick / Gadget Rune (からくりの紋章 / Windup Doll ATK) is reusable every turn.
-    * <strong>Millie &amp; Bonaparte</strong>: Groundhog Rune (モグラの紋章) is reusable every turn.
-    * <strong>Shin</strong>: Spider Slay Rune (八房の紋章 / 蜘蛛斬り) is reusable every turn.
-    * <strong>Oulan</strong>: Angry Dragon Rune (怒竜の紋章 / 狂竜 / 激怒) is now permanently available across every
-      turn without requiring damage-triggered Fury or losing Fury status after use.
-  Includes granular configuration toggles under [05 Game : Suikoden 2] for each rune.
+- <span class="hl-cyan">[Save General Kiba &amp; L'Renouille War Unit (Suikoden II)]</span> Added EnableSaveKiba under
+  [05 Game : Suikoden 2] (enabled by default). When all 108 Stars of Destiny are recruited (Forgiver
+  Sign unlocked), Kiba survives the Mercenary Fortress trap (vb10) alongside Leon Silverberg's
+  reinforcements:
+    * <strong>Dunan Castle HQ Restoration</strong>: Restores Kiba to the War Council Room (vk07), Castle Hall
+      strategy cutscene (vk06), and Klaus's study (vk13), with custom post-Rockaxe dialogue and an
+      updated epilogue card ("Dedicated his life to guarding the borders of the Dunan Republic.").
+    * <strong>War Battle 16 Deployment</strong>: Deploys Kiba as a standalone general unit (+2 ATK / +1 DEF infantry
+      cavalry with Charge) during The Conquest of L'Renouille, complete with custom war room entry
+      dialogue and Apple's War Formation Menu (Arrange Units) sync.
 
-- <span class="hl-cyan">[Command Rune Unbalance Penalty Removal]</span> Added configurable removal of the Unbalance status effect
-  penalty and dizzy stars animation after using high-powered physical ability runes in Suikoden 2 (Titan,
-  Falcon, Viper, Shrike, Swallow, Trick, Fire Breath, Mayfly, Lion, Unicorn, Pixie, Blue Drop).
+- <span class="hl-cyan">[Bright Shield Rune Enhancement (Suikoden II)]</span> Added EnhanceBrightShieldRune under
+  [05 Game : Suikoden 2] (enabled by default) upgrading Riou's signature rune across its first 3 tiers:
+    * <strong>Great Blessing (Lv1)</strong>: Also applies Clay Guardian (1.5x DEF buff) to all healed allies.
+    * <strong>Shining Light (Lv2)</strong>: Adds 2x current recruit count directly to computed magic damage.
+    * <strong>Battle Oath (Lv3)</strong>: Adds an independent 50% roll per ally to apply Awakened (3 turns) alongside
+      vanilla's 50% Anger roll.
 
-- <span class="hl-cyan">[Battle Party Max HP Display]</span> Added ShowBattleMaxHP toggle (on by default) under [02 User Interface]
-  to display both current and maximum HP (e.g. 587/587 instead of just 587) in the battle party
-  window for Suikoden 1 &amp; 2. Features dynamic text mesh auto-sizing to eliminate clipping or overflow.
+- <span class="hl-cyan">[Cook-Off Live Score Helper, Infinite Loop &amp; Cooldown Control (Suikoden II)]</span>
+    * <strong>Live Cook-Off Score Helper</strong> (ShowCookOffScoreHelper): Displays a live judge rating card (/20)
+      with color-coded reaction badges while browsing Appetizer, Main Dish, and Dessert menus, plus
+      top-5 optimal menu recommendations across all 240 dishes x 12 tastes (marking gamble dishes
+      with '!'). Fixed two dish score mismatches (Sunomono and Flaming Sea) against the game's
+      built-in table and updated judge taste detection to read directly from active judge data first.
+    * <strong>Infinite Cook-Off Match Loop &amp; Tetsu Fix</strong> (LoopCookOffMatches): Loops the full 12-chef circuit
+      indefinitely after defeating Jinkai, self-heals stuck progression flags, and fixes the vanilla
+      bug where Tetsu's Toasty achievement cleared Hai Yo's restaurant check flag.
+    * <strong>Cooldown Reduction &amp; Menu Board Trigger</strong> (ReduceCookOffCooldown): Configurable as Off, Instant,
+      or MenuBoard (default — examine the "Today's Special" menu board in Hai Yo's restaurant to
+      prime the next challenger on demand).
 
-- <span class="hl-cyan">[Disable UI Tips Overlay]</span> Added DisableUITips toggle under [02 User Interface] to hide the
-  persistent button/control prompts overlay (UITips) across battles, menus, and field screens in
-  both Suikoden 1 and Suikoden 2, while preserving tips on the main launcher scene.
+- <span class="hl-cyan">[Clive Quest Replay, Final Boss Gauntlet &amp; Epilogue Restoration (Suikoden II)]</span>
+    * <strong>Clive's Pursuit Quest Replay</strong> (LoopCliveQuest): Resets Clive's quest state upon talking to the
+      Lakewest Shipwright after completing the Muse -> Sajah finale while preserving Elza's items.
+    * <strong>Final Boss Gauntlet Replay</strong> (LoopFinalBossGauntlet): Re-fight the L'Renouille final boss sequence
+      with granular per-boss toggles (Highland Guards, Han Cunningham, Lucia, Seed &amp; Culgan, and the
+      2-Headed Beast Rune).
+    * <strong>Post-Final-Boss Epilogue Leona &amp; Minigames</strong> (EnableLeonaPostFinalBoss,
+      EnableCastleMinigamesPostFinalBoss): Restores full party formation at Leona's Tavern and
+      re-enables castle minigames (Hai Yo Cook-Off, Karen Dance, Chin Chinchirorin, Shilo Dice,
+      Georg Card Tone, Gengen Climbing) during the post-final-boss epilogue state. Restricted
+      Leona's epilogue tavern state so it only activates after defeating the Beast Rune, preventing
+      crashes during earlier story scenes (such as solo Riou before L'Renouille).
+    * <strong>Guardian Deity Repeatable Rewards</strong> (EnableRepeatStatueRewards, AlwaysKeepStatueAssembled): Makes
+      Guardian Deity offerings repeatable and keeps the 3D statue model assembled on the pedestal.
 
-- <span class="hl-cyan">[Summon &amp; Battle Magic Crash Fix]</span> Fixed severe frame drops, memory spikes, and crashes when
-  casting high-tier summon spells (e.g. Pale Gate Rune) in Suikoden 2 by removing intrusive
-  interceptions and allowing the native effect engine to handle animations cleanly.
+- <span class="hl-cyan">[Battle Camera Zoom, Enemy HP/Level, Memory Auto-Battle &amp; Smart Healing]</span>
+    * <strong>Battle Camera Zoom-Out</strong> (EnableBattleCameraZoom): Adjustable combat camera FOV (125% default,
+      50%-300% range) for both Suikoden I &amp; II.
+    * <strong>Enemy Level &amp; HP in Battle</strong> (ShowEnemyHpInBattle, ShowEnemyLevelInBattle): Appends live enemy
+      level and current/max HP directly inside the target selection prompt in Suikoden I &amp; II.
+    * <strong>Memory Auto-Battle (S2)</strong> (EnableMemoryAutoBattle): Remembers and repeats each party member's
+      last manually selected battle action (Attack, Defend, or Rune/Magic with spell charges left).
+    * <strong>Smart After-Battle Healing (S2)</strong> (EnableSmartHealing): Automates post-battle revival, poison
+      treatment, and optimal Party Bag healing item consumption.
 
-- <span class="hl-cyan">[Texture Pipeline Caching &amp; Memory Fix]</span> Fixed a memory leak where temporary DDS textures accumulated
-  in memory during gameplay, and added an in-memory byte cache (rawFileBytesCache) to accelerate
-  texture swaps and eliminate duplicate disk I/O.
+- <span class="hl-cyan">[Expanded Command Runes, Range Overrides &amp; Soft Reset Crash Fix (Suikoden II)]</span>
+    * Streamlined reusable command runes into unified toggles (RemoveCommandRuneUseLimit for Trick,
+      Groundhog, and Spider Slay; AlwaysAvailableAngryDragon for Angry Dragon).
+    * Upgraded RemoveCommandRuneSelfUnbalance to be 100% language-independent across all 8
+      self-unbalancing physical runes (Swallow, Fire Breath, Mayfly, White Tiger, Blue Drop, Twin
+      Ring, Gozu, Trick).
+    * Added Freed Y (ID 22) and Chuchara (ID 82) to S2CharacterRangeOverrides (Medium 'M' range).
+    * Fixed vanilla BATTLE_WORK.PreRelease NullReferenceException crash when triggering a Soft Reset
+      mid-battle.
 
-- <span class="hl-cyan">[Battle Window Diagnostics]</span> Added LogBattleUnitWindow diagnostic toggle under [zz - Diagnostics]
-  to inspect and log battle party UI text elements, hierarchies, and slot structures once per battle.
-
------------------------------
-: General Changes / Patches :
------------------------------
-- Cleaned up obsolete backup files (CustomObjectInsertion.bak.cs.bak) and added comprehensive
-  plugin and game architecture developer reference documentation (GAME_WORK IL2CPP memory layout,
-  flag engines, and save structures).</code></pre>
+- <span class="hl-cyan">[Save Slot Portrait Disk Caching &amp; Floating Borderless Window Mode]</span>
+    * Added persistent disk thumbnail caching (PKCore/Cache/SavePortraits/) and RAM cache preservation
+      for Save/Load menu party member portraits, eliminating scroll stutter.
+    * Added true Win32 Floating Borderless Window Mode (EnableBorderlessWindow) synced with the
+      in-game Display Settings UI, plus live runtime ShowMouseCursor toggling.</code></pre>
       </section>
 
       <hr class="rpg-divider">
@@ -304,30 +340,46 @@
         </div>
 
         <pre class="changelog-prebox"><code><strong style="color: #38bdf8; font-size: 0.95rem;">Features General</strong>
-- Retexture Framework (PNG, JPG, TGA, and compressed DDS with BC1/BC3/BC7 support) [Updated]
+- Retexture Framework (PNG, JPG, TGA, and compressed DDS with BC1/BC3/BC7 support)
 - Comprehensive Portraits Framework
 - Texture Variant Support
 - YOU can create mods on top of this mod as base
-- Sound Swap Feature [New]
-- SpriteAtlas Loose File Interception Framework [New]
+- Sound Swap Feature
+- SpriteAtlas Loose File Interception Framework
 
 <strong style="color: #34d399; font-size: 0.95rem;">Toggleable Options (Change them via "{gameroot}\BepInEx\config\faospark.pkcore.cfg")</strong>
 - Upscaled Smooth Sprites AKA Project Kyaro Sprites (can be toggled off)
-- Disable Sprite Post-Processing (Prevents white outlines and sprite seams) [New]
-- Save Slot Party Member Portraits (Suikoden I &amp; II) [New]
-- Battle Position Adjustments (Suikoden II) [New]
-- Character Battle Range Overrides (Suikoden II) [New]
-- Live Configuration Hot-Reloading [New]
+- Disable Sprite Post-Processing (Prevents white outlines and sprite seams)
+- Save Slot Party Member Portraits with Disk Thumbnail Caching (Suikoden I &amp; II) [Updated]
+- Show Battle Party Max HP (Suikoden I &amp; II) [New]
+- Show Enemy Level &amp; HP in Battle (Suikoden I &amp; II) [New]
+- Battle Camera FOV / Zoom-Out (Suikoden I &amp; II) [New]
+- Battle Position Adjustments (Suikoden II)
+- Character Battle Range Overrides (Suikoden II)
+- Memory Auto-Battle (Suikoden II) [New]
+- Smart After-Battle Healing (Suikoden II) [New]
+- Remove 1-Time Use Limit on Certain Command Runes (Trick, Groundhog, Spider Slay, Angry Dragon) (Suikoden II) [New]
+- Remove Mandatory Self-Unbalance on Certain Command Runes (Swallow, Fire Breath, Mayfly, White Tiger, Blue Drop, Twin Ring, Gozu, Trick) (Suikoden II) [New]
+- Bright Shield Rune Enhancement (Great Blessing Clay Guardian DEF buff, Shining Light 2x recruit-count bonus damage, Battle Oath Anger + Awakened) (Suikoden II) [New]
+- Infinite Cook-Off Match Loop &amp; Cooldown Bypass (Suikoden II) [New]
+- Live Cook-Off Score Helper &amp; Optimal Menu Recommendations (Suikoden II) [New]
+- Clive's Pursuit Quest Replay Loop (Suikoden II) [New]
+- Final Boss Gauntlet Replay with Per-Boss Toggles (Suikoden II) [New]
+- Epilogue Leona &amp; Castle Minigames Restoration (Suikoden II) [New]
+- Guardian Deity Repeatable Rewards &amp; Assembled 3D Statue Fix (Suikoden II) [New]
+- Save General Kiba (108 Stars / Forgiver Sign) with HQ Restoration, Custom Epilogue &amp; L'Renouille Standalone War Unit (Suikoden II) [New]
+- Live Configuration Hot-Reloading
 - Colored Intros and Flashbacks
-- Boosted War Battles (Suikoden II)
-- Button Controller Prompt Support (now uses native PS4, PS5, Generic, Switch, and Xbox controllers)
+- Boosted War Battles with Apple Formation Menu Sync (Suikoden II)
+- Button Controller Prompt Support (now uses native PS4, PS5, Generic, Switch, Xbox, and Custom controllers)
 - Alternative Launcher (based on unused/Beta in-game assets)
-- PSP Launcher (Based on PSP version title screen) [New]
-- Better Launcher BGM [New]
+- PSP Launcher (Based on PSP version title screen)
+- Better Launcher BGM
 - Minimal UI
-- Enhanced Gallery UI [New]
+- Enhanced Gallery UI
 - Classic-style Save Menu UI
 - Disable Dialog Portrait Mask
+- Disable UITips Control Overlay [New]
 - Scaled-Down Menus and Dialog Box
 - Customizable Save Point Crystal Color
 - Disable White Save Point Glow (reduces washed-out look of the crystal)
@@ -342,16 +394,17 @@
 - Smart Texture Memory Caching (Keeps RAM usage low)
 - Resolution Scaling (Use when you are playing in lower end machines)
 - Texture Manifest Cache (Only use when you are experiencing slow game boot up)
-- Native DDS Texture Compression (BC1 / BC3 / BC7 for lower VRAM and fast loading) [New]
+- Native DDS Texture Compression (BC1 / BC3 / BC7 for lower VRAM and fast loading)
 
 <strong style="color: #eab308; font-size: 0.95rem;">Baked-In Enhancements</strong>
-- Automatic Text Placeholder Replacement (Protagonist &amp; HQ names auto-synced from save files) [New]
-- Active Launcher Language Detection (Auto-detects and tracks in-game language) [New]
-- Retranslated/Reworded Menus [New]
+- Automatic Text Placeholder Replacement (Protagonist &amp; HQ names auto-synced from save files)
+- Active Launcher Language Detection (Auto-detects and tracks in-game language)
+- Retranslated/Reworded Menus
 - Additional NPC Portraits for Both Games (80+ characters now)
 - Additional Dialogs especially on Flashbacks
-- Revamped foliage on Magician's Island (Suikoden I) [New]
-- Removed unnecessary Mask on the Last Area on Dragon's Den (Suikoden I) [New]
+- Soft Reset Battle Crash Fix (Suikoden II BATTLE_WORK.PreRelease NullReferenceException guard) [New]
+- Revamped foliage on Magician's Island (Suikoden I)
+- Removed unnecessary Mask on the Last Area on Dragon's Den (Suikoden I)
 - Fixed/Closed open Windows on Baths for Both Games (with custom background support)
 - Added Headquarters signages (Suikoden I)
 - Fixed Backgrounds with poor baked-in Depth of Field effect (Suikoden II)
@@ -359,18 +412,18 @@
 - Fixed Inconsistent Telescope Graphic at HQ (Suikoden II)
 - Added HQ Signages and Decorations (Suikoden II)
 - Replaced Low-Quality Upscaled Doors in the Inn Area (Suikoden II)
-- Added Portrait for [Cook-Off] Announcer Chen
+- War Room Custom Background Support (Suikoden II) [New]
+- Added Portrait for [Cook-Off] Announcer Chen &amp; Covert Mission Portraits (Suikoden II)
 - Calligraphic Font Used for [Cook-Off] Results
-- Suikoden II Summon Effect Texture System [New]
+- Suikoden II Summon Effect Texture System
 - Additional fixes and enhancements
 
 <strong style="color: #a855f7; font-size: 0.95rem;">Utility</strong>
-- Borderless Mode (Handled natively via Unity's -popupwindow launch option) [Clarified]
-- Show Mouse Cursor
-- Clean Exit on ALT+F4 [New]
-- Modder &amp; Developer Diagnostics (Text ID logging, TextDB dumping, JSON asset overrides) [New]
-- Static Scene Object Insertion Framework (fixed_objects.json) [New]
-- DebugMenu2 Toggle (Experimental) [New]
+- Floating Borderless Window Mode (EnableBorderlessWindow) with In-Game Display Settings UI Sync &amp; Fullscreen Borderless via Unity's -popupwindow launch option [Updated]
+- Show Mouse Cursor (Live Runtime Toggle) [Updated]
+- Clean Exit on ALT+F4
+- Modder &amp; Developer Diagnostics (Text ID logging, TextDB dumping, JSON asset overrides, Battle/Tavern/Guardian Deity diagnostics) [Updated]
+- DebugMenu2 Toggle (Experimental)
 
 <strong style="color: #ec4899; font-size: 0.95rem;">Extras (from Nexus Bundle)</strong>
 - Restored the Dash in the Letter “Z” via custom font, Must be activated via suikoden fix
@@ -612,13 +665,13 @@
             <p class="other-mod-desc">Suikoden 1 and 2 comprehensive sprite &amp; texture overhaul with BepInEx modding framework.</p>
           </a>
 
-          <!-- Mod 09 -->
-          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/09" target="_blank" rel="noopener noreferrer" class="other-mod-item">
+          <!-- Mod 14 -->
+          <a href="https://www.nexusmods.com/suikoden1and2hdremaster/mods/14" target="_blank" rel="noopener noreferrer" class="other-mod-item">
             <div class="other-mod-title">
               <span>True Matilda Glitch Restoration</span>
-              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#09</span>
+              <span class="tag font-mono text-muted" style="font-size: 0.7rem;">#14</span>
             </div>
-            <p class="other-mod-desc">Restores the beloved early Matilda border gate glitch for Suikoden 2.</p>
+            <p class="other-mod-desc">Restores the beloved early Matilda border gate glitch for Suikoden 2 as a standalone BepInEx plugin.</p>
           </a>
 
           <!-- Mod 16 -->

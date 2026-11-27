@@ -109,18 +109,29 @@ def audit_site(auto_fix=False):
         raw = p.read_text(encoding="utf-8")
         orig = raw
 
-        # 1. Check stray characters before <!DOCTYPE html>
+        # 1. Check stray characters before <!DOCTYPE html> or between <!DOCTYPE html> and <html>
         m_doc = re.search(r"<!DOCTYPE\s+html>", raw, re.IGNORECASE)
         if not m_doc:
             issues.append(f"{p.name}: Missing <!DOCTYPE html> declaration")
-        elif m_doc.start() > 0:
-            prefix = raw[: m_doc.start()]
-            if prefix.strip():
-                if auto_fix:
-                    raw = raw[m_doc.start() :]
-                    fixed.append(f"{p.name}: Removed stray prefix '{prefix.strip()}' before <!DOCTYPE html>")
-                else:
-                    issues.append(f"{p.name}: Stray text '{prefix.strip()}' before <!DOCTYPE html>")
+        else:
+            if m_doc.start() > 0:
+                prefix = raw[: m_doc.start()]
+                if prefix.strip():
+                    if auto_fix:
+                        raw = raw[m_doc.start() :]
+                        fixed.append(f"{p.name}: Removed stray prefix '{prefix.strip()}' before <!DOCTYPE html>")
+                    else:
+                        issues.append(f"{p.name}: Stray text '{prefix.strip()}' before <!DOCTYPE html>")
+            m_doc2 = re.search(r"<!DOCTYPE\s+html>", raw, re.IGNORECASE)
+            m_html = re.search(r"<html\b", raw, re.IGNORECASE)
+            if m_doc2 and m_html and m_html.start() > m_doc2.end():
+                between = raw[m_doc2.end() : m_html.start()]
+                if between.strip():
+                    if auto_fix:
+                        raw = raw[: m_doc2.end()] + "\n" + raw[m_html.start() :]
+                        fixed.append(f"{p.name}: Removed stray text '{between.strip()}' before <html>")
+                    else:
+                        issues.append(f"{p.name}: Stray text '{between.strip()}' before <html>")
 
         # 2. Check forbidden assets & wrong Nexus slugs
         for pat, msg in FORBIDDEN_PATTERNS:
