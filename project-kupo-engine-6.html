@@ -109,47 +109,111 @@
         </div>
       </div>
 
-      <!-- Header Presentation -->
-      <div style="margin-bottom: 1.75rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
-          <span class="pulse-dot"></span>
-          <a href="index.html" class="bc-link">Home</a>
-          <span class="bc-sep">/</span>
-          <a href="projects.html" class="bc-link">Projects</a>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">Kupo Engine 6</span>
-        </nav>
+      <!-- Header Presentation with Dedicated Off-Canvas Jump Box -->
+      <div class="projects-hero-wrap">
+        <div class="projects-hero-info">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+            <span class="pulse-dot"></span>
+            <a href="index.html" class="bc-link">Home</a>
+            <span class="bc-sep">/</span>
+            <a href="projects.html" class="bc-link">Projects</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">Kupo Engine 6</span>
+          </nav>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
-          Kupo Engine 6: <span class="text-gradient">Next-Gen FFVI Enhancement Engine.</span>
-        </h1>
+          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+            Kupo Engine 6: <span class="text-gradient">Next-Gen FFVI Enhancement Engine.</span>
+          </h1>
 
-        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65; margin: 0; max-width: 960px;">
-          <strong>Kupo Engine 6</strong> (<code>KupoEngine6</code>, formerly <em>KupoEngine</em> / <em>KupoHook</em>) is an all-in-one enhancement engine, modern graphics pipeline, reverse-engineering framework, and in-game presentation suite built specifically for the legacy PC release of <strong>Final Fantasy VI (2015 Steam Release)</strong>. Built via zero-modification DLL proxying (<code>glew32.dll</code>) from a complete 100% static and dynamic audit of all <strong>772,705 lines across 6,144 decompiled functions</strong> in <code>FF6.exe</code>, it seamlessly modernizes rendering, unlocks true 32-column widescreen field and battle presentation, restores classic mechanics, eliminates input lag, and exposes extensive real-time modding and debugging tools.
-        </p>
-      </div>
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65; margin: 0 0 1.5rem 0; max-width: 960px;">
+            <strong>Kupo Engine 6</strong> (<code>KupoEngine6</code>, formerly <em>KupoEngine</em> / <em>KupoHook</em>) is an all-in-one enhancement engine, modern graphics pipeline, reverse-engineering framework, and in-game presentation suite built specifically for the legacy PC release of <strong>Final Fantasy VI (2015 Steam Release)</strong>. Built via zero-modification DLL proxying (<code>glew32.dll</code>) from a complete 100% static and dynamic audit of all <strong>772,705 lines across 6,144 decompiled functions</strong> in <code>FF6.exe</code>, it seamlessly modernizes rendering, unlocks true 32-column widescreen field and battle presentation, restores classic mechanics, eliminates input lag, and exposes extensive real-time modding and debugging tools.
+          </p>
 
-      <!-- Hero Banner Showcase -->
-      <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-engine-6.webp', 'Kupo Engine 6 (KupoEngine6) — DirectX 11 Presentation Bridge, 32-Column Widescreen &amp; Classic Battle HUD')">
-        <img src="assets/mods/kupo-engine-6.webp" alt="Kupo Engine 6 Widescreen and Presentation Suite Showcase" class="hero-banner-img" fetchpriority="high" width="1024" height="576" decoding="async">
-        <div class="banner-overlay-badge">
-          <span class="tag tag-emerald">26+ Integrated Subsystems</span>
-          <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+          <!-- Hero Banner Showcase -->
+          <div class="hero-banner-container" style="margin-bottom: 0;" onclick="openLightbox('assets/mods/kupo-engine-6.webp', 'Kupo Engine 6 (KupoEngine6) — DirectX 11 Presentation Bridge, 32-Column Widescreen &amp; Classic Battle HUD')">
+            <img src="assets/mods/kupo-engine-6.webp" alt="Kupo Engine 6 Widescreen and Presentation Suite Showcase" class="hero-banner-img" fetchpriority="high" width="1024" height="576" decoding="async">
+            <div class="banner-overlay-badge">
+              <span class="tag tag-emerald">26+ Integrated Subsystems</span>
+              <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>
+            </div>
+            <div class="banner-caption-bar">
+              <span><strong>Kupo Engine 6:</strong> Zero-copy DirectX 11 presentation bridge, 32-column field widescreen, SNES Classic CRT shaders &amp; native HUD</span>
+              <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
+            </div>
+          </div>
         </div>
-        <div class="banner-caption-bar">
-          <span><strong>Kupo Engine 6:</strong> Zero-copy DirectX 11 presentation bridge, 32-column field widescreen, SNES Classic CRT shaders &amp; native HUD</span>
-          <span style="color: var(--accent-cyan); font-weight: 600;">Full Resolution Preview &rarr;</span>
-        </div>
-      </div>
 
-      <!-- Quick Jump Row -->
-      <nav aria-label="Page sections" class="jump-nav-row">
-        <a href="#core-engines" class="jump-nav-btn">Core Subsystems</a>
-        <a href="#qol-restorations" class="jump-nav-btn">QoL &amp; 30-Slot Saves</a>
-        <a href="#re-methodology" class="jump-nav-btn">Reverse Engineering Marvel</a>
-        <a href="#hotkeys" class="jump-nav-btn">Hotkeys &amp; Config</a>
-        <a href="#companion-mods" class="jump-nav-btn">FFVI Ecosystem</a>
-      </nav>
+        <!-- Off-Canvas Jump Box (Moves back in line on smaller viewports) -->
+        <aside class="projects-jump-box" aria-label="Quick Jump Menu">
+          <div class="jump-box-header">
+            <div class="jump-box-title-group">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="jump-box-icon" aria-hidden="true">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span class="jump-box-title">Quick Jump Box</span>
+            </div>
+            <span class="tag tag-cyan" style="font-size: 0.7rem; padding: 0.2rem 0.5rem; text-shadow: none;">11 Links</span>
+          </div>
+
+          <div class="jump-box-links">
+            <a href="#core-engines" class="jump-box-link" style="border-color: rgba(52, 211, 153, 0.45);">
+              <span class="jump-box-dot" style="background: #34d399; box-shadow: 0 0 6px #34d399;"></span>
+              <span class="jump-box-label">Architectural Pillars <span class="jump-box-sub">6 Core Engine Subsystems</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#dx11-bridge" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">DirectX 11 &amp; CRT Shaders <span class="jump-box-sub">Zero-Copy Bridge &amp; FSR 1.0</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#widescreen" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">32-Column Widescreen <span class="jump-box-sub">Field, Mode 7 &amp; Combat FOV</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#composite-pipeline" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Composite HD Maps <span class="jump-box-sub">Layer Replacer &amp; Weather</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#save-hud" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">30-Slot Saves &amp; Battle HUD <span class="jump-box-sub">Quicksave &amp; Classic UI</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#vfs-imgui" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">VFS &amp; ImGui RE Suite <span class="jump-box-sub">13-Lang Script &amp; pHash</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#qol-restorations" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Nostalgic QoL &amp; Editor <span class="jump-box-sub">Bushido, Rages &amp; Navimap</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#re-methodology" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Reverse Engineering <span class="jump-box-sub">6,144-Function Audit</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#hotkeys" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">Hotkeys &amp; Directory <span class="jump-box-sub">Controls &amp; File Layout</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#companion-mods" class="jump-box-link">
+              <span class="jump-box-dot"></span>
+              <span class="jump-box-label">FFVI Mod Ecosystem <span class="jump-box-sub">Sane UI &amp; Companion Mods</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="project-ffvi-old-ver-mods.html" class="jump-box-link" style="border-color: rgba(192, 132, 252, 0.45);">
+              <span class="jump-box-dot" style="background: #c084fc; box-shadow: 0 0 6px #c084fc;"></span>
+              <span class="jump-box-label">FFVI Old Ver Mods Hub <span class="jump-box-sub">10 Released Mods &rarr;</span></span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="jump-box-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </aside>
+      </div>
 
       <hr class="rpg-divider">
 
@@ -165,7 +229,7 @@
         <div class="engine-grid">
           
           <!-- Pillar 1: DX11 Bridge -->
-          <div class="engine-card">
+          <div class="engine-card" id="dx11-bridge">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
@@ -186,7 +250,7 @@
           </div>
 
           <!-- Pillar 2: 32-Column Widescreen -->
-          <div class="engine-card">
+          <div class="engine-card" id="widescreen">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
@@ -207,7 +271,7 @@
           </div>
 
           <!-- Pillar 3: Area Composite Scene Pipeline -->
-          <div class="engine-card">
+          <div class="engine-card" id="composite-pipeline">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
@@ -228,7 +292,7 @@
           </div>
 
           <!-- Pillar 4: 30-Slot Save System & Classic Battle HUD -->
-          <div class="engine-card">
+          <div class="engine-card" id="save-hud">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
@@ -249,7 +313,7 @@
           </div>
 
           <!-- Pillar 5: 60 FPS, FMV Cinema & Polyphonic Audio -->
-          <div class="engine-card">
+          <div class="engine-card" id="fmv-audio">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
@@ -270,7 +334,7 @@
           </div>
 
           <!-- Pillar 6: VFS, Retranslation & Dear ImGui RE Suite -->
-          <div class="engine-card">
+          <div class="engine-card" id="vfs-imgui">
             <div class="engine-card-header">
               <h3 class="engine-card-title">
                 <span style="display: inline-flex; align-items: center; gap: 0.55rem;">
