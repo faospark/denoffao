@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,7 +74,7 @@
   <vault-navbar active="blog"></vault-navbar>
 
   <!-- Main Container -->
-  <main class="container" style="padding-top: 1.5rem; padding-bottom: 4rem;">
+  <main class="container" itemscope itemtype="https://schema.org/CollectionPage" style="padding-top: 1.5rem; padding-bottom: 4rem;">
     
     <div class="vault-single-card">
       
@@ -88,23 +88,19 @@
           <span>Back to Workshop Home</span>
         </a>
 
-        <div class="card-top-tags">
-          <span class="tag tag-emerald font-mono">49 Published Posts</span>
-          <span class="tag tag-purple font-mono">2010–2026 Historical Archive</span>
-          <span class="tag tag-cyan font-mono">Blogger &bull; Research Notes</span>
-        </div>
+        <div class="card-top-tags"></div>
       </div>
 
       <!-- Header Presentation -->
       <div style="margin-bottom: 2rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
           <span class="pulse-dot"></span>
           <a href="index.html" class="bc-link">Home</a>
           <span class="bc-sep">/</span>
           <span class="bc-current">Blog Archives</span>
         </nav>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+        <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
           Update, Blog Chronicles &amp; <span class="text-gradient">Notes.</span>
         </h1>
 
@@ -289,13 +285,14 @@
         const thumbSrc = post.thumbnail || 'assets/thumb-placeholder.svg';
         const thumbHtml = `
           <a href="#${post.slug}" class="blog-card-thumb" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">
-            <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
+            <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
             <span class="blog-card-badge">Archived</span>
           </a>
         `;
 
         return `
-          <article class="blog-card" id="card-${post.slug}">
+          <article class="blog-card" id="card-${post.slug}" itemscope itemtype="https://schema.org/BlogPosting">
+            <meta itemprop="datePublished" content="${escapeHtml(post.published || post.dateFormatted)}">
             ${thumbHtml}
             <div class="blog-card-body">
               <div class="blog-meta-row">
@@ -303,10 +300,10 @@
                 <span>&bull;</span>
                 <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime}</span>
               </div>
-              <h3 class="blog-card-title">
-                <a href="#${post.slug}" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">${escapeHtml(post.title)}</a>
+              <h3 class="blog-card-title" itemprop="headline">
+                <a href="#${post.slug}" itemprop="url" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">${escapeHtml(post.title)}</a>
               </h3>
-              <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+              <p class="blog-card-excerpt" itemprop="description">${escapeHtml(post.excerpt)}</p>
               <div class="blog-card-footer">
                 <div class="tag-group">${tagSpans}</div>
                 <button class="btn btn-secondary btn-sm" onclick="openBlogReaderByGlobalIndex(${globalIdx})">

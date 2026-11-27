@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,7 +82,7 @@
   <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-kyaro-pc.md"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container vault-single-card">
+  <main class="container vault-single-card" itemscope itemtype="https://schema.org/SoftwareApplication">
       
       <!-- Top Bar inside Card -->
       <div class="card-top-bar">
@@ -102,16 +102,13 @@
           </a>
         </div>
 
-        <div class="card-top-tags">
-          <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
-          <span class="tag tag-cyan">Suikoden I &amp; II HD Remaster</span>
-        </div>
+        <div class="card-top-tags"></div>
       </div>
 
       <!-- Header Presentation with Dedicated Off-Canvas Jump Box -->
       <div class="projects-hero-wrap">
         <div class="projects-hero-info">
-          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
             <span class="pulse-dot"></span>
             <a href="index.html" class="bc-link">Home</a>
             <span class="bc-sep">/</span>
@@ -120,7 +117,7 @@
             <span class="bc-current">Project Kyaro PC</span>
           </nav>
 
-          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
             Project Kyaro: <span class="text-gradient">Suikoden I &amp; II HD Remaster Suite.</span>
           </h1>
 
@@ -130,7 +127,7 @@
 
           <!-- Hero Banner Showcase: Click to Zoom -->
           <div class="hero-banner-container" style="margin-bottom: 1.25rem;" onclick="openLightbox('assets/kyaro/project-kyaro-suite.webp', 'The PROJECT KYARO Suite — Suikoden I & II HD Remaster (PC)')">
-            <img src="assets/kyaro/project-kyaro-suite.webp" alt="Project Kyaro Suite Banner" class="hero-banner-img" loading="lazy" width="1024" height="576" decoding="async">
+            <img src="assets/kyaro/project-kyaro-suite.webp" alt="Project Kyaro Suite Banner" class="hero-banner-img" itemprop="image" loading="lazy" width="1024" height="576" decoding="async">
             <div class="banner-overlay-badge">
               <span class="tag tag-emerald">Nexus Mods #6</span>
               <span class="tag tag-cyan">Click to Zoom <svg width="12" height="12" viewBox="0 0 512 512" fill="currentColor"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span>

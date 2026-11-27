@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -83,7 +83,7 @@
   <vault-navbar subpath="special-projects" subpath-url="projects.html" breadcrumb="project-suisaveeditor.md" active="projects"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container vault-single-card">
+  <main class="container vault-single-card" itemscope itemtype="https://schema.org/SoftwareApplication">
       
       <!-- Top Bar inside Card -->
       <div class="card-top-bar">
@@ -95,16 +95,12 @@
           <span>Back to Special Projects</span>
         </a>
 
-        <div class="card-top-tags">
-          <span class="tag tag-amber">Bright Shield v2.1.0 (Native Rust)</span>
-          <span class="tag tag-emerald">Tauri &amp; Web v1.4.14</span>
-          <span class="tag tag-cyan">Suikoden II HD Remaster</span>
-        </div>
+        <div class="card-top-tags"></div>
       </div>
 
       <!-- Header Presentation -->
       <div style="margin-bottom: 1.75rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
           <span class="pulse-dot"></span>
           <a href="index.html" class="bc-link">Home</a>
           <span class="bc-sep">/</span>
@@ -113,7 +109,7 @@
           <span class="bc-current">Bright Shield Save Editor</span>
         </nav>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+        <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
           Bright Shield Save Editor: <span class="text-gradient">Suikoden II HD Save Architecture.</span>
         </h1>
 
@@ -124,7 +120,7 @@
 
       <!-- Hero Banner Showcase -->
       <div class="hero-banner-container" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Bright Shield Save Editor (SuiSaveEditor) — Suikoden II HD Remaster Save Editor')">
-        <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.1.0 Native Rust GUI Interface for Suikoden II HD Remaster" class="hero-banner-img" fetchpriority="high" width="1024" height="679" decoding="async">
+        <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.1.0 Native Rust GUI Interface for Suikoden II HD Remaster" class="hero-banner-img" itemprop="image" fetchpriority="high" width="1024" height="679" decoding="async">
         <div class="banner-overlay-badge">
           <span class="tag tag-amber">Bright Shield v2.1.0</span>
           <span class="tag tag-emerald">Web &amp; Tauri v1.4.14</span>

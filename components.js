@@ -891,17 +891,19 @@ class FF9Mods extends HTMLElement {
 
     const cardsHtml = FF9_MODS_DATA.map(mod => {
       return `
-      <article class="mod-tile-card" data-category="ffix">
+      <article class="mod-tile-card" data-category="ffix" itemscope itemtype="https://schema.org/SoftwareApplication">
+        <meta itemprop="applicationCategory" content="GameApplication">
+        <meta itemprop="operatingSystem" content="Windows">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
-          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
         </a>
         <div class="mod-tile-body">
           <div class="mod-tile-game">${mod.game}</div>
-          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-          <p class="mod-tile-desc">${mod.desc}</p>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
+          <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -1090,9 +1092,11 @@ class ApocalypseMods extends HTMLElement {
 
     const cardsHtml = FF6_MODS_DATA.map(mod => {
       return `
-      <article class="mod-tile-card" data-category="ffvi" data-mod-id="${mod.id}">
+      <article class="mod-tile-card" data-category="ffvi" data-mod-id="${mod.id}" itemscope itemtype="https://schema.org/SoftwareApplication">
+        <meta itemprop="applicationCategory" content="GameApplication">
+        <meta itemprop="operatingSystem" content="Windows">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
-          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-purple">${mod.category}</span>
             <span class="tag tag-emerald">${ICONS.star} ${mod.endorsements} | ${ICONS.download} ${mod.downloads}</span>
@@ -1100,8 +1104,8 @@ class ApocalypseMods extends HTMLElement {
         </a>
         <div class="mod-tile-body">
           <div class="mod-tile-game">${mod.game}</div>
-          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-          <p class="mod-tile-desc">${mod.desc}</p>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
+          <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -2002,17 +2006,19 @@ class ModsCatalog extends HTMLElement {
       const escapedTitle = (mod.title || '').replace(/"/g, '&quot;');
       const searchable = `${mod.title} ${mod.game} ${mod.category} ${mod.desc} ${mod.date}`.toLowerCase();
       return `
-      <article class="mod-tile-card" data-category="${mod.category}" data-search="${searchable}">
+      <article class="mod-tile-card" data-category="${mod.category}" data-search="${searchable}" itemscope itemtype="https://schema.org/SoftwareApplication">
+        <meta itemprop="applicationCategory" content="GameApplication">
+        <meta itemprop="operatingSystem" content="Windows">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${escapedTitle}">
-          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${escapedTitle}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
+          <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${escapedTitle}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
           <div class="mod-tile-overlay-tags">
             <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
           </div>
         </a>
         <div class="mod-tile-body">
           <div class="mod-tile-game">${mod.game}</div>
-          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer">${mod.title}</a></h4>
-          <p class="mod-tile-desc">${mod.desc}</p>
+          <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
+          <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
           <div class="mod-tile-footer">
             <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <span>View &amp; Download</span>
@@ -2785,5 +2791,165 @@ if (typeof document !== 'undefined') {
 
   window.openSiteSearch = openSiteSearch;
 })();
+
+// ========================================================
+// Native Share Button Manager (Option B: .card-top-bar & Blog Reader Modals)
+// Uses Web Share API (navigator.share) with automatic clipboard + toast fallback
+// ========================================================
+(function() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+  const SHARE_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`;
+  const CHECK_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+  let toastTimer = null;
+
+  function showShareToast(message) {
+    let toast = document.getElementById('vaultShareToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'vaultShareToast';
+      toast.className = 'toast-notice';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `${CHECK_SVG}<span>${message}</span>`;
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  function copyLinkFallback(url, btn) {
+    const onCopied = () => {
+      showShareToast('Link copied to clipboard!');
+      if (btn) {
+        const labelEl = btn.querySelector('.vault-share-label');
+        const origText = labelEl ? labelEl.textContent : 'Share';
+        btn.classList.add('is-copied');
+        if (labelEl) labelEl.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('is-copied');
+          if (labelEl) labelEl.textContent = origText;
+        }, 1800);
+      }
+    };
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(url).then(onCopied).catch(() => {
+        legacyCopy(url);
+        onCopied();
+      });
+    } else {
+      legacyCopy(url);
+      onCopied();
+    }
+  }
+
+  function legacyCopy(text) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (e) {}
+  }
+
+  function triggerNativeShare({ title, text, url }, btn) {
+    const shareData = { title: title || document.title, url: url || window.location.href };
+    if (text) shareData.text = text;
+
+    if (typeof navigator.share === 'function') {
+      navigator.share(shareData).catch((err) => {
+        if (err && err.name === 'AbortError') return;
+        copyLinkFallback(shareData.url, btn);
+      });
+    } else {
+      copyLinkFallback(shareData.url, btn);
+    }
+  }
+
+  function getPageSharePayload() {
+    const titleEl = document.querySelector('h1.hero-title');
+    const title = titleEl ? titleEl.textContent.replace(/\s+/g, ' ').trim() : document.title;
+    const descMeta = document.querySelector('meta[name="description"]');
+    const text = descMeta ? descMeta.getAttribute('content') || '' : '';
+    const url = window.location.href;
+    return { title, text, url };
+  }
+
+  function getBlogModalSharePayload(modalEl) {
+    const titleEl = modalEl.querySelector('#modalPostTitle, #homeModalPostTitle, .blog-reader-title');
+    const title = titleEl ? `${titleEl.textContent.trim()} — Den of Fao` : document.title;
+    const fullLinkEl = modalEl.querySelector('#homeModalFullLink');
+    let url = window.location.href;
+    if (fullLinkEl && fullLinkEl.href) {
+      url = new URL(fullLinkEl.getAttribute('href'), window.location.href).href;
+    }
+    return { title, text: title, url };
+  }
+
+  function createShareButton(extraClass, ariaLabel) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `vault-share-btn notranslate ${extraClass || ''}`.trim();
+    btn.setAttribute('aria-label', ariaLabel || 'Share this page');
+    btn.setAttribute('title', ariaLabel || 'Share or copy link');
+    btn.innerHTML = `${SHARE_SVG}<span class="vault-share-label">Share</span>`;
+    return btn;
+  }
+
+  function mountShareButtons() {
+    // 1. Inject into .card-top-bar on project, guide, and archive pages
+    document.querySelectorAll('.card-top-bar').forEach((bar) => {
+      if (bar.querySelector('.vault-share-btn')) return;
+      const btn = createShareButton('vault-share-btn--card', 'Share this page');
+      btn.addEventListener('click', () => {
+        triggerNativeShare(getPageSharePayload(), btn);
+      });
+      const tagsContainer = bar.querySelector('.card-top-tags');
+      if (tagsContainer) {
+        tagsContainer.appendChild(btn);
+      } else {
+        bar.appendChild(btn);
+      }
+    });
+
+    // 2. Inject into Blog Reader modal headers (#blogReaderModal on blog.html & #homeBlogReaderModal on index.html)
+    document.querySelectorAll('.blog-reader-modal').forEach((modalEl) => {
+      const actionsContainer = modalEl.querySelector('.reader-nav-actions, .blog-reader-header .inline-row');
+      if (!actionsContainer || actionsContainer.querySelector('.vault-share-btn')) return;
+
+      const btn = createShareButton('vault-share-btn--modal', 'Share this article');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        triggerNativeShare(getBlogModalSharePayload(modalEl), btn);
+      });
+
+      const closeBtn = actionsContainer.querySelector('.blog-reader-close-btn');
+      if (closeBtn) {
+        actionsContainer.insertBefore(btn, closeBtn);
+      } else {
+        actionsContainer.appendChild(btn);
+      }
+    });
+  }
+
+  window.triggerVaultShare = triggerNativeShare;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountShareButtons);
+  } else {
+    mountShareButtons();
+  }
+})();
+
 
 

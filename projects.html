@@ -12,11 +12,11 @@
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Special Projects — Faospark's Den of Mods"/>
   <meta property="og:description" content="Major multi-module ecosystems, PSX texture overhauls, and iconic PR frameworks."/>
-  <meta property="og:image" content="https://denoffao.me/assets/mods/kupo-mods-library.png" />
+  <meta property="og:image" content="https://denoffao.me/assets/kyaro/project-kyaro-suite.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Special Projects &amp; Major Suites — Faospark's Workshop" />
   <meta name="twitter:description" content="Explore Faospark's flagship modification projects: Project Kyaro (Suikoden II), Kupo-UI.PR Framework, SuiSaveEditor, and Kupo Mods Library (FFIX)." />
-  <meta name="twitter:image" content="https://denoffao.me/assets/mods/kupo-mods-library.png" />
+  <meta name="twitter:image" content="https://denoffao.me/assets/kyaro/project-kyaro-suite.png" />
 
   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,7 +60,7 @@
     "name": "Special Projects & Major Suites — Faospark's Workshop",
     "description": "Explore Faospark's flagship modification projects: Project Kyaro (Suikoden II), Kupo-UI.PR Framework, SuiSaveEditor, and Kupo Mods Library (FFIX).",
     "url": "https://denoffao.me/projects.html",
-    "image": "https://denoffao.me/assets/mods/kupo-mods-library.png",
+    "image": "https://denoffao.me/assets/kyaro/project-kyaro-suite.png",
     "author": {
       "@type": "Person",
       "name": "Faospark",
@@ -74,7 +74,7 @@
   <vault-navbar breadcrumb="special-projects.md" active="projects"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container vault-single-card">
+  <main class="container vault-single-card" itemscope itemtype="https://schema.org/CollectionPage">
       
       <!-- Top Bar inside Card -->
       <div class="card-top-bar">
@@ -86,23 +86,20 @@
           <span>Back to Mod Workshop</span>
         </a>
 
-        <div class="card-top-tags">
-          <span class="tag tag-emerald">10 Flagship Projects</span>
-          <span class="tag tag-cyan">Curated Directory</span>
-        </div>
+        <div class="card-top-tags"></div>
       </div>
 
       <!-- Header Presentation with Dedicated Off-Canvas Jump Box -->
       <div class="projects-hero-wrap">
         <div class="projects-hero-info">
-          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
             <span class="pulse-dot"></span>
             <a href="index.html" class="bc-link">Home</a>
             <span class="bc-sep">/</span>
             <span class="bc-current">Special Projects</span>
           </nav>
 
-          <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+          <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
             Special Projects &amp; <span class="text-gradient">Flagship Suites.</span>
           </h1>
 
@@ -186,7 +183,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 0: Kupo Engine 6 (Final Fantasy VI 2015 Steam Enhancement Engine) -->
-      <section class="project-entry" id="kupo-engine-6">
+      <section class="project-entry" id="kupo-engine-6" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kupo-engine-6.html" class="project-preview" aria-label="Explore Kupo Engine 6 (KupoEngine6)">
           <img src="assets/mods/kupo-engine-6.webp" alt="Kupo Engine 6 Enhancement Engine and Presentation Suite" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
@@ -202,10 +199,10 @@
             <span class="tag tag-cyan">DX11 CRT Shaders</span>
             <span class="tag">32-Col Widescreen</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-kupo-engine-6.html" style="color: inherit; text-decoration: none;">Kupo Engine 6 (KupoEngine6)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             The next-gen enhancement engine, DirectX 11 presentation suite, and reverse-engineering framework for the 2015 Steam release of <strong>Final Fantasy VI</strong>. Built from a 100% static &amp; dynamic audit of all 6,144 functions in <code>FF6.exe</code> via zero-modification DLL proxying (<code>glew32.dll</code>), it unlocks true 32-column field widescreen, zero-copy DirectX 11 CRT shaders, HD composite map replacement, 30 save slots, and a comprehensive Dear ImGui live editor.
           </p>
           <ul class="project-features">
@@ -237,7 +234,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 1: The PROJECT KYARO Suite (Suikoden I & II HD Remaster PC) -->
-      <section class="project-entry" id="project-kyaro-pc">
+      <section class="project-entry" id="project-kyaro-pc" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kyaro-pc.html" class="project-preview" aria-label="Explore The PROJECT KYARO Suite (PC)">
           <img src="assets/kyaro/project-kyaro-suite.webp" alt="The PROJECT KYARO Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
@@ -253,10 +250,10 @@
             <span class="tag tag-cyan">PKCore Engine</span>
             <span class="tag">BepInEx 6 IL2CPP</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-kyaro-pc.html" style="color: inherit; text-decoration: none;">The PROJECT KYARO Suite (PC)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             The flagship visual remaster and modding architecture for <strong>Suikoden I &amp; II HD Remaster</strong> on PC (Steam). Powered by the <strong>PKCore</strong> BepInEx 6 framework, it provides zero-lag native texture injection, sharp character portrait overlays, toggleable sprite smoothing, UI color theme personalization, and essential quality-of-life adjustments.
           </p>
           <ul class="project-features">
@@ -299,7 +296,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 2: Kupo-UI.PR Framework (FF1–FF6 Pixel Remasters) -->
-      <section class="project-entry" id="kupo-ui-pr">
+      <section class="project-entry" id="kupo-ui-pr" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kupo-ui-pr.html" class="project-preview" aria-label="Explore Kupo-UI.PR (Pixel Remaster UI Framework)">
           <img src="assets/mods/kupo-ui-framework.png" alt="Preview Handbook for Kupo Ui Framework" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="829" height="753" decoding="async">
           <div class="preview-badge-overlay">
@@ -315,10 +312,10 @@
             <span class="tag tag-amber">Zero Bundle Editing</span>
             <span class="tag">Hot-Reloadable</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-kupo-ui-pr.html" style="color: inherit; text-decoration: none;">Kupo-UI.PR (Pixel Remaster UI Framework)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             A comprehensive BepInEx IL2CPP runtime plugin for the <strong>Final Fantasy Pixel Remaster series (FF1–FF6)</strong>. Eradicates tedious Unity bundle unpacking and repacking by providing a 5-layer cascading texture replacement pipeline, dynamic dialogue portrait injection, rich-text inline icons, custom typography, and data-driven GameObject manipulation.
           </p>
           <ul class="project-features">
@@ -351,7 +348,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 3: Final Fantasy VI (Old Ver.) Mods & Sane UI Suite -->
-      <section class="project-entry" id="ffvi-old-ver">
+      <section class="project-entry" id="ffvi-old-ver" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-ffvi-old-ver-mods.html" class="project-preview" aria-label="Explore FFVI Old Ver Mods">
           <img src="assets/mods/ffvi-old-ver-showcase.webp" alt="FFVI Old Ver Mods and Sane UI Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="578" decoding="async">
           <div class="preview-badge-overlay">
@@ -367,10 +364,10 @@
             <span class="tag tag-cyan">Sane UI Suite</span>
             <span class="tag">PC Steam</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-ffvi-old-ver-mods.html" style="color: inherit; text-decoration: none;">FFVI Old Ver Mods</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             A flagship project featuring a massive collection of mods created over the years for the classic Steam release of Final Fantasy VI. Includes essential overhauls such as the <strong>Sane UI</strong>—the only mod right now featuring a horizontal ATB bar—and the <strong>Celes Patch</strong> restoring her original recruitment scene. In its modded state, it stands light years ahead of the Pixel Remaster with an active future and new modding tools on the way.
           </p>
           <ul class="project-features">
@@ -405,7 +402,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 4: Chrono Cross Mod Collection -->
-      <section class="project-entry" id="chrono-cross-collection">
+      <section class="project-entry" id="chrono-cross-collection" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-chrono-cross.html" class="project-preview" aria-label="Explore Chrono Cross Mod Collection">
           <img src="assets/mods/chrono-cross-collection.webp" alt="Chrono Cross Mod Collection Thumbnail" style="object-fit: contain; width: 100%; height: 100%; padding: 0.75rem;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
@@ -421,10 +418,10 @@
             <span class="tag tag-purple">Flagship Collection</span>
             <span class="tag">PC Steam</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-chrono-cross.html" style="color: inherit; text-decoration: none;">Chrono Cross Mod Collection</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             A flagship collection of 13 community mods created for <strong>Chrono Cross: The Radical Dreamers Edition</strong>. Built out of a deep love for Chrono Cross—even over <em>Chrono Trigger</em>—this suite spans color-corrected portraits, custom UI and window themes, PlayStation button prompts, HD world map &amp; boat retextures, and quality-of-life enhancements, with recent developments on the modding scene opening the door to revisit these mods in the future.
           </p>
           <ul class="project-features">
@@ -459,7 +456,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 5: Project Kyaro (PSX Classic) -->
-      <section class="project-entry" id="project-kyaro-psx">
+      <section class="project-entry" id="project-kyaro-psx" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kyaro.html" class="project-preview" aria-label="Explore Project Kyaro (PSX)">
           <img src="assets/kyaro/kyaro-showcase-collage.webp" alt="Project Kyaro Showcase" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1203" height="900" decoding="async">
           <div class="preview-badge-overlay">
@@ -475,10 +472,10 @@
             <span class="tag">Beetle PSX HW &bull; RetroArch</span>
             <span class="tag">PSX Classic</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-kyaro.html" style="color: inherit; text-decoration: none;">Project Kyaro (PSX)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             A landmark visual enhancement and texture restoration project for Konami's timeless PSX masterpiece, <strong>Suikoden II</strong>. Combining xBR filtering and hardware texture replacement backends on Beetle PSX HW and RetroArch, Project Kyaro eliminates pixel artifacting on modern displays while providing pixel purists the option to run crisp Nearest Neighbor filtering.
           </p>
           <ul class="project-features">
@@ -513,7 +510,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT: SaGa Frontier Remastered - SagaButtonPrompts -->
-      <section class="project-entry" id="saga-frontier">
+      <section class="project-entry" id="saga-frontier" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-saga-frontier.html" class="project-preview" aria-label="Explore SagaButtonPrompts">
           <img src="assets/mods/saga-frontier-remastered.jpg" alt="SagaButtonPrompts Key Art" style="object-fit: contain; width: 100%; height: 100%; padding: 0.85rem;" loading="lazy" width="1024" height="695" decoding="async">
           <div class="preview-badge-overlay">
@@ -528,10 +525,10 @@
             <span class="tag tag-purple">SaGa Frontier Remastered</span>
             <span class="tag tag-cyan">Button Prompts</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-saga-frontier.html" style="color: inherit; text-decoration: none;">SagaButtonPrompts</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             Custom controller button prompt texture replacement for <strong>SaGa Frontier Remastered</strong> on PC. Replaces default in-game controller prompts with crisp, high-definition button glyphs tailored to your controller of choice.
           </p>
           <ul class="project-features">
@@ -567,7 +564,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 6: FFVI Old Tile Tool (ffvi_tileConverter) -->
-      <section class="project-entry" id="ffvi-old-ver-tile-tool">
+      <section class="project-entry" id="ffvi-old-ver-tile-tool" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-ffvi-old-ver-tile-tool.html" class="project-preview" aria-label="Explore FFVI Old Tile Tool (ffvi_tileConverter)">
           <img src="assets/mods/ffvi-old-tile-tool.webp" alt="FFVI Old Tile Tool GUI Preview" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
@@ -583,10 +580,10 @@
             <span class="tag tag-cyan">Section 1 &amp; 2 I/O</span>
             <span class="tag">MIT Open Source</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-ffvi-old-ver-tile-tool.html" style="color: inherit; text-decoration: none;">FFVI Old Tile Tool (ffvi_tileConverter)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             A modernized desktop application for viewing, exporting, importing, and managing section graphics and indexed tiles stored in <strong>Final Fantasy VI (Old Ver.)</strong> map <code>.bin</code> files. Built upon Maki's original FFVI Tile Tool, this release finally resolves Section 1 reinsertion corruption, automates mirrored palette updates, and adds batch processing and tile filtering.
           </p>
           <ul class="project-features">
@@ -622,7 +619,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 7: Bright Shield Save Editor (SuiSaveEditor) -->
-      <section class="project-entry" id="suisaveeditor">
+      <section class="project-entry" id="suisaveeditor" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-suisaveeditor.html" class="project-preview" aria-label="Explore Bright Shield Save Editor (Suikoden II HD Save Editor)">
           <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor GUI for Suikoden II HD Remaster" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="679" decoding="async">
           <div class="preview-badge-overlay">
@@ -638,10 +635,10 @@
             <span class="tag tag-cyan">Suikoden II HD</span>
             <span class="tag">SuikodenFix JSON</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-suisaveeditor.html" style="color: inherit; text-decoration: none;">Bright Shield Save Editor (SuiSaveEditor)</a>
           </h2>
-          <p class="project-description">
+          <p class="project-description" itemprop="description">
             The Suikoden II HD Remaster save-editing suite &mdash; now led by <strong>Bright Shield Save Editor (v2.1.0)</strong>, a pure Native Rust Windows desktop app (<code>BrightShield.exe</code>) with zero browser overhead, alongside the classic <strong>Tauri Desktop</strong> and <strong>Web Save Editor</strong> editions (<code>v1.4.14</code>).
           </p>
           <ul class="project-features">
@@ -673,7 +670,7 @@
       <hr class="rpg-divider">
 
       <!-- PROJECT 8: Kupo Mods Library -->
-      <section class="project-entry" id="kupo-library">
+      <section class="project-entry" id="kupo-library" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kupo-library.html" class="project-preview" aria-label="Explore Kupo Mods Library">
           <img src="assets/mods/kupo-mods-library.png" alt="Kupo Mods Library Key Art" style="object-fit: contain; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
@@ -689,11 +686,11 @@
             <span class="tag">Memoria Engine</span>
             <span class="tag">PC Steam</span>
           </div>
-          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;">
+          <h2 class="project-title" style="font-size: 1.75rem; margin-bottom: 0.65rem;" itemprop="name">
             <a href="project-kupo-library.html" style="color: inherit; text-decoration: none;">Kupo Mods Library</a>
           </h2>
-          <p class="project-description">
-            The master enhancement suite for Final Fantasy IX on PC. Formerly known as <em>Mog Add-ons</em> and detailed in <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a>, the Kupo Library provides a modular, cohesive experience spanning complete UI overhauls, 6 controller button presets (DualSense, DS4, Xbox, SNES, and Pixel), Extended Cast portraits, quality-of-life adjustments, and the <strong>Kupo Heroes Pack</strong> character balance overhaul.
+          <p class="project-description" itemprop="description">
+            The master enhancement suite for Final Fantasy IX on PC. Formerly known as <em>Mog Add-ons</em> and detailed in <a href="https://www.nexusmods.com/finalfantasy9/articles/12" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Nexus Article #12</a>, the Kupo Library provides a modular, cohesive experience spanning complete UI overhauls, 6 controller button presets (DualSense, DS4, Xbox, SNES, and Pixel), Extended Cast portraits, quality-of-life adjustments, and the <strong>Kupo Heroes Pack</strong> character balance overhaul.
           </p>
           <ul class="project-features">
             <li>
@@ -714,10 +711,10 @@
             <a href="project-kupo-library.html" class="btn btn-primary btn-sm">
               <span>Open Kupo Library Guide &rarr;</span>
             </a>
-            <a href="https://www.nexusmods.com/finalfantasyix/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <a href="https://www.nexusmods.com/finalfantasy9/articles/12" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
               <span>Read Nexus Article #12</span>
             </a>
-            <a href="https://www.nexusmods.com/finalfantasyix/mods/31" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <a href="https://www.nexusmods.com/finalfantasy9/mods/31" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
               <span>UI Suite on Nexus (#31)</span>
             </a>
           </div>

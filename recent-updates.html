@@ -29,7 +29,7 @@
     (function(){try{var t=localStorage.getItem('denoffao_theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
   </script>
 
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -49,12 +49,29 @@
       gtag('config', 'G-BMED35LCVS', { anonymize_ip: true });
     }
   </script>
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Recent Updates: BepInEx Conversions & Save Editor v2.1",
+    "description": "Quick update on my Suikoden I & II HD Remaster mods: Kraken Patch, Open Paths, and True Matilda Glitch are now BepInEx plugins, plus the new Bright Shield Save Editor v2.1.0 download.",
+    "url": "https://denoffao.me/recent-updates.html",
+    "image": "https://denoffao.me/assets/mods/suisaveeditor-banner.png",
+    "datePublished": "2026-11-26",
+    "dateModified": "2026-11-27",
+    "author": {
+      "@type": "Person",
+      "name": "Faospark",
+      "url": "https://denoffao.me/"
+    }
+  }
+  </script>
 </head>
 <body>
   <vault-navbar subpath="mods" subpath-url="mods.html" breadcrumb="recent-updates.md" active="mods"></vault-navbar>
 
-  <main class="container vault-single-card">
+  <main class="container vault-single-card" itemscope itemtype="https://schema.org/Article">
       
       <div class="card-top-bar">
         <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
@@ -65,14 +82,11 @@
           <span>Back to Home</span>
         </a>
 
-        <div class="card-top-tags">
-          <span class="tag tag-emerald">Quick Update</span>
-          <span class="tag tag-amber">Suikoden I &amp; II HD Remaster</span>
-        </div>
+        <div class="card-top-tags"></div>
       </div>
 
       <div style="margin-bottom: 1.75rem;">
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.75rem 0; font-size: 2.2rem;">
+        <h1 class="hero-title" itemprop="headline" style="text-align: left; margin: 0 0 0.75rem 0; font-size: 2.2rem;">
           Recent Updates: <span class="text-gradient">BepInEx Conversions &amp; Save Editor v2.1</span>
         </h1>
 
@@ -154,7 +168,7 @@
         </p>
 
         <div class="hero-banner-container" style="margin-bottom: 1.5rem;" onclick="openLightbox('assets/mods/suisaveeditor-banner.png', 'Bright Shield Save Editor v2.1.0')">
-          <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.1.0" class="hero-banner-img" loading="lazy" width="1024" height="679" decoding="async">
+          <img src="assets/mods/suisaveeditor-banner.png" alt="Bright Shield Save Editor v2.1.0" class="hero-banner-img" itemprop="image" loading="lazy" width="1024" height="679" decoding="async">
         </div>
 
         <div class="btn-row-center" style="justify-content: flex-start;">

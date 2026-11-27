@@ -7,7 +7,9 @@
     "build-minify": "npx -y esbuild components.js --minify --outfile=components.min.js && npx -y esbuild assets/obsidian.css --minify --outfile=assets/obsidian.min.css",
     "build-search": "node scripts/build-search-index.mjs",
     "build": "npm run build-minify && npm run build-search",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "site-build": "python tools/site_build.py",
+    "audit": "python tools/site_audit.py",
+    "test": "python tools/site_audit.py"
   },
   "type": "module",
   "bugs": {

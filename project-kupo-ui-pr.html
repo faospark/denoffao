@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261126">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-2">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261126"></script>
+  <script src="components.min.js?v=20261127-2"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,7 +82,7 @@
   <vault-navbar breadcrumb="project-kupo-ui-pr.md" active="projects"></vault-navbar>
 
   <!-- Main Container: Single Unified Card Body -->
-  <main class="container vault-single-card">
+  <main class="container vault-single-card" itemscope itemtype="https://schema.org/SoftwareApplication">
       
       <!-- Top Bar inside Card -->
       <div class="card-top-bar">
@@ -102,7 +102,7 @@
 
       <!-- Header Presentation -->
       <div style="margin-bottom: 1.75rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" style="margin-bottom: 0.85rem;">
+        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
           <span class="pulse-dot"></span>
           <a href="index.html" class="bc-link">Home</a>
           <span class="bc-sep">/</span>
@@ -111,7 +111,7 @@
           <span class="bc-current">Kupo-UI.PR</span>
         </nav>
 
-        <h1 class="hero-title" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+        <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
           Kupo-UI.PR: <span class="text-gradient">Pixel Remaster UI Architecture.</span>
         </h1>
 
@@ -122,7 +122,7 @@
 
       <!-- HERO BANNER SHOWCASE: All 6 Games In-Game Menus -->
       <div class="hero-banner-container" onclick="openLightbox('assets/mods/kupo-ui-pr-showcase.webp', 'KupoUI.PR In-Game Menu Showcase Across FF1, FF2, FF3, FF4, FF5, and FF6 Pixel Remaster')">
-        <img src="assets/mods/kupo-ui-pr-showcase.webp" alt="Kupo-UI.PR In-Game Menu Showcase" class="hero-banner-img" loading="lazy" width="1024" height="925" decoding="async">
+        <img src="assets/mods/kupo-ui-pr-showcase.webp" alt="Kupo-UI.PR In-Game Menu Showcase" class="hero-banner-img" itemprop="image" loading="lazy" width="1024" height="925" decoding="async">
         <div class="banner-overlay-badge">
           <span class="tag tag-emerald">Universal Coverage (FF1–FF6)</span>
           <span class="tag tag-cyan">Custom Layouts &amp; Portraits</span>
