@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128-5">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261128"></script>
+  <script src="components.min.js?v=20261128-5"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -309,16 +309,20 @@
       const startIndex = (currentPage - 1) * postsPerPage;
       const pagePosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
-      grid.innerHTML = pagePosts.map((post) => {
+      grid.innerHTML = pagePosts.map((post, idx) => {
         const tagSpans = (post.categories || []).slice(0, 3).map(cat => 
           `<span class="tag tag-cyan">${escapeHtml(cat)}</span>`
         ).join('');
 
         const thumbSrc = post.thumbnail || 'assets/thumb-placeholder.svg';
         const postHref = `#${encodeURIComponent(post.slug)}`;
+        const isAboveFold = currentPage === 1 && idx < 2;
+        const imgPriorityAttrs = isAboveFold
+          ? (idx === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="eager"')
+          : 'loading="lazy"';
         const thumbHtml = `
           <a href="${postHref}" class="blog-card-thumb" data-post-slug="${escapeHtml(post.slug)}">
-            <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
+            <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" itemprop="image" ${imgPriorityAttrs} decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
             <span class="blog-card-badge">Archived</span>
           </a>
         `;
@@ -347,6 +351,10 @@
           </article>
         `;
       }).join('');
+
+      if (window.DenImageStrategy) {
+        window.DenImageStrategy.enhanceImages(grid);
+      }
     }
 
     function changePage(direction) {
@@ -388,6 +396,10 @@
           ${post.content}
         </div>
       `;
+
+      if (window.DenImageStrategy) {
+        window.DenImageStrategy.enhanceImages(readerPostBody, { prioritizeFirst: true });
+      }
 
       archiveView.hidden = true;
       readerView.hidden = false;

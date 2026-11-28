@@ -896,11 +896,11 @@ class FF9Mods extends HTMLElement {
         <meta itemprop="operatingSystem" content="Windows">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${mod.title}">
           <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${mod.title}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
-          <div class="mod-tile-overlay-tags">
-            <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
-          </div>
         </a>
         <div class="mod-tile-body">
+          <div class="blog-meta-row" style="margin-bottom: 0.45rem;">
+            <span>${ICONS.calendar} ${mod.date}</span>
+          </div>
           <div class="mod-tile-game">${mod.game}</div>
           <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
           <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
@@ -1103,6 +1103,9 @@ class ApocalypseMods extends HTMLElement {
           </div>
         </a>
         <div class="mod-tile-body">
+          <div class="blog-meta-row" style="margin-bottom: 0.45rem;">
+            <span>${ICONS.calendar} ${mod.date}</span>
+          </div>
           <div class="mod-tile-game">${mod.game}</div>
           <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
           <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
@@ -2011,11 +2014,11 @@ class ModsCatalog extends HTMLElement {
         <meta itemprop="operatingSystem" content="Windows">
         <a href="${mod.url}" target="_blank" rel="noopener noreferrer" class="mod-tile-thumb" aria-label="View ${escapedTitle}">
           <img src="${mod.image || 'assets/thumb-placeholder.svg'}" alt="${escapedTitle}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
-          <div class="mod-tile-overlay-tags">
-            <span class="tag tag-emerald">${ICONS.calendar} ${mod.date}</span>
-          </div>
         </a>
         <div class="mod-tile-body">
+          <div class="blog-meta-row" style="margin-bottom: 0.45rem;">
+            <span>${ICONS.calendar} ${mod.date}</span>
+          </div>
           <div class="mod-tile-game">${mod.game}</div>
           <h4 class="mod-tile-title"><a href="${mod.url}" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">${mod.title}</span></a></h4>
           <p class="mod-tile-desc" itemprop="description">${mod.desc}</p>
@@ -2948,6 +2951,124 @@ if (typeof document !== 'undefined') {
     document.addEventListener('DOMContentLoaded', mountShareButtons);
   } else {
     mountShareButtons();
+  }
+})();
+
+// =========================================================================
+// STRATEGIC IMAGE LOADING & INTENT PREFETCHING
+// =========================================================================
+(function () {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+  const prefetchedUrls = new Set();
+  const MAX_PREFETCHES = 12;
+
+  function canPrefetch() {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!conn) return true;
+    if (conn.saveData) return false;
+    if (conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g') return false;
+    return true;
+  }
+
+  function warmImageUrl(url) {
+    if (!url || prefetchedUrls.has(url) || prefetchedUrls.size >= MAX_PREFETCHES) return;
+    if (!canPrefetch()) return;
+    prefetchedUrls.add(url);
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = url;
+  }
+
+  function markImageLoaded(img, animate = false) {
+    img.classList.remove('img-loading');
+    img.classList.add('img-loaded');
+    if (animate) img.classList.add('img-fade-in');
+  }
+
+  function enhanceImages(root = document, options = {}) {
+    if (!root || typeof root.querySelectorAll !== 'function') return;
+    const { prioritizeFirst = false } = options;
+    const imgs = root.querySelectorAll('img');
+
+    imgs.forEach((img, idx) => {
+      if (img.id === 'lightboxImg' || img.id === 'modalImage' || img.hasAttribute('data-no-strategic')) {
+        return;
+      }
+
+      if (prioritizeFirst) {
+        if (idx === 0) {
+          img.loading = 'eager';
+          img.decoding = 'async';
+          img.setAttribute('fetchpriority', 'high');
+        } else {
+          if (!img.hasAttribute('loading')) img.loading = 'lazy';
+          img.decoding = 'async';
+        }
+      } else if (!img.hasAttribute('decoding')) {
+        img.decoding = 'async';
+      }
+
+      if (img.hasAttribute('data-strategic-img')) return;
+      img.setAttribute('data-strategic-img', '1');
+
+      if (img.complete && img.naturalWidth > 0) {
+        markImageLoaded(img, false);
+        return;
+      }
+
+      img.classList.add('img-loading');
+      const onDone = () => markImageLoaded(img, true);
+      img.addEventListener('load', onDone, { once: true });
+      img.addEventListener('error', onDone, { once: true });
+    });
+  }
+
+  function extractBlogSlugFromLink(link) {
+    if (!link) return null;
+    const dataSlug = link.getAttribute('data-post-slug');
+    if (dataSlug) return dataSlug;
+    const href = link.getAttribute('href') || '';
+    const match = href.match(/(?:blog\.html)?#([^/?#]+)$/);
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function prefetchBlogAssets(slug) {
+    if (!slug || !Array.isArray(window.BLOG_POSTS)) return;
+    const post = window.BLOG_POSTS.find(p => p.slug === slug);
+    if (!post) return;
+    if (post.thumbnail) warmImageUrl(post.thumbnail);
+    if (post.content) {
+      const imgMatch = post.content.match(/<img[^>]+src=["']([^"']+)["']/i);
+      if (imgMatch && imgMatch[1]) warmImageUrl(imgMatch[1]);
+    }
+  }
+
+  function setupIntentPrefetch() {
+    const handleIntent = (e) => {
+      const link = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!link) return;
+      const slug = extractBlogSlugFromLink(link);
+      if (slug) prefetchBlogAssets(slug);
+    };
+
+    document.addEventListener('pointerover', handleIntent, { passive: true });
+    document.addEventListener('focusin', handleIntent, { passive: true });
+  }
+
+  window.DenImageStrategy = {
+    enhanceImages,
+    warmImageUrl
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      enhanceImages(document);
+      setupIntentPrefetch();
+    });
+  } else {
+    enhanceImages(document);
+    setupIntentPrefetch();
   }
 })();
 

@@ -31,7 +31,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Zero external Google fonts) -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128-5">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -53,7 +53,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261128"></script>
+  <script src="components.min.js?v=20261128-5"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -200,7 +200,7 @@
       <!-- Showcase 1: Project Kyaro Suite (Suikoden I & II HD Remaster) -->
       <article class="project-card" style="margin-bottom: 0;" itemscope itemtype="https://schema.org/SoftwareApplication">
         <a href="project-kyaro-pc.html" class="project-preview" aria-label="Explore Project Kyaro Suite">
-          <img src="assets/kyaro/project-kyaro-suite.webp" alt="Project Kyaro Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy" width="1024" height="576" decoding="async">
+          <img src="assets/kyaro/project-kyaro-suite.webp" alt="Project Kyaro Suite Key Art" style="object-fit: cover; width: 100%; height: 100%;" loading="eager" fetchpriority="high" width="1024" height="576" decoding="async">
           <div class="preview-badge-overlay">
             <span class="tag tag-emerald">Updated: Nov 21, 2026</span>
             <span class="tag tag-amber">Suikoden I&amp;II Remaster</span>
@@ -482,6 +482,10 @@
             </article>
           `;
         }).join('');
+
+        if (window.DenImageStrategy) {
+          window.DenImageStrategy.enhanceImages(homeBlogGrid);
+        }
       }
 
       // Events

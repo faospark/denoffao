@@ -3545,6 +3545,27 @@ body:has(.blog-reader-modal.active) .obsidian-topbar {
   line-height: 1.75;
 }
 
+/* Strategic Image Loading Fade-In & Off-Screen Card Containment */
+@keyframes strategicImgFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  img[data-strategic-img].img-loading {
+    opacity: 0;
+  }
+  img[data-strategic-img].img-fade-in {
+    animation: strategicImgFadeIn 0.25s ease-out;
+  }
+}
+
+.blog-card,
+.mod-tile-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 380px;
+}
+
 .blog-reader-body h1, 
 .blog-reader-body h2, 
 .blog-reader-body h3, 
