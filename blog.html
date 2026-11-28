@@ -30,7 +30,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Classic Retro RPG Design System) -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-10">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -52,7 +52,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261127-10"></script>
+  <script src="components.min.js?v=20261128"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,97 +76,151 @@
   <!-- Main Container -->
   <main class="container" itemscope itemtype="https://schema.org/CollectionPage" style="padding-top: 1.5rem; padding-bottom: 4rem;">
     
-    <div class="vault-single-card">
-      
-      <!-- Top Navigation & Stats Bar inside Card -->
-      <div class="card-top-bar">
-        <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
+    <!-- Archive Index View -->
+    <div id="blogArchiveView" class="blog-shell-view">
+      <div class="vault-single-card">
+        
+        <!-- Top Navigation & Stats Bar inside Card -->
+        <div class="card-top-bar">
+          <a href="index.html" class="back-home-link" style="margin-bottom: 0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Workshop Home</span>
+          </a>
+
+          <div class="card-top-tags"></div>
+        </div>
+
+        <!-- Header Presentation -->
+        <div style="margin-bottom: 2rem;">
+          <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
+            <span class="pulse-dot"></span>
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="display: contents;"><a href="index.html" class="bc-link" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1"></span>
+            <span class="bc-sep">/</span>
+            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="display: contents;"><span class="bc-current" itemprop="name">Blog Archives</span><meta itemprop="position" content="2"></span>
+          </nav>
+
+          <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
+            Update, Blog Chronicles &amp; <span class="text-gradient">Notes.</span>
+          </h1>
+
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
+            The latest articles, research notes, and project updates.
+          </p>
+        </div>
+
+      </div><!-- End .vault-single-card -->
+
+      <!-- Search & Filter Controls Bar -->
+      <div class="catalog-controls-bar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input type="text" id="blogSearchInput" class="search-input" placeholder="Search 49 published posts by title, tag, or content keywords...">
+          <button id="clearSearchBtn" onclick="clearBlogSearch()" style="position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--text-dim); cursor: pointer; display: none;" title="Clear search"><svg width="12" height="12" viewBox="0 0 352 512" fill="currentColor"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></button>
+        </div>
+
+        <!-- Year Selector Pills -->
+        <div class="archive-year-pills" id="yearSelectorRow">
+          <button class="archive-year-btn active" data-year="all">All Years</button>
+          <button class="archive-year-btn" data-year="2026">2026</button>
+          <button class="archive-year-btn" data-year="2022">2022</button>
+          <button class="archive-year-btn" data-year="2021">2021</button>
+          <button class="archive-year-btn" data-year="2019">2019</button>
+          <button class="archive-year-btn" data-year="2014">2014</button>
+          <button class="archive-year-btn" data-year="2013">2013</button>
+          <button class="archive-year-btn" data-year="2012">2012</button>
+          <button class="archive-year-btn" data-year="2011">2011</button>
+          <button class="archive-year-btn" data-year="2010">2010</button>
+        </div>
+      </div>
+
+      <!-- Active Filter Strip & Results Counter -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted); flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          Showing <strong id="showingCount" style="color: var(--accent-cyan);">49</strong> articles <span id="filterDescription"></span>
+        </div>
+        <div>
+          <span class="tag tag-emerald" style="font-size: 0.78rem;"><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>Published Archives Only (Drafts Removed)</span>
+        </div>
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="blog-grid" id="blogGrid">
+        <!-- Populated via JavaScript -->
+      </div>
+
+      <!-- No Results Notice -->
+      <div id="noBlogResults" class="rpg-empty-state" style="display: none; text-align: center; padding: 4rem 2rem; background: var(--bg-window-card); border-radius: 8px; border: 2px dashed var(--btn-secondary-border); margin-top: 2rem;">
+        <h3 style="margin-bottom: 0.5rem; color: #fff;">No Chronicles Found</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">No archived articles match your current search and filter combination.</p>
+        <button class="btn btn-secondary" onclick="resetBlogFilters()">Reset Filters &amp; View All</button>
+      </div>
+
+      <!-- Pagination Strip -->
+      <div class="blog-pagination-strip" id="blogPagination">
+        <button class="blog-page-btn" id="prevPageBtn" onclick="changePage(-1)">&larr; Newer Posts</button>
+        <div id="pageIndicator" style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Page 1 of 6</div>
+        <button class="blog-page-btn" id="nextPageBtn" onclick="changePage(1)">Older Posts &rarr;</button>
+      </div>
+    </div><!-- End #blogArchiveView -->
+
+    <!-- Full-Page Article Reader View (App Shell) -->
+    <article id="blogReaderView" class="blog-shell-view vault-single-card blog-shell-reader" hidden aria-labelledby="readerPostTitle">
+      <div class="blog-shell-topbar">
+        <button type="button" class="back-home-link" id="backToArchivesBtn" onclick="closeBlogReader()" style="margin-bottom: 0; background: none; border: none; padding: 0; cursor: pointer;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Back to Workshop Home</span>
-        </a>
+          <span>Back to Archives</span>
+        </button>
 
-        <div class="card-top-tags"></div>
+        <div class="reader-nav-actions">
+          <button type="button" class="reader-btn-icon" onclick="navigateReader(-1)" title="Previous Article">
+            &larr; Prev
+          </button>
+          <button type="button" class="reader-btn-icon" onclick="navigateReader(1)" title="Next Article">
+            Next &rarr;
+          </button>
+        </div>
       </div>
 
-      <!-- Header Presentation -->
-      <div style="margin-bottom: 2rem;">
-        <nav aria-label="Breadcrumb" class="hero-meta-badge hero-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="margin-bottom: 0.85rem;">
-          <span class="pulse-dot"></span>
-          <a href="index.html" class="bc-link">Home</a>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">Blog Archives</span>
-        </nav>
+      <header class="blog-shell-header">
+        <h1 class="blog-shell-title" id="readerPostTitle" tabindex="-1">Post Title</h1>
+        <div class="blog-reader-meta" id="readerPostMeta">
+          <!-- Metadata filled by JS -->
+        </div>
+      </header>
 
-        <h1 class="hero-title" itemprop="name" style="text-align: left; margin: 0 0 0.85rem 0; font-size: 2.35rem;">
-          Update, Blog Chronicles &amp; <span class="text-gradient">Notes.</span>
-        </h1>
-
-        <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin: 0; max-width: 960px;">
-          The latest articles, research notes, and project updates.
-        </p>
+      <div class="blog-reader-body blog-shell-body" id="readerPostBody">
+        <!-- Reconstructed HTML filled by JS -->
       </div>
 
-    </div><!-- End .vault-single-card -->
-
-    <!-- Search & Filter Controls Bar -->
-    <div class="catalog-controls-bar">
-      <div class="search-input-wrapper">
-        <span class="search-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      <footer class="blog-shell-footer">
+        <button type="button" class="back-home-link" onclick="closeBlogReader()" style="margin-bottom: 0; background: none; border: none; padding: 0; cursor: pointer;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-        </span>
-        <input type="text" id="blogSearchInput" class="search-input" placeholder="Search 49 published posts by title, tag, or content keywords...">
-        <button id="clearSearchBtn" onclick="clearBlogSearch()" style="position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--text-dim); cursor: pointer; display: none;" title="Clear search"><svg width="12" height="12" viewBox="0 0 352 512" fill="currentColor"><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg></button>
-      </div>
-
-      <!-- Year Selector Pills -->
-      <div class="archive-year-pills" id="yearSelectorRow">
-        <button class="archive-year-btn active" data-year="all">All Years</button>
-        <button class="archive-year-btn" data-year="2026">2026</button>
-        <button class="archive-year-btn" data-year="2022">2022</button>
-        <button class="archive-year-btn" data-year="2021">2021</button>
-        <button class="archive-year-btn" data-year="2019">2019</button>
-        <button class="archive-year-btn" data-year="2014">2014</button>
-        <button class="archive-year-btn" data-year="2013">2013</button>
-        <button class="archive-year-btn" data-year="2012">2012</button>
-        <button class="archive-year-btn" data-year="2011">2011</button>
-        <button class="archive-year-btn" data-year="2010">2010</button>
-      </div>
-    </div>
-
-    <!-- Active Filter Strip & Results Counter -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">
-      <div>
-        Showing <strong id="showingCount" style="color: var(--accent-cyan);">49</strong> articles <span id="filterDescription"></span>
-      </div>
-      <div>
-        <span class="tag tag-emerald" style="font-size: 0.78rem;"><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>Published Archives Only (Drafts Removed)</span>
-      </div>
-    </div>
-
-    <!-- Blog Posts Grid -->
-    <div class="blog-grid" id="blogGrid">
-      <!-- Populated via JavaScript -->
-    </div>
-
-    <!-- No Results Notice -->
-    <div id="noBlogResults" class="rpg-empty-state" style="display: none; text-align: center; padding: 4rem 2rem; background: var(--bg-window-card); border-radius: 8px; border: 2px dashed var(--btn-secondary-border); margin-top: 2rem;">
-      <h3 style="margin-bottom: 0.5rem; color: #fff;">No Chronicles Found</h3>
-      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">No archived articles match your current search and filter combination.</p>
-      <button class="btn btn-secondary" onclick="resetBlogFilters()">Reset Filters &amp; View All</button>
-    </div>
-
-    <!-- Pagination Strip -->
-    <div class="blog-pagination-strip" id="blogPagination">
-      <button class="blog-page-btn" id="prevPageBtn" onclick="changePage(-1)">&larr; Newer Posts</button>
-      <div id="pageIndicator" style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Page 1 of 6</div>
-      <button class="blog-page-btn" id="nextPageBtn" onclick="changePage(1)">Older Posts &rarr;</button>
-    </div>
+          <span>Back to Archives</span>
+        </button>
+        <div class="reader-nav-actions">
+          <button type="button" class="reader-btn-icon" onclick="navigateReader(-1)" title="Previous Article">
+            &larr; Prev
+          </button>
+          <button type="button" class="reader-btn-icon" onclick="navigateReader(1)" title="Next Article">
+            Next &rarr;
+          </button>
+        </div>
+      </footer>
+    </article><!-- End #blogReaderView -->
 
   </main>
 
@@ -175,37 +229,6 @@
 
   <vault-footer></vault-footer>
 
-  <!-- Full Article Reader Modal Dialog -->
-  <div class="blog-reader-modal" id="blogReaderModal" onclick="handleReaderBackdropClick(event)">
-    <div class="blog-reader-dialog" role="dialog" aria-modal="true" aria-labelledby="modalPostTitle">
-      <!-- Reader Header -->
-      <div class="blog-reader-header">
-        <div class="blog-reader-title-area">
-          <h2 class="blog-reader-title" id="modalPostTitle">Post Title</h2>
-          <div class="blog-reader-meta" id="modalPostMeta">
-            <!-- Metadata filled by JS -->
-          </div>
-        </div>
-        <div class="reader-nav-actions">
-          <button class="reader-btn-icon" onclick="navigateReader(-1)" title="Previous Article">
-            &larr; Prev
-          </button>
-          <button class="reader-btn-icon" onclick="navigateReader(1)" title="Next Article">
-            Next &rarr;
-          </button>
-          <button class="blog-reader-close-btn" onclick="closeBlogReader()" aria-label="Close article">
-            &times;
-          </button>
-        </div>
-      </div>
-
-      <!-- Reader Body -->
-      <div class="blog-reader-body" id="modalPostBody">
-        <!-- Reconstructed HTML filled by JS -->
-      </div>
-    </div>
-  </div>
-
 
   <!-- Data Script -->
   <script src="assets/blog/blog_data.js"></script>
@@ -213,13 +236,23 @@
   <!-- Blog Logic Script -->
   <script>
     // State
+    const DEFAULT_PAGE_TITLE = "Faospark's Chronicles — Blog & Modding Archives";
     let posts = window.BLOG_POSTS || [];
     let currentYear = 'all';
     let searchQuery = '';
     let currentPage = 1;
     const postsPerPage = 12;
     let filteredPosts = [];
-    let currentOpenIndex = -1;
+    let currentOpenSlug = null;
+    let savedArchiveScrollY = 0;
+    let lastTriggerEl = null;
+
+    const archiveView = document.getElementById('blogArchiveView');
+    const readerView = document.getElementById('blogReaderView');
+    const readerPostTitle = document.getElementById('readerPostTitle');
+    const readerPostMeta = document.getElementById('readerPostMeta');
+    const readerPostBody = document.getElementById('readerPostBody');
+    const blogGridEl = document.getElementById('blogGrid');
 
     // Filter & Search Engine
     function filterPosts() {
@@ -243,7 +276,7 @@
 
     // Render Grid with Pagination
     function renderBlogGrid() {
-      const grid = document.getElementById('blogGrid');
+      const grid = blogGridEl;
       const noResults = document.getElementById('noBlogResults');
       const showingCount = document.getElementById('showingCount');
       const filterDesc = document.getElementById('filterDescription');
@@ -276,22 +309,22 @@
       const startIndex = (currentPage - 1) * postsPerPage;
       const pagePosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
-      grid.innerHTML = pagePosts.map((post, idx) => {
-        const globalIdx = startIndex + idx;
+      grid.innerHTML = pagePosts.map((post) => {
         const tagSpans = (post.categories || []).slice(0, 3).map(cat => 
           `<span class="tag tag-cyan">${escapeHtml(cat)}</span>`
         ).join('');
 
         const thumbSrc = post.thumbnail || 'assets/thumb-placeholder.svg';
+        const postHref = `#${encodeURIComponent(post.slug)}`;
         const thumbHtml = `
-          <a href="#${post.slug}" class="blog-card-thumb" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">
+          <a href="${postHref}" class="blog-card-thumb" data-post-slug="${escapeHtml(post.slug)}">
             <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
             <span class="blog-card-badge">Archived</span>
           </a>
         `;
 
         return `
-          <article class="blog-card" id="card-${post.slug}" itemscope itemtype="https://schema.org/BlogPosting">
+          <article class="blog-card" id="card-${escapeHtml(post.slug)}" itemscope itemtype="https://schema.org/BlogPosting">
             <meta itemprop="datePublished" content="${escapeHtml(post.published || post.dateFormatted)}">
             ${thumbHtml}
             <div class="blog-card-body">
@@ -301,14 +334,14 @@
                 <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime}</span>
               </div>
               <h3 class="blog-card-title" itemprop="headline">
-                <a href="#${post.slug}" itemprop="url" onclick="openBlogReaderByGlobalIndex(${globalIdx}); return false;">${escapeHtml(post.title)}</a>
+                <a href="${postHref}" itemprop="url" data-post-slug="${escapeHtml(post.slug)}">${escapeHtml(post.title)}</a>
               </h3>
               <p class="blog-card-excerpt" itemprop="description">${escapeHtml(post.excerpt)}</p>
               <div class="blog-card-footer">
                 <div class="tag-group">${tagSpans}</div>
-                <button class="btn btn-secondary btn-sm" onclick="openBlogReaderByGlobalIndex(${globalIdx})">
+                <a href="${postHref}" class="btn btn-secondary btn-sm" data-post-slug="${escapeHtml(post.slug)}">
                   Read Article &rarr;
-                </button>
+                </a>
               </div>
             </div>
           </article>
@@ -322,21 +355,24 @@
       window.scrollTo({ top: document.querySelector('.catalog-controls-bar').offsetTop - 60, behavior: 'smooth' });
     }
 
-    // Modal Reader Logic
-    const readerModal = document.getElementById('blogReaderModal');
-    const modalPostTitle = document.getElementById('modalPostTitle');
-    const modalPostMeta = document.getElementById('modalPostMeta');
-    const modalPostBody = document.getElementById('modalPostBody');
+    // Full-Page App Shell Reader Logic
+    function openBlogReaderBySlug(slug, options = {}) {
+      const post = posts.find(p => p.slug === slug);
+      if (!post) return;
 
-    function openBlogReaderByGlobalIndex(idx) {
-      if (idx < 0 || idx >= filteredPosts.length) return;
-      currentOpenIndex = idx;
-      const post = filteredPosts[idx];
+      const { pushHistory = true, replaceHistory = false, triggerEl = null } = options;
 
-      modalPostTitle.textContent = post.title;
-      
+      if (!archiveView.hidden) {
+        savedArchiveScrollY = window.scrollY;
+        if (triggerEl) lastTriggerEl = triggerEl;
+      }
+
+      currentOpenSlug = post.slug;
+      readerPostTitle.textContent = post.title;
+      document.title = `${post.title} — Faospark's Chronicles`;
+
       const tagHtml = (post.categories || []).map(c => `<span class="tag tag-cyan">${escapeHtml(c)}</span>`).join(' ');
-      modalPostMeta.innerHTML = `
+      readerPostMeta.innerHTML = `
         <span><svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>${post.dateFormatted}</span>
         <span>&bull;</span>
         <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime} (${post.wordCount} words)</span>
@@ -347,40 +383,74 @@
         ${tagHtml ? `<span style="margin-left: 0.5rem;">${tagHtml}</span>` : ''}
       `;
 
-      modalPostBody.innerHTML = `
+      readerPostBody.innerHTML = `
         <div class="blog-article-body">
           ${post.content}
         </div>
       `;
-      modalPostBody.scrollTop = 0;
 
-      readerModal.classList.add('active');
-      document.body.classList.add('blog-modal-open');
-      document.body.style.overflow = 'hidden';
-      window.location.hash = post.slug;
+      archiveView.hidden = true;
+      readerView.hidden = false;
+
+      const targetHash = `#${encodeURIComponent(post.slug)}`;
+      if (replaceHistory) {
+        history.replaceState({ slug: post.slug, inApp: Boolean(history.state?.inApp) }, '', targetHash);
+      } else if (pushHistory && window.location.hash !== targetHash) {
+        history.pushState({ slug: post.slug, inApp: true }, '', targetHash);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      readerPostTitle.focus({ preventScroll: true });
     }
 
-    function closeBlogReader() {
-      readerModal.classList.remove('active');
-      document.body.classList.remove('blog-modal-open');
-      document.body.style.overflow = '';
-      currentOpenIndex = -1;
-      // remove hash without scrolling
-      history.replaceState(null, null, ' ');
-    }
+    function showArchiveView() {
+      currentOpenSlug = null;
+      readerView.hidden = true;
+      archiveView.hidden = false;
+      document.title = DEFAULT_PAGE_TITLE;
 
-    function handleReaderBackdropClick(e) {
-      if (e.target === readerModal) {
-        closeBlogReader();
+      window.scrollTo({ top: savedArchiveScrollY, behavior: 'instant' });
+      if (lastTriggerEl && lastTriggerEl.isConnected) {
+        lastTriggerEl.focus({ preventScroll: true });
+        lastTriggerEl = null;
       }
     }
 
+    function closeBlogReader() {
+      if (history.state && history.state.inApp) {
+        history.back();
+        return;
+      }
+      history.pushState({ inApp: false }, '', window.location.pathname + window.location.search);
+      showArchiveView();
+    }
+
     function navigateReader(direction) {
-      if (currentOpenIndex === -1) return;
-      let nextIndex = currentOpenIndex + direction;
-      if (nextIndex < 0) nextIndex = filteredPosts.length - 1;
-      if (nextIndex >= filteredPosts.length) nextIndex = 0;
-      openBlogReaderByGlobalIndex(nextIndex);
+      if (!currentOpenSlug) return;
+      const list = filteredPosts.some(p => p.slug === currentOpenSlug) ? filteredPosts : posts;
+      const idx = list.findIndex(p => p.slug === currentOpenSlug);
+      if (idx === -1 || list.length === 0) return;
+
+      let nextIndex = idx + direction;
+      if (nextIndex < 0) nextIndex = list.length - 1;
+      if (nextIndex >= list.length) nextIndex = 0;
+
+      openBlogReaderBySlug(list[nextIndex].slug, { pushHistory: false, replaceHistory: true });
+    }
+
+    // Delegated click handler on blog grid to preserve Cmd/Ctrl/middle-click
+    if (blogGridEl) {
+      blogGridEl.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-post-slug]');
+        if (!link) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+
+        e.preventDefault();
+        const slug = link.getAttribute('data-post-slug');
+        if (slug) {
+          openBlogReaderBySlug(slug, { pushHistory: true, triggerEl: link });
+        }
+      });
     }
 
     // Year Buttons
@@ -429,11 +499,15 @@
 
     // Keyboard handlers for Blog Reader
     document.addEventListener('keydown', (e) => {
+      if (readerView.hidden) return;
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+
       if (e.key === 'Escape') {
-        if (readerModal && readerModal.classList.contains('active')) closeBlogReader();
-      } else if (readerModal && readerModal.classList.contains('active')) {
-        if (e.key === 'ArrowLeft') navigateReader(-1);
-        else if (e.key === 'ArrowRight') navigateReader(1);
+        closeBlogReader();
+      } else if (e.key === 'ArrowLeft') {
+        navigateReader(-1);
+      } else if (e.key === 'ArrowRight') {
+        navigateReader(1);
       }
     });
 
@@ -448,22 +522,28 @@
         .replace(/'/g, '&#039;');
     }
 
-    // Check hash for direct deep linking
-    function checkUrlHash() {
-      const hash = window.location.hash.replace('#', '');
+    // Sync view with URL hash (supports deep linking and browser Back/Forward)
+    function syncViewFromUrl() {
+      const rawHash = window.location.hash.replace(/^#/, '');
+      const hash = rawHash ? decodeURIComponent(rawHash) : '';
       if (hash) {
-        const foundIdx = filteredPosts.findIndex(p => p.slug === hash);
-        if (foundIdx !== -1) {
-          openBlogReaderByGlobalIndex(foundIdx);
+        const found = posts.find(p => p.slug === hash);
+        if (found) {
+          openBlogReaderBySlug(found.slug, { pushHistory: false });
+          return;
         }
+      }
+      if (!readerView.hidden) {
+        showArchiveView();
       }
     }
 
     // Initialization
     function init() {
       filterPosts();
-      checkUrlHash();
-      window.addEventListener('hashchange', checkUrlHash);
+      syncViewFromUrl();
+      window.addEventListener('popstate', syncViewFromUrl);
+      window.addEventListener('hashchange', syncViewFromUrl);
     }
 
     // Run

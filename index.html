@@ -31,7 +31,7 @@
   </script>
 
   <!-- Pure Web-Safe Stylesheet (Zero external Google fonts) -->
-  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261127-10">
+  <link rel="stylesheet" href="assets/obsidian.min.css?v=20261128">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMED35LCVS"></script>
   <script>
@@ -53,7 +53,7 @@
     }
   </script>
   <!-- Native Web Components -->
-  <script src="components.min.js?v=20261127-10"></script>
+  <script src="components.min.js?v=20261128"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -208,13 +208,16 @@
           </a>
 
         <div class="project-details">
+          <meta itemprop="applicationCategory" content="GameApplication">
+          <meta itemprop="operatingSystem" content="Windows">
+          <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="price" content="0"><meta itemprop="priceCurrency" content="USD"></span>
           <div class="project-tag-row">
             <span class="tag tag-emerald">Active Flagship</span>
             <span class="tag tag-amber">Suikoden Series</span>
             <span class="tag">Texture Suite</span>
           </div>
-          <h3 class="project-title" itemprop="name" itemprop="name"><a href="project-kyaro-pc.html">Project Kyaro Suite</a></h3>
-          <p class="project-description" itemprop="description" itemprop="description">
+          <h3 class="project-title" itemprop="name"><a href="project-kyaro-pc.html">Project Kyaro Suite</a></h3>
+          <p class="project-description" itemprop="description">
             A comprehensive texture and visual enhancement suite for <strong>Suikoden I&amp;II HD Remaster</strong>. Sharpened portraits, high-detail UI elements, and quality-of-life adjustments crafted specifically to enhance the modern remaster experience.
           </p>
           <ul class="project-features">
@@ -257,15 +260,18 @@
           </a>
 
           <header class="project-subcard-header">
+            <meta itemprop="applicationCategory" content="GameApplication">
+            <meta itemprop="operatingSystem" content="Windows">
+            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="price" content="0"><meta itemprop="priceCurrency" content="USD"></span>
             <div class="project-tag-row">
               <span class="tag tag-emerald">BepInEx 6 IL2CPP</span>
               <span class="tag tag-cyan">Universal Framework</span>
               <span class="tag">Hot-Reloadable</span>
             </div>
-            <h3 class="project-subcard-title" itemprop="name" itemprop="name"><a href="project-kupo-ui-pr.html">Kupo-UI.PR Framework</a></h3>
+            <h3 class="project-subcard-title" itemprop="name"><a href="project-kupo-ui-pr.html">Kupo-UI.PR Framework</a></h3>
           </header>
 
-          <p class="project-subcard-desc" itemprop="description" itemprop="description">
+          <p class="project-subcard-desc" itemprop="description">
             A clean BepInEx IL2CPP runtime UI framework for the <strong>Final Fantasy I&ndash;VI Pixel Remasters</strong>. Eliminates Unity bundle repacking with 5-layer cascading texture replacement, dynamic dialogue portraits, custom fonts, and JSON-driven hierarchy layouts.
           </p>
 
@@ -291,15 +297,18 @@
           </a>
 
           <header class="project-subcard-header">
+            <meta itemprop="applicationCategory" content="GameApplication">
+            <meta itemprop="operatingSystem" content="Windows">
+            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><meta itemprop="price" content="0"><meta itemprop="priceCurrency" content="USD"></span>
             <div class="project-tag-row">
               <span class="tag tag-purple">Final Fantasy VI</span>
               <span class="tag tag-emerald">C++17 &bull; DX11 Interop</span>
               <span class="tag">32-Col Widescreen</span>
             </div>
-            <h3 class="project-subcard-title" itemprop="name" itemprop="name"><a href="project-kupo-engine-6.html">Kupo Engine 6 (FFVI)</a></h3>
+            <h3 class="project-subcard-title" itemprop="name"><a href="project-kupo-engine-6.html">Kupo Engine 6 (FFVI)</a></h3>
           </header>
 
-          <p class="project-subcard-desc" itemprop="description" itemprop="description">
+          <p class="project-subcard-desc" itemprop="description">
             The next-gen enhancement engine and reverse-engineering framework for <strong>Final Fantasy VI (2015 Steam)</strong> &mdash; featuring a zero-copy DirectX 11 CRT shader bridge, 32-column field widescreen, HD composite maps, 30 save slots, and a live Dear ImGui debugging suite.
           </p>
 
@@ -361,39 +370,6 @@
     <span>Address copied to clipboard!</span>
   </div>
 
-  <!-- Interactive JavaScript -->
-  <script>
-
-    // Escape handler for Home Blog Reader
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const homeReaderModal = document.getElementById('homeBlogReaderModal');
-        if (homeReaderModal && homeReaderModal.classList.contains('active')) {
-          closeHomeBlogReader();
-        }
-      }
-    });
-  </script>
-
-  <!-- Reconstructed Blog Reader Modal -->
-  <div class="blog-reader-modal" id="homeBlogReaderModal" onclick="handleHomeReaderBackdrop(event)">
-    <div class="blog-reader-dialog" role="dialog" aria-modal="true" aria-labelledby="homeModalPostTitle">
-      <div class="blog-reader-header">
-        <div class="blog-reader-title-area">
-          <h2 class="blog-reader-title" id="homeModalPostTitle">Post Title</h2>
-          <div class="blog-reader-meta" id="homeModalPostMeta"></div>
-        </div>
-        <div class="inline-row">
-          <a id="homeModalFullLink" href="blog.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem;">
-            <span>Archive View</span> &rarr;
-          </a>
-          <button class="blog-reader-close-btn" onclick="closeHomeBlogReader()" aria-label="Close article">&times;</button>
-        </div>
-      </div>
-      <div class="blog-reader-body" id="homeModalPostBody"></div>
-    </div>
-  </div>
-
   <!-- Reconstructed Blog Data Script -->
   <script src="assets/blog/blog_data.js"></script>
 
@@ -404,13 +380,6 @@
       const homeBlogGrid = document.getElementById('homeBlogGrid');
       const homeSearchInput = document.getElementById('homeBlogSearchInput');
       const homeCategoryBtns = document.querySelectorAll('#homeBlogCategoryPills .filter-btn');
-      const homeReaderModal = document.getElementById('homeBlogReaderModal');
-      const homeModalTitle = document.getElementById('homeModalPostTitle');
-      const homeModalMeta = document.getElementById('homeModalPostMeta');
-      const homeModalBody = document.getElementById('homeModalPostBody');
-      const homeModalFullLink = document.getElementById('homeModalFullLink');
-
-      window.homeReaderModal = homeReaderModal;
 
       let currentCategory = 'all';
       let currentQuery = '';
@@ -481,11 +450,12 @@
           ).join('');
 
           const thumbSrc = post.thumbnail || 'assets/thumb-placeholder.svg';
+          const blogUrl = `blog.html#${encodeURIComponent(post.slug)}`;
           const thumbHtml = `
-            <div class="blog-card-thumb" onclick="openHomeBlogReader('${post.slug}')">
+            <a href="${blogUrl}" class="blog-card-thumb">
               <img src="${thumbSrc}" alt="${escapeHtml(post.title)}" itemprop="image" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/thumb-placeholder.svg'">
               <span class="blog-card-badge">${escapeHtml(post.year)}</span>
-            </div>
+            </a>
           `;
 
           return `
@@ -499,61 +469,20 @@
                   <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime}</span>
                 </div>
                 <h3 class="blog-card-title" itemprop="headline">
-                  <a href="#blog-${post.slug}" itemprop="url" onclick="openHomeBlogReader('${post.slug}'); return false;">${escapeHtml(post.title)}</a>
+                  <a href="${blogUrl}" itemprop="url">${escapeHtml(post.title)}</a>
                 </h3>
                 <p class="blog-card-excerpt" itemprop="description">${escapeHtml(post.excerpt)}</p>
                 <div class="blog-card-footer">
                   <div class="tag-group">${tagSpans}</div>
-                  <button class="btn btn-secondary btn-sm" onclick="openHomeBlogReader('${post.slug}')">
+                  <a href="${blogUrl}" class="btn btn-secondary btn-sm">
                     Read &rarr;
-                  </button>
+                  </a>
                 </div>
               </div>
             </article>
           `;
         }).join('');
       }
-
-      window.openHomeBlogReader = function(slug) {
-        const post = blogPosts.find(p => p.slug === slug);
-        if (!post) return;
-
-        homeModalTitle.textContent = post.title;
-        homeModalFullLink.href = `blog.html#${post.slug}`;
-
-        const tagHtml = (post.categories || []).map(c => `<span class="tag tag-cyan">${escapeHtml(c)}</span>`).join(' ');
-        homeModalMeta.innerHTML = `
-          <span><svg width="11" height="11" viewBox="0 0 448 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>${post.dateFormatted}</span>
-          <span>&bull;</span>
-          <span><svg width="11" height="11" viewBox="0 0 512 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 351c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>${post.readingTime} (${post.wordCount} words)</span>
-          <span>&bull;</span>
-          <span><svg width="11" height="11" viewBox="0 0 576 512" fill="currentColor" style="vertical-align: -1px; margin-right: 4px;"><path d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.26 7.89-7.26 13.29v320.16c0 10.23 9.96 17.52 19.77 14.41 54.14-17.2 137.21-26.68 228.23-28.49 13.42-.27 24-11.23 24-24.64V56.44c0-13.6-11.24-24.63-24.81-24.39zM438 208c0 8.84-7.16 16-16 16h-96c-8.84 0-16-7.16-16-16v-32c0-8.84 7.16-16 16-16h96c8.84 0 16 7.16 16 16v32zm-16 96h-96c-8.84 0-16-7.16-16-16v-32c0-8.84 7.16-16 16-16h96c8.84 0 16 7.16 16 16v32c0 8.84-7.16 16-16 16zM33.78 32.05c13.57-.24 24.81 10.79 24.81 24.39v326.33c0 13.41 10.58 24.37 24 24.64 91.02 1.81 174.09 11.29 228.23 28.49 9.81 3.11 19.77-4.18 19.77-14.41V100.93c0-5.4-2.62-10.45-7.26-13.29-67.24-41.16-176.16-52.48-230.96-55.59-13.57-.24-24.81 10.79-24.81 24.39v.01zM154 224h96c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16h-96c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16zm0 96h96c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16h-96c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16z"/></svg>${escapeHtml(post.blogName)}</span>
-          ${tagHtml ? `<span style="margin-left: 0.5rem;">${tagHtml}</span>` : ''}
-        `;
-
-        homeModalBody.innerHTML = `
-          <div class="blog-article-body">
-            ${post.content}
-          </div>
-        `;
-        homeModalBody.scrollTop = 0;
-
-        homeReaderModal.classList.add('active');
-        document.body.classList.add('blog-modal-open');
-        document.body.style.overflow = 'hidden';
-      };
-
-      window.closeHomeBlogReader = function() {
-        homeReaderModal.classList.remove('active');
-        document.body.classList.remove('blog-modal-open');
-        document.body.style.overflow = '';
-      };
-
-      window.handleHomeReaderBackdrop = function(e) {
-        if (e.target === homeReaderModal) {
-          closeHomeBlogReader();
-        }
-      };
 
       // Events
       homeCategoryBtns.forEach(btn => {
@@ -572,11 +501,12 @@
         });
       }
 
-      // Check URL hash for blog-slug
+      // Redirect legacy #blog-slug links to blog.html#slug
       const hash = window.location.hash;
       if (hash && hash.startsWith('#blog-')) {
         const targetSlug = hash.replace('#blog-', '');
-        setTimeout(() => openHomeBlogReader(targetSlug), 200);
+        window.location.replace(`blog.html#${encodeURIComponent(targetSlug)}`);
+        return;
       }
 
       // Initial Render
